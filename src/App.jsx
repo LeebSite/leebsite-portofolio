@@ -17,7 +17,7 @@ import 'aos/dist/aos.css';
 import Lenis from 'lenis'; // You can also use <link> for styles
 // ..
 AOS.init({
-  once: true, // Fix: Changed to true to prevent layout shifts on scroll
+  once: false, // Revert: Allow animations to replay on scroll
   mirror: false,
   offset: 50,
   anchorPlacement: "top-bottom",

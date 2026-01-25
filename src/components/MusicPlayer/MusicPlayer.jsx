@@ -146,8 +146,6 @@ const MusicPlayer = () => {
                 <img
                     src="/alonicacover.jpg"
                     alt="LANY - Alonica"
-                    width="64"
-                    height="64"
                     onError={handleImageError}
                     onLoad={() => console.log('Image loaded successfully')}
                 />
