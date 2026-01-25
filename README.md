@@ -1,0 +1,54 @@
+# Portofolio Web — [Muhammad Ghalib Pradipa / LeebSite]
+
+Selamat datang di portofolio web pribadi saya! 🌐  
+Dibuat dengan React + Vite, ini adalah showcase dari project, skill, dan karya yang ingin saya bagikan.
+
+##  Struktur Project
+
+- `public/` — file statis (favicon, assets, dsb.)  
+- `src/` — code utama React (komponen, utilitas, dsb.)  
+- `index.html` — entry point halaman web  
+- `package.json` & `package-lock.json` — manajemen dependencies dan script  
+- `vite.config.js` — konfigurasi build dan dev server Vite  
+- `eslint.config.js` — aturan linting agar kodenya tetap bersih dan konsisten  
+
+##  Fitur Utama
+
+- Dibangun dengan **React + Vite** — ringan, cepat reload, dan performa build optimal  
+- **ESLint** telah terkonfigurasi agar coding style tetap rapi  
+- Struktur modular dan siap dikembangkan—bisa ditambahkan halaman “About”, “Projects”, dsb.
+
+##  Cara Jalankan
+
+1. Clone repository ini:
+```bash
+git clone https://github.com/LeebSite/leebsite-portofolio.git
+cd leebsite-portofolio
+````
+
+2. Install dependencies:
+```bash
+npm install
+````
+
+3. Jalankan server lokal dengan hot reload:
+```bash
+npm run dev
+````
+
+4. Buat versi production:
+```bash
+npm run build
+````
+
+## &#x20;Quick Preview
+
+Jika sudah di-deploy (contoh: Vercel, GitHub Pages, Netlify), nah kamu bisa tambahkan link deploy di sini, misalnya:
+[🔗 Lihat versi live](https://leebsite.vercel.app/)
+
+
+* **Email:** [email\_mhd.ghalibpradipa@gmail.com](mailto:email_mhd.ghalibpradipa@gmail.com)
+* **LinkedIn:** [linkedin.com/in/ghalibpradipaa](https://www.linkedin.com/in/ghalibpradipaa/)
+* **Instagram:** [@gpradiipaa](https://www.instagram.com/gpradiipaa)
+
+---

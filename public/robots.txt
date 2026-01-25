@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://leebsite.github.io/sitemap.xml
