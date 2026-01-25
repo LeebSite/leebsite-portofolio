@@ -1,10 +1,10 @@
 /* Music Player Styles - Spotify-like with Violet/Purple Theme */
 .music-player-card {
     width: 100%;
-  max-width: 320px;
+    max-width: 320px;
     background: linear-gradient(145deg, #1a1a1a 0%, #0a0a0a 100%);
-  border-radius: 20px;
-  padding: 1.25rem;
+    border-radius: 20px;
+    padding: 1.25rem;
     border: 1px solid rgba(139, 92, 246, 0.3);
     box-shadow:
         0 20px 60px rgba(0, 0, 0, 0.6),
@@ -34,7 +34,7 @@
 
     to {
         transform: rotate(360deg);
-  margin-bottom: 1.25rem;
+    }
 }
 
 /* Album Art */
@@ -58,11 +58,11 @@
 .music-player-card:hover .album-art {
     transform: scale(1.05);
 }
-  margin-bottom: 1.25rem;
+
 .favorite-btn {
     position: absolute;
     top: 1rem;
-  font-size: 1.35rem;
+    right: 1rem;
     width: 40px;
     height: 40px;
     background: rgba(0, 0, 0, 0.7);
@@ -73,7 +73,7 @@
     align-items: center;
     justify-content: center;
     cursor: pointer;
-  font-size: 0.9rem;
+    font-size: 0.9rem;
     color: rgba(255, 255, 255, 0.7);
 }
 
@@ -112,7 +112,7 @@
 }
 
 /* Progress Section */
-  margin-bottom: 1.25rem;
+.progress-section {
     display: flex;
     align-items: center;
     gap: 0.75rem;
@@ -167,7 +167,6 @@
 
 .progress-bar::-moz-range-thumb {
     width: 14px;
-  margin-bottom: 1.25rem;
     background: #fff;
     border: none;
     border-radius: 50%;
@@ -341,9 +340,4 @@
     color: #8b5cf6;
     margin: 0.25rem 0 0 0;
     font-weight: 500;
-}
-
-/* Progress Section */
-.progress-section {
-    margin-bottom: 1.75rem;
 }

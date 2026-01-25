@@ -137,8 +137,8 @@ const Navbar = ({ hidden = false }) => {
         {/* Social Icons */}
         <div className={`absolute bottom-20 flex gap-8 transform transition-all duration-700 ${isOpen ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"}`} style={{ transitionDelay: '600ms' }}>
           <a href="https://github.com/LeebSite" target="_blank" rel="noreferrer" className="text-zinc-500 hover:text-white transition-colors text-2xl"><FiGithub /></a>
-          <a href="#" className="text-zinc-500 hover:text-white transition-colors text-2xl"><FiLinkedin /></a>
-          <a href="#" className="text-zinc-500 hover:text-white transition-colors text-2xl"><FiInstagram /></a>
+          <a href="https://www.linkedin.com/in/ghalibpradipaa" target="_blank" rel="noreferrer" className="text-zinc-500 hover:text-white transition-colors text-2xl"><FiLinkedin /></a>
+          <a href="https://www.instagram.com/gpradiipaa" target="_blank" rel="noreferrer" className="text-zinc-500 hover:text-white transition-colors text-2xl"><FiInstagram /></a>
         </div>
       </div>
     </>
