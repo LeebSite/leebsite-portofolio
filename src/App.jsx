@@ -14,6 +14,7 @@ import ChatRoom from "./components/ChatRoom";
 import MusicPlayer from "./components/MusicPlayer/MusicPlayer";
 import Experience from "./components/Experience/Experience";
 import Certifications from "./components/Certifications/Certifications"; // Import Certifications
+import ToolsScroll from "./components/ToolsScroll/ToolsScroll";
 import 'aos/dist/aos.css';
 import Lenis from 'lenis'; // You can also use <link> for styles
 // ..
@@ -190,38 +191,8 @@ function App() {
 
 
 
-        <div id="tools" className="tools mt-32">
-          <h1 className="text-4xl/snug font-bold mb-4" data-aos="fade-up">Alat & Teknologi</h1>
-          <p className="w-2/5 text-base/loose opacity-50" data-aos="fade-up" data-aos-delay="300">Keahlian Profesional Saya</p>
-          <div className="tools-box mt-14 grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-4">
-
-            {listTools.map((tool) => (
-              <div
-                key={tool.id} data-aos="fade-up" data-aos-delay={tool.dad}
-                className="flex items-center gap-4 p-4 border border-zinc-700 rounded-xl bg-zinc-900/60 backdrop-blur-md hover:bg-zinc-800/80 transition-all duration-300 group shadow-lg"
-              >
-                <img
-                  src={tool.gambar}
-                  alt="Tools Image"
-                  width="64"
-                  height="64"
-                  className="w-16 h-16 object-contain bg-zinc-800 p-2 rounded-lg group-hover:bg-zinc-900 transition-all duration-300"
-                />
-                <div className="flex flex-col overflow-hidden">
-                  <div className="truncate">
-                    <ShinyText
-                      text={tool.nama}
-                      disabled={false}
-                      speed={3}
-                      className="text-lg font-semibold block"
-                    />
-                  </div>
-                  <p className="text-sm text-zinc-400 truncate">{tool.ket}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
+        {/* Tools Scroll Section */}
+        <ToolsScroll />
         {/* Certifications Section */}
         <Certifications />
 
