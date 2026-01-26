@@ -318,7 +318,7 @@ export const listCertifications = [
     id: 3,
     title: "Responsive Web Design Certification",
     issuer: "freeCodeCamp",
-    logo: "https://play-lh.googleusercontent.com/MoaYYQjGtmGLhG9HbjCDKyj44kwHj1HfbCI2Am70elRm35vJ-u4y4X5uEJjP97MAAsU",
+    logo: "https://upload.wikimedia.org/wikipedia/commons/f/fa/FreeCodeCamp_logo.svg",
     date: "Issued September 2025",
     skills: ["React", "JavaScript", "Responsive Web"],
     credentialLink: "https://www.freecodecamp.org/certification/leebsite/responsive-web-design",

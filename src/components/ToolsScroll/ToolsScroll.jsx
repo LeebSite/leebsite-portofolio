@@ -21,7 +21,7 @@ function ParallaxText({ children, baseVelocity = 100 }) {
         stiffness: 400
     });
 
-    const velocityFactor = useTransform(smoothVelocity, [0, 1000], [0, 5], {
+    const velocityFactor = useTransform(smoothVelocity, [0, 1000], [0, 2.5], {
         clamp: false
     });
 
@@ -112,9 +112,9 @@ const ToolsScroll = () => {
                 </p>
             </div>
 
-            <div className="flex flex-col gap-6 overflow-hidden py-4 mask-edges">
+            <div className="flex flex-col gap-6 overflow-hidden py-4 mask-edges -mx-4 sm:-mx-8 lg:-mx-16">
                 {/* Row 1: Left to Right (Positive Velocity) */}
-                <ParallaxText baseVelocity={2}>
+                <ParallaxText baseVelocity={1}>
                     {row1.map((tool) => (
                         <div key={tool.id} className="inline-block mx-2">
                             <ToolCard tool={tool} />
@@ -123,7 +123,7 @@ const ToolsScroll = () => {
                 </ParallaxText>
 
                 {/* Row 2: Right to Left (Negative Velocity) */}
-                <ParallaxText baseVelocity={-2}>
+                <ParallaxText baseVelocity={-1}>
                     {row2.map((tool) => (
                         <div key={tool.id} className="inline-block mx-2">
                             <ToolCard tool={tool} />
@@ -132,7 +132,7 @@ const ToolsScroll = () => {
                 </ParallaxText>
 
                 {/* Row 3: Left to Right (Positive Velocity) */}
-                <ParallaxText baseVelocity={2}>
+                <ParallaxText baseVelocity={1}>
                     {row3.map((tool) => (
                         <div key={tool.id} className="inline-block mx-2">
                             <ToolCard tool={tool} />
