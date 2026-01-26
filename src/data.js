@@ -11,25 +11,25 @@ const Tools2 = "/assets/tools/reactjs.png";
 const Tools3 = "/assets/tools/nextjs.png";
 const Tools4 = "/assets/tools/tailwind.png";
 const Tools5 = "/assets/tools/bootstrap.png";
-const Tools6 = "/assets/tools/js.png";
+const Tools6 = "https://www.jetbrains.com/guide/assets/fastapi-6837327b.svg";
 const Tools7 = "/assets/tools/nodejs.png";
 const Tools8 = "/assets/tools/github.png";
-const Tools9 = "/assets/tools/postgresql.png";
+const Tools9 = "https://upload.wikimedia.org/wikipedia/commons/2/29/Postgresql_elephant.svg";
 const Tools10 = "/assets/tools/canva.png";
 const Tools11 = "/assets/tools/figma.png";
 const Tools12 = "/assets/tools/kotlin.png";
 const Tools13 = "/assets/tools/firebase.png";
-const Tools14 = "/assets/tools/html.png";
-const Tools15 = "/assets/tools/css.png";
+const Tools14 = "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Laravel.svg/250px-Laravel.svg.png";
+const Tools15 = "https://www.svgrepo.com/show/354202/postman-icon.svg";
 const Tools16 = "/assets/tools/ts.png";
 const Tools17 = "/assets/tools/php.png";
 const Tools18 = "/assets/tools/vite.png";
 const Tools19 = "/assets/tools/mysql.png";
-const Tools20 = "/assets/tools/dotnet.png";
-const Tools21 = "/assets/tools/docker.png";
-const Tools22 = "/assets/tools/postman.png";
-const Tools23 = "/assets/tools/fastapi.png";
-const Tools24 = "/assets/tools/laravel.png";
+const Tools20 = "https://s3-ap-southeast-1.amazonaws.com/homepage-media/wp-content/uploads/2020/03/04092434/NET_Core_Logo.png";
+const Tools21 = "https://cloudeereviews.com/images/docker-logo.png";
+const Tools22 = "/assets/tools/js.png";
+const Tools23 = "/assets/tools/html.png";
+const Tools24 = "/assets/tools/css.png";
 
 
 export const listTools = [
@@ -71,8 +71,8 @@ export const listTools = [
   {
     id: 6,
     gambar: Tools6,
-    nama: "Javascript",
-    ket: "Language",
+    nama: "FastAPI",
+    ket: "Framework",
     dad: "600",
   },
   {
@@ -127,15 +127,15 @@ export const listTools = [
   {
     id: 14,
     gambar: Tools14,
-    nama: "HTML",
-    ket: "Language",
+    nama: "Laravel",
+    ket: "Framework",
     dad: "1400",
   },
   {
     id: 15,
     gambar: Tools15,
-    nama: "CSS",
-    ket: "Language",
+    nama: "Postman",
+    ket: "API Testing",
     dad: "1500",
   },
   {
@@ -183,23 +183,23 @@ export const listTools = [
   {
     id: 22,
     gambar: Tools22,
-    nama: "Postman",
-    ket: "API Testing",
+    nama: "JavaScript",
+    ket: "Language",
     dad: "2200",
   },
   {
     id: 23,
     gambar: Tools23,
-    nama: "FastAPI",
-    ket: "Framework",
+    nama: "HTML",
+    ket: "Language",
     dad: "2300",
   },
   {
     id: 24,
     gambar: Tools24,
-    nama: "Laravel",
-    ket: "Framework",
-    dad: "2400",
+    nama: "CSS",
+    ket: "Language",
+    dad: "2400" ,
   },
 ];
 
@@ -291,4 +291,107 @@ export const listProyek = [
     url: "https://github.com/LeebSite",
     dad: "600",
   },
+];
+
+export const listCertifications = [
+  {
+    id: 1,
+    title: "Google Cloud Certified - Associate Cloud Engineer",
+    issuer: "Google Cloud",
+    logo: "https://upload.wikimedia.org/wikipedia/commons/5/51/Google_Cloud_logo.svg",
+    date: "Issued December 2025",
+    skills: ["Cloud Computing", "Infrastructure", "GCP"],
+    credentialLink: "#",
+    delay: "100"
+  },
+  {
+    id: 2,
+    title: "Kilang Pertamina RU II Certified - Software Engineer Intern",
+    issuer: "PT. Kilang Pertamina RU II",
+    logo: "https://kehatipertaminaru2spk.com/static/media/logo_pertamina.4e59198e.png",
+    date: "Issued March 2025",
+    skills: ["C#", "ASP.NET", "SQL Server", "Clean Architecture", "Entity Framework"],
+    credentialLink: "https://drive.google.com/file/d/1UVK0G1ABxsif5_ATGYqaeIaaWKGBkD9x/view?usp=sharing",
+    delay: "200"
+  },
+  {
+    id: 3,
+    title: "Responsive Web Design Certification",
+    issuer: "freeCodeCamp",
+    logo: "https://play-lh.googleusercontent.com/MoaYYQjGtmGLhG9HbjCDKyj44kwHj1HfbCI2Am70elRm35vJ-u4y4X5uEJjP97MAAsU",
+    date: "Issued September 2025",
+    skills: ["React", "JavaScript", "Responsive Web"],
+    credentialLink: "https://www.freecodecamp.org/certification/leebsite/responsive-web-design",
+    delay: "300"
+  },
+  {
+    id: 4,
+    title: "Cloud Practitioner Essentials (AWS Cloud)",
+    issuer: "Dicoding X AWS Certification",
+    logo: "https://dicoding-web-img.sgp1.cdn.digitaloceanspaces.com/original/commons/new-ui-logo.png",
+    date: "Issued February 2025",
+    skills: ["AWS Cloud", "Cloud Computing", "Infrastructure", "GCP"],
+    credentialLink: "https://www.dicoding.com/certificates/4EXGV3MG1XRL",
+    delay: "400"
+  },
+  {
+    id: 5,
+    title: "Dicoding Certified - Belajar Dasar Manajemen Proyek",
+    issuer: "Dicoding Indonesia",
+    logo: "https://dicoding-web-img.sgp1.cdn.digitaloceanspaces.com/original/commons/new-ui-logo.png",
+    date: "Issued September 2024",
+    skills: ["Project Planning", "Agile", "Scrum", "Project Management"],
+    credentialLink: "#",
+    delay: "500"
+  },
+  {
+    id: 6,
+    title: "HackerRank Certified - Frontend Developer (React)",
+    issuer: "HackerRank",
+    logo: "https://upload.wikimedia.org/wikipedia/commons/4/40/HackerRank_Icon-1000px.png",
+    date: "Issued December 2024",
+    skills: ["React", "Hooks", "Redux"],
+    credentialLink: "https://www.hackerrank.com/certificates/iframe/39f796ba7aaa",
+    delay: "600"
+  },
+  {
+    id: 7,
+    title: "Dicoding Certified - Belajar Dasar AI",
+    issuer: "Dicoding Indonesia",
+    logo: "https://dicoding-web-img.sgp1.cdn.digitaloceanspaces.com/original/commons/new-ui-logo.png",
+    date: "Issued November 2024",
+    skills: ["Artificial Intelligence", "Machine Learning", "Deep Learning", "Python"],
+    credentialLink: "https://www.dicoding.com/certificates/NVP74EREOPR0",
+    delay: "700"
+  },
+  {
+    id: 8,
+    title: "Oracle Certified Professional - Database Programming with PL/SQL",
+    issuer: "Oracle",
+    logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/Oracle_logo.svg/1280px-Oracle_logo.svg.png",
+    date: "Issued May 2025",
+    skills: ["PL/SQL", "Oracle Database","SQL Developer"],
+    credentialLink: "https://www.linkedin.com/in/ghalibpradipaa/details/certifications/",
+    delay: "800"
+  },
+  {
+    id: 9,
+    title: "TensorFlow Developer Certificate",
+    issuer: "TensorFlow",
+    logo: "https://upload.wikimedia.org/wikipedia/commons/2/2d/Tensorflow_logo.svg",
+    date: "Issued Apr 2025",
+    skills: ["Machine Learning", "Deep Learning", "Python"],
+    credentialLink: "#",
+    delay: "900"
+  },
+  {
+    id: 10,
+    title: "Digital Skill Fair 12.0 - UI/UX Designer Certificate",
+    issuer: "Dibimbing.id",
+    logo: "https://media.licdn.com/dms/image/v2/C560BAQEs1djkew463Q/company-logo_200_200/company-logo_200_200/0/1630638017935/dibimbing_id_logo?e=2147483647&v=beta&t=NvRdTFnZCTfb7XPi0H4yApp8Oa5yNIkrri5Cs7rXiQo",
+    date: "Issued Mar 2025",
+    skills: ["UI/UX", "Design", "Figma"],
+    credentialLink: "https://drive.google.com/file/d/1W0Q8c9qIFxoGcvecQnmwpAm6HW93pDKv/view?usp=sharing",
+    delay: "1000"
+  }
 ];

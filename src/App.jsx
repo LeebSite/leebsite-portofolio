@@ -13,6 +13,7 @@ import AOS from 'aos';
 import ChatRoom from "./components/ChatRoom";
 import MusicPlayer from "./components/MusicPlayer/MusicPlayer";
 import Experience from "./components/Experience/Experience";
+import Certifications from "./components/Certifications/Certifications"; // Import Certifications
 import 'aos/dist/aos.css';
 import Lenis from 'lenis'; // You can also use <link> for styles
 // ..
@@ -221,6 +222,9 @@ function App() {
             ))}
           </div>
         </div>
+        {/* Certifications Section */}
+        <Certifications />
+
         {/* tentang */}
 
         {/* Proyek */}
