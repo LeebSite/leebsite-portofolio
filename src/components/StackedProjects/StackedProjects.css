@@ -1,0 +1,285 @@
+.stacked-projects-container {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+}
+
+.project-card-stack {
+    position: sticky;
+    top: 5vh;
+    margin-bottom: 10vh;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.project-card {
+    position: relative;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    background: rgba(20, 20, 20, 0.95);
+    backdrop-filter: blur(20px);
+    border-radius: 30px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.project-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.7);
+}
+
+/* Card Content Grid */
+.project-card-content {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    padding: 2rem;
+}
+
+@media (min-width: 768px) {
+    .project-card-content {
+        grid-template-columns: 1fr 1fr;
+        gap: 3rem;
+        padding: 3rem;
+    }
+}
+
+/* Image Section */
+.project-image-section {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    border-radius: 20px;
+    overflow: hidden;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.project-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.project-card:hover .project-image {
+    transform: scale(1.05);
+}
+
+/* Gradient Overlay */
+.project-image-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, transparent 0%, rgba(0, 0, 0, 0.3) 100%);
+    pointer-events: none;
+}
+
+/* Info Section */
+.project-info-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1.5rem;
+    padding: 1rem 0;
+}
+
+.project-category-badge {
+    display: inline-block;
+    width: fit-content;
+    padding: 0.5rem 1rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 50px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.7);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.project-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    line-height: 1.2;
+    background: linear-gradient(135deg, #ffffff, #a0a0a0);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin: 0;
+}
+
+@media (max-width: 767px) {
+    .project-title {
+        font-size: 1.875rem;
+    }
+}
+
+.project-description {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.6);
+    margin: 0;
+}
+
+/* Tech Stack Pills */
+.tech-stack-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 1rem;
+}
+
+.tech-pill {
+    padding: 0.5rem 1rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 50px;
+    font-size: 0.875rem;
+    color: rgba(255, 255, 255, 0.8);
+    transition: all 0.3s ease;
+}
+
+.tech-pill:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.3);
+    transform: translateY(-2px);
+}
+
+/* Action Buttons */
+.project-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.project-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.875rem 1.75rem;
+    border-radius: 50px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    border: none;
+}
+
+.project-btn-primary {
+    background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+    color: white;
+    box-shadow: 0 10px 30px rgba(59, 130, 246, 0.3);
+}
+
+.project-btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 40px rgba(59, 130, 246, 0.5);
+}
+
+.project-btn-secondary {
+    background: rgba(255, 255, 255, 0.05);
+    color: rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.project-btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.3);
+    transform: translateY(-3px);
+}
+
+/* Scroll Progress Indicator */
+.scroll-indicator {
+    position: absolute;
+    right: 2rem;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    z-index: 10;
+}
+
+@media (max-width: 767px) {
+    .scroll-indicator {
+        display: none;
+    }
+}
+
+.scroll-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.scroll-dot.active {
+    background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+    transform: scale(1.5);
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.6);
+}
+
+/* Index Number on Card */
+.project-index {
+    position: absolute;
+    top: 2rem;
+    left: 2rem;
+    font-size: 8rem;
+    font-weight: 800;
+    color: rgba(255, 255, 255, 0.03);
+    line-height: 1;
+    z-index: 0;
+    user-select: none;
+    pointer-events: none;
+}
+
+@media (max-width: 767px) {
+    .project-index {
+        font-size: 4rem;
+        top: 1rem;
+        left: 1rem;
+    }
+}
+
+/* Aurora Background per Card (Optional) */
+.card-aurora {
+    position: absolute;
+    inset: 0;
+    opacity: 0.1;
+    pointer-events: none;
+    z-index: 0;
+    filter: blur(100px);
+}
+
+.card-aurora-blue {
+    background: radial-gradient(circle at 30% 50%, rgba(59, 130, 246, 0.4), transparent 70%);
+}
+
+.card-aurora-green {
+    background: radial-gradient(circle at 70% 50%, rgba(16, 185, 129, 0.4), transparent 70%);
+}
+
+.card-aurora-purple {
+    background: radial-gradient(circle at 50% 30%, rgba(139, 92, 246, 0.4), transparent 70%);
+}
+
+/* Responsive */
+@media (max-width: 767px) {
+    .project-card-stack {
+        margin-bottom: 5vh;
+    }
+
+    .project-actions {
+        flex-direction: column;
+    }
+
+    .project-btn {
+        width: 100%;
+        justify-content: center;
+    }
+}

@@ -6,8 +6,7 @@ import ScrambledText from "./components/ScrambledText/ScrambledText";
 import SplitText from "./components/SplitText/SplitText";
 import GlassIcons from "./components/GlassIcons/GlassIcons";
 import { listTools, listProyek } from "./data";
-import ChromaGrid from "./components/ChromaGrid/ChromaGrid";
-import ProjectModal from "./components/ProjectModal/ProjectModal"; // <-- IMPORT MODAL
+import StackedProjects from "./components/StackedProjects/StackedProjects"; // NEW IMPORT
 import Aurora from "./components/Aurora/Aurora";
 import AOS from 'aos';
 import ChatRoom from "./components/ChatRoom";
@@ -48,15 +47,6 @@ function App() {
     return () => lenis.destroy();
   }, []);
 
-  const [selectedProject, setSelectedProject] = useState(null); // null = modal tertutup
-
-  const handleProjectClick = (project) => {
-    setSelectedProject(project);
-  };
-
-  const handleCloseModal = () => {
-    setSelectedProject(null);
-  };
   // -------------------------
 
 
@@ -198,24 +188,15 @@ function App() {
 
         {/* tentang */}
 
-        {/* Proyek */}
+        {/* Proyek Section */}
         <div className="proyek mt-32 py-10" id="project"></div>
         <h1 className="text-center text-4xl font-bold mb-2" data-aos="fade-up">Proyek</h1>
-        <p className="text-base/loose text-center opacity-50" data-aos="fade-up" data-aos-delay="300">Menampilkan pilihan proyek yang mencerminkan keahlian, kreativitas, dan passion saya dalam membangun pengalaman digital yang bermakna.</p>
-        <div className="proyek-box mt-14" >
+        <p className="text-base/loose text-center opacity-50 max-w-2xl mx-auto mb-14" data-aos="fade-up" data-aos-delay="300">
+          Menampilkan pilihan proyek yang mencerminkan keahlian, kreativitas, dan passion saya dalam membangun pengalaman digital yang bermakna.
+        </p>
 
-          <div style={{ height: 'auto', position: 'relative' }} data-aos="fade-up" data-aos-delay="400">
-            <ChromaGrid
-              items={listProyek}
-              onItemClick={handleProjectClick} // Kirim fungsi untuk handle klik
-              radius={500}
-              damping={0.45}
-              fadeOut={0.6}
-              ease="power3.out"
-            />
-          </div>
-        </div>
-        {/* Proyek */}
+        {/* NEW: Stacked Projects Component */}
+        <StackedProjects projects={listProyek} />
 
 
         {/* Kontak */}
@@ -303,12 +284,6 @@ function App() {
         </div>
         {/* Kontak */}
       </main>
-
-      <ProjectModal
-        isOpen={!!selectedProject}
-        onClose={handleCloseModal}
-        project={selectedProject}
-      />
     </>
   )
 }
