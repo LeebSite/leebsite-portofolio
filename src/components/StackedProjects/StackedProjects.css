@@ -1,33 +1,39 @@
 .stacked-projects-container {
     position: relative;
-    width: 100%;
-    min-height: 100vh;
+    margin-top: 25vh;
 }
 
-.project-card-stack {
+.card-container {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     position: sticky;
-    top: 5vh;
-    margin-bottom: 10vh;
-    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    top: 0;
 }
 
-.project-card {
+.card {
     position: relative;
-    width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
+    width: 90%;
+    max-width: 1100px;
+    height: 500px;
     background: rgba(20, 20, 20, 0.95);
     backdrop-filter: blur(20px);
     border-radius: 30px;
     overflow: hidden;
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
     border: 1px solid rgba(255, 255, 255, 0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    padding: 3rem;
+    transform-origin: top;
 }
 
-.project-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.7);
+@media (max-width: 768px) {
+    .card {
+        width: 95%;
+        height: auto;
+        min-height: 400px;
+        padding: 2rem;
+    }
 }
 
 /* Card Content Grid */
@@ -35,14 +41,13 @@
     display: grid;
     grid-template-columns: 1fr;
     gap: 2rem;
-    padding: 2rem;
+    height: 100%;
 }
 
 @media (min-width: 768px) {
     .project-card-content {
         grid-template-columns: 1fr 1fr;
         gap: 3rem;
-        padding: 3rem;
     }
 }
 
@@ -50,7 +55,7 @@
 .project-image-section {
     position: relative;
     width: 100%;
-    aspect-ratio: 16 / 10;
+    height: 100%;
     border-radius: 20px;
     overflow: hidden;
     background: linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
@@ -61,11 +66,6 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.project-card:hover .project-image {
-    transform: scale(1.05);
 }
 
 /* Gradient Overlay */
@@ -82,7 +82,6 @@
     flex-direction: column;
     justify-content: center;
     gap: 1.5rem;
-    padding: 1rem 0;
 }
 
 .project-category-badge {
@@ -191,44 +190,11 @@
     transform: translateY(-3px);
 }
 
-/* Scroll Progress Indicator */
-.scroll-indicator {
-    position: absolute;
-    right: 2rem;
-    top: 50%;
-    transform: translateY(-50%);
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    z-index: 10;
-}
-
-@media (max-width: 767px) {
-    .scroll-indicator {
-        display: none;
-    }
-}
-
-.scroll-dot {
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.2);
-    transition: all 0.3s ease;
-    cursor: pointer;
-}
-
-.scroll-dot.active {
-    background: linear-gradient(135deg, #3b82f6, #8b5cf6);
-    transform: scale(1.5);
-    box-shadow: 0 0 20px rgba(59, 130, 246, 0.6);
-}
-
 /* Index Number on Card */
 .project-index {
     position: absolute;
     top: 2rem;
-    left: 2rem;
+    right: 2rem;
     font-size: 8rem;
     font-weight: 800;
     color: rgba(255, 255, 255, 0.03);
@@ -242,11 +208,11 @@
     .project-index {
         font-size: 4rem;
         top: 1rem;
-        left: 1rem;
+        right: 1rem;
     }
 }
 
-/* Aurora Background per Card (Optional) */
+/* Aurora Background per Card */
 .card-aurora {
     position: absolute;
     inset: 0;
@@ -270,10 +236,6 @@
 
 /* Responsive */
 @media (max-width: 767px) {
-    .project-card-stack {
-        margin-bottom: 5vh;
-    }
-
     .project-actions {
         flex-direction: column;
     }
