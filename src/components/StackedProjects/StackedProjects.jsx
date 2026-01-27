@@ -116,7 +116,7 @@ const StackedProjects = ({ projects }) => {
     return (
         <div ref={container} className="stacked-projects-container">
             {projects.map((project, index) => {
-                const targetScale = 0.95;
+                const targetScale = 1 - ((projects.length - index) * 0.05);
                 return (
                     <Card
                         key={project.id}
