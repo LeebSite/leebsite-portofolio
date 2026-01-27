@@ -18,7 +18,7 @@ const Card = ({ project, index, progress, range, targetScale }) => {
             'SIMIT': ['C#', 'ASP.NET', 'MySQL', 'Swagger'],
             'Model Klasifikasi': ['Python', 'OpenCV', 'Machine Learning'],
             'Waddle': ['Java Android', 'Firebase', 'Figma'],
-            'AfterSunset': ['Laravel', 'PHP', 'MySQL'],
+            'AfterSunset': ['Laravel', 'PHP', 'PostgreSQL'],
             'Website Portofolio Masjid': ['HTML', 'Bootstrap', 'JavaScript'],
             'Website Personal': ['React', 'Vite', 'Next.js']
         };
@@ -116,7 +116,7 @@ const StackedProjects = ({ projects }) => {
     return (
         <div ref={container} className="stacked-projects-container">
             {projects.map((project, index) => {
-                const targetScale = 1 - ((projects.length - index) * 0.05);
+                const targetScale = 0.95;
                 return (
                     <Card
                         key={project.id}

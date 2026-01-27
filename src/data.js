@@ -261,7 +261,7 @@ export const listProyek = [
     detailImage: Proyek4Detail,
     title: "AfterSunset Idn WebApp",
     subtitle: "Web Aplikasi “AfterSunset Idn” adalah aplikasi elektronik pemesanan...",
-    fullDescription: "Web Aplikasi “AfterSunset Idn” adalah aplikasi elektronik pemesanan dan analisis keuangan berbasis web ditujukanbagi usaha UMKM AfterSunset Idn. Aplikasi ini dapat dilakukan peninjauan stok, keuangan dan pendataan pembeli pada admin. Kasir dapat melakukan tugasnya dalam melakukan penjualan dari makanan dan minuman, serta pembeli dapat memudahkan dalam pemesanan sehingga aplikasi ini membantu dalam pengantisipasian mengantri yang terlalu padat.",
+    fullDescription: "Web Aplikasi “AfterSunset Idn” adalah aplikasi elektronik pemesanan & analisis keuangan berbasis web ditujukan bagi usaha UMKM AfterSunset Idn. Aplikasi ini dapat dilakukan peninjauan stok, keuangan dan pendataan pembeli pada admin. Kasir dapat melakukan tugasnya dalam melakukan penjualan dari makanan dan minuman, serta pembeli dapat memudahkan dalam pemesanan sehingga aplikasi ini membantu dalam pengantisipasian mengantri yang terlalu padat.",
     borderColor: "#10B981",
     gradient: "linear-gradient(180deg, #10B981, #000)",
     url: "https://github.com/LeebSite",
