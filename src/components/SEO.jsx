@@ -3,7 +3,7 @@ import { Helmet, HelmetProvider } from 'react-helmet-async';
 const SEO = ({
     title = "Muhammad Ghalib Pradipa - Software Engineer & Web Developer",
     description = "Muhammad Ghalib Pradipa adalah Software Engineer dan Web Developer dari Indonesia. Mahasiswa Teknik Informatika UIN Sultan Syarif Kasim Riau dengan fokus pada Web Development, Backend Systems, REST APIs, Machine Learning, dan GIS Applications.",
-    keywords = "Muhammad Ghalib Pradipa, Software Engineer, Web Developer, Teknik Informatika, UIN Suska Riau, Backend Developer, REST API, Machine Learning, GIS, Pekanbaru, Indonesia",
+    keywords = "Muhammad Ghalib Pradipa, Ghalib Pradipa, Ghalib, Pradipa, Software Engineer, Web Developer, Teknik Informatika, UIN Suska Riau, Backend Developer, REST API, Machine Learning, GIS, Pekanbaru, Indonesia",
     author = "Muhammad Ghalib Pradipa",
     url = "https://leebsite.vercel.app",
     image = "https://leebsite.vercel.app/assets/preview.jpg",
@@ -16,6 +16,7 @@ const SEO = ({
         "name": "Muhammad Ghalib Pradipa",
         "givenName": "Muhammad Ghalib",
         "familyName": "Pradipa",
+        "alternateName": ["Ghalib Pradipa", "LeebSite", "M Ghalib Pradipa", "Ghalib", "Pradipa"],
         "birthDate": "2004-04-11",
         "birthPlace": {
             "@type": "Place",

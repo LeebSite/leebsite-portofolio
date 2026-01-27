@@ -97,7 +97,7 @@ const Experience = () => {
                             data-aos="fade-up"
                             data-aos-duration="1000"
                             data-aos-delay={index * 200}
-                            
+
                         >
                             {/* Timeline Dot */}
                             <div className="timeline-dot">
