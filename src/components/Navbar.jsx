@@ -59,10 +59,10 @@ const Navbar = ({ hidden = false }) => {
           {/* Logo 
               - Klik logo scroll ke top
           */}
-          <div className="logo z-50 hidden md:block">
+          <div className="logo z-50 hidden md:flex items-center gap-2 cursor-pointer" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
+            <img src="/favicon.ico" alt="LeebSite Logo" className="w-8 h-8 object-contain" />
             <h1
-              className={`text-2xl font-bold transition-all duration-300 cursor-pointer ${isOpen ? 'text-white' : 'text-white/90 drop-shadow-md'}`}
-              onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+              className={`text-2xl font-bold transition-all duration-300 ${isOpen ? 'text-white' : 'text-white/90 drop-shadow-md'}`}
             >
               LeebSite
             </h1>

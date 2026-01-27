@@ -4,7 +4,7 @@ import './index.css'
 import App from './App.jsx'
 import Navbar from './components/Navbar.jsx'
 import Footer from './components/Footer.jsx'
-import PreLoader from './components/PreLoader.jsx'
+import PreLoader from './components/PreLoader/PreLoader.jsx'
 import SEO, { HelmetProvider } from './components/SEO.jsx'
 import "animate.css"
 import AOS from 'aos';
