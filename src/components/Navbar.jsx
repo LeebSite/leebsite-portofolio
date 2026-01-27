@@ -49,11 +49,10 @@ const Navbar = ({ hidden = false }) => {
       {/* 
         Navbar Container 
         - Mobile: Transparent (no background)
-        - Desktop: Background muncul saat scroll (active)
+        - Desktop: Glassmorphism blur transparan
       */}
       <nav
-        className={`navbar fixed top-0 left-0 w-full z-50 transition-all duration-300 py-4 ${active && !isOpen ? "md:bg-black/80 md:backdrop-blur-md md:shadow-lg" : ""
-          }`}
+        className={`navbar fixed top-0 left-0 w-full z-50 transition-all duration-300 py-4 md:bg-white/5 md:backdrop-blur-xl md:border-b md:border-white/10`}
       >
         <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
 

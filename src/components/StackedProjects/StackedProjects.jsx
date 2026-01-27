@@ -15,12 +15,12 @@ const Card = ({ project, index, progress, range, targetScale }) => {
 
     const getTechStack = (project) => {
         const techMap = {
-            'SIMIT': ['Laravel', 'PHP', 'MySQL', 'Bootstrap'],
-            'Model Klasifikasi': ['Python', 'KNN', 'OpenCV', 'Machine Learning'],
-            'Waddle': ['Kotlin', 'Firebase', 'Android Studio'],
-            'AfterSunset': ['Laravel', 'PHP', 'MySQL', 'Chart.js'],
-            'Website Portofolio Masjid': ['HTML', 'CSS', 'JavaScript', 'Bootstrap'],
-            'Website Personal': ['React', 'Vite', 'Tailwind CSS']
+            'SIMIT': ['C#', 'ASP.NET', 'MySQL', 'Swagger'],
+            'Model Klasifikasi': ['Python', 'OpenCV', 'Machine Learning'],
+            'Waddle': ['Java Android', 'Firebase', 'Figma'],
+            'AfterSunset': ['Laravel', 'PHP', 'MySQL'],
+            'Website Portofolio Masjid': ['HTML', 'Bootstrap', 'JavaScript'],
+            'Website Personal': ['React', 'Vite', 'Next.js']
         };
 
         for (const [key, tech] of Object.entries(techMap)) {

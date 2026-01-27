@@ -9,31 +9,23 @@
     align-items: center;
     justify-content: center;
     position: sticky;
-    top: 0;
+    top: 50px;
 }
 
 .card {
     position: relative;
-    width: 90%;
-    max-width: 1100px;
-    height: 500px;
+    width: 100%;
+    max-width: 2000px;
+    height: 600px;
+    min-height: 600px;
     background: rgba(20, 20, 20, 0.95);
     backdrop-filter: blur(20px);
     border-radius: 30px;
     overflow: hidden;
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
     border: 1px solid rgba(255, 255, 255, 0.1);
-    padding: 3rem;
+    padding: 2.5rem;
     transform-origin: top;
-}
-
-@media (max-width: 768px) {
-    .card {
-        width: 95%;
-        height: auto;
-        min-height: 400px;
-        padding: 2rem;
-    }
 }
 
 /* Card Content Grid */
@@ -46,8 +38,8 @@
 
 @media (min-width: 768px) {
     .project-card-content {
-        grid-template-columns: 1fr 1fr;
-        gap: 3rem;
+        grid-template-columns: 1.8fr 1fr;
+        gap: 2.5rem;
     }
 }
 
@@ -55,17 +47,25 @@
 .project-image-section {
     position: relative;
     width: 100%;
-    height: 100%;
+    aspect-ratio: 1.39 / 1;
     border-radius: 20px;
     overflow: hidden;
     background: linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
     border: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    margin: 0;
 }
 
 .project-image {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    display: block;
+    margin: 0;
+    padding: 0;
 }
 
 /* Gradient Overlay */
@@ -81,7 +81,8 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    gap: 1.5rem;
+    gap: 1rem;
+    min-height: 450px;
 }
 
 .project-category-badge {
@@ -109,15 +110,9 @@
     margin: 0;
 }
 
-@media (max-width: 767px) {
-    .project-title {
-        font-size: 1.875rem;
-    }
-}
-
 .project-description {
-    font-size: 1rem;
-    line-height: 1.7;
+    font-size: 0.85rem;
+    line-height: 1.6;
     color: rgba(255, 255, 255, 0.6);
     margin: 0;
 }
@@ -127,7 +122,7 @@
     display: flex;
     flex-wrap: wrap;
     gap: 0.75rem;
-    margin-top: 1rem;
+    margin-top: 0.5rem;
 }
 
 .tech-pill {
@@ -165,6 +160,7 @@
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     cursor: pointer;
     border: none;
+    white-space: nowrap;
 }
 
 .project-btn-primary {
@@ -236,12 +232,77 @@
 
 /* Responsive */
 @media (max-width: 767px) {
+    .card {
+        padding: 1.5rem;
+        height: auto;
+        min-height: 500px;
+    }
+
+    .project-card-content {
+        grid-template-columns: 1fr;
+        gap: 1.25rem;
+    }
+
+    .project-image-section {
+        aspect-ratio: 1.39 / 1;
+        padding: 0;
+        margin: 0;
+    }
+
+    .project-image {
+        height: 100%;
+        object-fit: cover;
+        padding: 0;
+        margin: 0;
+    }
+
+    .project-info-section {
+        gap: 0.75rem;
+    }
+
+    .project-category-badge {
+        font-size: 0.7rem;
+        padding: 0.35rem 0.75rem;
+    }
+
+    .project-title {
+        font-size: 1.25rem;
+        /* Lebih kecil lagi */
+        line-height: 1.3;
+    }
+
+    .project-description {
+        font-size: 0.75rem;
+        line-height: 1.5;
+    }
+
+    .tech-stack-container {
+        gap: 0.5rem;
+        margin-top: 0.5rem;
+    }
+
+    .tech-pill {
+        font-size: 0.7rem;
+        padding: 0.35rem 0.75rem;
+    }
+
     .project-actions {
         flex-direction: column;
+        gap: 0.75rem;
+        margin-top: 0.75rem;
     }
 
     .project-btn {
         width: 100%;
         justify-content: center;
+        padding: 0.7rem 1.4rem;
+        font-size: 0.85rem;
+    }
+
+    .project-index {
+        font-size: 2.5rem;
+        top: 0.5rem;
+        right: 0.5rem;
+        opacity: 0.5;
     }
 }
