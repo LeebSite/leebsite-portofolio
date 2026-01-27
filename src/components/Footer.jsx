@@ -1,43 +1,94 @@
 import "remixicon/fonts/remixicon.css";
-import Dock from "./Dock/Dock";
-import { VscHome, VscArchive, VscAccount } from "react-icons/vsc";
+import "./Footer.css";
 
 const Footer = () => {
-  const items = [
-    { icon: <VscHome size={18} />, label: "Home", onClick: () => document.getElementById("home")?.scrollIntoView({ behavior: "smooth" }) },
-    { icon: <VscAccount size={18} />, label: "About Me", onClick: () => document.getElementById("about")?.scrollIntoView({ behavior: "smooth" }) },
-    { icon: <VscArchive size={18} />, label: "Project", onClick: () => document.getElementById("project")?.scrollIntoView({ behavior: "smooth" }) },
-  ];
+  const currentYear = new Date().getFullYear();
 
   return (
-    <div className="mt-32 pb-8 flex flex-col items-center relative z-10">
-      {/* Flex container adaptif */}
-      <div className="w-full flex flex-col md:flex-row items-center md:justify-between gap-6">
+    <footer className="footer-wrapper">
+      {/* Aurora Background Effect */}
+      <div className="footer-aurora"></div>
+      <div className="footer-border-gradient"></div>
 
-        {/* Judul - paling atas di mobile */}
-        <h1 className="text-2xl font-bold order-1 md:order-none">
-          LeebSite
-        </h1>
+      {/* Main Footer Grid */}
+      <div className="footer-grid container mx-auto px-6">
 
-        {/* Ikon Sosmed - di tengah di mobile */}
-        <div className="flex gap-3 order-2 md:order-none">
-          <a href="https://github.com/LeebSite"><i className="ri-github-fill ri-2x"></i></a>
-          <a href="https://www.instagram.com/gpradiipaa"><i className="ri-instagram-fill ri-2x"></i></a>
-          <a href="https://www.linkedin.com/in/ghalibpradipaa"><i className="ri-linkedin-fill ri-2x"></i></a>
+        {/* Brand & About Section */}
+        <div className="footer-brand">
+          <h2 className="footer-logo">LeebSite</h2>
+          <p className="footer-tagline">
+            Portfolio Muhammad Ghalib Pradipa. Software Engineer & Web Developer yang berfokus pada teknologi modern dan inovasi digital.
+          </p>
+          <div className="footer-location">
+            <i className="ri-map-pin-fill"></i>
+            <span>Pekanbaru, Riau, Indonesia</span>
+          </div>
         </div>
 
-        {/* Dock - paling bawah di mobile */}
-        <div className="order-3 md:order-none mt-15 md:mt-0  md:mb-0">
-          <Dock
-            items={items}
-            panelHeight={30}
-            baseItemSize={60}
-            magnification={100}
-          />
+        {/* Quick Links */}
+        <div className="footer-links">
+          <h3>Quick Links</h3>
+          <a href="#home" onClick={(e) => { e.preventDefault(); document.getElementById("home")?.scrollIntoView({ behavior: "smooth" }); }}>
+            Home
+          </a>
+          <a href="#about" onClick={(e) => { e.preventDefault(); document.getElementById("about")?.scrollIntoView({ behavior: "smooth" }); }}>
+            About Me
+          </a>
+          <a href="#project" onClick={(e) => { e.preventDefault(); document.getElementById("project")?.scrollIntoView({ behavior: "smooth" }); }}>
+            Projects
+          </a>
+          <a href="#contact" onClick={(e) => { e.preventDefault(); document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" }); }}>
+            Contact
+          </a>
+        </div>
+
+        {/* Social Media */}
+        <div className="footer-social">
+          <h3>Connect With Me</h3>
+          <div className="social-icons">
+            <a
+              href="https://github.com/LeebSite"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="social-icon"
+              aria-label="GitHub"
+            >
+              <i className="ri-github-fill"></i>
+            </a>
+            <a
+              href="https://www.instagram.com/gpradiipaa"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="social-icon"
+              aria-label="Instagram"
+            >
+              <i className="ri-instagram-fill"></i>
+            </a>
+            <a
+              href="https://www.linkedin.com/in/ghalibpradipaa"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="social-icon"
+              aria-label="LinkedIn"
+            >
+              <i className="ri-linkedin-fill"></i>
+            </a>
+          </div>
         </div>
 
       </div>
-    </div>
+
+      {/* Bottom Section */}
+      <div className="footer-bottom container mx-auto px-6">
+        <p className="footer-copyright">
+          © {currentYear} <span>Muhammad Ghalib Pradipa</span>. All rights reserved.
+        </p>
+        <div className="footer-credits">
+          <span>Built with React & Vite</span>
+          <a href="mailto:mhd.ghalibpradipa@gmail.com">Get in Touch</a>
+        </div>
+      </div>
+    </footer>
   );
 };
 
