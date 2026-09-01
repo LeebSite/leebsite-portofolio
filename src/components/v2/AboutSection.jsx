@@ -13,7 +13,7 @@ export default function AboutSection() {
 
       <div className="about-section__bio">
         <p>
-          Seorang <span className="about-section__highlight--blue">Full-Stack Software dan Data Engineer</span> dengan rekam jejak yang kuat dalam membangun aplikasi web skala enterprise dan mengoptimalkan alur kerja data skala besar. Fondasi teknis saya dibangun melalui pengalaman industri langsung di berbagai instansi nasional tingkat atas, termasuk PT Kilang Pertamina Internasional, Bank Indonesia, dan Kemendikdasmen.
+          Seorang <span className="about-section__highlight--blue">Fresh Graduate Teknik Informatika</span> yang berfokus sebagai <span className="about-section__highlight--blue">Full-Stack Software dan Data Engineer</span> dengan rekam jejak yang kuat dalam membangun aplikasi web skala enterprise dan mengoptimalkan alur kerja data skala besar. Fondasi teknis saya dibangun melalui pengalaman industri langsung di berbagai instansi nasional tingkat atas, termasuk PT Kilang Pertamina Internasional, Bank Indonesia, dan Kemendikdasmen.
         </p>
         <p className="mt-4">
           Melalui peran-peran tersebut, saya mengembangkan keahlian yang komprehensif di bidang software engineering dan analisis data. Keahlian utama saya mencakup pengembangan arsitektur web yang scalable menggunakan <span className="about-section__highlight--blue">ASP.NET Core (C#) dan Laravel</span>, serta perancangan otomasi data pipeline dan pemrosesan data kompleks untuk lebih dari 20.000 baris metrik ekonomi menggunakan <span className="about-section__highlight--blue">Python dan SQL/Excel tingkat lanjut</span>.
