@@ -1,6 +1,6 @@
 ﻿import { useState, useEffect, useRef } from "react";
 import { LuMail, LuMapPin, LuLinkedin, LuGithub, LuFileText, LuSend, LuInstagram, LuMessageSquare, LuLogOut, LuTrash2 } from "react-icons/lu";
-import { auth, loginWithGoogle, logout, db } from "../../firebase";
+import { auth, loginWithGoogle, logout, db, getRedirectResult } from "../../firebase";
 import { onAuthStateChanged } from "firebase/auth";
 import {
   collection, addDoc, onSnapshot, query, orderBy, serverTimestamp, getDocs, deleteDoc
@@ -18,6 +18,7 @@ function PublicChatRoom() {
   const bottomRef = useRef(null);
 
   useEffect(() => {
+    getRedirectResult(auth).catch(() => {});
     const unsub = onAuthStateChanged(auth, (u) => {
       setUser(u);
       setIsOwner(u?.email === OWNER_EMAIL);
@@ -196,3 +197,4 @@ export default function ContactSection() {
     </section>
   );
 }
+

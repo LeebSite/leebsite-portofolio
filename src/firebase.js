@@ -1,6 +1,6 @@
 // src/firebase.js
 import { initializeApp } from "firebase/app";
-import { getAuth, GoogleAuthProvider, signInWithPopup, signOut } from "firebase/auth";
+import { getAuth, GoogleAuthProvider, signInWithPopup, signInWithRedirect, getRedirectResult, signOut } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
@@ -19,7 +19,12 @@ const app = initializeApp(firebaseConfig);
 // Auth
 export const auth = getAuth(app);
 const provider = new GoogleAuthProvider();
-export const loginWithGoogle = () => signInWithPopup(auth, provider);
+
+// Use redirect on mobile/production to avoid COOP issues, popup on desktop dev
+const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+export const loginWithGoogle = () =>
+  isMobile ? signInWithRedirect(auth, provider) : signInWithPopup(auth, provider);
+export { getRedirectResult };
 export const logout = () => signOut(auth);
 
 // Firestore
