@@ -1,4 +1,4 @@
-﻿/* ============================================
+/* ============================================
    SIDEBAR STYLES â€” v2 LinkedIn-style Portfolio
    ============================================ */
 
@@ -39,8 +39,8 @@
 }
 
 .sidebar__avatar {
-  width: 80px;
-  height: 80px;
+  width: 92px;
+  height: 92px;
   border-radius: 50%;
   object-fit: cover;
   transition: transform 0.3s ease, box-shadow 0.3s ease;

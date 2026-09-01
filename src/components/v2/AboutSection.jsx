@@ -81,7 +81,7 @@ export default function AboutSection() {
               Bachelor's degree &nbsp;•&nbsp; Informatics, (S.Kom) &nbsp;•&nbsp;{" "}
               <strong>GPA: 3.66/4.00</strong>
             </p>
-            <p className="edu-card__period">2022 – Present &nbsp;&nbsp; Pekanbaru, Indonesia</p>
+            <p className="edu-card__period">2022 – 2026 &nbsp;&nbsp; Pekanbaru, Indonesia</p>
           </div>
         </div>
       </div>
