@@ -1,4 +1,4 @@
-import { useState } from "react";
+﻿import { useState } from "react";
 import "./ProjectsSection.css";
 import { listProyek } from "../../data";
 import { LuLayoutGrid, LuGlobe, LuSmartphone, LuPenTool, LuLink } from "react-icons/lu";
@@ -13,6 +13,13 @@ const filterCategories = [
 ];
 
 export default function ProjectsSection() {
+  const handleMouseMove = (e) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    e.currentTarget.style.setProperty('--mouse-x', x + 'px');
+    e.currentTarget.style.setProperty('--mouse-y', y + 'px');
+  };
   const [activeFilter, setActiveFilter] = useState("All");
 
   const filteredProjects = listProyek.filter((proyek) => {
@@ -44,7 +51,7 @@ export default function ProjectsSection() {
 
       <div className="projects-grid">
         {filteredProjects.map((proyek) => (
-          <div key={proyek.id} className="project-card">
+          <div key={proyek.id} className="project-card" onMouseMove={handleMouseMove}>
             <div className="project-card__img-wrapper">
               {proyek.featured && (
                 <div className="project-card__featured">

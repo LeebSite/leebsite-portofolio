@@ -1,5 +1,5 @@
-/* ============================================================
-   EXPERIENCE SECTION — v2
+﻿/* ============================================================
+   EXPERIENCE SECTION â€” v2
    ============================================================ */
 
 .experience-section {
@@ -50,6 +50,8 @@
 
 /* Card */
 .exp-card {
+  position: relative;
+  overflow: hidden;
   display: flex;
   align-items: flex-start;
   gap: 16px;
@@ -195,4 +197,25 @@
   font-size: 12px;
   color: var(--text-bold);
   font-weight: 500;
+}
+
+.exp-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  pointer-events: none;
+  background: radial-gradient(400px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), var(--text-tertiary), transparent 40%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 1;
+  mix-blend-mode: overlay;
+}
+
+.exp-card:hover::before {
+  opacity: 0.15;
+}
+
+.exp-card > * {
+  position: relative;
+  z-index: 2;
 }

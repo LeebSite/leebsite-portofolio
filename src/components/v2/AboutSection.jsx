@@ -1,7 +1,14 @@
-import { LuGraduationCap, LuWrench, LuCode, LuDatabase, LuPalette, LuUsers } from "react-icons/lu";
+﻿import { LuGraduationCap, LuWrench, LuCode, LuDatabase, LuPalette, LuUsers } from "react-icons/lu";
 import "./AboutSection.css";
 
 export default function AboutSection() {
+  const handleMouseMove = (e) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    e.currentTarget.style.setProperty('--mouse-x', x + 'px');
+    e.currentTarget.style.setProperty('--mouse-y', y + 'px');
+  };
   return (
     <section id="about" className="about-section">
       <div className="about-section__header">
@@ -26,22 +33,22 @@ export default function AboutSection() {
             <LuWrench className="about-section__icon-inline" /> Kompetensi Inti & Teknologi
           </h3>
           <div className="competencies-grid">
-            <div className="comp-card">
+            <div className="comp-card" onMouseMove={handleMouseMove}>
               <div className="comp-card__icon"><LuCode /></div>
               <h4 className="comp-card__title">Pengembangan Perangkat Lunak</h4>
               <p className="comp-card__desc">C#, ASP.NET Core, PHP, Laravel, JavaScript (React, Next.js, Node.js)</p>
             </div>
-            <div className="comp-card">
+            <div className="comp-card" onMouseMove={handleMouseMove}>
               <div className="comp-card__icon"><LuDatabase /></div>
               <h4 className="comp-card__title">Data & AI Engineering</h4>
               <p className="comp-card__desc">Python, SQL Tingkat Lanjut, Otomasi Data Pipeline, Audit Data Skala Besar</p>
             </div>
-            <div className="comp-card">
+            <div className="comp-card" onMouseMove={handleMouseMove}>
               <div className="comp-card__icon"><LuPalette /></div>
               <h4 className="comp-card__title">Desain & UI/UX</h4>
               <p className="comp-card__desc">User-Centered Design, Wireframing, Integrasi Front-end</p>
             </div>
-            <div className="comp-card">
+            <div className="comp-card" onMouseMove={handleMouseMove}>
               <div className="comp-card__icon"><LuUsers /></div>
               <h4 className="comp-card__title">Soft Skills</h4>
               <p className="comp-card__desc">Kepemimpinan Teknis, Manajemen Proyek, Pemecahan Masalah Strategis</p>
@@ -71,10 +78,10 @@ export default function AboutSection() {
           <div className="edu-card__info">
             <h3 className="edu-card__school">UIN Sultan Syarif Kasim Riau</h3>
             <p className="edu-card__degree">
-              Bachelor's degree &nbsp;•&nbsp; Informatics, (S.Kom) &nbsp;•&nbsp;{" "}
+              Bachelor's degree &nbsp;â€¢&nbsp; Informatics, (S.Kom) &nbsp;â€¢&nbsp;{" "}
               <strong>GPA: 3.70/4.00</strong>
             </p>
-            <p className="edu-card__period">2022 – Present &nbsp;&nbsp; Pekanbaru, Indonesia</p>
+            <p className="edu-card__period">2022 â€“ Present &nbsp;&nbsp; Pekanbaru, Indonesia</p>
           </div>
         </div>
       </div>
