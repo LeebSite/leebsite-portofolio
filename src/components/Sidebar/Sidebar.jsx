@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+﻿import { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import { FiHome, FiUser, FiBriefcase, FiLayers, FiCompass, FiAward, FiMail } from "react-icons/fi";
 import { HiCheckBadge } from "react-icons/hi2";
@@ -71,12 +71,7 @@ export default function Sidebar() {
             )}
           </button>
           
-          <button
-            className="sidebar__icon-btn"
-            title="Download CV"
-          >
-            <svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 24 24" height="16px" width="16px" xmlns="http://www.w3.org/2000/svg"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm-1 1.5L18.5 9H13V3.5zM18 20H6V4h6v6h6v10z"></path><path d="M11 10h2v4h-2zm-1 5h4v2h-4z"></path></svg>
-          </button>
+          <a href="/assets/CV.pdf" download="CV Muhammad Ghalib Pradipa.pdf" className="sidebar__icon-btn" title="Download CV"><svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 24 24" height="16px" width="16px" xmlns="http://www.w3.org/2000/svg"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm-1 1.5L18.5 9H13V3.5zM18 20H6V4h6v6h6v10z"></path><path d="M11 10h2v4h-2zm-1 5h4v2h-4z"></path></svg></a>
         </div>
       </div>
 
@@ -102,6 +97,12 @@ export default function Sidebar() {
           </NavLink>
         ))}
       </nav>
+          <div className="sidebar__cv-wrapper">
+        <a href="/assets/CV.pdf" download="CV Muhammad Ghalib Pradipa.pdf" className="sidebar__cv-btn">
+          <svg stroke="currentColor" fill="none" strokeWidth="2" viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round" height="15" width="15" xmlns="http://www.w3.org/2000/svg"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          <span>Unduh CV</span>
+        </a>
+      </div>
     </aside>
   );
 }
