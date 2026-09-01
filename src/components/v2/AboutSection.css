@@ -1,4 +1,4 @@
-﻿/* ============================================================
+/* ============================================================
    ABOUT SECTION â€” v2
    ============================================================ */
 
@@ -95,7 +95,7 @@
   width: 52px;
   height: 52px;
   border-radius: 10px;
-  background: var(--bg-card);
+  background: #ffffff;
   border: 1.5px solid var(--border-color);
   display: flex;
   align-items: center;

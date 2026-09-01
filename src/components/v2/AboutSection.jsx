@@ -78,7 +78,7 @@ export default function AboutSection() {
           <div className="edu-card__info">
             <h3 className="edu-card__school">UIN Sultan Syarif Kasim Riau</h3>
             <p className="edu-card__degree">
-              Bachelor's degree &nbsp;•&nbsp; Informatics, (S.Kom) &nbsp;•&nbsp;{" "}
+              Bachelor's degree &nbsp;•&nbsp; Informatics, (S.T) &nbsp;•&nbsp;{" "}
               <strong>GPA: 3.66/4.00</strong>
             </p>
             <p className="edu-card__period">2022 – 2026 &nbsp;&nbsp; Pekanbaru, Indonesia</p>
