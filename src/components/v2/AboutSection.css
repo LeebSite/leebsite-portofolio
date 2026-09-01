@@ -1,0 +1,163 @@
+/* ============================================================
+   ABOUT SECTION — v2
+   ============================================================ */
+
+.about-section {
+  padding: 36px 40px 40px;
+  background: #fff;
+}
+
+.about-section__header {
+  margin-bottom: 4px;
+}
+
+.about-section__title {
+  font-size: 22px;
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 4px;
+}
+
+.about-section__subtitle {
+  font-size: 13px;
+  color: #6b7280;
+}
+
+.about-section__divider {
+  height: 1px;
+  background: #f3f4f6;
+  margin: 20px 0;
+}
+
+.about-section__bio {
+  font-size: 14px;
+  line-height: 1.8;
+  color: #374151;
+}
+
+.about-section__bio p { margin: 0; }
+.about-section__bio .mt-4 { margin-top: 14px; }
+
+.about-section__highlight--blue {
+  color: #3b82f6;
+  font-weight: 500;
+}
+
+.about-section__highlight--amber {
+  color: #d97706;
+  font-weight: 500;
+}
+
+/* Sub-section */
+.about-section__sub-title {
+  font-size: 17px;
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 4px;
+}
+
+.about-section__section-subtitle {
+  font-size: 13px;
+  color: #6b7280;
+  margin-bottom: 16px;
+}
+
+/* Education Card */
+.about-section__edu-block {
+  margin-top: 4px;
+}
+
+.edu-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 18px 20px;
+  border: 1.5px solid #e5e7eb;
+  border-radius: 12px;
+  background: #fafafa;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.edu-card:hover {
+  box-shadow: 0 4px 20px rgba(0,0,0,0.07);
+  transform: translateY(-2px);
+}
+
+.edu-card__logo-wrapper {
+  width: 52px;
+  height: 52px;
+  border-radius: 10px;
+  background: #fff;
+  border: 1.5px solid #e5e7eb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+.edu-card__logo {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+}
+
+.edu-card__info {
+  flex: 1;
+}
+
+.edu-card__school {
+  font-size: 15px;
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 4px;
+}
+
+.edu-card__degree {
+  font-size: 13px;
+  color: #374151;
+  margin-bottom: 4px;
+}
+
+.edu-card__degree strong {
+  color: #111827;
+}
+
+.edu-card__period {
+  font-size: 12px;
+  color: #9ca3af;
+}
+
+/* Stats */
+.about-section__stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+}
+
+.about-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 90px;
+}
+
+.about-stat__value {
+  font-size: 26px;
+  font-weight: 800;
+  color: #111827;
+  line-height: 1.1;
+}
+
+.about-stat__plus {
+  font-size: 18px;
+  color: #f59e0b;
+  font-weight: 700;
+}
+
+.about-stat__label {
+  font-size: 12px;
+  color: #6b7280;
+  margin-top: 4px;
+  text-align: center;
+}

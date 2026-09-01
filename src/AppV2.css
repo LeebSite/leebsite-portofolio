@@ -1,0 +1,169 @@
+/* ============================================================
+   APP V2 — Root Layout Styles
+   Light LinkedIn-style portfolio layout
+   ============================================================ */
+
+/* Reset for v2 */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Inter", "Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background-color: #f3f4f6;
+  color: #111827;
+  overflow-x: hidden;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: #f3f4f6; }
+::-webkit-scrollbar-thumb { background: #d1d5db; border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: #f59e0b; }
+
+/* ---- Root Layout ---- */
+.app-v2 {
+  display: flex;
+  min-height: 100vh;
+  max-width: 1400px;
+  margin: 0 auto;
+  position: relative;
+}
+
+/* ---- Main Content ---- */
+.app-v2__main {
+  flex: 1;
+  min-width: 0;
+  overflow-y: auto;
+  scroll-behavior: smooth;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Sections Container */
+.app-v2__sections {
+  display: flex;
+  flex-direction: column;
+  padding: 24px 24px 0;
+  gap: 0;
+}
+
+/* Section gap between cards */
+.app-v2__section-gap {
+  height: 12px;
+  background: #f3f4f6;
+}
+
+/* Sections Styling — white cards */
+.app-v2__sections > *:not(.app-v2__section-gap) {
+  border-radius: 16px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+  overflow: hidden;
+}
+
+/* ---- Mobile Nav ---- */
+.app-v2__mobile-nav {
+  display: none;
+  padding: 14px 20px 0;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.app-v2__mobile-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #e5e7eb;
+}
+
+.app-v2__mobile-name {
+  font-weight: 700;
+  font-size: 16px;
+  color: #111827;
+}
+
+.app-v2__mobile-tabs {
+  display: flex;
+  overflow-x: auto;
+  gap: 8px;
+  padding-bottom: 4px;
+}
+
+.app-v2__mobile-tab {
+  flex-shrink: 0;
+  padding: 7px 14px;
+  border-radius: 999px;
+  border: 1.5px solid #e5e7eb;
+  background: #fff;
+  font-size: 13px;
+  font-weight: 500;
+  color: #374151;
+  cursor: pointer;
+  font-family: inherit;
+  transition: all 0.18s;
+}
+
+.app-v2__mobile-tab.active {
+  background: #111827;
+  border-color: #111827;
+  color: #fff;
+}
+
+@media (max-width: 900px) {
+  .app-v2__mobile-nav {
+    display: flex;
+  }
+  .app-v2__sections {
+    padding: 12px 12px 0;
+  }
+}
+
+/* ---- Footer ---- */
+.app-v2__footer {
+  padding: 28px 40px;
+  text-align: center;
+  font-size: 13px;
+  color: #9ca3af;
+  margin-top: auto;
+}
+
+/* ---- Scroll Dot Indicator (right side) ---- */
+.app-v2__scroll-indicator {
+  position: fixed;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  z-index: 200;
+}
+
+.app-v2__scroll-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #d1d5db;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: all 0.25s ease;
+}
+
+.app-v2__scroll-dot.active {
+  background: #f59e0b;
+  transform: scale(1.4);
+}
+
+.app-v2__scroll-dot:hover {
+  background: #6b7280;
+}
+
+@media (max-width: 1200px) {
+  .app-v2__scroll-indicator {
+    display: none;
+  }
+}
