@@ -1,4 +1,4 @@
-﻿import { LuGraduationCap, LuWrench, LuCode, LuDatabase, LuPalette, LuUsers } from "react-icons/lu";
+import { LuGraduationCap, LuWrench, LuCode, LuDatabase, LuPalette, LuUsers } from "react-icons/lu";
 import "./AboutSection.css";
 
 export default function AboutSection() {
@@ -78,10 +78,10 @@ export default function AboutSection() {
           <div className="edu-card__info">
             <h3 className="edu-card__school">UIN Sultan Syarif Kasim Riau</h3>
             <p className="edu-card__degree">
-              Bachelor's degree &nbsp;â€¢&nbsp; Informatics, (S.Kom) &nbsp;â€¢&nbsp;{" "}
-              <strong>GPA: 3.70/4.00</strong>
+              Bachelor's degree &nbsp;•&nbsp; Informatics, (S.Kom) &nbsp;•&nbsp;{" "}
+              <strong>GPA: 3.66/4.00</strong>
             </p>
-            <p className="edu-card__period">2022 â€“ Present &nbsp;&nbsp; Pekanbaru, Indonesia</p>
+            <p className="edu-card__period">2022 – Present &nbsp;&nbsp; Pekanbaru, Indonesia</p>
           </div>
         </div>
       </div>
@@ -99,7 +99,7 @@ export default function AboutSection() {
           <span className="about-stat__label">Tahun Pengalaman</span>
         </div>
         <div className="about-stat">
-          <span className="about-stat__value">3.70<span className="about-stat__plus">/4.00</span></span>
+          <span className="about-stat__value">3.66<span className="about-stat__plus">/4.00</span></span>
           <span className="about-stat__label">GPA</span>
         </div>
         <div className="about-stat">

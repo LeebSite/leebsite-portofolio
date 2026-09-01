@@ -160,7 +160,7 @@ function App() {
                   </div>
                   <div data-aos="fade-up" data-aos-delay="600">
                     <h1 className="text-3xl md:text-4xl mb-1">
-                      3.70<span className="text-violet-500">/4.00</span>
+                      3.66<span className="text-violet-500">/4.00</span>
                     </h1>
                     <p>GPA</p>
                   </div>

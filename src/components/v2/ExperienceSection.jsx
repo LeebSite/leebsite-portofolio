@@ -1,4 +1,4 @@
-﻿import { useState } from "react";
+import { useState } from "react";
 import { LuBriefcase } from "react-icons/lu";
 import "./ExperienceSection.css";
 
@@ -9,7 +9,7 @@ const experiences = [
     company: "Bank Indonesia",
     companyLogo: "https://images.seeklogo.com/logo-png/29/1/bank-indonesia-logo-png_seeklogo-298866.png",
     location: "Pekanbaru, Riau",
-    period: "Apr 2026 â€“ Mei 2026",
+    period: "Apr 2026 – Mei 2026",
     duration: "2 bulan",
     type: "Internship",
     mode: "Onsite",
@@ -27,7 +27,7 @@ const experiences = [
     company: "Kemendikdasmen (Balai Bahasa Provinsi Riau)",
     companyLogo: "https://balaibahasariau.kemendikdasmen.go.id/storage/publikasi/0a0f5e2c-e718-4e37-8806-12b82aa92f13.png",
     location: "Pekanbaru, Riau",
-    period: "Feb 2026 â€“ Mar 2026",
+    period: "Feb 2026 – Mar 2026",
     duration: "2 bulan",
     type: "Internship",
     mode: "Onsite",
@@ -46,7 +46,7 @@ const experiences = [
     company: "PT. Kilang Pertamina Internasional RU II",
     companyLogo: "https://kompaskerja.com/wp-content/uploads/2021/09/logo-pt-kilang-pertamina-internasional.jpg",
     location: "Dumai, Riau",
-    period: "Feb 2025 â€“ Mar 2025",
+    period: "Feb 2025 – Mar 2025",
     duration: "2 bulan",
     type: "Internship",
     mode: "Onsite",
@@ -113,12 +113,12 @@ export default function ExperienceSection() {
                   <div>
                     <h3 className="exp-card__role">{exp.role}</h3>
                     <p className="exp-card__company">
-                      {exp.company} &nbsp;â€¢&nbsp; {exp.location}
+                      {exp.company} &nbsp;•&nbsp; {exp.location}
                     </p>
                     <p className="exp-card__meta">
-                      {exp.period} &nbsp;â€¢&nbsp; {exp.duration} &nbsp;â€¢&nbsp;
+                      {exp.period} &nbsp;•&nbsp; {exp.duration} &nbsp;•&nbsp;
                       <span className="exp-card__badge exp-card__badge--type">{exp.type}</span>
-                      &nbsp;â€¢&nbsp;
+                      &nbsp;•&nbsp;
                       <span className="exp-card__badge exp-card__badge--mode">{exp.mode}</span>
                     </p>
                   </div>
@@ -128,7 +128,7 @@ export default function ExperienceSection() {
                   className="exp-card__toggle"
                   onClick={() => toggleExpand(exp.id)}
                 >
-                  {expanded[exp.id] ? "â–¾ Sembunyikan detail" : "â–¸ Tampilkan detail"}
+                  {expanded[exp.id] ? "▾ Sembunyikan detail" : "▸ Tampilkan detail"}
                 </button>
 
                 {expanded[exp.id] && (
