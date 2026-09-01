@@ -32,7 +32,7 @@ export default function Sidebar() {
       <div className="sidebar__profile">
         <div className="sidebar__avatar-wrapper">
           <img
-            src="/assets/ghalib.png"
+            src="/assets/ghalibpradipa.png"
             alt="Muhammad Ghalib Pradipa"
             className="sidebar__avatar"
           />

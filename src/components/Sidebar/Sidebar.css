@@ -1,13 +1,13 @@
-/* ============================================
-   SIDEBAR STYLES — v2 LinkedIn-style Portfolio
+﻿/* ============================================
+   SIDEBAR STYLES â€” v2 LinkedIn-style Portfolio
    ============================================ */
 
 .sidebar {
   position: sticky;
   top: 32px;
   height: calc(100vh - 64px);
-  width: 270px;
-  min-width: 270px;
+  width: 285px;
+  min-width: 285px;
   background: var(--bg-card);
   border: none;
   border-radius: 16px;
@@ -52,8 +52,9 @@
 }
 
 .sidebar__name {
-  font-size: 16px;
+  font-size: 14.8px;
   font-weight: 600;
+  white-space: nowrap;
   color: var(--text-primary);
   display: flex;
   align-items: center;
