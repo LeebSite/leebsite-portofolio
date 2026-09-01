@@ -1,24 +1,20 @@
 import { useState } from "react";
+import { NavLink } from "react-router-dom";
 import "./Sidebar.css";
 
 const navItems = [
-  { id: "home", label: "Beranda", icon: "🏠" },
-  { id: "about", label: "Tentang", icon: "👤" },
-  { id: "experience", label: "Pengalaman", icon: "💼" },
-  { id: "projects", label: "Proyek", icon: "🗂️" },
-  { id: "journey", label: "Perjalanan", icon: "🎯" },
-  { id: "achievements", label: "Pencapaian", icon: "🏆" },
-  { id: "contact", label: "Kontak", icon: "✉️" },
+  { id: "home", path: "/", label: "Beranda", icon: "🏠" },
+  { id: "about", path: "/about", label: "Tentang", icon: "👤" },
+  { id: "experience", path: "/experience", label: "Pengalaman", icon: "💼" },
+  { id: "projects", path: "/projects", label: "Proyek", icon: "🗂️" },
+  { id: "journey", path: "/journey", label: "Perjalanan", icon: "🎯" },
+  { id: "achievements", path: "/achievements", label: "Pencapaian", icon: "🏆" },
+  { id: "contact", path: "/contact", label: "Kontak", icon: "✉️" },
 ];
 
-export default function Sidebar({ activeSection }) {
+export default function Sidebar() {
   const [lang, setLang] = useState("ID");
   const [darkMode, setDarkMode] = useState(true);
-
-  const handleNavClick = (id) => {
-    const el = document.getElementById(id);
-    if (el) el.scrollIntoView({ behavior: "smooth" });
-  };
 
   return (
     <aside className="sidebar">
@@ -33,7 +29,7 @@ export default function Sidebar({ activeSection }) {
           <span className="sidebar__status-dot" />
         </div>
         <h2 className="sidebar__name">
-          Abidino Nurkhiansyah
+          Muhammad Ghalib Pradipa
           <span className="sidebar__verified" title="Verified">✓</span>
         </h2>
         <p className="sidebar__title">Software Engineer Enthusiast</p>
@@ -77,17 +73,16 @@ export default function Sidebar({ activeSection }) {
       {/* Navigation */}
       <nav className="sidebar__nav">
         {navItems.map((item) => (
-          <button
+          <NavLink
             key={item.id}
-            className={`sidebar__nav-item ${activeSection === item.id ? "active" : ""}`}
-            onClick={() => handleNavClick(item.id)}
+            to={item.path}
+            className={({ isActive }) => 
+              `sidebar__nav-item ${isActive ? "active" : ""}`
+            }
           >
             <span className="sidebar__nav-icon">{item.icon}</span>
             <span className="sidebar__nav-label">{item.label}</span>
-            {activeSection === item.id && (
-              <span className="sidebar__nav-arrow">→</span>
-            )}
-          </button>
+          </NavLink>
         ))}
       </nav>
     </aside>

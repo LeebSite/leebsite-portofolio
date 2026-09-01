@@ -130,40 +130,4 @@ body {
   margin-top: auto;
 }
 
-/* ---- Scroll Dot Indicator (right side) ---- */
-.app-v2__scroll-indicator {
-  position: fixed;
-  right: 20px;
-  top: 50%;
-  transform: translateY(-50%);
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  z-index: 200;
-}
 
-.app-v2__scroll-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: #d1d5db;
-  border: none;
-  cursor: pointer;
-  padding: 0;
-  transition: all 0.25s ease;
-}
-
-.app-v2__scroll-dot.active {
-  background: #f59e0b;
-  transform: scale(1.4);
-}
-
-.app-v2__scroll-dot:hover {
-  background: #6b7280;
-}
-
-@media (max-width: 1200px) {
-  .app-v2__scroll-indicator {
-    display: none;
-  }
-}
