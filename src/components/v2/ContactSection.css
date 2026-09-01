@@ -126,7 +126,7 @@ a.contact-info__value:hover {
   padding: 10px 14px;
   border-radius: 9px;
   border: 1.5px solid var(--border-color);
-  background: #fafafa;
+  background: var(--bg-card);
   font-size: 14px;
   color: var(--text-primary);
   font-family: inherit;

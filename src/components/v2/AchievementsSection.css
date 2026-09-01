@@ -41,7 +41,7 @@
   padding: 18px 20px;
   border: 1.5px solid var(--border-color);
   border-radius: 12px;
-  background: #fafafa;
+  background: var(--bg-card);
   transition: box-shadow 0.2s ease, transform 0.2s ease;
 }
 

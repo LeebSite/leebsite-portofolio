@@ -1,3 +1,4 @@
+import { LuMail, LuMapPin, LuLinkedin, LuGithub, LuFileText, LuSend } from "react-icons/lu";
 import "./ContactSection.css";
 
 export default function ContactSection() {
@@ -14,7 +15,7 @@ export default function ContactSection() {
         {/* Info */}
         <div className="contact-info">
           <div className="contact-info__item">
-            <span className="contact-info__icon">📧</span>
+            <span className="contact-info__icon"><LuMail color="#a1a1aa" /></span>
             <div>
               <p className="contact-info__label">Email</p>
               <a href="mailto:mhd.ghalibpradipa@gmail.com" className="contact-info__value">
@@ -23,14 +24,14 @@ export default function ContactSection() {
             </div>
           </div>
           <div className="contact-info__item">
-            <span className="contact-info__icon">📍</span>
+            <span className="contact-info__icon"><LuMapPin color="#a1a1aa" /></span>
             <div>
               <p className="contact-info__label">Lokasi</p>
               <p className="contact-info__value">Karawang, Indonesia</p>
             </div>
           </div>
           <div className="contact-info__item">
-            <span className="contact-info__icon">💼</span>
+            <span className="contact-info__icon"><LuLinkedin color="#a1a1aa" /></span>
             <div>
               <p className="contact-info__label">LinkedIn</p>
               <a
@@ -44,7 +45,7 @@ export default function ContactSection() {
             </div>
           </div>
           <div className="contact-info__item">
-            <span className="contact-info__icon">🐙</span>
+            <span className="contact-info__icon"><LuGithub color="#a1a1aa" /></span>
             <div>
               <p className="contact-info__label">GitHub</p>
               <a
@@ -64,7 +65,7 @@ export default function ContactSection() {
             download="CV Muhammad Ghalib Pradipa.pdf"
             className="contact-download-btn"
           >
-            📄 Unduh CV
+            <LuFileText size={18} /> Unduh CV
           </a>
         </div>
 
@@ -112,7 +113,7 @@ export default function ContactSection() {
             />
           </div>
           <button type="submit" className="contact-form__btn">
-            Kirim Pesan ✉️
+            Kirim Pesan <LuSend style={{ marginLeft: '6px' }} />
           </button>
         </form>
       </div>

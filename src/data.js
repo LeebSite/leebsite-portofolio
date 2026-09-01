@@ -230,6 +230,9 @@ export const listProyek = [
     gradient: "linear-gradient(145deg, #3B82F6, #000)",
     url: "https://github.com/LeebSite",
     dad: "100",
+    categories: ["Website", "AI/ML"],
+    tech: ["React.js", "FastAPI", "Python", "TailwindCSS"],
+    featured: true,
   },
   {
     id: 2,
@@ -242,6 +245,9 @@ export const listProyek = [
     gradient: "linear-gradient(180deg, #10B981, #000)",
     url: "https://github.com/LeebSite",
     dad: "200",
+    categories: ["Website"],
+    tech: ["React.js", "Vite", "Node.js", "TailwindCSS"],
+    featured: true,
   },
   {
     id: 3,
@@ -254,6 +260,9 @@ export const listProyek = [
     gradient: "linear-gradient(145deg, #3B82F6, #000)",
     url: "https://github.com/LeebSite",
     dad: "300",
+    categories: ["Mobile", "UI/UX Design"],
+    tech: ["Flutter", "Dart", "Firebase", "Figma"],
+    featured: false,
   },
   {
     id: 4,
@@ -266,6 +275,9 @@ export const listProyek = [
     gradient: "linear-gradient(180deg, #10B981, #000)",
     url: "https://github.com/LeebSite",
     dad: "400",
+    categories: ["Website", "Associated"],
+    tech: ["PHP", "Laravel", "MySQL", "Bootstrap"],
+    featured: false,
   },
   {
     id: 5,
@@ -278,6 +290,9 @@ export const listProyek = [
     gradient: "linear-gradient(145deg, #3B82F6, #000)",
     url: "https://github.com/LeebSite",
     dad: "500",
+    categories: ["Website"],
+    tech: ["HTML", "CSS", "JavaScript", "Bootstrap"],
+    featured: false,
   },
   {
     id: 6,
@@ -290,6 +305,9 @@ export const listProyek = [
     gradient: "linear-gradient(180deg, #10B981, #000)",
     url: "https://github.com/LeebSite",
     dad: "600",
+    categories: ["Website", "UI/UX Design"],
+    tech: ["React.js", "Vite", "TailwindCSS"],
+    featured: false,
   },
 ];
 

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { LuBriefcase } from "react-icons/lu";
 import "./ExperienceSection.css";
 
 const experiences = [
@@ -76,7 +77,7 @@ export default function ExperienceSection() {
       <div className="experience-section__divider" />
 
       <div className="exp-block">
-        <h2 className="exp-block__title">💼 Work Experience</h2>
+        <h2 className="exp-block__title"><LuBriefcase style={{ display: 'inline-block', verticalAlign: 'middle', marginRight: '8px', color: 'var(--text-secondary)' }}/> Work Experience</h2>
         <p className="exp-block__subtitle">My professional career journey.</p>
 
         <div className="exp-list">
