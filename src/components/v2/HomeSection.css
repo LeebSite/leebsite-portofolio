@@ -4,7 +4,7 @@
 
 .home-section {
   padding: 36px 40px 40px;
-  background: #fff;
+  background: var(--bg-card);
 }
 
 .home-section__header {
@@ -110,7 +110,7 @@
   padding: 6px 14px;
   border-radius: 999px;
   border: 1.5px solid var(--border-color);
-  background: #fff;
+  background: var(--bg-card);
   font-size: 13px;
   font-weight: 500;
   color: var(--text-bold);
@@ -127,7 +127,7 @@
 .skills__tab.active {
   background: #f59e0b;
   border-color: #f59e0b;
-  color: #fff;
+  color: var(--bg-card);
   font-weight: 600;
 }
 

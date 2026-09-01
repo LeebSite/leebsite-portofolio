@@ -4,7 +4,7 @@
 
 .about-section {
   padding: 36px 40px 40px;
-  background: #fff;
+  background: var(--bg-card);
 }
 
 .about-section__header {
@@ -87,7 +87,7 @@
   width: 52px;
   height: 52px;
   border-radius: 10px;
-  background: #fff;
+  background: var(--bg-card);
   border: 1.5px solid var(--border-color);
   display: flex;
   align-items: center;

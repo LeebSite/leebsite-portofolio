@@ -4,7 +4,7 @@
 
 .projects-section {
   padding: 36px 40px 40px;
-  background: #fff;
+  background: var(--bg-card);
 }
 
 .projects-section__header { margin-bottom: 4px; }

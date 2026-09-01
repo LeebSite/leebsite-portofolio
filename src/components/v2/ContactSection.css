@@ -4,7 +4,7 @@
 
 .contact-section {
   padding: 36px 40px 40px;
-  background: #fff;
+  background: var(--bg-card);
 }
 
 .contact-section__header { margin-bottom: 4px; }
@@ -89,7 +89,7 @@ a.contact-info__value:hover {
   padding: 11px 20px;
   border-radius: 10px;
   background: var(--text-primary);
-  color: #fff;
+  color: var(--bg-card);
   font-size: 14px;
   font-weight: 600;
   text-decoration: none;
@@ -151,7 +151,7 @@ a.contact-info__value:hover {
   border-radius: 10px;
   border: none;
   background: var(--text-primary);
-  color: #fff;
+  color: var(--bg-card);
   font-size: 14px;
   font-weight: 700;
   cursor: pointer;
