@@ -84,7 +84,7 @@ body {
   background: #f3f4f6;
 }
 
-/* Sections Styling â€” white cards */
+/* Sections Styling Ã¢â‚¬â€ white cards */
 .app-v2__sections > *:not(.app-v2__section-gap) {
   border-radius: 16px;
   box-shadow: 0 1px 4px rgba(0,0,0,0.06);
@@ -96,10 +96,16 @@ body {
     padding: 0;
     flex-direction: column;
     gap: 0;
+    background: var(--bg-card);
   }
   .app-v2__sections {
-    padding: 20px 16px 40px;
-    gap: 16px;
+    padding: 0;
+    gap: 0;
+  }
+  .app-v2__sections > *:not(.app-v2__section-gap) {
+    padding: 24px 20px 40px !important;
+    border-radius: 0;
+    box-shadow: none;
   }
 }
 
