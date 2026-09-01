@@ -1,5 +1,5 @@
-/* ============================================================
-   HOME SECTION + SKILLS SECTION — v2
+﻿/* ============================================================
+   HOME SECTION + SKILLS SECTION â€” v2
    ============================================================ */
 
 .home-section {
@@ -149,8 +149,8 @@
   gap: 7px;
   padding: 7px 14px;
   border-radius: 8px;
-  border: 1.5px solid var(--border-color);
-  background: var(--bg-card);
+  border: 1.5px solid color-mix(in srgb, var(--badge-color) 25%, var(--border-color));
+  background: color-mix(in srgb, var(--badge-color) 12%, var(--bg-card));
   font-size: 13px;
   font-weight: 500;
   color: var(--text-bold);
@@ -160,8 +160,8 @@
 }
 
 .skill-badge:hover {
-  border-color: #d1d5db;
-  background: var(--bg-hover);
+  border-color: color-mix(in srgb, var(--badge-color) 45%, var(--border-color));
+  background: color-mix(in srgb, var(--badge-color) 20%, var(--bg-card));
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(0,0,0,0.08);
 }
