@@ -14,7 +14,7 @@
 .home-section__title {
   font-size: 26px;
   font-weight: 700;
-  color: #111827;
+  color: var(--text-primary);
   margin-bottom: 8px;
   line-height: 1.25;
 }
@@ -28,7 +28,7 @@
 
 .home-section__meta-item {
   font-size: 13px;
-  color: #6b7280;
+  color: var(--text-secondary);
   display: flex;
   align-items: center;
   gap: 5px;
@@ -49,14 +49,14 @@
 
 .home-section__divider {
   height: 1px;
-  background: #f3f4f6;
+  background: var(--bg-page);
   margin: 20px 0;
 }
 
 .home-section__bio {
   font-size: 14px;
   line-height: 1.75;
-  color: #374151;
+  color: var(--text-bold);
 }
 
 .home-section__bio p {
@@ -73,7 +73,7 @@
 }
 
 .home-section__bio strong {
-  color: #111827;
+  color: var(--text-primary);
   font-weight: 600;
 }
 
@@ -85,13 +85,13 @@
 .home-section__section-title {
   font-size: 18px;
   font-weight: 700;
-  color: #111827;
+  color: var(--text-primary);
   margin-bottom: 4px;
 }
 
 .home-section__section-subtitle {
   font-size: 13px;
-  color: #6b7280;
+  color: var(--text-secondary);
   margin-bottom: 18px;
 }
 
@@ -109,19 +109,19 @@
   gap: 5px;
   padding: 6px 14px;
   border-radius: 999px;
-  border: 1.5px solid #e5e7eb;
+  border: 1.5px solid var(--border-color);
   background: #fff;
   font-size: 13px;
   font-weight: 500;
-  color: #374151;
+  color: var(--text-bold);
   cursor: pointer;
   transition: all 0.18s ease;
   font-family: inherit;
 }
 
 .skills__tab:hover {
-  border-color: #6b7280;
-  background: #f9fafb;
+  border-color: var(--text-secondary);
+  background: var(--bg-hover);
 }
 
 .skills__tab.active {
@@ -149,11 +149,11 @@
   gap: 7px;
   padding: 7px 14px;
   border-radius: 8px;
-  border: 1.5px solid #e5e7eb;
-  background: #ffffff;
+  border: 1.5px solid var(--border-color);
+  background: var(--bg-card);
   font-size: 13px;
   font-weight: 500;
-  color: #374151;
+  color: var(--text-bold);
   cursor: default;
   transition: all 0.2s ease;
   box-shadow: 0 1px 3px rgba(0,0,0,0.04);
@@ -161,7 +161,7 @@
 
 .skill-badge:hover {
   border-color: #d1d5db;
-  background: #f9fafb;
+  background: var(--bg-hover);
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(0,0,0,0.08);
 }

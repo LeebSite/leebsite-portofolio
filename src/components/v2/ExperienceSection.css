@@ -12,18 +12,18 @@
 .experience-section__title {
   font-size: 22px;
   font-weight: 700;
-  color: #111827;
+  color: var(--text-primary);
   margin-bottom: 4px;
 }
 
 .experience-section__subtitle {
   font-size: 13px;
-  color: #6b7280;
+  color: var(--text-secondary);
 }
 
 .experience-section__divider {
   height: 1px;
-  background: #f3f4f6;
+  background: var(--bg-page);
   margin: 20px 0;
 }
 
@@ -31,13 +31,13 @@
 .exp-block__title {
   font-size: 17px;
   font-weight: 700;
-  color: #111827;
+  color: var(--text-primary);
   margin-bottom: 4px;
 }
 
 .exp-block__subtitle {
   font-size: 13px;
-  color: #6b7280;
+  color: var(--text-secondary);
   margin-bottom: 20px;
 }
 
@@ -54,7 +54,7 @@
   align-items: flex-start;
   gap: 16px;
   padding: 18px 20px;
-  border: 1.5px solid #e5e7eb;
+  border: 1.5px solid var(--border-color);
   border-radius: 12px;
   background: #fafafa;
   transition: box-shadow 0.2s ease, transform 0.2s ease;
@@ -70,7 +70,7 @@
   height: 52px;
   border-radius: 10px;
   background: #fff;
-  border: 1.5px solid #e5e7eb;
+  border: 1.5px solid var(--border-color);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -103,19 +103,19 @@
 .exp-card__role {
   font-size: 15px;
   font-weight: 700;
-  color: #111827;
+  color: var(--text-primary);
   margin-bottom: 3px;
 }
 
 .exp-card__company {
   font-size: 13px;
-  color: #6b7280;
+  color: var(--text-secondary);
   margin-bottom: 4px;
 }
 
 .exp-card__meta {
   font-size: 12.5px;
-  color: #9ca3af;
+  color: var(--text-tertiary);
   display: flex;
   align-items: center;
   flex-wrap: wrap;
@@ -147,7 +147,7 @@
   gap: 4px;
   margin-top: 10px;
   font-size: 13px;
-  color: #6b7280;
+  color: var(--text-secondary);
   background: none;
   border: none;
   cursor: pointer;
@@ -157,7 +157,7 @@
 }
 
 .exp-card__toggle:hover {
-  color: #111827;
+  color: var(--text-primary);
 }
 
 /* Detail */
@@ -175,7 +175,7 @@
   list-style: disc;
   padding-left: 18px;
   font-size: 13.5px;
-  color: #374151;
+  color: var(--text-bold);
   line-height: 1.75;
   margin-bottom: 12px;
 }
@@ -190,9 +190,9 @@
   display: inline-block;
   padding: 3px 10px;
   border-radius: 6px;
-  background: #f3f4f6;
-  border: 1px solid #e5e7eb;
+  background: var(--bg-page);
+  border: 1px solid var(--border-color);
   font-size: 12px;
-  color: #374151;
+  color: var(--text-bold);
   font-weight: 500;
 }

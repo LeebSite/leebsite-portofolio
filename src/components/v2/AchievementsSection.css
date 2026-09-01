@@ -12,18 +12,18 @@
 .achievements-section__title {
   font-size: 22px;
   font-weight: 700;
-  color: #111827;
+  color: var(--text-primary);
   margin-bottom: 4px;
 }
 
 .achievements-section__subtitle {
   font-size: 13px;
-  color: #6b7280;
+  color: var(--text-secondary);
 }
 
 .achievements-section__divider {
   height: 1px;
-  background: #f3f4f6;
+  background: var(--bg-page);
   margin: 20px 0;
 }
 
@@ -39,7 +39,7 @@
   align-items: flex-start;
   gap: 16px;
   padding: 18px 20px;
-  border: 1.5px solid #e5e7eb;
+  border: 1.5px solid var(--border-color);
   border-radius: 12px;
   background: #fafafa;
   transition: box-shadow 0.2s ease, transform 0.2s ease;
@@ -55,7 +55,7 @@
   height: 48px;
   border-radius: 10px;
   background: #fff;
-  border: 1.5px solid #e5e7eb;
+  border: 1.5px solid var(--border-color);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -77,20 +77,20 @@
 .cert-card__title {
   font-size: 14px;
   font-weight: 700;
-  color: #111827;
+  color: var(--text-primary);
   margin-bottom: 3px;
   line-height: 1.35;
 }
 
 .cert-card__issuer {
   font-size: 13px;
-  color: #374151;
+  color: var(--text-bold);
   margin-bottom: 2px;
 }
 
 .cert-card__date {
   font-size: 12px;
-  color: #9ca3af;
+  color: var(--text-tertiary);
   margin-bottom: 10px;
 }
 

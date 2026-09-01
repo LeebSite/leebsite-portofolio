@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import { FiHome, FiUser, FiBriefcase, FiLayers, FiCompass, FiAward, FiMail } from "react-icons/fi";
 import { HiCheckBadge } from "react-icons/hi2";
@@ -17,6 +17,14 @@ const navItems = [
 export default function Sidebar() {
   const [lang, setLang] = useState("ID");
   const [darkMode, setDarkMode] = useState(false);
+
+  useEffect(() => {
+    if (darkMode) {
+      document.body.classList.add("dark");
+    } else {
+      document.body.classList.remove("dark");
+    }
+  }, [darkMode]);
 
   return (
     <aside className="sidebar">

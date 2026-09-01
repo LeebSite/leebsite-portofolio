@@ -12,18 +12,18 @@
 .projects-section__title {
   font-size: 22px;
   font-weight: 700;
-  color: #111827;
+  color: var(--text-primary);
   margin-bottom: 4px;
 }
 
 .projects-section__subtitle {
   font-size: 13px;
-  color: #6b7280;
+  color: var(--text-secondary);
 }
 
 .projects-section__divider {
   height: 1px;
-  background: #f3f4f6;
+  background: var(--bg-page);
   margin: 20px 0;
 }
 
@@ -36,7 +36,7 @@
 
 /* Card */
 .project-card {
-  border: 1.5px solid #e5e7eb;
+  border: 1.5px solid var(--border-color);
   border-radius: 14px;
   overflow: hidden;
   background: #fafafa;
@@ -79,13 +79,13 @@
 .project-card__title {
   font-size: 15px;
   font-weight: 700;
-  color: #111827;
+  color: var(--text-primary);
   margin-bottom: 6px;
 }
 
 .project-card__desc {
   font-size: 13px;
-  color: #6b7280;
+  color: var(--text-secondary);
   line-height: 1.6;
   margin-bottom: 14px;
   display: -webkit-box;
