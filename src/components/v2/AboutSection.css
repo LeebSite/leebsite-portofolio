@@ -169,3 +169,58 @@
   margin-top: 4px;
   text-align: center;
 }
+
+/* Competencies Grid */
+.competencies-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  margin-top: 16px;
+}
+
+@media (max-width: 600px) {
+  .competencies-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.comp-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 16px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.comp-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  border-color: var(--text-tertiary);
+}
+
+.comp-card__icon {
+  font-size: 24px;
+  margin-bottom: 12px;
+  background: var(--bg-hover);
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+}
+
+.comp-card__title {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 6px;
+}
+
+.comp-card__desc {
+  font-size: 13px;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}

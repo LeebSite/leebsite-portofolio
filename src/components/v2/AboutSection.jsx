@@ -1,4 +1,4 @@
-import { LuGraduationCap } from "react-icons/lu";
+import { LuGraduationCap, LuWrench, LuCode, LuDatabase, LuPalette, LuUsers } from "react-icons/lu";
 import "./AboutSection.css";
 
 export default function AboutSection() {
@@ -13,29 +13,41 @@ export default function AboutSection() {
 
       <div className="about-section__bio">
         <p>
-          Saya <span className="about-section__highlight--blue">Muhammad Ghalib Pradipa</span>,{" "}
-          Insinyur Perangkat Lunak berbasis di Pekanbaru yang berdedikasi untuk
-          membangun solusi <span className="about-section__highlight--blue">digital yang berdampak</span>. Saya
-          berspesialisasi dalam pengembangan platform web dan aplikasi seluler
-          menggunakan tumpukan teknologi modern, termasuk{" "}
-          <span className="about-section__highlight--blue">React/Next.js, TypeScript</span>, dan
-          pengembangan seluler multi-platform dengan{" "}
-          <span className="about-section__highlight--blue">Flutter & React Native</span>.
+          Seorang <span className="about-section__highlight--blue">Full-Stack Software dan Data Engineer</span> dengan rekam jejak yang kuat dalam membangun aplikasi web skala enterprise dan mengoptimalkan alur kerja data skala besar. Fondasi teknis saya dibangun melalui pengalaman industri langsung di berbagai instansi nasional tingkat atas, termasuk PT Kilang Pertamina Internasional, Bank Indonesia, dan Kemendikdasmen.
         </p>
         <p className="mt-4">
-          Fokus utama saya adalah menciptakan arsitektur perangkat lunak yang tidak
-          hanya berfungsi, namun juga terstruktur dengan baik, dapat dipelihara,
-          dan terukur untuk memenuhi kebutuhan bisnis. Saya percaya bahwa kode
-          berkualitas tinggi harus berjalan seiring dengan{" "}
-          <span className="about-section__highlight--amber">efisiensi sistem</span> dan{" "}
-          <span className="about-section__highlight--amber">kejelasan logika</span>.
+          Melalui peran-peran tersebut, saya mengembangkan keahlian yang komprehensif di bidang software engineering dan analisis data. Keahlian utama saya mencakup pengembangan arsitektur web yang scalable menggunakan <span className="about-section__highlight--blue">ASP.NET Core (C#) dan Laravel</span>, serta perancangan otomasi data pipeline dan pemrosesan data kompleks untuk lebih dari 20.000 baris metrik ekonomi menggunakan <span className="about-section__highlight--blue">Python dan SQL/Excel tingkat lanjut</span>.
         </p>
         <p className="mt-4">
-          Saya memadukan keahlian teknis dengan komunikasi proaktif, pemikiran kritis, dan manajemen waktu
-          yang efektif. Saya berkembang dalam lingkungan kolaboratif dan memanfaatkan keterampilan
-          kepemimpinan untuk memastikan setiap proyek memberikan{" "}
-          <span className="about-section__highlight--blue">hasil optimal</span> dan dampak nyata.
+          Nilai tambah yang membedakan saya adalah kombinasi antara eksekusi teknis dan kepemimpinan strategis. Saat menjabat sebagai Wakil Ketua HIMATIF UIN SUSKA, saya mengasah kemampuan dalam memimpin tim lintas divisi, mengorkestrasi 10+ program skala besar, dan menyelesaikan hambatan operasional. Saya memahami bahwa menulis kode yang bersih (<span className="about-section__highlight--amber">clean code</span>) sama pentingnya dengan komunikasi yang efektif dan pemahaman terhadap tujuan bisnis.
         </p>
+        <div className="about-section__competencies" style={{ marginTop: '32px' }}>
+          <h3 className="about-section__sub-title" style={{ marginBottom: '16px' }}>
+            <LuWrench className="about-section__icon-inline" /> Kompetensi Inti & Teknologi
+          </h3>
+          <div className="competencies-grid">
+            <div className="comp-card">
+              <div className="comp-card__icon"><LuCode /></div>
+              <h4 className="comp-card__title">Pengembangan Perangkat Lunak</h4>
+              <p className="comp-card__desc">C#, ASP.NET Core, PHP, Laravel, JavaScript (React, Next.js, Node.js)</p>
+            </div>
+            <div className="comp-card">
+              <div className="comp-card__icon"><LuDatabase /></div>
+              <h4 className="comp-card__title">Data & AI Engineering</h4>
+              <p className="comp-card__desc">Python, SQL Tingkat Lanjut, Otomasi Data Pipeline, Audit Data Skala Besar</p>
+            </div>
+            <div className="comp-card">
+              <div className="comp-card__icon"><LuPalette /></div>
+              <h4 className="comp-card__title">Desain & UI/UX</h4>
+              <p className="comp-card__desc">User-Centered Design, Wireframing, Integrasi Front-end</p>
+            </div>
+            <div className="comp-card">
+              <div className="comp-card__icon"><LuUsers /></div>
+              <h4 className="comp-card__title">Soft Skills</h4>
+              <p className="comp-card__desc">Kepemimpinan Teknis, Manajemen Proyek, Pemecahan Masalah Strategis</p>
+            </div>
+          </div>
+        </div>
       </div>
 
       <div className="about-section__divider" />
@@ -76,7 +88,7 @@ export default function AboutSection() {
           <span className="about-stat__label">Proyek Selesai</span>
         </div>
         <div className="about-stat">
-          <span className="about-stat__value">2<span className="about-stat__plus">+</span></span>
+          <span className="about-stat__value">3<span className="about-stat__plus">+</span></span>
           <span className="about-stat__label">Tahun Pengalaman</span>
         </div>
         <div className="about-stat">

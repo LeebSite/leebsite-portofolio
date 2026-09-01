@@ -19,21 +19,10 @@ export default function HomeSection() {
 
       <div className="home-section__bio">
         <p>
-          Saya adalah mahasiswa tingkat akhir jurusan Informatika di{" "}
-          <strong>UIN Sultan Syarif Kasim Riau</strong> dan seorang pengembang
-          perangkat lunak yang bersemangat, dengan fokus pada pengembangan
-          aplikasi web dan seluler selama hampir <strong>2 tahun</strong>. Saya
-          memiliki pemahaman yang kuat mengenai prinsip-prinsip desain{" "}
-          <span className="home-section__highlight">UI/UX</span> serta
-          pengalaman praktis dalam membangun aplikasi yang responsif dan ramah
-          pengguna.
+          Seorang <strong>Full-Stack Software dan Data Engineer</strong> dengan rekam jejak yang kuat dalam membangun aplikasi web skala enterprise dan mengoptimalkan alur kerja data skala besar. Fondasi teknis saya dibangun melalui pengalaman industri langsung di berbagai instansi nasional tingkat atas, termasuk <strong>PT Kilang Pertamina Internasional</strong>, <strong>Bank Indonesia</strong>, dan <strong>Kemendikdasmen</strong>.
         </p>
         <p className="mt-4">
-          Fokus saya adalah merancang arsitektur perangkat lunak yang bersih,
-          terstruktur dengan baik, dan mudah dikelola agar selaras dengan tujuan
-          bisnis. Saya memadukan kemampuan adaptasi teknis dengan komunikasi
-          proaktif untuk memastikan setiap proyek memberikan kejelasan logika
-          serta dampak nyata yang bermakna.
+          Nilai tambah yang membedakan saya adalah kombinasi antara eksekusi teknis dan kepemimpinan strategis. Saya memahami bahwa menulis kode yang bersih (<span className="home-section__highlight">clean code</span>) sama pentingnya dengan komunikasi yang efektif dan pemahaman terhadap tujuan bisnis.
         </p>
       </div>
 
