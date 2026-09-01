@@ -208,54 +208,41 @@
   }
 }
 
-/* ---- Download CV Button ---- */
-.sidebar__cv-wrapper {
-  padding: 16px 16px 0;
-}
-
-.sidebar__cv-btn {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  width: 100%;
-  padding: 10px 0;
-  border-radius: 8px;
-  border: 1.5px solid var(--border-color);
-  background: transparent;
-  color: var(--text-secondary);
-  font-size: 13px;
-  font-weight: 600;
-  text-decoration: none;
+/* ---- CV Icon Button Expanding Hover ---- */
+.sidebar__icon-btn--cv {
+  width: 32px;
+  border-radius: 16px;
   overflow: hidden;
-  transition: color 0.3s ease, border-color 0.3s ease;
-  font-family: inherit;
+  justify-content: flex-start;
+  padding-left: 7.5px;
+  gap: 6px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  text-decoration: none;
 }
 
-/* Sliding yellow fill on hover */
-.sidebar__cv-btn::before {
-  content: '';
-  position: absolute;
-  inset: 0;
+.sidebar__icon-btn--cv svg {
+  flex-shrink: 0;
+}
+
+.sidebar__icon-btn-text {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-bold);
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s ease;
+}
+
+.sidebar__icon-btn--cv:hover {
+  width: 90px;
   background: var(--accent-yellow);
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-  z-index: 0;
-}
-
-.sidebar__cv-btn:hover::before {
-  transform: scaleX(1);
-}
-
-.sidebar__cv-btn:hover {
-  color: #111827;
   border-color: var(--accent-yellow);
+  color: #111827;
 }
 
-.sidebar__cv-btn svg,
-.sidebar__cv-btn span {
-  position: relative;
-  z-index: 1;
+.sidebar__icon-btn--cv:hover .sidebar__icon-btn-text {
+  opacity: 1;
+  visibility: visible;
+  color: #111827;
 }
