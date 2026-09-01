@@ -1,6 +1,7 @@
-import { useState, useEffect } from "react";
+﻿import { useState, useEffect } from "react";
 import { Routes, Route, useLocation, useNavigate } from "react-router-dom";
 import Sidebar from "./components/Sidebar/Sidebar";
+import MobileHeader from "./components/MobileHeader/MobileHeader";
 import HomeSection from "./components/v2/HomeSection";
 import AboutSection from "./components/v2/AboutSection";
 import ExperienceSection from "./components/v2/ExperienceSection";
@@ -37,22 +38,7 @@ function App() {
 
       {/* Main Content */}
       <main className="app-v2__main">
-        {/* Mobile Top Nav (hidden on desktop) */}
-        <div className="app-v2__mobile-nav">
-          <img src="/assets/ghalib.png" alt="Ghalib" className="app-v2__mobile-avatar" />
-          <span className="app-v2__mobile-name">M. Ghalib Pradipa</span>
-          <nav className="app-v2__mobile-tabs">
-            {SECTIONS.map((sec) => (
-              <button
-                key={sec.id}
-                className={`app-v2__mobile-tab ${location.pathname === sec.path ? "active" : ""}`}
-                onClick={() => navigate(sec.path)}
-              >
-                {sec.id.charAt(0).toUpperCase() + sec.id.slice(1)}
-              </button>
-            ))}
-          </nav>
-        </div>
+        <MobileHeader />
 
         {/* Section Route Content */}
         <div className="app-v2__sections">

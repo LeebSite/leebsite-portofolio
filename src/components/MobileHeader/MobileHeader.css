@@ -1,0 +1,215 @@
+﻿/* ---- Mobile Header ---- */
+.mobile-header {
+  display: none;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+  background: var(--bg-page);
+  position: sticky;
+  top: 0;
+  z-index: 90;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.mobile-header__profile {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.mobile-header__avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.mobile-header__name {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.mobile-header__verified {
+  color: var(--accent-blue);
+  font-size: 16px;
+}
+
+.mobile-header__menu-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-primary);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ---- Drawer Overlay ---- */
+.mobile-drawer-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 100;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.mobile-drawer-overlay.open {
+  display: block;
+  opacity: 1;
+}
+
+/* ---- Drawer ---- */
+.mobile-drawer {
+  position: fixed;
+  top: 0;
+  right: -100%;
+  width: 280px;
+  height: 100%;
+  background: var(--bg-card);
+  z-index: 101;
+  transition: right 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  flex-direction: column;
+  padding: 24px 0;
+  overflow-y: auto;
+  box-shadow: -4px 0 15px rgba(0,0,0,0.05);
+}
+
+.mobile-drawer.open {
+  right: 0;
+}
+
+.mobile-drawer__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px 20px;
+}
+
+.mobile-drawer__title {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.mobile-drawer__close-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-secondary);
+  cursor: pointer;
+}
+
+/* ---- Actions in Drawer ---- */
+.mobile-drawer__actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0 24px 20px;
+}
+
+.mobile-drawer__lang-toggle {
+  display: flex;
+  align-items: center;
+  background: var(--bg-page);
+  border-radius: 20px;
+  padding: 4px;
+  border: 1px solid var(--border-color);
+}
+
+.mobile-drawer__lang-btn {
+  background: transparent;
+  border: none;
+  border-radius: 16px;
+  padding: 4px 10px;
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.mobile-drawer__lang-btn.active.mobile-drawer__lang-btn--yellow {
+  background: var(--accent-yellow);
+  color: #111827;
+}
+
+.mobile-drawer__lang-btn.active:not(.mobile-drawer__lang-btn--yellow) {
+  background: var(--bg-card);
+  color: var(--text-primary);
+  box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+}
+
+.mobile-drawer__icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--bg-page);
+  border: 1px solid var(--border-color);
+  color: var(--text-bold);
+  cursor: pointer;
+}
+
+.mobile-drawer__divider {
+  height: 1px;
+  background: var(--divider);
+  margin: 0 24px 20px;
+}
+
+/* ---- Navigation in Drawer ---- */
+.mobile-drawer__nav {
+  display: flex;
+  flex-direction: column;
+  padding: 0 16px;
+}
+
+.mobile-drawer__nav-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 400;
+  transition: all 0.2s ease;
+}
+
+.mobile-drawer__nav-item.active {
+  background: var(--bg-active);
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+.mobile-drawer__nav-icon {
+  font-size: 18px;
+}
+
+.mobile-drawer__nav-label {
+  flex: 1;
+}
+
+.mobile-drawer__nav-arrow {
+  display: none;
+  color: var(--text-tertiary);
+}
+
+.mobile-drawer__nav-item.active .mobile-drawer__nav-arrow {
+  display: block;
+}
+
+@media (max-width: 900px) {
+  .mobile-header {
+    display: flex;
+  }
+}

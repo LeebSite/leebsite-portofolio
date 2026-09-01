@@ -1,4 +1,4 @@
-:root {
+﻿:root {
   --bg-page: #ffffff;
   --bg-card: #ffffff;
   --bg-hover: #f9fafb;
@@ -84,68 +84,22 @@ body {
   background: #f3f4f6;
 }
 
-/* Sections Styling — white cards */
+/* Sections Styling â€” white cards */
 .app-v2__sections > *:not(.app-v2__section-gap) {
   border-radius: 16px;
   box-shadow: 0 1px 4px rgba(0,0,0,0.06);
   overflow: hidden;
 }
 
-/* ---- Mobile Nav ---- */
-.app-v2__mobile-nav {
-  display: none;
-  padding: 14px 20px 0;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.app-v2__mobile-avatar {
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 2px solid #e5e7eb;
-}
-
-.app-v2__mobile-name {
-  font-weight: 700;
-  font-size: 16px;
-  color: #111827;
-}
-
-.app-v2__mobile-tabs {
-  display: flex;
-  overflow-x: auto;
-  gap: 8px;
-  padding-bottom: 4px;
-}
-
-.app-v2__mobile-tab {
-  flex-shrink: 0;
-  padding: 7px 14px;
-  border-radius: 999px;
-  border: 1.5px solid #e5e7eb;
-  background: #fff;
-  font-size: 13px;
-  font-weight: 500;
-  color: #374151;
-  cursor: pointer;
-  font-family: inherit;
-  transition: all 0.18s;
-}
-
-.app-v2__mobile-tab.active {
-  background: #111827;
-  border-color: #111827;
-  color: #fff;
-}
-
 @media (max-width: 900px) {
-  .app-v2__mobile-nav {
-    display: flex;
+  .app-v2 {
+    padding: 0;
+    flex-direction: column;
+    gap: 0;
   }
   .app-v2__sections {
-    padding: 12px 12px 0;
+    padding: 20px 16px 40px;
+    gap: 16px;
   }
 }
 
