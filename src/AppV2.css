@@ -1,6 +1,5 @@
-/* ---- CSS Variables (Light & Dark Mode) ---- */
 :root {
-  --bg-page: #f3f4f6;
+  --bg-page: #ffffff;
   --bg-card: #ffffff;
   --bg-hover: #f9fafb;
   --bg-active: #f3f4f6;

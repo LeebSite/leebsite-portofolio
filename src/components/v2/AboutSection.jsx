@@ -47,7 +47,7 @@ export default function AboutSection() {
         <div className="edu-card">
           <div className="edu-card__logo-wrapper">
             <img
-              src="https://upload.wikimedia.org/wikipedia/id/5/5e/Logo_UIN_Suska_Riau.png"
+              src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjfvDbFXCj-rhZkD4imXKAbCGRaRAkdHIndPbLFP_vveRj6gCoNJkiHAeP50Uhq9bKKTqp3-5cGWMC7nBmMpg7h03Asj1dMlCgmysCIOBSPOj9ER6n1uQ9SUZNTmKza3OIa57YFrwadjMHDOuYwa9j5rDB7C2oPQZTiYGH0_dXvIdaCWMZKUfhxQ9IOog/s1560/Logo%20Universitas%20Islam%20Negeri%20Sultan%20Syarif%20Kasim%20Riau%20(UIN%20Suska%20Riau).png"
               alt="UIN Suska Riau"
               className="edu-card__logo"
               onError={(e) => {
