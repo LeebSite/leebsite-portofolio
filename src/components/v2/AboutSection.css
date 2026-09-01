@@ -1,5 +1,5 @@
-/* ============================================================
-   ABOUT SECTION — v2
+﻿/* ============================================================
+   ABOUT SECTION â€” v2
    ============================================================ */
 
 .about-section {
@@ -223,4 +223,23 @@
   font-size: 13px;
   color: var(--text-secondary);
   line-height: 1.5;
+}
+
+@media (max-width: 600px) {
+  .edu-card {
+    padding: 14px 12px;
+    gap: 12px;
+  }
+  .edu-card__school {
+    font-size: 14px;
+  }
+  .edu-card__degree {
+    font-size: 12px;
+  }
+  .about-section__stats {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px 16px;
+    text-align: center;
+  }
 }
