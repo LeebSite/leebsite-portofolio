@@ -96,10 +96,12 @@ function PublicChatRoom() {
           messages.map((msg) => {
             const isMe = msg.uid === user?.uid;
             const isOwnerMsg = msg.email === OWNER_EMAIL;
+            const wrapClass = "chat-msg " + (isMe ? "chat-msg--me" : "chat-msg--other");
+            const bubbleClass = "chat-msg__bubble " + (isOwnerMsg ? "chat-msg__bubble--owner" : isMe ? "chat-msg__bubble--me" : "");
             return (
-              <div key={msg.id} className={chat-msg }>
+              <div key={msg.id} className={wrapClass}>
                 {!isMe && <img src={msg.photoURL || "https://via.placeholder.com/32"} alt="avatar" className="chat-msg__avatar" />}
-                <div className={chat-msg__bubble }>
+                <div className={bubbleClass}>
                   <span className="chat-msg__name">{msg.displayName}{isOwnerMsg && " 👑"}</span>
                   <p className="chat-msg__text">{msg.text}</p>
                 </div>
@@ -183,13 +185,13 @@ export default function ContactSection() {
             <label htmlFor="cf-message" className="contact-form__label">Pesan</label>
             <textarea id="cf-message" name="message" rows="5" placeholder="Tulis pesan Anda..." className="contact-form__textarea" required />
           </div>
-          <button type="submit" className="contact-form__btn">Kirim Pesan <LuSend style={{ marginLeft: '6px' }} /></button>
+          <button type="submit" className="contact-form__btn">Kirim Pesan <LuSend style={{ marginLeft: "6px" }} /></button>
         </form>
       </div>
-      <div className="contact-section__divider" style={{ marginTop: '32px' }} />
+      <div className="contact-section__divider" style={{ marginTop: "32px" }} />
       <div className="contact-chat-wrapper">
         <div className="contact-chat-header">
-          <h2 className="contact-chat-title"><LuMessageSquare style={{ display: 'inline', marginRight: '8px', verticalAlign: 'middle' }} />Ruang Chat Publik</h2>
+          <h2 className="contact-chat-title"><LuMessageSquare style={{ display: "inline", marginRight: "8px", verticalAlign: "middle" }} />Ruang Chat Publik</h2>
           <p className="contact-chat-desc">Sapa saya atau ngobrol dengan pengunjung lain secara langsung.</p>
         </div>
         <PublicChatRoom />
@@ -197,4 +199,3 @@ export default function ContactSection() {
     </section>
   );
 }
-
