@@ -1,3 +1,4 @@
+import { LuGraduationCap } from "react-icons/lu";
 import "./AboutSection.css";
 
 export default function AboutSection() {
@@ -41,7 +42,7 @@ export default function AboutSection() {
 
       {/* Education */}
       <div className="about-section__edu-block">
-        <h2 className="about-section__sub-title">🎓 Pendidikan</h2>
+        <h2 className="about-section__sub-title"><LuGraduationCap className="about-section__icon-inline" /> Pendidikan</h2>
         <p className="about-section__section-subtitle">Perjalanan pendidikan saya.</p>
 
         <div className="edu-card">

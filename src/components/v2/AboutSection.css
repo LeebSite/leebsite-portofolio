@@ -54,6 +54,14 @@
   font-weight: 700;
   color: var(--text-primary);
   margin-bottom: 4px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.about-section__icon-inline {
+  color: var(--text-secondary);
+  font-size: 20px;
 }
 
 .about-section__section-subtitle {
@@ -74,7 +82,7 @@
   padding: 18px 20px;
   border: 1.5px solid var(--border-color);
   border-radius: 12px;
-  background: #fafafa;
+  background: var(--bg-card);
   transition: box-shadow 0.2s ease, transform 0.2s ease;
 }
 

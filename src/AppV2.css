@@ -14,16 +14,16 @@
 }
 
 .dark {
-  --bg-page: #0f172a;
-  --bg-card: #1e293b;
-  --bg-hover: #334155;
-  --bg-active: #0f172a;
+  --bg-page: #0f172a; /* Make base darker */
+  --bg-card: #0f172a; /* Make cards same as base */
+  --bg-hover: #1e293b;
+  --bg-active: #1e293b;
   --text-primary: #f8fafc;
   --text-secondary: #94a3b8;
   --text-tertiary: #64748b;
   --text-bold: #e2e8f0;
-  --border-color: #334155;
-  --divider: #1e293b;
+  --border-color: #334155; /* Visible border */
+  --divider: #334155; /* Visible divider */
   --accent-blue: #60a5fa;
   --accent-yellow: #facc15;
 }

@@ -1,3 +1,4 @@
+import { LuPalette, LuCloud, LuTrophy, LuHandshake } from "react-icons/lu";
 import "./JourneySection.css";
 
 const journeyItems = [
@@ -5,28 +6,28 @@ const journeyItems = [
     year: "Des 2023 – Des 2024",
     title: "Design Lead",
     desc: "Memimpin arah kreatif dan identitas visual untuk acara-acara besar organisasi, menghasilkan materi publikasi digital yang menarik lebih dari 2.000 peserta.",
-    icon: "🎨",
+    icon: <LuPalette size={16} color="#fff" />,
     color: "#ec4899",
   },
   {
     year: "Mei 2024 – Des 2024",
     title: "Event & Program Coordinator - Riau DevOps Community",
     desc: "Mengelola inisiatif pendidikan dan komunitas terkait pengembangan sistem perangkat lunak, infrastruktur cloud, dan keunggulan operasional.",
-    icon: "☁️",
+    icon: <LuCloud size={16} color="#fff" />,
     color: "#06b6d4",
   },
   {
     year: "Jul 2024 – Sep 2024",
     title: "Project Chairman – 25th Informatics Engineering Anniversary",
     desc: "Memimpin pelaksanaan acara tahunan terbesar jurusan, menyatukan ratusan mahasiswa, dosen, dan jaringan alumni.",
-    icon: "🏆",
+    icon: <LuTrophy size={16} color="#fff" />,
     color: "#f59e0b",
   },
   {
     year: "Des 2024 – Des 2025",
     title: "Wakil Ketua - HIMATIF UIN Suska Riau",
     desc: "Mengatur pelaksanaan lebih dari 10 program berskala besar, serta memimpin dan mengoordinasikan komite lintas fungsi di 8 divisi internal.",
-    icon: "🤝",
+    icon: <LuHandshake size={16} color="#fff" />,
     color: "#8b5cf6",
   }
 ];
