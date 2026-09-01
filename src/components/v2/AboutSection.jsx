@@ -13,7 +13,7 @@ export default function AboutSection() {
       <div className="about-section__bio">
         <p>
           Saya <span className="about-section__highlight--blue">Muhammad Ghalib Pradipa</span>,{" "}
-          Insinyur Perangkat Lunak berbasis di Karawang yang berdedikasi untuk
+          Insinyur Perangkat Lunak berbasis di Pekanbaru yang berdedikasi untuk
           membangun solusi <span className="about-section__highlight--blue">digital yang berdampak</span>. Saya
           berspesialisasi dalam pengembangan platform web dan aplikasi seluler
           menggunakan tumpukan teknologi modern, termasuk{" "}

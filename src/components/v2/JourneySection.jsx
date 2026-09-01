@@ -2,47 +2,33 @@ import "./JourneySection.css";
 
 const journeyItems = [
   {
-    year: "2022",
-    title: "Mulai Kuliah Informatika",
-    desc: "Memulai perjalanan akademik di UIN Sultan Syarif Kasim Riau, jurusan Teknik Informatika.",
-    icon: "🎓",
-    color: "#3b82f6",
-  },
-  {
-    year: "2023",
-    title: "Proyek Web Pertama",
-    desc: "Membangun proyek web pertama menggunakan HTML, CSS, dan JavaScript murni.",
-    icon: "💻",
-    color: "#10b981",
-  },
-  {
-    year: "2024",
-    title: "Belajar React & Next.js",
-    desc: "Menguasai ekosistem React, menyelesaikan berbagai sertifikasi di HackerRank dan freeCodeCamp.",
-    icon: "⚛️",
-    color: "#8b5cf6",
-  },
-  {
-    year: "2024",
-    title: "Magang Pertama – Kilang Pertamina",
-    desc: "Mengerjakan aplikasi berbasis C# dan ASP.NET Core di lingkungan enterprise.",
-    icon: "🏭",
-    color: "#f59e0b",
-  },
-  {
-    year: "2025",
-    title: "Mobile Development dengan Flutter",
-    desc: "Membangun aplikasi mobile lintas platform dengan Flutter & Dart untuk project berbasis klien.",
-    icon: "📱",
+    year: "Des 2023 – Des 2024",
+    title: "Design Lead",
+    desc: "Memimpin arah kreatif dan identitas visual untuk acara-acara besar organisasi, menghasilkan materi publikasi digital yang menarik lebih dari 2.000 peserta.",
+    icon: "🎨",
     color: "#ec4899",
   },
   {
-    year: "2026",
-    title: "Full-time Software Engineer",
-    desc: "Bergabung dengan PT Orixa Digital Agency sebagai Software Engineer, fokus pada React/Next.js.",
-    icon: "🚀",
+    year: "Mei 2024 – Des 2024",
+    title: "Event & Program Coordinator - Riau DevOps Community",
+    desc: "Mengelola inisiatif pendidikan dan komunitas terkait pengembangan sistem perangkat lunak, infrastruktur cloud, dan keunggulan operasional.",
+    icon: "☁️",
     color: "#06b6d4",
   },
+  {
+    year: "Jul 2024 – Sep 2024",
+    title: "Project Chairman – 25th Informatics Engineering Anniversary",
+    desc: "Memimpin pelaksanaan acara tahunan terbesar jurusan, menyatukan ratusan mahasiswa, dosen, dan jaringan alumni.",
+    icon: "🏆",
+    color: "#f59e0b",
+  },
+  {
+    year: "Des 2024 – Des 2025",
+    title: "Wakil Ketua - HIMATIF UIN Suska Riau",
+    desc: "Mengatur pelaksanaan lebih dari 10 program berskala besar, serta memimpin dan mengoordinasikan komite lintas fungsi di 8 divisi internal.",
+    icon: "🤝",
+    color: "#8b5cf6",
+  }
 ];
 
 export default function JourneySection() {

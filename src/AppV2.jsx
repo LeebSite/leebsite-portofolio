@@ -68,8 +68,7 @@ function App() {
         </div>
 
         {/* Footer */}
-        <footer className="app-v2__footer">
-          <p>© 2026 Muhammad Ghalib Pradipa · Dibuat dengan ❤️ menggunakan React</p>
+        <footer className="app-v2__footer" style={{ display: "none" }}>
         </footer>
       </main>
     </div>

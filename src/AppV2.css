@@ -27,8 +27,10 @@ body {
 .app-v2 {
   display: flex;
   min-height: 100vh;
-  max-width: 1400px;
+  max-width: 1150px;
   margin: 0 auto;
+  padding: 32px;
+  gap: 32px;
   position: relative;
 }
 
@@ -46,7 +48,6 @@ body {
 .app-v2__sections {
   display: flex;
   flex-direction: column;
-  padding: 24px 24px 0;
   gap: 0;
 }
 

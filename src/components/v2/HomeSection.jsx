@@ -8,7 +8,7 @@ export default function HomeSection() {
         <div className="home-section__meta">
           <span className="home-section__meta-item">
             <span className="home-section__meta-dot" />
-            Berdomisili di Karawang, Indonesia
+            Berdomisili di Riau, Indonesia
           </span>
           <span className="home-section__meta-divider">•</span>
           <span className="home-section__meta-item">Onsite</span>
