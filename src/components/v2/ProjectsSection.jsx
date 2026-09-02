@@ -1,7 +1,43 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import "./ProjectsSection.css";
 import { listProyek } from "../../data";
-import { LuLayoutGrid, LuGlobe, LuSmartphone, LuPenTool, LuLink, LuExternalLink } from "react-icons/lu";
+import { LuLayoutGrid, LuGlobe, LuSmartphone, LuPenTool, LuLink } from "react-icons/lu";
+
+// ---- 3D Tilt Hook ----
+function useTilt() {
+  const ref = useRef(null);
+
+  const handleMouseMove = (e) => {
+    const card = ref.current;
+    if (!card) return;
+    const rect = card.getBoundingClientRect();
+    // position of cursor relative to card center, normalized -1 to 1
+    const x = (e.clientX - rect.left) / rect.width - 0.5;   // -0.5 → 0.5
+    const y = (e.clientY - rect.top)  / rect.height - 0.5;  // -0.5 → 0.5
+
+    const MAX_TILT = 14; // degrees
+    const rotateY =  x * MAX_TILT;   // cursor right → tilt right
+    const rotateX = -y * MAX_TILT;   // cursor down  → tilt down (invert)
+
+    // Glare position
+    const glareX = (x + 0.5) * 100;  // 0% – 100%
+    const glareY = (y + 0.5) * 100;
+
+    card.style.transform = `perspective(800px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.03,1.03,1.03)`;
+    card.style.setProperty("--glare-x", glareX + "%");
+    card.style.setProperty("--glare-y", glareY + "%");
+    card.style.setProperty("--glare-opacity", "0.18");
+  };
+
+  const handleMouseLeave = () => {
+    const card = ref.current;
+    if (!card) return;
+    card.style.transform = "perspective(800px) rotateX(0deg) rotateY(0deg) scale3d(1,1,1)";
+    card.style.setProperty("--glare-opacity", "0");
+  };
+
+  return { ref, handleMouseMove, handleMouseLeave };
+}
 
 const filterCategories = [
   { id: "All", label: "All", icon: <LuLayoutGrid size={14}/> },
@@ -25,13 +61,22 @@ const TECH_COLORS = {
 // Vary description length to create natural height variation
 const DESC_LENGTHS = [140, 80, 200, 100, 160, 90];
 
-function ProjectCard({ proyek, descLen, onMouseMove }) {
+function ProjectCard({ proyek, descLen }) {
+  const { ref, handleMouseMove, handleMouseLeave } = useTilt();
   const desc = proyek.fullDescription
     ? proyek.fullDescription.substring(0, descLen) + "..."
     : proyek.subtitle;
 
   return (
-    <div className="project-card" onMouseMove={onMouseMove}>
+    <div
+      className="project-card"
+      ref={ref}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+    >
+      {/* Glare layer */}
+      <div className="project-card__glare" />
+
       <div className="project-card__img-wrapper">
         {proyek.featured && (
           <div className="project-card__featured">
@@ -86,12 +131,6 @@ function ProjectCard({ proyek, descLen, onMouseMove }) {
 export default function ProjectsSection() {
   const [activeFilter, setActiveFilter] = useState("All");
 
-  const handleMouseMove = (e) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    e.currentTarget.style.setProperty("--mouse-x", (e.clientX - rect.left) + "px");
-    e.currentTarget.style.setProperty("--mouse-y", (e.clientY - rect.top) + "px");
-  };
-
   const filteredProjects = listProyek.filter((p) =>
     activeFilter === "All" || (p.categories && p.categories.includes(activeFilter))
   );
@@ -137,7 +176,6 @@ export default function ProjectsSection() {
               key={proyek.id}
               proyek={proyek}
               descLen={DESC_LENGTHS[(i * 2) % DESC_LENGTHS.length]}
-              onMouseMove={handleMouseMove}
             />
           ))}
         </div>
@@ -147,7 +185,6 @@ export default function ProjectsSection() {
               key={proyek.id}
               proyek={proyek}
               descLen={DESC_LENGTHS[(i * 2 + 1) % DESC_LENGTHS.length]}
-              onMouseMove={handleMouseMove}
             />
           ))}
         </div>
