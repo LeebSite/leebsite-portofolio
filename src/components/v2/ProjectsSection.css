@@ -1,5 +1,5 @@
 /* ============================================================
-   PROJECTS SECTION — v2  |  Masonry Layout
+   PROJECTS SECTION — v2  |  Pinterest Masonry
    ============================================================ */
 
 .projects-section {
@@ -26,7 +26,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
-  margin-bottom: 28px;
+  margin-bottom: 24px;
 }
 
 .projects-filter__btn {
@@ -42,6 +42,7 @@
   font-weight: 600;
   cursor: pointer;
   transition: all 0.2s ease;
+  font-family: inherit;
 }
 
 .projects-filter__btn:hover {
@@ -62,50 +63,47 @@
   font-size: 11px;
 }
 
-/* ---- Masonry Grid ---- */
-.projects-masonry {
-  columns: 2;
-  column-gap: 20px;
+/* ---- Pinterest 2-column layout ---- */
+.projects-pinterest {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
 }
 
-.projects-masonry .project-card {
-  break-inside: avoid;
-  margin-bottom: 20px;
-}
-
-@media (max-width: 700px) {
-  .projects-masonry {
-    columns: 1;
-  }
+.projects-col {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 }
 
 /* ---- Card ---- */
 .project-card {
   position: relative;
-  overflow: hidden;
   display: flex;
   flex-direction: column;
   background: var(--bg-card);
   border: 1.5px solid var(--border-color);
-  border-radius: 16px;
+  border-radius: 14px;
+  overflow: hidden;
   transition: box-shadow 0.25s ease, transform 0.25s ease, border-color 0.25s ease;
 }
 
 .project-card:hover {
-  box-shadow: 0 12px 36px rgba(0,0,0,0.1);
-  transform: translateY(-4px);
+  box-shadow: 0 12px 36px rgba(0,0,0,0.12);
+  transform: translateY(-3px);
   border-color: color-mix(in srgb, var(--text-tertiary) 60%, transparent);
 }
 
-/* spotlight glow */
+/* Spotlight glow */
 .project-card::before {
   content: '';
   position: absolute;
   inset: 0;
   pointer-events: none;
   background: radial-gradient(
-    350px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
-    rgba(99,102,241,0.12),
+    300px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+    rgba(99,102,241,0.1),
     transparent 60%
   );
   opacity: 0;
@@ -120,33 +118,66 @@
   z-index: 2;
 }
 
-/* ---- Image ---- */
+/* ---- Image with "View Project" overlay ---- */
 .project-card__img-wrapper {
   position: relative;
   width: 100%;
-  background: var(--bg-hover);
   overflow: hidden;
+  background: var(--bg-hover);
 }
 
 .project-card__img {
   width: 100%;
   height: auto;
   display: block;
-  object-fit: cover;
   transition: transform 0.4s ease;
 }
 
 .project-card:hover .project-card__img {
-  transform: scale(1.03);
+  transform: scale(1.04);
 }
 
+/* Overlay shown on hover - like in reference */
+.project-card__img-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.project-card:hover .project-card__img-overlay {
+  opacity: 1;
+}
+
+.project-card__overlay-link {
+  color: #fff;
+  font-size: 14px;
+  font-weight: 700;
+  text-decoration: none;
+  padding: 10px 20px;
+  border: 2px solid #fff;
+  border-radius: 8px;
+  transition: background 0.2s ease, color 0.2s ease;
+  letter-spacing: 0.3px;
+}
+
+.project-card__overlay-link:hover {
+  background: #fff;
+  color: #111827;
+}
+
+/* Featured badge */
 .project-card__featured {
   position: absolute;
-  top: 12px;
-  right: 12px;
+  top: 10px;
+  right: 10px;
   background: var(--accent-yellow);
   color: #111827;
-  padding: 4px 10px;
+  padding: 3px 10px;
   border-radius: 6px;
   font-size: 11px;
   font-weight: 700;
@@ -157,21 +188,20 @@
 }
 
 .featured-dot {
-  width: 6px;
-  height: 6px;
+  width: 5px;
+  height: 5px;
   background: #111827;
   border-radius: 50%;
 }
 
 /* ---- Body ---- */
 .project-card__body {
-  padding: 18px 20px 20px;
+  padding: 16px;
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
 
-/* Category pills */
 .project-card__categories {
   display: flex;
   flex-wrap: wrap;
@@ -179,7 +209,7 @@
 }
 
 .project-card__cat-pill {
-  padding: 3px 10px;
+  padding: 3px 9px;
   border-radius: 20px;
   background: var(--bg-page);
   border: 1px solid var(--border-color);
@@ -188,28 +218,26 @@
   font-weight: 600;
 }
 
-/* Title */
 .project-card__title {
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 700;
   color: var(--text-primary);
   line-height: 1.35;
   margin: 0;
 }
 
-/* Description */
 .project-card__desc {
-  font-size: 13px;
+  font-size: 12.5px;
   color: var(--text-secondary);
   line-height: 1.65;
   margin: 0;
 }
 
-/* Tech pills */
+/* Tech pills with color tint */
 .project-card__tech {
   display: flex;
   flex-wrap: wrap;
-  gap: 6px;
+  gap: 5px;
   margin-top: 2px;
 }
 
@@ -217,18 +245,13 @@
   display: inline-flex;
   align-items: center;
   gap: 5px;
-  padding: 4px 10px;
-  border-radius: 12px;
+  padding: 3px 9px;
+  border-radius: 10px;
   background: color-mix(in srgb, var(--dot-color, #9ca3af) 12%, var(--bg-card));
   border: 1px solid color-mix(in srgb, var(--dot-color, #9ca3af) 25%, var(--border-color));
   font-size: 11px;
   color: var(--text-bold);
   font-weight: 600;
-  transition: all 0.2s ease;
-}
-
-.project-card__tech-pill:hover {
-  background: color-mix(in srgb, var(--dot-color, #9ca3af) 20%, var(--bg-card));
 }
 
 .tech-dot {
@@ -239,27 +262,9 @@
   flex-shrink: 0;
 }
 
-/* External link */
-.project-card__link {
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  font-size: 12px;
-  font-weight: 600;
-  color: var(--text-secondary);
-  text-decoration: none;
-  margin-top: 4px;
-  transition: color 0.2s ease, gap 0.2s ease;
-  width: fit-content;
-}
-
-.project-card__link:hover {
-  color: var(--accent-blue, #3b82f6);
-  gap: 8px;
-}
-
+/* ---- Responsive ---- */
 @media (max-width: 600px) {
-  .projects-section {
-    padding: 24px 20px 40px;
-  }
+  .projects-section { padding: 24px 16px 40px; }
+  .projects-pinterest { flex-direction: column; }
+  .projects-col { gap: 12px; }
 }
