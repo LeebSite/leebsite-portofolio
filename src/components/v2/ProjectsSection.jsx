@@ -12,14 +12,16 @@ function useTilt() {
     const card = ref.current;
     if (!card) return;
     const rect = card.getBoundingClientRect();
-    const x = (e.clientX - rect.left) / rect.width - 0.5;
-    const y = (e.clientY - rect.top) / rect.height - 0.5;
+    // position of cursor relative to card center, normalized -1 to 1
+    const x = (e.clientX - rect.left) / rect.width - 0.5;   // -0.5 → 0.5
+    const y = (e.clientY - rect.top)  / rect.height - 0.5;  // -0.5 → 0.5
 
-    const MAX_TILT = 14;
-    const rotateY = x * MAX_TILT;
-    const rotateX = -y * MAX_TILT;
+    const MAX_TILT = 14; // degrees
+    const rotateY =  x * MAX_TILT;   // cursor right → tilt right
+    const rotateX = -y * MAX_TILT;   // cursor down  → tilt down (invert)
 
-    const glareX = (x + 0.5) * 100;
+    // Glare position
+    const glareX = (x + 0.5) * 100;  // 0% – 100%
     const glareY = (y + 0.5) * 100;
 
     card.style.transform = `perspective(800px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.03,1.03,1.03)`;
@@ -57,6 +59,7 @@ const TECH_COLORS = {
   "Express.js": "#000000", "Canva": "#00C4CC",
 };
 
+// Vary description length to create natural height variation
 const DESC_LENGTHS = [140, 80, 200, 100, 160, 90];
 
 function ProjectCard({ proyek, descLen }) {
@@ -120,10 +123,10 @@ function ProjectCard({ proyek, descLen }) {
           {proyek.tech && proyek.tech.map((t, idx) => (
             <span
               key={idx}
-              className="project-card__tech-tag"
-              style={{ "--tech-color": TECH_COLORS[t] || "#6b7280" }}
+              className="project-card__tech-pill"
+              style={{ "--dot-color": TECH_COLORS[t] || "#9ca3af" }}
             >
-              {t}
+              <span className="tech-dot" />{t}
             </span>
           ))}
         </div>
@@ -133,12 +136,23 @@ function ProjectCard({ proyek, descLen }) {
 }
 
 export default function ProjectsSection() {
-  const [activeCategory, setActiveCategory] = useState("All");
+  const [activeFilter, setActiveFilter] = useState("All");
   const { t } = useLanguage();
 
-  const filtered = activeCategory === "All"
-    ? listProyek
-    : listProyek.filter((p) => p.categories && p.categories.includes(activeCategory));
+  const filteredProjects = listProyek.filter((p) =>
+    activeFilter === "All" || (p.categories && p.categories.includes(activeFilter))
+  );
+
+  // Split into two columns (Pinterest style)
+  const leftCol = filteredProjects.filter((_, i) => i % 2 === 0);
+  const rightCol = filteredProjects.filter((_, i) => i % 2 === 1);
+
+  const counts = {};
+  filterCategories.forEach(cat => {
+    counts[cat.id] = cat.id === "All"
+      ? listProyek.length
+      : listProyek.filter(p => p.categories && p.categories.includes(cat.id)).length;
+  });
 
   return (
     <section id="projects" className="projects-section">
@@ -147,34 +161,44 @@ export default function ProjectsSection() {
         <p className="projects-section__subtitle">{t("projects.subtitle")}</p>
       </div>
 
-      <div className="projects-section__divider" />
-
       {/* Filter Tabs */}
-      <div className="projects__filter-tabs">
+      <div className="projects-filter">
         {filterCategories.map((cat) => {
           const tabLabel = t(`projects.tabs.${cat.tabKey}`) || cat.id;
           return (
             <button
               key={cat.id}
-              className={`projects__tab ${activeCategory === cat.id ? "active" : ""}`}
-              onClick={() => setActiveCategory(cat.id)}
+              className={`projects-filter__btn ${activeFilter === cat.id ? "active" : ""}`}
+              onClick={() => setActiveFilter(cat.id)}
             >
               {cat.icon}
               {tabLabel}
+              <span className="projects-filter__count">{counts[cat.id]}</span>
             </button>
           );
         })}
       </div>
 
-      {/* Projects Grid */}
-      <div className="projects__grid">
-        {filtered.map((proyek, i) => (
-          <ProjectCard
-            key={proyek.id}
-            proyek={proyek}
-            descLen={DESC_LENGTHS[i % DESC_LENGTHS.length]}
-          />
-        ))}
+      {/* Pinterest 2-column layout */}
+      <div className="projects-pinterest">
+        <div className="projects-col">
+          {leftCol.map((proyek, i) => (
+            <ProjectCard
+              key={proyek.id}
+              proyek={proyek}
+              descLen={DESC_LENGTHS[(i * 2) % DESC_LENGTHS.length]}
+            />
+          ))}
+        </div>
+        <div className="projects-col">
+          {rightCol.map((proyek, i) => (
+            <ProjectCard
+              key={proyek.id}
+              proyek={proyek}
+              descLen={DESC_LENGTHS[(i * 2 + 1) % DESC_LENGTHS.length]}
+            />
+          ))}
+        </div>
       </div>
     </section>
   );
