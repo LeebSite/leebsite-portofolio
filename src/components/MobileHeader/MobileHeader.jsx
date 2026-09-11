@@ -1,24 +1,25 @@
-﻿import { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 import { FiHome, FiUser, FiBriefcase, FiLayers, FiCompass, FiAward, FiMail, FiMenu, FiX } from "react-icons/fi";
 import { HiCheckBadge } from "react-icons/hi2";
 import "./MobileHeader.css";
-
-const navItems = [
-  { id: "home", path: "/", label: "Home", icon: <FiHome /> },
-  { id: "about", path: "/about", label: "About", icon: <FiUser /> },
-  { id: "experience", path: "/experience", label: "Experience", icon: <FiBriefcase /> },
-  { id: "projects", path: "/projects", label: "Projects", icon: <FiLayers /> },
-  { id: "journey", path: "/journey", label: "Journey", icon: <FiCompass /> },
-  { id: "achievements", path: "/achievements", label: "Achievements", icon: <FiAward /> },
-  { id: "contact", path: "/contact", label: "Contact", icon: <FiMail /> },
-];
+import { useLanguage } from "../../context/LanguageContext";
 
 export default function MobileHeader() {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
   const [darkMode, setDarkMode] = useState(false);
-  const [lang, setLang] = useState("ID");
+  const { language, setLanguage, t } = useLanguage();
+
+  const navItems = [
+    { id: "home", path: "/", label: t("nav.home"), icon: <FiHome /> },
+    { id: "about", path: "/about", label: t("nav.about"), icon: <FiUser /> },
+    { id: "experience", path: "/experience", label: t("nav.experience"), icon: <FiBriefcase /> },
+    { id: "projects", path: "/projects", label: t("nav.projects"), icon: <FiLayers /> },
+    { id: "journey", path: "/journey", label: t("nav.journey"), icon: <FiCompass /> },
+    { id: "achievements", path: "/achievements", label: t("nav.achievements"), icon: <FiAward /> },
+    { id: "contact", path: "/contact", label: t("nav.contact"), icon: <FiMail /> },
+  ];
 
   useEffect(() => {
     setDarkMode(document.body.classList.contains("dark"));
@@ -70,14 +71,14 @@ export default function MobileHeader() {
       {/* Drawer */}
       <div className={`mobile-drawer ${isOpen ? "open" : ""}`}>
         <div className="mobile-drawer__header">
-          <h2 className="mobile-drawer__title">Navigation</h2>
+          <h2 className="mobile-drawer__title">{t("nav.navigation")}</h2>
           <button className="mobile-drawer__close-btn" onClick={() => setIsOpen(false)}>
             <FiX size={24} />
           </button>
         </div>
 
         <div className="mobile-drawer__actions">
-          <button className="mobile-drawer__icon-btn" onClick={toggleDarkMode}>
+          <button className="mobile-drawer__icon-btn" onClick={toggleDarkMode} title="Toggle Theme">
             {darkMode ? (
               <svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 512 512" height="16px" width="16px" xmlns="http://www.w3.org/2000/svg"><path d="M283.211 512c78.962 0 151.079-35.925 198.857-94.792 7.068-8.708-.639-21.43-11.562-19.35-124.203 23.654-238.262-71.576-238.262-196.954 0-72.222 38.662-138.635 101.498-174.394 9.686-5.512 7.25-20.197-3.756-22.23A258.156 258.156 0 0 0 283.211 0c-141.309 0-256 114.511-256 256 0 141.309 114.511 256 256 256z"></path></svg>
             ) : (
@@ -86,11 +87,11 @@ export default function MobileHeader() {
           </button>
           
           <div className="mobile-drawer__lang-toggle">
-            <button className={`mobile-drawer__lang-btn ${lang === "US" ? "active" : ""}`} onClick={() => setLang("US")}>US</button>
-            <button className={`mobile-drawer__lang-btn mobile-drawer__lang-btn--yellow ${lang === "ID" ? "active" : ""}`} onClick={() => setLang("ID")}>ID</button>
+            <button className={`mobile-drawer__lang-btn ${language === "en" ? "active" : ""}`} onClick={() => setLanguage("en")}>US</button>
+            <button className={`mobile-drawer__lang-btn mobile-drawer__lang-btn--yellow ${language === "id" ? "active" : ""}`} onClick={() => setLanguage("id")}>ID</button>
           </div>
 
-          <a href="/assets/CV.pdf" download="CV Muhammad Ghalib Pradipa.pdf" className="mobile-drawer__icon-btn">
+          <a href="/assets/CV.pdf" download="CV Muhammad Ghalib Pradipa.pdf" className="mobile-drawer__icon-btn" title={t("nav.downloadCv")}>
             <svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 24 24" height="16px" width="16px" xmlns="http://www.w3.org/2000/svg"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm-1 1.5L18.5 9H13V3.5zM18 20H6V4h6v6h6v10z"></path><path d="M11 10h2v4h-2zm-1 5h4v2h-4z"></path></svg>
           </a>
         </div>

@@ -1,3 +1,4 @@
+import { useLanguage } from '../../context/LanguageContext';
 ﻿import { useState, useEffect, useRef } from "react";
 import { LuMail, LuMapPin, LuLinkedin, LuGithub, LuFileText, LuSend, LuInstagram, LuMessageSquare, LuLogOut, LuTrash2 } from "react-icons/lu";
 import { auth, loginWithGoogle, logout, db, getRedirectResult } from "../../firebase";
@@ -10,6 +11,7 @@ import "./ContactSection.css";
 const OWNER_EMAIL = "mhd.ghalibpradipa@gmail.com";
 
 function PublicChatRoom() {
+  const { t } = useLanguage();
   const [user, setUser] = useState(null);
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState([]);
@@ -121,10 +123,11 @@ function PublicChatRoom() {
 }
 
 export default function ContactSection() {
+  const { t } = useLanguage();
   return (
     <section id="contact" className="contact-section">
       <div className="contact-section__header">
-        <h1 className="contact-section__title">Kontak</h1>
+        <h1 className="contact-section__title">{t("contact.title")}</h1>
         <p className="contact-section__subtitle">Hubungi saya untuk kolaborasi atau obrolan singkat.</p>
       </div>
       <div className="contact-section__divider" />

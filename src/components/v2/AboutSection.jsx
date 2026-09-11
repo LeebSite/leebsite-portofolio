@@ -1,7 +1,9 @@
 import { LuGraduationCap, LuWrench, LuCode, LuDatabase, LuPalette, LuUsers } from "react-icons/lu";
 import "./AboutSection.css";
+import { useLanguage } from "../../context/LanguageContext";
 
 export default function AboutSection() {
+  const { t } = useLanguage();
   const handleMouseMove = (e) => {
     const rect = e.currentTarget.getBoundingClientRect();
     const x = e.clientX - rect.left;
@@ -12,46 +14,46 @@ export default function AboutSection() {
   return (
     <section id="about" className="about-section">
       <div className="about-section__header">
-        <h1 className="about-section__title">Tentang</h1>
-        <p className="about-section__subtitle">Pengenalan singkat mengenai siapa saya.</p>
+        <h1 className="about-section__title">{t("about.title")}</h1>
+        <p className="about-section__subtitle">{t("about.subtitle")}</p>
       </div>
 
       <div className="about-section__divider" />
 
       <div className="about-section__bio">
         <p>
-          Seorang <span className="about-section__highlight--blue">Fresh Graduate Teknik Informatika</span> yang berfokus sebagai <span className="about-section__highlight--blue">Full-Stack Software dan Data Engineer</span> dengan rekam jejak yang kuat dalam membangun aplikasi web skala enterprise dan mengoptimalkan alur kerja data skala besar. Fondasi teknis saya dibangun melalui pengalaman industri langsung di berbagai instansi nasional tingkat atas, termasuk PT Kilang Pertamina Internasional, Bank Indonesia, dan Kemendikdasmen.
+          {t("about.bio1")}
         </p>
         <p className="mt-4">
-          Melalui peran-peran tersebut, saya mengembangkan keahlian yang komprehensif di bidang software engineering dan analisis data. Keahlian utama saya mencakup pengembangan arsitektur web yang scalable menggunakan <span className="about-section__highlight--blue">ASP.NET Core (C#) dan Laravel</span>, serta perancangan otomasi data pipeline dan pemrosesan data kompleks untuk lebih dari 20.000 baris metrik ekonomi menggunakan <span className="about-section__highlight--blue">Python dan SQL/Excel tingkat lanjut</span>.
+          {t("about.bio2")}
         </p>
         <p className="mt-4">
-          Nilai tambah yang membedakan saya adalah kombinasi antara eksekusi teknis dan kepemimpinan strategis. Saat menjabat sebagai Wakil Ketua HIMATIF UIN SUSKA, saya mengasah kemampuan dalam memimpin tim lintas divisi, mengorkestrasi 10+ program skala besar, dan menyelesaikan hambatan operasional. Saya memahami bahwa menulis kode yang bersih (<span className="about-section__highlight--amber">clean code</span>) sama pentingnya dengan komunikasi yang efektif dan pemahaman terhadap tujuan bisnis.
+          {t("about.bio3")}
         </p>
         <div className="about-section__competencies" style={{ marginTop: '32px' }}>
           <h3 className="about-section__sub-title" style={{ marginBottom: '16px' }}>
-            <LuWrench className="about-section__icon-inline" /> Kompetensi Inti & Teknologi
+            <LuWrench className="about-section__icon-inline" /> {t("about.compTitle")}
           </h3>
           <div className="competencies-grid">
             <div className="comp-card" onMouseMove={handleMouseMove}>
               <div className="comp-card__icon"><LuCode /></div>
-              <h4 className="comp-card__title">Pengembangan Perangkat Lunak</h4>
-              <p className="comp-card__desc">C#, ASP.NET Core, PHP, Laravel, JavaScript (React, Next.js, Node.js)</p>
+              <h4 className="comp-card__title">{t("about.comp1Title")}</h4>
+              <p className="comp-card__desc">{t("about.comp1Desc")}</p>
             </div>
             <div className="comp-card" onMouseMove={handleMouseMove}>
               <div className="comp-card__icon"><LuDatabase /></div>
-              <h4 className="comp-card__title">Data & AI Engineering</h4>
-              <p className="comp-card__desc">Python, SQL Tingkat Lanjut, Otomasi Data Pipeline, Audit Data Skala Besar</p>
+              <h4 className="comp-card__title">{t("about.comp2Title")}</h4>
+              <p className="comp-card__desc">{t("about.comp2Desc")}</p>
             </div>
             <div className="comp-card" onMouseMove={handleMouseMove}>
               <div className="comp-card__icon"><LuPalette /></div>
-              <h4 className="comp-card__title">Desain & UI/UX</h4>
-              <p className="comp-card__desc">User-Centered Design, Wireframing, Integrasi Front-end</p>
+              <h4 className="comp-card__title">{t("about.comp3Title")}</h4>
+              <p className="comp-card__desc">{t("about.comp3Desc")}</p>
             </div>
             <div className="comp-card" onMouseMove={handleMouseMove}>
               <div className="comp-card__icon"><LuUsers /></div>
-              <h4 className="comp-card__title">Soft Skills</h4>
-              <p className="comp-card__desc">Kepemimpinan Teknis, Manajemen Proyek, Pemecahan Masalah Strategis</p>
+              <h4 className="comp-card__title">{t("about.comp4Title")}</h4>
+              <p className="comp-card__desc">{t("about.comp4Desc")}</p>
             </div>
           </div>
         </div>
@@ -61,8 +63,8 @@ export default function AboutSection() {
 
       {/* Education */}
       <div className="about-section__edu-block">
-        <h2 className="about-section__sub-title"><LuGraduationCap className="about-section__icon-inline" /> Pendidikan</h2>
-        <p className="about-section__section-subtitle">Perjalanan pendidikan saya.</p>
+        <h2 className="about-section__sub-title"><LuGraduationCap className="about-section__icon-inline" /> {t("about.eduTitle")}</h2>
+        <p className="about-section__section-subtitle">{t("about.eduSubtitle")}</p>
 
         <div className="edu-card">
           <div className="edu-card__logo-wrapper">
@@ -78,10 +80,10 @@ export default function AboutSection() {
           <div className="edu-card__info">
             <h3 className="edu-card__school">UIN Sultan Syarif Kasim Riau</h3>
             <p className="edu-card__degree">
-              Bachelor's degree &nbsp;•&nbsp; Informatics, (S.T) &nbsp;•&nbsp;{" "}
-              <strong>GPA: 3.66/4.00</strong>
+              {t("about.degree")} &nbsp;•&nbsp;{" "}
+              <strong>{t("about.gpaLabel")}: 3.66/4.00</strong>
             </p>
-            <p className="edu-card__period">2022 – 2026 &nbsp;&nbsp; Pekanbaru, Indonesia</p>
+            <p className="edu-card__period">2022 — 2026 &nbsp;&nbsp; {t("about.locationEdu")}</p>
           </div>
         </div>
       </div>
@@ -92,19 +94,19 @@ export default function AboutSection() {
       <div className="about-section__stats">
         <div className="about-stat">
           <span className="about-stat__value">10<span className="about-stat__plus">+</span></span>
-          <span className="about-stat__label">Proyek Selesai</span>
+          <span className="about-stat__label">{t("about.statProjects")}</span>
         </div>
         <div className="about-stat">
           <span className="about-stat__value">3<span className="about-stat__plus">+</span></span>
-          <span className="about-stat__label">Tahun Pengalaman</span>
+          <span className="about-stat__label">{t("about.statExp")}</span>
         </div>
         <div className="about-stat">
           <span className="about-stat__value">3.66<span className="about-stat__plus">/4.00</span></span>
-          <span className="about-stat__label">GPA</span>
+          <span className="about-stat__label">{t("about.statGpa")}</span>
         </div>
         <div className="about-stat">
           <span className="about-stat__value">10<span className="about-stat__plus">+</span></span>
-          <span className="about-stat__label">Sertifikasi</span>
+          <span className="about-stat__label">{t("about.statCert")}</span>
         </div>
       </div>
     </section>

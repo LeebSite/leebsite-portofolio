@@ -1,5 +1,6 @@
-﻿import { useState } from "react";
+import { useState } from "react";
 import "./HomeSection.css";
+import { useLanguage } from "../../context/LanguageContext";
 
 const ALL_SKILLS = [
   { name: "C#", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/csharp/csharp-original.svg", color: "#239120", cats: ["Backend", "Main"] },
@@ -49,6 +50,7 @@ const TABS = ["All", "Main", "Frontend", "Backend", "Data", "Database", "Tools"]
 
 export default function HomeSection() {
   const [activeTab, setActiveTab] = useState("All");
+  const { t } = useLanguage();
 
   const filteredSkills = ALL_SKILLS.filter(skill => 
     activeTab === "All" || skill.cats.includes(activeTab)
@@ -57,26 +59,22 @@ export default function HomeSection() {
   return (
     <section id="home" className="home-section">
       <div className="home-section__header">
-        <h1 className="home-section__title">Halo, saya Muhammad Ghalib Pradipa</h1>
+        <h1 className="home-section__title">{t("home.greeting")}</h1>
         <div className="home-section__meta">
           <span className="home-section__meta-item">
             <span className="home-section__meta-dot" />
-            Berdomisili di Riau, Indonesia
+            {t("home.domicile")}
           </span>
-          <span className="home-section__meta-divider">•</span>
-          <span className="home-section__meta-item">Onsite</span>
+          <span className="home-section__meta-divider"> </span>
+          <span className="home-section__meta-item">{t("home.onsite")}</span>
         </div>
       </div>
 
       <div className="home-section__divider" />
 
       <div className="home-section__bio">
-        <p>
-          Seorang <strong>Fresh Graduate Teknik Informatika</strong> yang berfokus sebagai <strong>Full-Stack Software dan Data Engineer</strong> dengan rekam jejak yang kuat dalam membangun aplikasi web skala enterprise dan mengoptimalkan alur kerja data skala besar. Fondasi teknis saya dibangun melalui pengalaman industri langsung di berbagai instansi nasional tingkat atas, termasuk <strong>PT Kilang Pertamina Internasional</strong>, <strong>Bank Indonesia</strong>, dan <strong>Kemendikdasmen</strong>.
-        </p>
-        <p className="mt-4">
-          Nilai tambah yang membedakan saya adalah kombinasi antara eksekusi teknis dan kepemimpinan strategis. Saya memahami bahwa menulis kode yang bersih (<span className="home-section__highlight">clean code</span>) sama pentingnya dengan komunikasi yang efektif dan pemahaman terhadap tujuan bisnis.
-        </p>
+        <p dangerouslySetInnerHTML={{ __html: t("home.bio1Html") }} />
+        <p className="mt-4" dangerouslySetInnerHTML={{ __html: t("home.bio2Html") }} />
       </div>
 
       <div className="home-section__divider" />
@@ -84,21 +82,22 @@ export default function HomeSection() {
       {/* Skills */}
       <div className="home-section__skills-block">
         <h2 className="home-section__section-title">
-          &lt;/&gt; Keahlian
+          {t("home.skillsTitle")}
         </h2>
-        <p className="home-section__section-subtitle">Keahlian profesional saya.</p>
+        <p className="home-section__section-subtitle">{t("home.skillsSubtitle")}</p>
 
         {/* Filter Tabs */}
         <div className="skills__filter-tabs">
           {TABS.map((tab) => {
             const count = tab === "All" ? ALL_SKILLS.length : ALL_SKILLS.filter(s => s.cats.includes(tab)).length;
+            const tabLabel = t(`home.tabs.${tab}`) || tab;
             return (
               <button 
                 key={tab} 
                 className={`skills__tab ${activeTab === tab ? "active" : ""}`}
                 onClick={() => setActiveTab(tab)}
               >
-                {tab} <span className="skills__tab-count">{count}</span>
+                {tabLabel} <span className="skills__tab-count">{count}</span>
               </button>
             );
           })}

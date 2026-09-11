@@ -3,19 +3,10 @@ import { NavLink } from "react-router-dom";
 import { FiHome, FiUser, FiBriefcase, FiLayers, FiCompass, FiAward, FiMail } from "react-icons/fi";
 import { HiCheckBadge } from "react-icons/hi2";
 import "./Sidebar.css";
-
-const navItems = [
-  { id: "home", path: "/", label: "Beranda", icon: <FiHome /> },
-  { id: "about", path: "/about", label: "Tentang", icon: <FiUser /> },
-  { id: "experience", path: "/experience", label: "Pengalaman", icon: <FiBriefcase /> },
-  { id: "projects", path: "/projects", label: "Proyek", icon: <FiLayers /> },
-  { id: "journey", path: "/journey", label: "Perjalanan", icon: <FiCompass /> },
-  { id: "achievements", path: "/achievements", label: "Pencapaian", icon: <FiAward /> },
-  { id: "contact", path: "/contact", label: "Kontak", icon: <FiMail /> },
-];
+import { useLanguage } from "../../context/LanguageContext";
 
 export default function Sidebar() {
-  const [lang, setLang] = useState("ID");
+  const { language, setLanguage, t } = useLanguage();
   const [darkMode, setDarkMode] = useState(false);
 
   useEffect(() => {
@@ -25,6 +16,16 @@ export default function Sidebar() {
       document.body.classList.remove("dark");
     }
   }, [darkMode]);
+
+  const navItems = [
+    { id: "home", path: "/", label: t("nav.home"), icon: <FiHome /> },
+    { id: "about", path: "/about", label: t("nav.about"), icon: <FiUser /> },
+    { id: "experience", path: "/experience", label: t("nav.experience"), icon: <FiBriefcase /> },
+    { id: "projects", path: "/projects", label: t("nav.projects"), icon: <FiLayers /> },
+    { id: "journey", path: "/journey", label: t("nav.journey"), icon: <FiCompass /> },
+    { id: "achievements", path: "/achievements", label: t("nav.achievements"), icon: <FiAward /> },
+    { id: "contact", path: "/contact", label: t("nav.contact"), icon: <FiMail /> },
+  ];
 
   return (
     <aside className="sidebar">
@@ -39,22 +40,24 @@ export default function Sidebar() {
         </div>
         <h2 className="sidebar__name">
           Muhammad Ghalib Pradipa
-          <HiCheckBadge className="sidebar__verified-icon" />
+          <HiCheckBadge className="sidebar__verified-icon" title={t("nav.verified")} />
         </h2>
-        <p className="sidebar__title">Software Engineer Enthusiast</p>
+        <p className="sidebar__title">{t("nav.roleTitle")}</p>
 
         {/* Action Buttons */}
         <div className="sidebar__actions-wrapper">
           <div className="sidebar__lang-toggle">
             <button
-              className={`sidebar__lang-btn ${lang === "US" ? "active" : ""}`}
-              onClick={() => setLang("US")}
+              className={`sidebar__lang-btn ${language === "en" ? "active" : ""}`}
+              onClick={() => setLanguage("en")}
+              title="English (US)"
             >
               US
             </button>
             <button
-              className={`sidebar__lang-btn sidebar__lang-btn--yellow ${lang === "ID" ? "active" : ""}`}
-              onClick={() => setLang("ID")}
+              className={`sidebar__lang-btn sidebar__lang-btn--yellow ${language === "id" ? "active" : ""}`}
+              onClick={() => setLanguage("id")}
+              title="Bahasa Indonesia (ID)"
             >
               ID
             </button>
@@ -63,6 +66,7 @@ export default function Sidebar() {
           <button
             className="sidebar__icon-btn"
             onClick={() => setDarkMode(!darkMode)}
+            title="Toggle Dark Mode"
           >
             {darkMode ? (
               <svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 512 512" height="16px" width="16px" xmlns="http://www.w3.org/2000/svg"><path d="M283.211 512c78.962 0 151.079-35.925 198.857-94.792 7.068-8.708-.639-21.43-11.562-19.35-124.203 23.654-238.262-71.576-238.262-196.954 0-72.222 38.662-138.635 101.498-174.394 9.686-5.512 7.25-20.197-3.756-22.23A258.156 258.156 0 0 0 283.211 0c-141.309 0-256 114.511-256 256 0 141.309 114.511 256 256 256z"></path></svg>
@@ -71,9 +75,9 @@ export default function Sidebar() {
             )}
           </button>
           
-          <a href="/assets/CV.pdf" download="CV Muhammad Ghalib Pradipa.pdf" className="sidebar__icon-btn sidebar__icon-btn--cv" title="Download CV">
+          <a href="/assets/CV.pdf" download="CV Muhammad Ghalib Pradipa.pdf" className="sidebar__icon-btn sidebar__icon-btn--cv" title={t("nav.downloadCv")}>
             <svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 24 24" height="16px" width="16px" xmlns="http://www.w3.org/2000/svg"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm-1 1.5L18.5 9H13V3.5zM18 20H6V4h6v6h6v10z"></path><path d="M11 10h2v4h-2zm-1 5h4v2h-4z"></path></svg>
-            <span className="sidebar__icon-btn-text">Unduh CV</span>
+            <span className="sidebar__icon-btn-text">{t("nav.downloadCv")}</span>
           </a>
         </div>
       </div>
@@ -93,7 +97,6 @@ export default function Sidebar() {
           >
             <span className="sidebar__nav-icon">{item.icon}</span>
             <span className="sidebar__nav-label">{item.label}</span>
-            {/* Adding the right arrow logic like the screenshot */}
             <span className="sidebar__nav-arrow">
               <svg stroke="currentColor" fill="none" strokeWidth="2" viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
             </span>

@@ -1,12 +1,15 @@
 import "./AchievementsSection.css";
 import { listCertifications } from "../../data";
+import { useLanguage } from "../../context/LanguageContext";
 
 export default function AchievementsSection() {
+  const { t } = useLanguage();
+
   return (
     <section id="achievements" className="achievements-section">
       <div className="achievements-section__header">
-        <h1 className="achievements-section__title">Pencapaian</h1>
-        <p className="achievements-section__subtitle">Sertifikasi dan penghargaan yang saya raih.</p>
+        <h1 className="achievements-section__title">{t("achievements.title")}</h1>
+        <p className="achievements-section__subtitle">{t("achievements.subtitle")}</p>
       </div>
 
       <div className="achievements-section__divider" />
@@ -40,7 +43,7 @@ export default function AchievementsSection() {
                   rel="noopener noreferrer"
                   className="cert-card__link"
                 >
-                  Lihat Sertifikat →
+                  {t("achievements.showCredential")}
                 </a>
               )}
             </div>
