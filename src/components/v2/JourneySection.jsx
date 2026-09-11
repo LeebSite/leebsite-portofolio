@@ -68,30 +68,35 @@ export default function JourneySection() {
                 )}
               </div>
 
-              {/* Content body */}
+              {/* Card Body */}
               <div className="journey-card__body">
-                <div className="journey-card__header">
-                  <span
-                    className="journey-card__cat"
-                    style={{ background: catStyle.bg, color: catStyle.text }}
-                  >
-                    {t(`journey.categories.${item.cat}`) || item.cat}
-                  </span>
-                  <div className="journey-card__meta">
-                    <span className="journey-card__meta-item">
-                      <LuCalendar size={12} />
-                      {item.date}
+                {/* Left: Text Content */}
+                <div className="journey-card__content">
+                  <div className="journey-card__header">
+                    <span
+                      className="journey-card__cat"
+                      style={{ background: catStyle.bg, color: catStyle.text }}
+                    >
+                      {t(`journey.categories.${item.cat}`) || item.cat}
                     </span>
-                    <span className="journey-card__meta-item">
-                      <LuMapPin size={12} />
-                      {item.location}
-                    </span>
+                    <div className="journey-card__meta">
+                      <span className="journey-card__meta-item">
+                        <LuCalendar size={12} />
+                        {item.date}
+                      </span>
+                      <span className="journey-card__meta-sep">•</span>
+                      <span className="journey-card__meta-item">
+                        <LuMapPin size={12} />
+                        {item.location}
+                      </span>
+                    </div>
                   </div>
+
+                  <h3 className="journey-card__title">{item.title}</h3>
+                  <p className="journey-card__desc">{item.desc}</p>
                 </div>
 
-                <h3 className="journey-card__title">{item.title}</h3>
-                <p className="journey-card__desc">{item.desc}</p>
-
+                {/* Right: Image */}
                 {item.image && (
                   <div className="journey-card__img-wrapper">
                     <img
@@ -100,6 +105,7 @@ export default function JourneySection() {
                       className="journey-card__img"
                       onError={(e) => { e.target.parentElement.style.display = "none"; }}
                     />
+                    <div className="journey-card__img-overlay" />
                   </div>
                 )}
               </div>

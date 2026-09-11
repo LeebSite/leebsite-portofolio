@@ -55,7 +55,7 @@ export default function Sidebar() {
               US
             </button>
             <button
-              className={`sidebar__lang-btn sidebar__lang-btn--yellow ${language === "id" ? "active" : ""}`}
+              className={`sidebar__lang-btn ${language === "id" ? "active" : ""}`}
               onClick={() => setLanguage("id")}
               title="Bahasa Indonesia (ID)"
             >

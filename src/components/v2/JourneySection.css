@@ -161,7 +161,11 @@
 
 /* Content */
 .journey-card__content {
-  padding: 16px 18px 18px;
+  flex: 1;
+  min-width: 0;
+  padding: 18px 20px 20px;
+  display: flex;
+  flex-direction: column;
 }
 
 /* Category badge */

@@ -106,15 +106,11 @@
   transition: all 0.2s ease;
 }
 
-.sidebar__lang-btn.active.sidebar__lang-btn--yellow {
+.sidebar__lang-btn.active {
   background: var(--accent-yellow);
   color: #111827;
-}
-
-.sidebar__lang-btn.active:not(.sidebar__lang-btn--yellow) {
-  background: var(--bg-card);
-  color: var(--text-primary);
-  box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+  font-weight: 700;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
 }
 
 .sidebar__icon-btn {

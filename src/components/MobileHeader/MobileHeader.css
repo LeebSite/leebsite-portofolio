@@ -134,15 +134,11 @@
   transition: all 0.2s ease;
 }
 
-.mobile-drawer__lang-btn.active.mobile-drawer__lang-btn--yellow {
+.mobile-drawer__lang-btn.active {
   background: var(--accent-yellow);
   color: #111827;
-}
-
-.mobile-drawer__lang-btn.active:not(.mobile-drawer__lang-btn--yellow) {
-  background: var(--bg-card);
-  color: var(--text-primary);
-  box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+  font-weight: 700;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
 }
 
 .mobile-drawer__icon-btn {

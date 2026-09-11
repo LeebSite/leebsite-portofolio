@@ -88,7 +88,7 @@ export default function MobileHeader() {
           
           <div className="mobile-drawer__lang-toggle">
             <button className={`mobile-drawer__lang-btn ${language === "en" ? "active" : ""}`} onClick={() => setLanguage("en")}>US</button>
-            <button className={`mobile-drawer__lang-btn mobile-drawer__lang-btn--yellow ${language === "id" ? "active" : ""}`} onClick={() => setLanguage("id")}>ID</button>
+            <button className={`mobile-drawer__lang-btn ${language === "id" ? "active" : ""}`} onClick={() => setLanguage("id")}>ID</button>
           </div>
 
           <a href="/assets/CV.pdf" download="CV Muhammad Ghalib Pradipa.pdf" className="mobile-drawer__icon-btn" title={t("nav.downloadCv")}>
