@@ -293,7 +293,7 @@ export const listProyek = [
     featured: true,
     borderColor: "#22d3ee",
     fullDescription: "Sebuah aplikasi yang dirancang untuk mengedukasi dan produktivitas berbasis mobile yang dirancang untuk membantu pelajar dan mahasiswa dalam mengelola waktu belajar secara efektif sekaligus menjaga kesehatan mental dan fisik selama proses belajar. Sebagai solusi permasalahan meningkatnya stres akademik, kelelahan mental (burnout), serta rendahnya kesadaran akan pentingnya keseimbangan antara belajar dan istirahat.",
-    image: "/assets/proyek/projek3.png",
+    image: "/assets/projects/waddle.png",
     url: "#",
     link: "#"
   },
