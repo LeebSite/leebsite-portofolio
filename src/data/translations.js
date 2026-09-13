@@ -468,38 +468,56 @@ export const journeyData = {
 export const projectTranslations = {
   1: {
     en: {
-      subtitle: "End-to-End ML Healthcare System with React & FastAPI...",
-      fullDescription: "Built a full-stack predictive healthcare web application for stroke risk assessment, integrating a reactive React frontend with an asynchronous FastAPI backend. Developed machine learning pipelines utilizing XGBoost and K-Means for patient risk stratification. Implemented Explainable AI (XAI) using SHAP and containerized using Docker."
+      subtitle: "AI-Powered Stroke Risk Detection & Patient Segmentation",
+      fullDescription: "An independent healthcare analytics web application integrating end-to-end Machine Learning pipelines into a modern full-stack architecture. Leverages K-Means Clustering for patient cohort segmentation and XGBoost for high-precision stroke probability classification. A core innovation is the Explainable AI (SHAP) framework implementation, translating complex 'black-box' model predictions into clinically interpretable feature importance visualizations."
     }
   },
   2: {
     en: {
-      subtitle: "Digital POS & SME Financial Management System...",
-      fullDescription: "Developed a comprehensive Point of Sales (POS) and web-based financial tracking application tailored for SME retail operations. Streamlined daily transactions, inventory management, and revenue reporting to enhance financial visibility."
+      subtitle: "Government System Modernization & Enterprise Database Migration",
+      fullDescription: "An integrated public digital platform serving as a centralized regional linguistics and literature information portal. Spearheaded institutional infrastructure modernization through large-scale database extraction and full architecture migration from legacy WordPress to a robust Laravel ecosystem. Analyzed complex Entity Relationship Diagrams (ERD) and developed tailored controller logic to ensure zero-data-loss integrity during high-volume database transition."
     }
   },
   3: {
     en: {
-      subtitle: "A mobile education and productivity app designed to balance study and well-being...",
-      fullDescription: "A mobile-first productivity and educational platform designed to empower students in managing study schedules efficiently while maintaining mental and physical wellness. Developed to address academic fatigue (burnout) and emphasize healthy work-rest intervals."
+      subtitle: "Urban Spatial Geographic Information System for Pekanbaru City",
+      fullDescription: "A full-scale Web-based Geographic Information System (WebGIS) platform engineered for spatial data visualization and urban planning optimization. Integrates complex spatial geospatial databases with a decoupled full-stack architecture and RESTful APIs. Highlights include an AI-assisted GIS Chat Agent powered by Natural Language Processing (NLP), enabling automated geospatial query execution and spatial analytics via conversational text prompts."
     }
   },
   4: {
     en: {
-      subtitle: "Electronic ordering & financial analysis web app for AfterSunset Idn...",
-      fullDescription: "Web-based ordering and financial analytics application built for AfterSunset Idn. Provides inventory monitoring, financial audits, and customer record management for administrators, while facilitating fast cashier sales and reducing queue congestion."
+      subtitle: "Enterprise Internship Management Platform for PT KPI RU II Dumai",
+      fullDescription: "A centralized enterprise web portal built to manage, track, and evaluate student internship cycles at PT Kilang Pertamina Internasional RU II Dumai. Facilitates student profile verification, daily digital logbook tracking, and automated performance reviews. Developed using Pertamina's ASP.NET Core enterprise solution template with Clean Architecture principles to guarantee strict industry compliance, reliability, and maintainability."
     }
   },
   5: {
     en: {
-      subtitle: "A modern institutional profile website for Raudhatul Jannah Mosque...",
-      fullDescription: "Designed and developed an institutional portal for Raudhatul Jannah Mosque in Pekanbaru, featuring activity schedules, donor transparency, and facilities information with a responsive and accessible interface."
+      subtitle: "Cloud POS & Financial Analytics System for Local F&B SMEs",
+      fullDescription: "A specialized web-based Point of Sale (POS) and financial management application built to streamline operational workflows for local Food & Beverage MSMEs. Automates cashier workflows, inventory stock control, customer records, and periodic revenue analytics—drastically cutting customer queue times and accelerating day-to-day business transactions."
     }
   },
   6: {
     en: {
-      subtitle: "Personal developer portfolio highlighting skills, experience, and projects...",
-      fullDescription: "Modern personal developer portfolio built with React, Vite, and CSS styling to present full-stack engineering milestones, credentials, and interactive showcase features."
+      subtitle: "Productivity & Student Mental Wellness Management Mobile App",
+      fullDescription: "A user-centered mobile prototype for education and productivity designed to mitigate academic burnout among university students. Built upon empirical UX research, it blends structured study methodologies such as the Pomodoro Technique with mental well-being tracking, daily mood check-ins, and active rest reminders to foster sustainable high performance and work-life balance."
+    }
+  },
+  7: {
+    en: {
+      subtitle: "Automated Signature Image Feature Extraction & Classification",
+      fullDescription: "A machine learning and computer vision pipeline designed to train a K-Nearest Neighbors (KNN) classifier. Implements Gray Level Co-Occurrence Matrix (GLCM) statistical texture feature extraction using Python and OpenCV to automatically classify handwritten signature patterns with Euclidean distance metrics."
+    }
+  },
+  8: {
+    en: {
+      subtitle: "Interactive Mobile Platform for Learning & Reading the Holy Qur'an",
+      fullDescription: "An accessible mobile UI/UX design crafted to enrich the Qur'anic reading and learning experience. Features a clean, modern aesthetic with structured multi-level Tajweed and Makhraj learning curricula tailored for diverse demographic groups from beginners to advanced readers."
+    }
+  },
+  9: {
+    en: {
+      subtitle: "Official Institutional Profile Portal for Raudhatul Jannah Mosque",
+      fullDescription: "Frontend institutional website developed for Raudhatul Jannah Mosque in Pekanbaru. Engineered with semantic HTML5 and Bootstrap CSS to present mosque history, activity schedules, photo galleries, and transparent donation reporting with a clean, fully responsive user experience."
     }
   }
 };

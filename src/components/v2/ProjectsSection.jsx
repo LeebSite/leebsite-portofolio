@@ -94,7 +94,14 @@ function ProjectCard({ proyek, descLen }) {
           src={proyek.image}
           alt={proyek.title}
           className="project-card__img"
-          onError={(e) => { e.target.style.display = "none"; }}
+          onError={(e) => {
+          if (!e.target.dataset.fallbackTried) {
+            e.target.dataset.fallbackTried = 'true';
+            e.target.src = '/assets/proyek/projek' + (((proyek.id - 1) % 6) + 1) + '.png';
+          } else {
+            e.target.style.display = 'none';
+          }
+        }}
         />
         {/* Overlay on hover */}
         <div className="project-card__img-overlay">
