@@ -280,7 +280,7 @@ export const listProyek = [
     featured: false,
     borderColor: "#f97316",
     fullDescription: "Aplikasi Point of Sale (POS) dan manajemen finansial berbasis web yang dirancang khusus untuk optimasi alur kerja usaha UMKM lokal. Mengotomatisasi sistem kasir, manajemen stok inventaris, pendataan pelanggan, serta menghasilkan laporan analisis pendapatan berkala. Sistem ini meminimalisir antrean pelanggan dan mempercepat proses transaksi operasional bisnis makanan dan minuman.",
-    image: "/assets/projects/aftersunset.jpg",
+    image: "/assets/projects/aftersunsetidn.png",
     url: "#",
     link: "#"
   },
@@ -289,11 +289,11 @@ export const listProyek = [
     title: "Waddle App",
     subtitle: "Aplikasi Produktivitas & Manajemen Kesehatan Mental",
     categories: ["UI/UX Design", "Mobile"],
-    tech: ["Figma", "UI/UX Design", "UX Research"],
+    tech: ["Canva", "Figma"],
     featured: true,
     borderColor: "#22d3ee",
-    fullDescription: "Desain purwarupa aplikasi edukasi dan produktivitas mobile dengan pendekatan user-centered design. Dirancang berdasarkan hasil riset kuantitatif UX untuk mengatasi kelelahan mental (burnout) akademik mahasiswa. Menyatukan metode belajar terstruktur seperti Pomodoro Technique dengan fitur kesejahteraan mental, pemantauan mood harian, serta pengingat istirahat aktif untuk menyeimbangkan produktivitas dan well-being.",
-    image: "/assets/projects/waddle.png",
+    fullDescription: "Sebuah aplikasi yang dirancang untuk mengedukasi dan produktivitas berbasis mobile yang dirancang untuk membantu pelajar dan mahasiswa dalam mengelola waktu belajar secara efektif sekaligus menjaga kesehatan mental dan fisik selama proses belajar. Sebagai solusi permasalahan meningkatnya stres akademik, kelelahan mental (burnout), serta rendahnya kesadaran akan pentingnya keseimbangan antara belajar dan istirahat.",
+    image: "/assets/proyek/projek3.png",
     url: "#",
     link: "#"
   },
@@ -306,7 +306,7 @@ export const listProyek = [
     featured: false,
     borderColor: "#eab308",
     fullDescription: "Skrip machine learning dan pemrosesan citra yang dirancang untuk melatih model K-Nearest Neighbors (KNN). Program ini mengimplementasikan metode ekstraksi fitur Gray Level Co-Occurrence Matrix (GLCM) menggunakan bahasa Python dan pustaka OpenCV untuk mengklasifikasikan pola citra tanda tangan secara otomatis dengan metrik jarak Euclidean.",
-    image: "/assets/projects/glcm.jpg",
+    image: "/assets/projects/glcm.png",
     url: "#",
     link: "#"
   },
@@ -318,8 +318,8 @@ export const listProyek = [
     tech: ["Figma", "UI/UX Design"],
     featured: false,
     borderColor: "#059669",
-    fullDescription: "Desain UI/UX untuk aplikasi mobile Islami yang dirancang untuk memudahkan pengguna dalam membaca dan mempelajari Al-Qur'an. Menyajikan antarmuka visual yang modern dan aksesibel, dibekali dengan alur pembelajaran tajwid dan makhraj bertingkat (level pemula hingga lanjutan) guna menjangkau demografi usia pengguna yang luas.",
-    image: "/assets/projects/qurankareem.jpg",
+    fullDescription: "Quran Kareem merupakan aplikasi Al-Qur'an berbasis mobile yang dirancang untuk pengguna dalam memudahkan membaca Al-Quran. Sama seperti aplikasi Al-Quran lainnya, namun memiliki tampilan yang lebih menarik dan dibekali modul serta latihan membaca Al-Quran dengan makhraj dan tajwid yang benar sehingga dapat memudahkan pengguna berbagai kalangan umur dalam mempelajari dan memahami Al-Quran lebih dalam.",
+    image: "/assets/projects/qurankareem.png",
     url: "#",
     link: "#"
   },
@@ -332,7 +332,7 @@ export const listProyek = [
     featured: false,
     borderColor: "#6b7280",
     fullDescription: "Pengembangan antarmuka website profil (Company Profile) untuk Masjid Raudhatul Jannah Kota Pekanbaru. Dibangun menggunakan fundamental HTML5 dan styling CSS Bootstrap guna menyajikan informasi seputar sejarah institusi, galeri, jadwal kegiatan, dan informasi donasi masjid dalam sebuah antarmuka web yang bersih dan responsif.",
-    image: "/assets/projects/raudhatul.jpg",
+    image: "/assets/projects/raudhatuljannah.png",
     url: "#",
     link: "#"
   }

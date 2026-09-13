@@ -499,7 +499,7 @@ export const projectTranslations = {
   6: {
     en: {
       subtitle: "Productivity & Student Mental Wellness Management Mobile App",
-      fullDescription: "A user-centered mobile prototype for education and productivity designed to mitigate academic burnout among university students. Built upon empirical UX research, it blends structured study methodologies such as the Pomodoro Technique with mental well-being tracking, daily mood check-ins, and active rest reminders to foster sustainable high performance and work-life balance."
+      fullDescription: "A mobile-first educational and productivity application designed to help students manage their study schedules effectively while maintaining mental and physical well-being. Built to address rising academic stress, mental burnout, and the critical need for healthy study-rest balance among learners."
     }
   },
   7: {
@@ -511,7 +511,7 @@ export const projectTranslations = {
   8: {
     en: {
       subtitle: "Interactive Mobile Platform for Learning & Reading the Holy Qur'an",
-      fullDescription: "An accessible mobile UI/UX design crafted to enrich the Qur'anic reading and learning experience. Features a clean, modern aesthetic with structured multi-level Tajweed and Makhraj learning curricula tailored for diverse demographic groups from beginners to advanced readers."
+      fullDescription: "Quran Kareem is a mobile Al-Qur'an application designed to make Qur'anic reading accessible and enjoyable for all users. Similar to other Qur'an apps in concept, it stands out with a visually appealing interface and structured learning modules covering proper Makhraj (articulation points) and Tajweed (pronunciation rules), enabling users of all ages to deepen their understanding and appreciation of the Holy Qur'an."
     }
   },
   9: {
