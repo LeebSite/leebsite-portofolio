@@ -247,7 +247,7 @@ export const listProyek = [
   },
   {
     id: 3,
-    title: "Sembari",
+    title: "SEMBARI",
     subtitle: "Platform Perpustakaan Digital Interaktif & Mendongeng Anak",
     categories: ["Website"],
     tech: ["Laravel", "PHP", "Tailwind CSS", "JavaScript", "MySQL", "Flipbook Engine"],
