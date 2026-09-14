@@ -280,7 +280,7 @@ export const listProyek = [
     featured: true,
     borderColor: "#0ea5e9",
     fullDescription: "Aplikasi berbasis web untuk mengelola dan memantau kegiatan magang mahasiswa secara terintegrasi di PT Kilang Pertamina Internasional RU II Dumai. Mendukung pengelolaan data mahasiswa, pencatatan logbook aktivitas harian, serta evaluasi digital. Dikembangkan menggunakan Solution Template Pertamina berbasis ASP.NET Core dengan penerapan prinsip Clean Architecture untuk memastikan sistem terstruktur, andal, dan memenuhi standar industri korporat.",
-    image: "/assets/projects/simit.jpg",
+    image: "/assets/projects/pertaminaruii.png",
     url: "#",
     link: "#"
   },
