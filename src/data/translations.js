@@ -475,46 +475,52 @@ export const projectTranslations = {
   2: {
     en: {
       subtitle: "Government System Modernization & Enterprise Database Migration",
-      fullDescription: "An integrated public digital platform serving as a centralized regional linguistics and literature information portal. Spearheaded institutional infrastructure modernization through large-scale database extraction and full architecture migration from legacy WordPress to a robust Laravel ecosystem. Analyzed complex Entity Relationship Diagrams (ERD) and developed tailored controller logic to ensure zero-data-loss integrity during high-volume database transition."
+      fullDescription: "An integrated public digital platform serving as a centralized regional linguistics and literature information portal for Balai Bahasa Riau Province. Spearheaded institutional infrastructure modernization through large-scale database extraction and full architecture migration from legacy WordPress to a robust Laravel ecosystem. Analyzed complex Entity Relationship Diagrams (ERD) and developed tailored controller logic to ensure zero-data-loss integrity during high-volume database transition."
     }
   },
   3: {
+    en: {
+      subtitle: "Interactive Digital Children's Library & Storytelling Platform",
+      fullDescription: "A web-based digital library platform designed to enhance reading interest among children aged 7 to 15 and facilitate parent-child storytelling sessions. Delivers illustrated storybooks and Nusantara folklores with multilingual support (Indonesian and regional dialects), child-friendly navigation, and an interactive flipbook reading engine. Features an open-access public portal with smart multi-criteria filtering (Age groups 7–9, 10–12, 13–15, Category, Regional Language, and Origin), realistic 3D page-flip transitions with touch/swipe gestures & keyboard shortcuts, and automated real-time reader analytics tracking."
+    }
+  },
+  4: {
     en: {
       subtitle: "Urban Spatial Geographic Information System for Pekanbaru City",
       fullDescription: "A full-scale Web-based Geographic Information System (WebGIS) platform engineered for spatial data visualization and urban planning optimization. Integrates complex spatial geospatial databases with a decoupled full-stack architecture and RESTful APIs. Highlights include an AI-assisted GIS Chat Agent powered by Natural Language Processing (NLP), enabling automated geospatial query execution and spatial analytics via conversational text prompts."
     }
   },
-  4: {
+  5: {
     en: {
       subtitle: "Enterprise Internship Management Platform for PT KPI RU II Dumai",
       fullDescription: "A centralized enterprise web portal built to manage, track, and evaluate student internship cycles at PT Kilang Pertamina Internasional RU II Dumai. Facilitates student profile verification, daily digital logbook tracking, and automated performance reviews. Developed using Pertamina's ASP.NET Core enterprise solution template with Clean Architecture principles to guarantee strict industry compliance, reliability, and maintainability."
     }
   },
-  5: {
+  6: {
     en: {
       subtitle: "Cloud POS & Financial Analytics System for Local F&B SMEs",
       fullDescription: "A specialized web-based Point of Sale (POS) and financial management application built to streamline operational workflows for local Food & Beverage MSMEs. Automates cashier workflows, inventory stock control, customer records, and periodic revenue analytics—drastically cutting customer queue times and accelerating day-to-day business transactions."
     }
   },
-  6: {
+  7: {
     en: {
       subtitle: "Productivity & Student Mental Wellness Management Mobile App",
       fullDescription: "A mobile-first educational and productivity application designed to help students manage their study schedules effectively while maintaining mental and physical well-being. Built to address rising academic stress, mental burnout, and the critical need for healthy study-rest balance among learners."
     }
   },
-  7: {
+  8: {
     en: {
       subtitle: "Automated Signature Image Feature Extraction & Classification",
       fullDescription: "A machine learning and computer vision pipeline designed to train a K-Nearest Neighbors (KNN) classifier. Implements Gray Level Co-Occurrence Matrix (GLCM) statistical texture feature extraction using Python and OpenCV to automatically classify handwritten signature patterns with Euclidean distance metrics."
     }
   },
-  8: {
+  9: {
     en: {
       subtitle: "Interactive Mobile Platform for Learning & Reading the Holy Qur'an",
       fullDescription: "Quran Kareem is a mobile Al-Qur'an application designed to make Qur'anic reading accessible and enjoyable for all users. Similar to other Qur'an apps in concept, it stands out with a visually appealing interface and structured learning modules covering proper Makhraj (articulation points) and Tajweed (pronunciation rules), enabling users of all ages to deepen their understanding and appreciation of the Holy Qur'an."
     }
   },
-  9: {
+  10: {
     en: {
       subtitle: "Official Institutional Profile Portal for Raudhatul Jannah Mosque",
       fullDescription: "Frontend institutional website developed for Raudhatul Jannah Mosque in Pekanbaru. Engineered with semantic HTML5 and Bootstrap CSS to present mosque history, activity schedules, photo galleries, and transparent donation reporting with a clean, fully responsive user experience."

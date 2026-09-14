@@ -234,19 +234,32 @@ export const listProyek = [
   },
   {
     id: 2,
-    title: "Laman Portal Balai Bahasa Prov Riau & SEMBARI",
+    title: "Laman Portal Balai Bahasa Prov Riau",
     subtitle: "Modernisasi Sistem & Migrasi Basis Data Pemerintahan",
     categories: ["Website"],
-    tech: ["Laravel", "PHP", "WordPress", "MySQL"],
+    tech: ["Laravel", "PHP", "WordPress", "MySQL", "Bootstrap"],
     featured: true,
     borderColor: "#2563eb",
-    fullDescription: "Platform digital terintegrasi yang berfungsi sebagai pusat layanan informasi dan kebahasaan masyarakat. Proyek ini mencakup modernisasi infrastruktur teknologi instansi melalui ekstraksi basis data berskala besar dan migrasi arsitektur secara menyeluruh dari platform legacy (WordPress) ke ekosistem Laravel (PHP). Melibatkan pembedahan Entity Relationship Diagram (ERD) dan penulisan logika controller baru untuk memastikan integritas perpindahan data tanpa resiko kehilangan data (zero data loss).",
+    fullDescription: "Platform digital terintegrasi yang berfungsi sebagai pusat layanan informasi dan kebahasaan masyarakat Balai Bahasa Provinsi Riau. Proyek ini mencakup modernisasi infrastruktur teknologi instansi melalui ekstraksi basis data berskala besar dan migrasi arsitektur secara menyeluruh dari platform legacy (WordPress) ke ekosistem Laravel (PHP). Melibatkan pembedahan Entity Relationship Diagram (ERD) dan penulisan logika controller baru untuk memastikan integritas perpindahan ribuan data tanpa resiko kehilangan data (zero data loss).",
     image: "/assets/projects/balaibahasa.jpg",
     url: "#",
     link: "#"
   },
   {
     id: 3,
+    title: "Sembari",
+    subtitle: "Platform Perpustakaan Digital Interaktif & Mendongeng Anak",
+    categories: ["Website"],
+    tech: ["Laravel", "PHP", "Tailwind CSS", "JavaScript", "MySQL", "Flipbook Engine"],
+    featured: true,
+    borderColor: "#8b5cf6",
+    fullDescription: "Platform perpustakaan digital berbasis web yang dirancang untuk meningkatkan minat baca anak usia 7 hingga 15 tahun serta memfasilitasi kegiatan mendongeng bersama orang tua. Aplikasi ini menyajikan buku cerita bergambar dan cerita rakyat nusantara dengan dukungan multi-bahasa (Indonesia dan bahasa daerah), navigasi ramah anak, serta mesin pembaca interaktif (flipbook). Dilengkapi fitur Portal Publik open-access dengan Katalog & Filter Pintar multi-kriteria (Jenjang Usia 7–9 th, 10–12 th, 13–15 th, Kategori, Bahasa Daerah, dan Asal Daerah), Mesin Pembaca Flipbook Interaktif dengan transisi membalik kertas realistis (realistic page-flip), navigasi sentuh (swipe gesture) untuk tablet/iPad, tombol layar, pintasan keyboard, serta pelacakan metrik statistik pembaca (views count) secara real-time.",
+    image: "/assets/projects/sembari.png",
+    url: "#",
+    link: "#"
+  },
+  {
+    id: 4,
     title: "Scapegis - AI-Powered WebGIS Platform",
     subtitle: "Sistem Informasi Geografis Tata Ruang Kota Pekanbaru",
     categories: ["Website", "Associated"],
@@ -259,7 +272,7 @@ export const listProyek = [
     link: "#"
   },
   {
-    id: 4,
+    id: 5,
     title: "Sistem Informasi Magang IT (SIMIT)",
     subtitle: "Platform Manajemen Magang Enterprise PT KPI RU II",
     categories: ["Website"],
@@ -272,7 +285,7 @@ export const listProyek = [
     link: "#"
   },
   {
-    id: 5,
+    id: 6,
     title: "AfterSunset Idn",
     subtitle: "Aplikasi POS & Analisis Keuangan UMKM",
     categories: ["Website"],
@@ -285,7 +298,7 @@ export const listProyek = [
     link: "#"
   },
   {
-    id: 6,
+    id: 7,
     title: "Waddle App",
     subtitle: "Aplikasi Produktivitas & Manajemen Kesehatan Mental",
     categories: ["UI/UX Design", "Mobile"],
@@ -298,7 +311,7 @@ export const listProyek = [
     link: "#"
   },
   {
-    id: 7,
+    id: 8,
     title: "GLCM Feature Extraction untuk KNN",
     subtitle: "Klasifikasi Citra Tanda Tangan Otomatis",
     categories: ["Associated"],
@@ -311,7 +324,7 @@ export const listProyek = [
     link: "#"
   },
   {
-    id: 8,
+    id: 9,
     title: "Quran Kareem",
     subtitle: "Platform Interaktif Pembelajaran Al-Qur'an",
     categories: ["UI/UX Design", "Mobile"],
@@ -324,7 +337,7 @@ export const listProyek = [
     link: "#"
   },
   {
-    id: 9,
+    id: 10,
     title: "Website Raudhatul Jannah",
     subtitle: "Company Profile Masjid Raudhatul Jannah",
     categories: ["Website"],
