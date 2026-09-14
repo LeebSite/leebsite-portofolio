@@ -50,13 +50,16 @@ const filterCategories = [
 
 const TECH_COLORS = {
   "React.js": "#61DAFB", "FastAPI": "#009688", "Python": "#3776AB",
-  "TailwindCSS": "#06B6D4", "Vite": "#646CFF", "Node.js": "#339933",
+  "TailwindCSS": "#06B6D4", "Tailwind CSS": "#06B6D4", "Vite": "#646CFF", "Node.js": "#339933",
   "Flutter": "#02569B", "Dart": "#0175C2", "Firebase": "#FFCA28",
   "Figma": "#F24E1E", "PHP": "#777BB4", "Laravel": "#FF2D20",
-  "MySQL": "#4479A1", "Bootstrap": "#7952B3", "HTML": "#E34F26",
-  "CSS": "#1572B6", "JavaScript": "#F7DF1E", "TypeScript": "#3178C6",
-  "C#": "#239120", "ASP.NET": "#512BD4", "Next.js": "#000000",
-  "Express.js": "#000000", "Canva": "#00C4CC",
+  "MySQL": "#4479A1", "Bootstrap": "#7952B3", "HTML": "#E34F26", "HTML5": "#E34F26",
+  "CSS": "#1572B6", "CSS3": "#1572B6", "JavaScript": "#F7DF1E", "TypeScript": "#3178C6",
+  "C#": "#239120", "ASP.NET": "#512BD4", "ASP.NET Core": "#512BD4", "Next.js": "#000000",
+  "Express.js": "#000000", "Canva": "#00C4CC", "Flipbook Engine": "#8b5cf6", "Clean Architecture": "#10b981",
+  "SQL Server": "#CC292B", "WebGIS": "#0ea5e9", "RESTful API": "#10b981", "NLP": "#ec4899", "AI": "#8b5cf6",
+  "Fullstack Web": "#3b82f6", "XGBoost": "#f97316", "K-Means": "#a855f7", "SHAP": "#eab308", "Docker Compose": "#2496ED",
+  "OpenCV": "#5C3EE8", "KNN": "#f59e0b", "GLCM": "#06b6d4", "Google Colab": "#F9AB00", "WordPress": "#21759B", "UI/UX Design": "#ec4899"
 };
 
 // Vary description length to create natural height variation
