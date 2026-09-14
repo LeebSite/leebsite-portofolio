@@ -234,14 +234,14 @@ export const listProyek = [
   },
   {
     id: 2,
-    title: "Laman Portal Balai Bahasa Prov Riau",
+    title: "Portal Laman Balai Bahasa Prov Riau",
     subtitle: "Modernisasi Sistem & Migrasi Basis Data Pemerintahan",
     categories: ["Website"],
     tech: ["Laravel", "PHP", "WordPress", "MySQL", "Bootstrap"],
     featured: true,
     borderColor: "#2563eb",
     fullDescription: "Platform digital terintegrasi yang berfungsi sebagai pusat layanan informasi dan kebahasaan masyarakat Balai Bahasa Provinsi Riau. Proyek ini mencakup modernisasi infrastruktur teknologi instansi melalui ekstraksi basis data berskala besar dan migrasi arsitektur secara menyeluruh dari platform legacy (WordPress) ke ekosistem Laravel (PHP). Melibatkan pembedahan Entity Relationship Diagram (ERD) dan penulisan logika controller baru untuk memastikan integritas perpindahan ribuan data tanpa resiko kehilangan data (zero data loss).",
-    image: "/assets/projects/balaibahasa.jpg",
+    image: "/assets/projects/lamanbalaibahasa.png",
     url: "#",
     link: "#"
   },
