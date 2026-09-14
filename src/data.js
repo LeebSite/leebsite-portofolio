@@ -273,7 +273,7 @@ export const listProyek = [
   },
   {
     id: 5,
-    title: "Sistem Informasi Magang IT (SIMIT)",
+    title: "Sistem Informasi Magang ICT (SIMIT)",
     subtitle: "Platform Manajemen Magang Enterprise PT KPI RU II",
     categories: ["Website"],
     tech: ["ASP.NET Core", "C#", "Clean Architecture", "SQL Server"],
