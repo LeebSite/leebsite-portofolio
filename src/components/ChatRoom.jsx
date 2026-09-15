@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
-import { auth, loginWithGoogle, logout, db } from "../firebase";
+﻿import { useState, useEffect } from "react";
+import { auth, loginWithGoogle, logout, db } from "../data/firebase";
 import { onAuthStateChanged } from "firebase/auth";
 import {
     collection,
@@ -246,3 +246,4 @@ export default function ChatRoom() {
         </div>
     );
 }
+

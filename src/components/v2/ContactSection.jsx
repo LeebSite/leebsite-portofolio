@@ -1,7 +1,7 @@
-import { useLanguage } from '../../context/LanguageContext';
+﻿import { useLanguage } from '../../context/LanguageContext';
 ﻿import { useState, useEffect, useRef } from "react";
 import { LuMail, LuMapPin, LuLinkedin, LuGithub, LuFileText, LuSend, LuInstagram, LuMessageSquare, LuLogOut, LuTrash2 } from "react-icons/lu";
-import { auth, loginWithGoogle, logout, db, getRedirectResult } from "../../firebase";
+import { auth, loginWithGoogle, logout, db, getRedirectResult } from "../../data/firebase";
 import { onAuthStateChanged } from "firebase/auth";
 import {
   collection, addDoc, onSnapshot, query, orderBy, serverTimestamp, getDocs, deleteDoc

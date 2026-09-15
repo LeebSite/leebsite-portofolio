@@ -1,4 +1,4 @@
-const HeroImage = "/assets/hero-img.webp";
+﻿const HeroImage = "/assets/hero-img.webp";
 
 const Image = {
   HeroImage,
@@ -228,7 +228,7 @@ export const listProyek = [
     featured: true,
     borderColor: "#14b8a6",
     fullDescription: "Aplikasi web healthcare analytics independen yang mengintegrasikan pemodelan Machine Learning ke dalam arsitektur modern secara end-to-end. Memanfaatkan algoritma K-Means Clustering untuk segmentasi karakteristik pasien dan XGBoost untuk klasifikasi probabilitas risiko stroke secara presisi. Inovasi utama sistem ini adalah implementasi kerangka kerja Explainable AI (SHAP) yang menerjemahkan model 'black box' AI menjadi visualisasi kontribusi fitur yang transparan dan dapat dipertanggungjawabkan secara klinis.",
-    image: "/assets/projects/strokepredict.jpg",
+    image: "/assets/projects/strokepredictai.png",
     url: "#",
     link: "#"
   },
@@ -267,7 +267,7 @@ export const listProyek = [
     featured: true,
     borderColor: "#6366f1",
     fullDescription: "Platform Sistem Informasi Geografis berbasis web (WebGIS) berskala penuh untuk optimalisasi visualisasi dan manajemen data keruangan. Mengintegrasikan basis data spasial kompleks dengan arsitektur full-stack dan RESTful API. Fitur terobosan mencakup implementasi AI-assisted GIS Chat Agent menggunakan pemrosesan bahasa alami (NLP) yang memungkinkan eksekusi kueri dan analisis geospasial secara otomatis hanya melalui perintah teks.",
-    image: "/assets/projects/scapegis.jpg",
+    image: "/assets/projects/scapegis.png",
     url: "#",
     link: "#"
   },
@@ -453,3 +453,4 @@ export const listCertifications = [
     delay: "1000"
   }
 ];
+
