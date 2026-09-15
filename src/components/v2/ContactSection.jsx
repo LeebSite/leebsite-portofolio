@@ -1,5 +1,5 @@
 ﻿import { useLanguage } from '../../context/LanguageContext';
-﻿import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import { LuMail, LuMapPin, LuLinkedin, LuGithub, LuFileText, LuSend, LuInstagram, LuMessageSquare, LuLogOut, LuTrash2 } from "react-icons/lu";
 import { auth, loginWithGoogle, logout, db, getRedirectResult } from "../../data/firebase";
 import { onAuthStateChanged } from "firebase/auth";
@@ -202,3 +202,4 @@ export default function ContactSection() {
     </section>
   );
 }
+
