@@ -217,6 +217,32 @@
   transition: all 0.2s ease;
 }
 
+
+.project-detail__btn-github {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 18px;
+  border-radius: 10px;
+  background: var(--bg-page);
+  border: 1.5px solid var(--border-color);
+  color: var(--text-primary);
+  font-size: 13.5px;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: inherit;
+}
+
+.project-detail__btn-github:hover {
+  background: var(--bg-hover);
+  border-color: var(--accent-yellow);
+  color: var(--accent-yellow);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+}
+
 .project-detail__btn-primary:hover {
   filter: brightness(1.08);
   transform: translateY(-2px);

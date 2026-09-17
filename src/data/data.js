@@ -230,6 +230,7 @@ export const listProyek = [
     fullDescription: "Aplikasi web healthcare analytics independen yang mengintegrasikan pemodelan Machine Learning ke dalam arsitektur modern secara end-to-end. Memanfaatkan algoritma K-Means Clustering untuk segmentasi karakteristik pasien dan XGBoost untuk klasifikasi probabilitas risiko stroke secara presisi. Inovasi utama sistem ini adalah implementasi kerangka kerja Explainable AI (SHAP) yang menerjemahkan model 'black box' AI menjadi visualisasi kontribusi fitur yang transparan dan dapat dipertanggungjawabkan secara klinis.",
     image: "/assets/projects/strokepredictai.png",
     url: "#",
+    github: "#",
     link: "#"
   },
   {
@@ -242,7 +243,8 @@ export const listProyek = [
     borderColor: "#2563eb",
     fullDescription: "Platform digital terintegrasi yang berfungsi sebagai pusat layanan informasi dan kebahasaan masyarakat Balai Bahasa Provinsi Riau. Proyek ini mencakup modernisasi infrastruktur teknologi instansi melalui ekstraksi basis data berskala besar dan migrasi arsitektur secara menyeluruh dari platform legacy (WordPress) ke ekosistem Laravel (PHP). Melibatkan pembedahan Entity Relationship Diagram (ERD) dan penulisan logika controller baru untuk memastikan integritas perpindahan ribuan data tanpa resiko kehilangan data (zero data loss).",
     image: "/assets/projects/lamanbalaibahasa.png",
-    url: "#",
+    url: "https://balaibahasariau.kemendikdasmen.go.id/",
+    github: "#",
     link: "#"
   },
   {
@@ -255,7 +257,8 @@ export const listProyek = [
     borderColor: "#8b5cf6",
     fullDescription: "Platform perpustakaan digital berbasis web yang dirancang untuk meningkatkan minat baca anak usia 7 hingga 15 tahun serta memfasilitasi kegiatan mendongeng bersama orang tua. Aplikasi ini menyajikan buku cerita bergambar dan cerita rakyat nusantara dengan dukungan multi-bahasa (Indonesia dan bahasa daerah), navigasi ramah anak, serta mesin pembaca interaktif (flipbook). Dilengkapi fitur Portal Publik open-access dengan Katalog & Filter Pintar multi-kriteria (Jenjang Usia 7–9 th, 10–12 th, 13–15 th, Kategori, Bahasa Daerah, dan Asal Daerah), Mesin Pembaca Flipbook Interaktif dengan transisi membalik kertas realistis (realistic page-flip), navigasi sentuh (swipe gesture) untuk tablet/iPad, tombol layar, pintasan keyboard, serta pelacakan metrik statistik pembaca (views count) secara real-time.",
     image: "/assets/projects/sembari.png",
-    url: "#",
+    url: "https://sembari.kemendikdasmen.go.id/",
+    github: "#",
     link: "#"
   },
   {
@@ -269,6 +272,7 @@ export const listProyek = [
     fullDescription: "Platform Sistem Informasi Geografis berbasis web (WebGIS) berskala penuh untuk optimalisasi visualisasi dan manajemen data keruangan. Mengintegrasikan basis data spasial kompleks dengan arsitektur full-stack dan RESTful API. Fitur terobosan mencakup implementasi AI-assisted GIS Chat Agent menggunakan pemrosesan bahasa alami (NLP) yang memungkinkan eksekusi kueri dan analisis geospasial secara otomatis hanya melalui perintah teks.",
     image: "/assets/projects/scapegis.png",
     url: "#",
+    github: "#",
     link: "#"
   },
   {
@@ -282,6 +286,7 @@ export const listProyek = [
     fullDescription: "Aplikasi berbasis web untuk mengelola dan memantau kegiatan magang mahasiswa secara terintegrasi di PT Kilang Pertamina Internasional RU II Dumai. Mendukung pengelolaan data mahasiswa, pencatatan logbook aktivitas harian, serta evaluasi digital. Dikembangkan menggunakan Solution Template Pertamina berbasis ASP.NET Core dengan penerapan prinsip Clean Architecture untuk memastikan sistem terstruktur, andal, dan memenuhi standar industri korporat.",
     image: "/assets/projects/pertaminaruii.png",
     url: "#",
+    github: "#",
     link: "#"
   },
   {
@@ -295,6 +300,7 @@ export const listProyek = [
     fullDescription: "Aplikasi Point of Sale (POS) dan manajemen finansial berbasis web yang dirancang khusus untuk optimasi alur kerja usaha UMKM lokal. Mengotomatisasi sistem kasir, manajemen stok inventaris, pendataan pelanggan, serta menghasilkan laporan analisis pendapatan berkala. Sistem ini meminimalisir antrean pelanggan dan mempercepat proses transaksi operasional bisnis makanan dan minuman.",
     image: "/assets/projects/aftersunsetidn.png",
     url: "#",
+    github: "#",
     link: "#"
   },
   {
@@ -308,6 +314,7 @@ export const listProyek = [
     fullDescription: "Sebuah aplikasi yang dirancang untuk mengedukasi dan produktivitas berbasis mobile yang dirancang untuk membantu pelajar dan mahasiswa dalam mengelola waktu belajar secara efektif sekaligus menjaga kesehatan mental dan fisik selama proses belajar. Sebagai solusi permasalahan meningkatnya stres akademik, kelelahan mental (burnout), serta rendahnya kesadaran akan pentingnya keseimbangan antara belajar dan istirahat.",
     image: "/assets/projects/waddle.png",
     url: "#",
+    github: "#",
     link: "#"
   },
   {
@@ -321,6 +328,7 @@ export const listProyek = [
     fullDescription: "Skrip machine learning dan pemrosesan citra yang dirancang untuk melatih model K-Nearest Neighbors (KNN). Program ini mengimplementasikan metode ekstraksi fitur Gray Level Co-Occurrence Matrix (GLCM) menggunakan bahasa Python dan pustaka OpenCV untuk mengklasifikasikan pola citra tanda tangan secara otomatis dengan metrik jarak Euclidean.",
     image: "/assets/projects/glcm.png",
     url: "#",
+    github: "#",
     link: "#"
   },
   {
@@ -334,6 +342,7 @@ export const listProyek = [
     fullDescription: "Quran Kareem merupakan aplikasi Al-Qur'an berbasis mobile yang dirancang untuk pengguna dalam memudahkan membaca Al-Quran. Sama seperti aplikasi Al-Quran lainnya, namun memiliki tampilan yang lebih menarik dan dibekali modul serta latihan membaca Al-Quran dengan makhraj dan tajwid yang benar sehingga dapat memudahkan pengguna berbagai kalangan umur dalam mempelajari dan memahami Al-Quran lebih dalam.",
     image: "/assets/projects/qurankareem.png",
     url: "#",
+    github: "#",
     link: "#"
   },
   {
@@ -347,6 +356,7 @@ export const listProyek = [
     fullDescription: "Pengembangan antarmuka website profil (Company Profile) untuk Masjid Raudhatul Jannah Kota Pekanbaru. Dibangun menggunakan fundamental HTML5 dan styling CSS Bootstrap guna menyajikan informasi seputar sejarah institusi, galeri, jadwal kegiatan, dan informasi donasi masjid dalam sebuah antarmuka web yang bersih dan responsif.",
     image: "/assets/projects/raudhatuljannah.png",
     url: "#",
+    github: "#",
     link: "#"
   }
 ];

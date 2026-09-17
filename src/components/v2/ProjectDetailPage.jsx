@@ -10,7 +10,8 @@ import {
   FiCpu, 
   FiCode, 
   FiCheckCircle, 
-  FiFolder
+  FiFolder,
+  FiGithub
 } from "react-icons/fi";
 import { LuGlobe, LuSparkles } from "react-icons/lu";
 import { listProyek } from "../../data";
@@ -162,6 +163,31 @@ export default function ProjectDetailPage() {
                 <span>{t("projectDetail.viewLive") || "Kunjungi Website"}</span>
                 <FiExternalLink size={14} />
               </a>
+            )}
+
+            {project.github && project.github !== "#" ? (
+              <a
+                href={project.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="project-detail__btn-github"
+              >
+                <FiGithub size={16} />
+                <span>{t("projectDetail.viewCode") || "Source Code"}</span>
+                <FiExternalLink size={14} />
+              </a>
+            ) : (
+              <button
+                type="button"
+                className="project-detail__btn-github"
+                onClick={(e) => {
+                  e.preventDefault();
+                }}
+                title="Tautan repositori akan segera diperbarui"
+              >
+                <FiGithub size={16} />
+                <span>{t("projectDetail.viewCode") || "Source Code"}</span>
+              </button>
             )}
 
             <div className="project-detail__status-indicator">
