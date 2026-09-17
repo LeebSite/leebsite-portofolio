@@ -103,7 +103,7 @@ export default function MobileHeader() {
             <NavLink
               key={item.id}
               to={item.path}
-              className={({ isActive }) => `mobile-drawer__nav-item ${isActive ? "active" : ""}`}
+              className={({ isActive }) => `mobile-drawer__nav-item ${isActive || (item.id === "projects" && location.pathname.startsWith("/projects")) ? "active" : ""}`}
             >
               <span className="mobile-drawer__nav-icon">{item.icon}</span>
               <span className="mobile-drawer__nav-label">{item.label}</span>

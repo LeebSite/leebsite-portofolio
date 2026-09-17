@@ -78,6 +78,24 @@ export const translations = {
         Associated: "Terkait"
       }
     },
+    projectDetail: {
+      backToProjects: "Kembali ke Semua Proyek",
+      overview: "Ikhtisar & Latar Belakang",
+      keyFeatures: "Fitur & Arsitektur Utama",
+      techStack: "Teknologi & Tools yang Digunakan",
+      projectInfo: "Informasi Proyek",
+      category: "Kategori",
+      status: "Status Proyek",
+      completed: "Selesai & Terverifikasi",
+      viewLive: "Kunjungi Website",
+      viewCode: "Lihat Kode Sumber",
+      shareProject: "Bagikan",
+      copied: "Tersalin!",
+      prevProject: "Proyek Sebelumnya",
+      nextProject: "Proyek Selanjutnya",
+      notFound: "Proyek Tidak Ditemukan",
+      notFoundDesc: "Maaf, proyek yang Anda cari tidak tersedia atau telah dipindahkan."
+    },
     journey: {
       title: "Perjalanan",
       subtitle: "Milestones, kepanitiaan, komunitas, dan industri yang membentuk karir saya.",
@@ -185,6 +203,24 @@ export const translations = {
         "UI/UX Design": "UI/UX Design",
         Associated: "Associated"
       }
+    },
+    projectDetail: {
+      backToProjects: "Back to All Projects",
+      overview: "Overview & Background",
+      keyFeatures: "Key Features & Architecture",
+      techStack: "Technologies & Tools Used",
+      projectInfo: "Project Information",
+      category: "Category",
+      status: "Project Status",
+      completed: "Completed & Verified",
+      viewLive: "Visit Live Website",
+      viewCode: "View Source Code",
+      shareProject: "Share",
+      copied: "Copied!",
+      prevProject: "Previous Project",
+      nextProject: "Next Project",
+      notFound: "Project Not Found",
+      notFoundDesc: "Sorry, the project you are looking for does not exist or has been moved."
     },
     journey: {
       title: "Journey",

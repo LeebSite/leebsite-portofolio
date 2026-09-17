@@ -6,6 +6,7 @@ import HomeSection from "./components/v2/HomeSection";
 import AboutSection from "./components/v2/AboutSection";
 import ExperienceSection from "./components/v2/ExperienceSection";
 import ProjectsSection from "./components/v2/ProjectsSection";
+import ProjectDetailPage from "./components/v2/ProjectDetailPage";
 import JourneySection from "./components/v2/JourneySection";
 import AchievementsSection from "./components/v2/AchievementsSection";
 import ContactSection from "./components/v2/ContactSection";
@@ -47,6 +48,7 @@ function App() {
             <Route path="/about" element={<AboutSection />} />
             <Route path="/experience" element={<ExperienceSection />} />
             <Route path="/projects" element={<ProjectsSection />} />
+            <Route path="/projects/:id" element={<ProjectDetailPage />} />
             <Route path="/journey" element={<JourneySection />} />
             <Route path="/achievements" element={<AchievementsSection />} />
             <Route path="/contact" element={<ContactSection />} />

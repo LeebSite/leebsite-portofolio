@@ -1,11 +1,12 @@
 import { useState, useEffect } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import { FiHome, FiUser, FiBriefcase, FiLayers, FiCompass, FiAward, FiMail } from "react-icons/fi";
 import { HiCheckBadge } from "react-icons/hi2";
 import "./Sidebar.css";
 import { useLanguage } from "../../context/LanguageContext";
 
 export default function Sidebar() {
+  const location = useLocation();
   const { language, setLanguage, t } = useLanguage();
   const [darkMode, setDarkMode] = useState(false);
 
@@ -91,9 +92,7 @@ export default function Sidebar() {
           <NavLink
             key={item.id}
             to={item.path}
-            className={({ isActive }) => 
-              `sidebar__nav-item ${isActive ? "active" : ""}`
-            }
+            className={({ isActive }) => `sidebar__nav-item ${isActive || (item.id === "projects" && location.pathname.startsWith("/projects")) ? "active" : ""}`}
           >
             <span className="sidebar__nav-icon">{item.icon}</span>
             <span className="sidebar__nav-label">{item.label}</span>

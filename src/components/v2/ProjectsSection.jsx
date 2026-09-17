@@ -1,4 +1,5 @@
 import { useState, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import "./ProjectsSection.css";
 import { listProyek } from "../../data";
 import { LuLayoutGrid, LuGlobe, LuSmartphone, LuPenTool, LuLink } from "react-icons/lu";
@@ -66,6 +67,7 @@ const TECH_COLORS = {
 const DESC_LENGTHS = [140, 80, 200, 100, 160, 90];
 
 function ProjectCard({ proyek, descLen }) {
+  const navigate = useNavigate();
   const { ref, handleMouseMove, handleMouseLeave } = useTilt();
   const { isEn, projectTranslations, t } = useLanguage();
 
@@ -107,15 +109,14 @@ function ProjectCard({ proyek, descLen }) {
         }}
         />
         {/* Overlay on hover */}
-        <div className="project-card__img-overlay">
-          <a
-            href={proyek.url}
-            target="_blank"
-            rel="noopener noreferrer"
+        <div className="project-card__img-overlay" onClick={(e) => { e.stopPropagation(); navigate(`/projects/${proyek.id}`); }}>
+          <button
+            type="button"
             className="project-card__overlay-link"
+            onClick={(e) => { e.stopPropagation(); navigate(`/projects/${proyek.id}`); }}
           >
             {t("projects.viewProject")}
-          </a>
+          </button>
         </div>
       </div>
 
@@ -126,7 +127,12 @@ function ProjectCard({ proyek, descLen }) {
           ))}
         </div>
 
-        <h3 className="project-card__title">{proyek.title}</h3>
+        <h3 
+    className="project-card__title project-card__title--clickable" 
+    onClick={() => navigate(`/projects/${proyek.id}`)}
+  >
+    {proyek.title}
+  </h3>
         <p className="project-card__desc">{desc}</p>
 
         <div className="project-card__tech">
