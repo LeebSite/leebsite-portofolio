@@ -11,6 +11,8 @@ import JourneySection from "./components/v2/JourneySection";
 import AchievementsSection from "./components/v2/AchievementsSection";
 import ContactSection from "./components/v2/ContactSection";
 import "./AppV2.css";
+import { CvModalProvider } from "./context/CvModalContext";
+import CvModal from "./components/CvModal/CvModal";
 
 const SECTIONS = [
   { id: "home", path: "/" },
@@ -33,7 +35,9 @@ function App() {
   }, [location.pathname]);
 
   return (
-    <div className="app-v2">
+    <CvModalProvider>
+      <CvModal />
+      <div className="app-v2">
       {/* Left Sidebar */}
       <Sidebar />
 
@@ -59,7 +63,8 @@ function App() {
         <footer className="app-v2__footer" style={{ display: "none" }}>
         </footer>
       </main>
-    </div>
+      </div>
+    </CvModalProvider>
   );
 }
 

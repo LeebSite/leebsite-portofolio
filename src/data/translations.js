@@ -10,6 +10,15 @@ export const translations = {
       achievements: "Pencapaian",
       contact: "Kontak",
       downloadCv: "Unduh CV",
+    cvModal: {
+      previewCv: "Lihat Sekilas CV",
+      downloadCv: "Unduh CV",
+      openInNewTab: "Buka di Tab Baru",
+      close: "Tutup",
+      fileInfo: "Curriculum Vitae • Software & Data Engineer",
+      previewHeading: "Pratinjau Dokumen PDF",
+      fallbackDesc: "Jika pratinjau tidak termuat di browser Anda, gunakan tombol di bawah:"
+    },
       roleTitle: "Software Engineer Enthusiast",
       navigation: "Navigasi",
       verified: "Terverifikasi"
@@ -136,6 +145,15 @@ export const translations = {
       achievements: "Achievements",
       contact: "Contact",
       downloadCv: "Download CV",
+    cvModal: {
+      previewCv: "Preview CV",
+      downloadCv: "Download CV",
+      openInNewTab: "Open in New Tab",
+      close: "Close",
+      fileInfo: "Curriculum Vitae • Software & Data Engineer",
+      previewHeading: "PDF Document Preview",
+      fallbackDesc: "If the preview does not load on your browser, use the buttons below:"
+    },
       roleTitle: "Software Engineer Enthusiast",
       navigation: "Navigation",
       verified: "Verified"

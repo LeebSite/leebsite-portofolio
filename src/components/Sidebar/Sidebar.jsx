@@ -4,8 +4,10 @@ import { FiHome, FiUser, FiBriefcase, FiLayers, FiCompass, FiAward, FiMail } fro
 import { HiCheckBadge } from "react-icons/hi2";
 import "./Sidebar.css";
 import { useLanguage } from "../../context/LanguageContext";
+import { useCvModal } from "../../context/CvModalContext";
 
 export default function Sidebar() {
+  const { openCvModal } = useCvModal();
   const location = useLocation();
   const { language, setLanguage, t } = useLanguage();
   const [darkMode, setDarkMode] = useState(false);
@@ -76,10 +78,15 @@ export default function Sidebar() {
             )}
           </button>
           
-          <a href="/assets/CV.pdf" download="CV Muhammad Ghalib Pradipa.pdf" className="sidebar__icon-btn sidebar__icon-btn--cv" title={t("nav.downloadCv")}>
+          <button
+            type="button"
+            onClick={openCvModal}
+            className="sidebar__icon-btn sidebar__icon-btn--cv"
+            title={t("cvModal.previewCv") || "Lihat Sekilas CV (Preview)"}
+          >
             <svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 24 24" height="16px" width="16px" xmlns="http://www.w3.org/2000/svg"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm-1 1.5L18.5 9H13V3.5zM18 20H6V4h6v6h6v10z"></path><path d="M11 10h2v4h-2zm-1 5h4v2h-4z"></path></svg>
-            <span className="sidebar__icon-btn-text">{t("nav.downloadCv")}</span>
-          </a>
+            <span className="sidebar__icon-btn-text">{t("cvModal.previewCv") || "Preview CV"}</span>
+          </button>
         </div>
       </div>
 

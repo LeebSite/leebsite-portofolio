@@ -81,6 +81,37 @@ a.contact-info__value:hover {
   text-decoration: underline;
 }
 
+
+.contact-cv-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.contact-preview-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 20px;
+  border-radius: 10px;
+  border: 1.5px solid var(--accent-yellow);
+  background: var(--accent-yellow);
+  color: #111827;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  font-family: inherit;
+}
+
+.contact-preview-btn:hover {
+  filter: brightness(1.08);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(245, 158, 11, 0.28);
+}
+
 .contact-download-btn {
   position: relative;
   display: inline-flex;

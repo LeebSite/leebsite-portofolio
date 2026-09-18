@@ -123,6 +123,7 @@ function PublicChatRoom() {
 }
 
 export default function ContactSection() {
+  const { openCvModal } = useCvModal();
   const { t } = useLanguage();
   return (
     <section id="contact" className="contact-section">
@@ -169,9 +170,22 @@ export default function ContactSection() {
               <a href="https://instagram.com/gpradiipaa" target="_blank" rel="noopener noreferrer" className="contact-info__value">@gpradiipaa</a>
             </div>
           </div>
-          <a href="/assets/CV.pdf" download="CV Muhammad Ghalib Pradipa.pdf" className="contact-download-btn">
-            <LuFileText size={18} /> Unduh CV
-          </a>
+          <div className="contact-cv-actions">
+              <button
+                type="button"
+                onClick={openCvModal}
+                className="contact-preview-btn"
+              >
+                <LuEye size={18} /> {t("cvModal.previewCv") || "Lihat Sekilas CV"}
+              </button>
+              <a
+                href="/assets/CV.pdf"
+                download="CV Muhammad Ghalib Pradipa.pdf"
+                className="contact-download-btn"
+              >
+                <LuFileText size={18} /> {t("nav.downloadCv") || "Unduh CV"}
+              </a>
+            </div>
         </div>
         <form action="https://formsubmit.co/mhd.ghalibpradipa@gmail.com" method="POST" className="contact-form" autoComplete="off">
           <input type="hidden" name="_captcha" value="false" />
