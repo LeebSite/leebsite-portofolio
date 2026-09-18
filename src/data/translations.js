@@ -10,15 +10,6 @@ export const translations = {
       achievements: "Pencapaian",
       contact: "Kontak",
       downloadCv: "Unduh CV",
-    cvModal: {
-      previewCv: "Lihat Sekilas CV",
-      downloadCv: "Unduh CV",
-      openInNewTab: "Buka di Tab Baru",
-      close: "Tutup",
-      fileInfo: "Curriculum Vitae • Software & Data Engineer",
-      previewHeading: "Pratinjau Dokumen PDF",
-      fallbackDesc: "Jika pratinjau tidak termuat di browser Anda, gunakan tombol di bawah:"
-    },
       roleTitle: "Software Engineer Enthusiast",
       navigation: "Navigasi",
       verified: "Terverifikasi"
@@ -105,6 +96,16 @@ export const translations = {
       notFound: "Proyek Tidak Ditemukan",
       notFoundDesc: "Maaf, proyek yang Anda cari tidak tersedia atau telah dipindahkan."
     },
+
+    cvModal: {
+      previewCv: "Preview CV",
+      downloadCv: "Unduh CV",
+      openInNewTab: "Buka di Tab Baru",
+      close: "Tutup",
+      fileInfo: "Curriculum Vitae • Software & Data Engineer",
+      previewHeading: "Pratinjau Dokumen PDF",
+      fallbackDesc: "Jika pratinjau tidak termuat di browser Anda, gunakan tombol di bawah:"
+    },
     journey: {
       title: "Perjalanan",
       subtitle: "Milestones, kepanitiaan, komunitas, dan industri yang membentuk karir saya.",
@@ -135,6 +136,15 @@ export const translations = {
       emptyChat: "Belum ada pesan. Jadilah yang pertama meninggalkan pesan!"
     }
   },
+    cvModal: {
+      previewCv: "Preview CV",
+      downloadCv: "Unduh CV",
+      openInNewTab: "Buka di Tab Baru",
+      close: "Tutup",
+      fileInfo: "Curriculum Vitae • Software & Data Engineer",
+      previewHeading: "Pratinjau Dokumen PDF",
+      fallbackDesc: "Jika pratinjau tidak termuat di browser Anda, gunakan tombol di bawah:"
+    },
   en: {
     nav: {
       home: "Home",
@@ -145,15 +155,6 @@ export const translations = {
       achievements: "Achievements",
       contact: "Contact",
       downloadCv: "Download CV",
-    cvModal: {
-      previewCv: "Preview CV",
-      downloadCv: "Download CV",
-      openInNewTab: "Open in New Tab",
-      close: "Close",
-      fileInfo: "Curriculum Vitae • Software & Data Engineer",
-      previewHeading: "PDF Document Preview",
-      fallbackDesc: "If the preview does not load on your browser, use the buttons below:"
-    },
       roleTitle: "Software Engineer Enthusiast",
       navigation: "Navigation",
       verified: "Verified"
@@ -239,6 +240,16 @@ export const translations = {
       nextProject: "Next Project",
       notFound: "Project Not Found",
       notFoundDesc: "Sorry, the project you are looking for does not exist or has been moved."
+    },
+
+    cvModal: {
+      previewCv: "Preview CV",
+      downloadCv: "Download CV",
+      openInNewTab: "Open in New Tab",
+      close: "Close",
+      fileInfo: "Curriculum Vitae • Software & Data Engineer",
+      previewHeading: "PDF Document Preview",
+      fallbackDesc: "If the preview does not load on your browser, use the buttons below:"
     },
     journey: {
       title: "Journey",

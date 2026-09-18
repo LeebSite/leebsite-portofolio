@@ -109,11 +109,11 @@ export default function CvModal() {
         {/* Footer */}
         <div className="cv-modal-footer">
           <div className="cv-modal-footer__meta">
-            <span className="meta-item">📄 PDF Document</span>
+            <span className="meta-item">PDF Document</span>
             <span className="meta-dot">•</span>
-            <span className="meta-item">⚡ High Resolution</span>
+            <span className="meta-item">High Resolution</span>
             <span className="meta-dot">•</span>
-            <span className="meta-item">💼 Software & Data Engineer</span>
+            <span className="meta-item">Software & Data</span>
           </div>
           <div className="cv-modal-footer__actions">
             <button onClick={closeCvModal} className="cv-modal-btn cv-modal-btn--secondary">
