@@ -79,6 +79,12 @@ export const translations = {
       }
     },
     projectDetail: {
+      clickToZoom: "Klik untuk Memperbesar",
+      fullscreenPreview: "Pratinjau Layar Penuh",
+      zoomIn: "Perbesar",
+      zoomOut: "Perkecil",
+      resetZoom: "Reset Ukuran",
+      zoomTip: "Klik 2x pada gambar atau gunakan tombol di atas untuk zoom • Tekan ESC untuk keluar",
       backToProjects: "Kembali ke Semua Proyek",
       overview: "Ikhtisar & Latar Belakang",
       keyFeatures: "Fitur & Arsitektur Utama",
@@ -224,6 +230,12 @@ export const translations = {
       }
     },
     projectDetail: {
+      clickToZoom: "Click to Zoom Fullscreen",
+      fullscreenPreview: "Fullscreen Preview",
+      zoomIn: "Zoom In",
+      zoomOut: "Zoom Out",
+      resetZoom: "Reset Zoom",
+      zoomTip: "Double-click image or use buttons above to zoom • Press ESC to exit",
       backToProjects: "Back to All Projects",
       overview: "Overview & Background",
       keyFeatures: "Key Features & Architecture",

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import { 
   FiArrowLeft, 
@@ -11,9 +11,14 @@ import {
   FiCode, 
   FiCheckCircle, 
   FiFolder,
-  FiGithub
+  FiGithub,
+  FiX,
+  FiMaximize2,
+  FiMinus,
+  FiPlus,
+  FiRotateCcw
 } from "react-icons/fi";
-import { LuGlobe, LuSparkles } from "react-icons/lu";
+import { LuGlobe, LuSparkles, LuZoomIn, LuZoomOut } from "react-icons/lu";
 import { listProyek } from "../../data";
 import { useLanguage } from "../../context/LanguageContext";
 import "./ProjectDetailPage.css";
@@ -37,6 +42,10 @@ export default function ProjectDetailPage() {
   const navigate = useNavigate();
   const { isEn, projectTranslations, t } = useLanguage();
   const [copied, setCopied] = useState(false);
+
+  // Lightbox & Zoom State
+  const [isLightboxOpen, setIsLightboxOpen] = useState(false);
+  const [zoomLevel, setZoomLevel] = useState(1);
 
   // Scroll to top on id change
   useEffect(() => {
@@ -66,6 +75,66 @@ export default function ProjectDetailPage() {
       document.title = "Muhammad Ghalib Pradipa - Portfolio";
     };
   }, [project]);
+
+  // Lock body scroll when lightbox is open
+  useEffect(() => {
+    if (isLightboxOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isLightboxOpen]);
+
+  // Lightbox Zoom Controls
+  const handleOpenLightbox = () => {
+    setZoomLevel(1);
+    setIsLightboxOpen(true);
+  };
+
+  const handleCloseLightbox = useCallback(() => {
+    setIsLightboxOpen(false);
+    setZoomLevel(1);
+  }, []);
+
+  const handleZoomIn = () => {
+    setZoomLevel((prev) => Math.min(prev + 0.35, 3));
+  };
+
+  const handleZoomOut = () => {
+    setZoomLevel((prev) => Math.max(prev - 0.35, 0.75));
+  };
+
+  const handleResetZoom = () => {
+    setZoomLevel(1);
+  };
+
+  const handleToggleZoom = (e) => {
+    e.stopPropagation();
+    setZoomLevel((prev) => (prev > 1.2 ? 1 : 1.8));
+  };
+
+  // Keyboard Shortcuts for Lightbox (ESC, +, -, 0)
+  useEffect(() => {
+    if (!isLightboxOpen) return;
+
+    const handleKeyDown = (e) => {
+      if (e.key === "Escape") {
+        handleCloseLightbox();
+      } else if (e.key === "+" || e.key === "=") {
+        handleZoomIn();
+      } else if (e.key === "-") {
+        handleZoomOut();
+      } else if (e.key === "0") {
+        handleResetZoom();
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [isLightboxOpen, handleCloseLightbox]);
 
   const handleShare = () => {
     navigator.clipboard.writeText(window.location.href);
@@ -118,7 +187,11 @@ export default function ProjectDetailPage() {
 
       {/* Main Showcase Hero */}
       <div className="project-detail__hero-card">
-        <div className="project-detail__img-container">
+        <div 
+          className="project-detail__img-container"
+          onClick={handleOpenLightbox}
+          title={t("projectDetail.clickToZoom") || "Klik untuk memperbesar screenshot"}
+        >
           <img
             src={project.image}
             alt={title}
@@ -130,6 +203,13 @@ export default function ProjectDetailPage() {
               }
             }}
           />
+
+          {/* Hover Zoom Hint Overlay */}
+          <div className="project-detail__zoom-hint">
+            <LuZoomIn size={16} />
+            <span>{t("projectDetail.clickToZoom") || "Klik untuk Memperbesar"}</span>
+          </div>
+
           {project.featured && (
             <div className="project-detail__featured-badge">
               <LuSparkles size={13} />
@@ -189,6 +269,16 @@ export default function ProjectDetailPage() {
                 <span>{t("projectDetail.viewCode") || "Source Code"}</span>
               </button>
             )}
+
+            <button
+              type="button"
+              onClick={handleOpenLightbox}
+              className="project-detail__btn-preview-zoom"
+              title={t("projectDetail.clickToZoom") || "Lihat Screenshot Resolusi Penuh"}
+            >
+              <FiMaximize2 size={15} />
+              <span>{t("projectDetail.fullscreenPreview") || "Lihat Layar Penuh"}</span>
+            </button>
 
             <div className="project-detail__status-indicator">
               <FiCheckCircle className="status-icon" size={15} />
@@ -291,6 +381,104 @@ export default function ProjectDetailPage() {
           <div className="project-nav-card disabled" />
         )}
       </div>
+
+      {/* ============================================================
+          INTERACTIVE IMAGE LIGHTBOX / FULLSCREEN ZOOM MODAL
+         ============================================================ */}
+      {isLightboxOpen && (
+        <div className="lightbox-overlay" onClick={handleCloseLightbox} role="dialog" aria-modal="true">
+          <div className="lightbox-dialog" onClick={(e) => e.stopPropagation()}>
+            {/* Lightbox Header Bar */}
+            <div className="lightbox-header">
+              <div className="lightbox-header__title-box">
+                <span className="lightbox-header__badge">
+                  <FiMaximize2 size={13} /> {t("projectDetail.fullscreenPreview") || "Pratinjau Layar Penuh"}
+                </span>
+                <h3 className="lightbox-header__title">{title}</h3>
+              </div>
+
+              {/* Lightbox Toolbar Controls */}
+              <div className="lightbox-toolbar">
+                <button 
+                  onClick={handleZoomOut} 
+                  className="lightbox-tool-btn" 
+                  title={t("projectDetail.zoomOut") || "Perkecil (-)"}
+                  disabled={zoomLevel <= 0.75}
+                >
+                  <FiMinus size={16} />
+                </button>
+
+                <button 
+                  onClick={handleResetZoom} 
+                  className="lightbox-zoom-indicator" 
+                  title={t("projectDetail.resetZoom") || "Reset Ukuran (100%)"}
+                >
+                  {Math.round(zoomLevel * 100)}%
+                </button>
+
+                <button 
+                  onClick={handleZoomIn} 
+                  className="lightbox-tool-btn" 
+                  title={t("projectDetail.zoomIn") || "Perbesar (+)"}
+                  disabled={zoomLevel >= 3}
+                >
+                  <FiPlus size={16} />
+                </button>
+
+                <button 
+                  onClick={handleResetZoom} 
+                  className="lightbox-tool-btn" 
+                  title={t("projectDetail.resetZoom") || "Reset Zoom (0)"}
+                >
+                  <FiRotateCcw size={15} />
+                </button>
+
+                <div className="lightbox-toolbar__divider" />
+
+                <button 
+                  onClick={handleCloseLightbox} 
+                  className="lightbox-tool-btn lightbox-tool-btn--close" 
+                  title="Tutup (Esc)"
+                  aria-label="Tutup"
+                >
+                  <FiX size={20} />
+                </button>
+              </div>
+            </div>
+
+            {/* Lightbox Stage (Scrollable / Pannable Image Container) */}
+            <div 
+              className={`lightbox-stage ${zoomLevel > 1 ? 'is-zoomed' : ''}`}
+              onDoubleClick={handleToggleZoom}
+            >
+              <div 
+                className="lightbox-img-wrapper"
+                style={{
+                  transform: `scale(${zoomLevel})`,
+                  transition: 'transform 0.25s cubic-bezier(0.16, 1, 0.3, 1)'
+                }}
+              >
+                <img
+                  src={project.image}
+                  alt={title}
+                  className="lightbox-img"
+                  draggable={false}
+                />
+              </div>
+            </div>
+
+            {/* Lightbox Footer Tip */}
+            <div className="lightbox-footer">
+              <span className="lightbox-tip">
+                💡 {t("projectDetail.zoomTip") || "Klik 2x pada gambar atau gunakan tombol di atas untuk zoom • Tekan ESC untuk keluar"}
+              </span>
+              <span className="lightbox-counter">
+                Project #{String(project.id).padStart(2, '0')}
+              </span>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
