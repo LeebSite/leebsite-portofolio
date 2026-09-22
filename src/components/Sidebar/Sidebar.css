@@ -263,3 +263,59 @@
   visibility: visible;
   color: #111827;
 }
+
+
+/* ---- Quick Search / Command Palette Trigger in Sidebar ---- */
+.sidebar__search-wrapper {
+  width: 100%;
+  margin-top: 14px;
+}
+
+.sidebar__search-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 8px 12px;
+  border-radius: 10px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  color: var(--text-secondary);
+  font-size: 12.5px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: inherit;
+}
+
+.sidebar__search-btn:hover {
+  background: var(--bg-hover);
+  border-color: var(--accent-yellow);
+  color: var(--text-primary);
+  transform: translateY(-1px);
+}
+
+.sidebar__search-icon {
+  color: var(--accent-yellow);
+  flex-shrink: 0;
+}
+
+.sidebar__search-text {
+  flex: 1;
+  text-align: left;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.sidebar__search-kbd {
+  padding: 2px 5px;
+  border-radius: 4px;
+  background: var(--bg-page);
+  border: 1px solid var(--border-color);
+  font-size: 10px;
+  font-weight: 700;
+  font-family: monospace;
+  color: var(--text-tertiary);
+}
+

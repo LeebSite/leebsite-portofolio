@@ -5,9 +5,12 @@ import { HiCheckBadge } from "react-icons/hi2";
 import "./MobileHeader.css";
 import { useLanguage } from "../../context/LanguageContext";
 import { useCvModal } from "../../context/CvModalContext";
+import { useCommandPalette } from "../../context/CommandPaletteContext";
+import { FiSearch } from "react-icons/fi";
 
 export default function MobileHeader() {
   const { openCvModal } = useCvModal();
+  const { openPalette } = useCommandPalette();
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
   const [darkMode, setDarkMode] = useState(false);
@@ -62,9 +65,14 @@ export default function MobileHeader() {
             <HiCheckBadge className="mobile-header__verified" />
           </h2>
         </div>
-        <button className="mobile-header__menu-btn" onClick={() => setIsOpen(true)}>
-          <FiMenu size={24} />
-        </button>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+          <button className="mobile-header__menu-btn" onClick={openPalette} title="Cari cepat (Command Palette)">
+            <FiSearch size={20} />
+          </button>
+          <button className="mobile-header__menu-btn" onClick={() => setIsOpen(true)}>
+            <FiMenu size={24} />
+          </button>
+        </div>
       </header>
 
       {/* Overlay */}

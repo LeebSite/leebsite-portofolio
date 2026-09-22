@@ -112,6 +112,15 @@ export const translations = {
       previewHeading: "Pratinjau Dokumen PDF",
       fallbackDesc: "Jika pratinjau tidak termuat di browser Anda, gunakan tombol di bawah:"
     },
+
+    cmdPalette: {
+      searchPlaceholder: "Cari cepat...",
+      navigate: "Navigasi",
+      select: "Pilih",
+      close: "Tutup",
+      emptyTitle: "Tidak ada hasil ditemukan",
+      emptyDesc: "Coba cari dengan kata kunci lain seperti nama proyek atau teknologi"
+    },
     journey: {
       title: "Perjalanan",
       subtitle: "Milestones, kepanitiaan, komunitas, dan industri yang membentuk karir saya.",
@@ -262,6 +271,15 @@ export const translations = {
       fileInfo: "Curriculum Vitae • Software & Data Engineer",
       previewHeading: "PDF Document Preview",
       fallbackDesc: "If the preview does not load on your browser, use the buttons below:"
+    },
+
+    cmdPalette: {
+      searchPlaceholder: "Quick search...",
+      navigate: "Navigate",
+      select: "Select",
+      close: "Close",
+      emptyTitle: "No results found",
+      emptyDesc: "Try searching with other keywords like project name or tech stack"
     },
     journey: {
       title: "Journey",

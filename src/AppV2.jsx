@@ -13,6 +13,8 @@ import ContactSection from "./components/v2/ContactSection";
 import "./AppV2.css";
 import { CvModalProvider } from "./context/CvModalContext";
 import CvModal from "./components/CvModal/CvModal";
+import { CommandPaletteProvider } from "./context/CommandPaletteContext";
+import CommandPalette from "./components/CommandPalette/CommandPalette";
 
 const SECTIONS = [
   { id: "home", path: "/" },
@@ -36,7 +38,9 @@ function App() {
 
   return (
     <CvModalProvider>
-      <CvModal />
+      <CommandPaletteProvider>
+        <CvModal />
+        <CommandPalette />
       <div className="app-v2">
       {/* Left Sidebar */}
       <Sidebar />
@@ -64,6 +68,7 @@ function App() {
         </footer>
       </main>
       </div>
+      </CommandPaletteProvider>
     </CvModalProvider>
   );
 }

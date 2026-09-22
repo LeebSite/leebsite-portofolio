@@ -5,9 +5,12 @@ import { HiCheckBadge } from "react-icons/hi2";
 import "./Sidebar.css";
 import { useLanguage } from "../../context/LanguageContext";
 import { useCvModal } from "../../context/CvModalContext";
+import { useCommandPalette } from "../../context/CommandPaletteContext";
+import { FiSearch } from "react-icons/fi";
 
 export default function Sidebar() {
   const { openCvModal } = useCvModal();
+  const { openPalette } = useCommandPalette();
   const location = useLocation();
   const { language, setLanguage, t } = useLanguage();
   const [darkMode, setDarkMode] = useState(false);
@@ -86,6 +89,20 @@ export default function Sidebar() {
           >
             <svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 24 24" height="16px" width="16px" xmlns="http://www.w3.org/2000/svg"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm-1 1.5L18.5 9H13V3.5zM18 20H6V4h6v6h6v10z"></path><path d="M11 10h2v4h-2zm-1 5h4v2h-4z"></path></svg>
             <span className="sidebar__icon-btn-text">Preview CV</span>
+          </button>
+        </div>
+
+        {/* Quick Search / Command Palette Trigger */}
+        <div className="sidebar__search-wrapper">
+          <button
+            type="button"
+            onClick={openPalette}
+            className="sidebar__search-btn"
+            title="Cari Cepat & Command Palette (Ctrl + K)"
+          >
+            <FiSearch className="sidebar__search-icon" size={14} />
+            <span className="sidebar__search-text">{t("cmdPalette.searchPlaceholder") || "Cari cepat..."}</span>
+            <kbd className="sidebar__search-kbd">Ctrl K</kbd>
           </button>
         </div>
       </div>
