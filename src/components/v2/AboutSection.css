@@ -301,3 +301,7 @@
     text-align: center;
   }
 }
+/* GitHub Widget Section */
+.about-section__github {
+  margin-top: 4px;
+}
