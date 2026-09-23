@@ -121,9 +121,6 @@ export default function AboutSection() {
           </svg>
           GitHub Activity
         </h2>
-        <p className="about-section__section-subtitle">
-          {isEn ? "Live stats from GitHub public API · Auto-refreshed every 10 minutes" : "Statistik langsung dari GitHub API publik · Diperbarui otomatis setiap 10 menit"}
-        </p>
         <GitHubStatsWidget />
       </div>
     </section>

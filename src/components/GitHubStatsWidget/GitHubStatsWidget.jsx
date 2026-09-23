@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from "react";
+﻿import React, { useState, useEffect } from "react";
 import {
-  LuGithub, LuStar, LuGitFork, LuUsers, LuCode, LuTrendingUp,
-  LuExternalLink, LuRefreshCw, LuCalendar, LuGitCommitHorizontal,
-  LuGitPullRequest, LuCircleDot, LuShield, LuLock
+  LuGithub, LuGitCommitHorizontal, LuStar, LuGitFork,
+  LuCode, LuUsers, LuExternalLink, LuRefreshCw,
+  LuGitPullRequest, LuCircleDot, LuShield, LuLock, LuFlame, LuZap
 } from "react-icons/lu";
 import "./GitHubStatsWidget.css";
 
 const GITHUB_USERNAME = "LeebSite";
-const CACHE_KEY        = "gh_stats_cache_v2";
+const CACHE_KEY        = "gh_stats_cache_v5";
 const CACHE_TTL        = 10 * 60 * 1000; // 10 menit
 
 // Warna bahasa pemrograman
@@ -20,7 +20,7 @@ const LANG_COLORS = {
 const getLangColor = (lang) => LANG_COLORS[lang] || "#8b949e";
 
 const formatNumber = (n) => {
-  if (!n && n !== 0) return "–";
+  if (!n && n !== 0) return "—";
   if (n >= 1000) return (n / 1000).toFixed(1) + "k";
   return String(n);
 };
@@ -29,13 +29,13 @@ const timeAgo = (dateStr) => {
   const diff = Math.floor((Date.now() - new Date(dateStr)) / 1000);
   if (diff < 60)           return diff + "s ago";
   if (diff < 3600)         return Math.floor(diff / 60) + "m ago";
-  if (diff < 86400)        return Math.floor(diff / 3600) + "h ago";
+  if (diff < 86400)        return Math.floor(diff / 86400) + "d ago";
   if (diff < 86400 * 30)  return Math.floor(diff / 86400) + "d ago";
   if (diff < 86400 * 365) return Math.floor(diff / (86400 * 30)) + "mo ago";
   return Math.floor(diff / (86400 * 365)) + "y ago";
 };
 
-// ── GraphQL query untuk data kontribusi (termasuk private jika diizinkan) ──
+// ─── GraphQL query untuk data kontribusi (termasuk private jika diizinkan) ───
 const CONTRIBUTIONS_QUERY = `
   query ContribData($login: String!, $from: DateTime!, $to: DateTime!) {
     user(login: $login) {
@@ -74,9 +74,9 @@ const CONTRIBUTIONS_QUERY = `
 `;
 
 async function fetchViaGraphQL(token) {
-  const now   = new Date();
-  const from  = new Date(now.getFullYear(), 0, 1).toISOString();
-  const to    = now.toISOString();
+  const now  = new Date();
+  const from = new Date(now.getTime() - 365 * 24 * 60 * 60 * 1000).toISOString();
+  const to   = now.toISOString();
 
   const res = await fetch("https://api.github.com/graphql", {
     method: "POST",
@@ -129,7 +129,7 @@ async function fetchViaREST() {
     },
     totalStars, totalForks,
     topLanguages,
-    contribs: null,          // tidak tersedia via REST publik
+    contribs: null,
     calendar: null,
     recentRepos: repos.filter(r => !r.fork).slice(0, 4).map(r => ({
       name: r.name, description: r.description, language: r.language,
@@ -153,7 +153,7 @@ async function fetchGitHubStats() {
   let data;
 
   if (token && token !== "ghp_YOUR_TOKEN_HERE" && token.length > 10) {
-    // ── Mode GraphQL (token tersedia) ── termasuk kontribusi private
+    // ─── Mode GraphQL (token tersedia) — termasuk kontribusi private ───
     const gql = await fetchViaGraphQL(token);
     const col  = gql.contributionsCollection;
     const cal  = col.contributionCalendar;
@@ -172,7 +172,6 @@ async function fetchGitHubStats() {
     // Hitung streak dari calendar
     let currentStreak = 0, longestStreak = 0, streak = 0;
     const days = cal.weeks.flatMap(w => w.contributionDays).sort((a, b) => new Date(a.date) - new Date(b.date));
-    const today = new Date().toISOString().slice(0, 10);
     let inStreak = false;
     for (let i = days.length - 1; i >= 0; i--) {
       if (days[i].contributionCount > 0) {
@@ -219,7 +218,7 @@ async function fetchGitHubStats() {
       recentActivity: [],
     };
   } else {
-    // ── Mode REST (tanpa token) ── hanya data publik
+    // ─── Mode REST (tanpa token) — hanya data publik ───
     data = await fetchViaREST();
   }
 
@@ -227,26 +226,31 @@ async function fetchGitHubStats() {
   return data;
 }
 
-// ── Heatmap Cell ──
+// ─── Heatmap Cell (GitHub Classic Green Dark Mode) ───
 function HeatCell({ count, date, maxCount }) {
   const intensity = maxCount > 0 ? count / maxCount : 0;
+  
   const getColor = () => {
-    if (count === 0) return "var(--bg-hover)";
-    if (intensity < 0.25) return "rgba(59,130,246,0.25)";
-    if (intensity < 0.5)  return "rgba(59,130,246,0.5)";
-    if (intensity < 0.75) return "rgba(59,130,246,0.75)";
-    return "#3b82f6";
+    if (count === 0) return "#161b22";
+    if (intensity <= 0.25 || count <= 2) return "#0e4429";
+    if (intensity <= 0.50 || count <= 5) return "#006d32";
+    if (intensity <= 0.75 || count <= 9) return "#26a641";
+    return "#39d353";
   };
+
   return (
     <div
       className="gh-heat-cell"
-      style={{ background: getColor() }}
-      title={`${count} contributions on ${date}`}
+      style={{
+        background: getColor(),
+        outline: count === 0 ? "1px solid rgba(255, 255, 255, 0.04)" : "none",
+      }}
+      title={`${count} contribution${count === 1 ? '' : 's'} on ${date}`}
     />
   );
 }
 
-// ── Contribution Heatmap ──
+// ─── Contribution Heatmap ───
 function ContribHeatmap({ weeks }) {
   const allDays   = weeks.flatMap(w => w.contributionDays);
   const maxCount  = Math.max(...allDays.map(d => d.contributionCount), 1);
@@ -257,10 +261,13 @@ function ContribHeatmap({ weeks }) {
   const monthLabels = [];
   let lastMonth = -1;
   weeks.forEach((week, wi) => {
-    const month = new Date(week.contributionDays[0]?.date).getMonth();
-    if (month !== lastMonth) {
-      monthLabels.push({ wi, label: months[month] });
-      lastMonth = month;
+    const firstDay = week.contributionDays[0];
+    if (firstDay) {
+      const month = new Date(firstDay.date).getMonth();
+      if (month !== lastMonth) {
+        monthLabels.push({ wi, label: months[month] });
+        lastMonth = month;
+      }
     }
   });
 
@@ -287,9 +294,15 @@ function ContribHeatmap({ weeks }) {
       </div>
       <div className="gh-heatmap__legend">
         <span className="gh-heatmap__legend-label">Less</span>
-        {[0, 0.25, 0.5, 0.75, 1].map(v => (
-          <div key={v} className="gh-heat-cell gh-heat-cell--legend"
-            style={{ background: v === 0 ? "var(--bg-hover)" : `rgba(59,130,246,${v})` }} />
+        {["#161b22", "#0e4429", "#006d32", "#26a641", "#39d353"].map((col, idx) => (
+          <div
+            key={idx}
+            className="gh-heat-cell gh-heat-cell--legend"
+            style={{
+              background: col,
+              outline: idx === 0 ? "1px solid rgba(255, 255, 255, 0.05)" : "none"
+            }}
+          />
         ))}
         <span className="gh-heatmap__legend-label">More</span>
       </div>
@@ -297,19 +310,19 @@ function ContribHeatmap({ weeks }) {
   );
 }
 
-// ── Activity Icon ──
+// ─── Activity Icon ───
 function ActivityIcon({ type }) {
   const icons = {
-    PushEvent:          { emoji: "⬆️", label: "Pushed" },
+    PushEvent:          { emoji: "⚡", label: "Pushed" },
     CreateEvent:        { emoji: "✨", label: "Created" },
     PullRequestEvent:   { emoji: "🔀", label: "PR" },
-    IssuesEvent:        { emoji: "🐛", label: "Issue" },
+    IssuesEvent:        { emoji: "🎯", label: "Issue" },
     WatchEvent:         { emoji: "⭐", label: "Starred" },
     ForkEvent:          { emoji: "🍴", label: "Forked" },
     DeleteEvent:        { emoji: "🗑️", label: "Deleted" },
     IssueCommentEvent:  { emoji: "💬", label: "Commented" },
   };
-  const item = icons[type] || { emoji: "⚡", label: "Activity" };
+  const item = icons[type] || { emoji: "📦", label: "Activity" };
   return <span className="gh-activity__icon" title={item.label}>{item.emoji}</span>;
 }
 
@@ -346,7 +359,7 @@ export default function GitHubStatsWidget() {
   return (
     <div className="gh-widget">
 
-      {/* ── Header ── */}
+      {/* ─── Header ─── */}
       <div className="gh-widget__header">
         <div className="gh-widget__profile">
           <div className="gh-widget__avatar-wrap">
@@ -381,7 +394,7 @@ export default function GitHubStatsWidget() {
         </div>
       </div>
 
-      {/* ── Stats Bar ── */}
+      {/* ─── Stats Bar ─── */}
       <div className={`gh-widget__stats-bar ${isGraphQL ? "gh-widget__stats-bar--6" : ""}`}>
         <div className="gh-widget__stat-item">
           <LuCode size={14} className="gh-widget__stat-icon" />
@@ -400,64 +413,63 @@ export default function GitHubStatsWidget() {
           <span className="gh-widget__stat-val">{formatNumber(user.followers)}</span>
           <span className="gh-widget__stat-lbl">Followers</span>
         </div>
-        {isGraphQL && contribs && (<>
-          <div className="gh-widget__stat-divider" />
-          <div className="gh-widget__stat-item">
-            <LuGitCommitHorizontal size={14} className="gh-widget__stat-icon gh-widget__stat-icon--green" />
-            <span className="gh-widget__stat-val">{formatNumber(contribs.total)}</span>
-            <span className="gh-widget__stat-lbl">Kontribusi</span>
-          </div>
-          <div className="gh-widget__stat-divider" />
-          <div className="gh-widget__stat-item">
-            <LuGitFork size={14} className="gh-widget__stat-icon gh-widget__stat-icon--blue" />
-            <span className="gh-widget__stat-val">{formatNumber(currentStreak)}</span>
-            <span className="gh-widget__stat-lbl">Streak</span>
-          </div>
-        </>)}
-        {!isGraphQL && (<>
-          <div className="gh-widget__stat-divider" />
-          <div className="gh-widget__stat-item">
-            <LuGitFork size={14} className="gh-widget__stat-icon gh-widget__stat-icon--blue" />
-            <span className="gh-widget__stat-val">{formatNumber(totalForks)}</span>
-            <span className="gh-widget__stat-lbl">Forks</span>
-          </div>
-        </>)}
+        {isGraphQL && contribs && (
+          <>
+            <div className="gh-widget__stat-divider" />
+            <div className="gh-widget__stat-item">
+              <LuGitCommitHorizontal size={14} className="gh-widget__stat-icon gh-widget__stat-icon--green" />
+              <span className="gh-widget__stat-val">{formatNumber(contribs.total)}</span>
+              <span className="gh-widget__stat-lbl">Contribs (1y)</span>
+            </div>
+            <div className="gh-widget__stat-divider" />
+            <div className="gh-widget__stat-item">
+              <LuZap size={14} className="gh-widget__stat-icon gh-widget__stat-icon--yellow" />
+              <span className="gh-widget__stat-val">{longestStreak}d</span>
+              <span className="gh-widget__stat-lbl">Streak</span>
+            </div>
+          </>
+        )}
       </div>
 
-      {/* ── Token Banner (jika REST mode) ── */}
-      {!isGraphQL && (
-        <div className="gh-widget__token-banner">
-          <LuLock size={13} />
-          <span>
-            Tambahkan <code>VITE_GITHUB_TOKEN</code> di <code>.env.local</code> untuk menampilkan
-            kontribusi private &amp; heatmap lengkap.
-          </span>
-        </div>
-      )}
-
-      {/* ── Tabs ── */}
+      {/* ─── Navigation Tabs ─── */}
       <div className="gh-widget__tabs">
-        {["overview", "repos", isGraphQL ? "contribs" : "activity"].map(tab => (
+        <button
+          className={`gh-widget__tab ${activeTab === "overview" ? "gh-widget__tab--active" : ""}`}
+          onClick={() => setActiveTab("overview")}
+        >
+          Overview
+        </button>
+        <button
+          className={`gh-widget__tab ${activeTab === "repos" ? "gh-widget__tab--active" : ""}`}
+          onClick={() => setActiveTab("repos")}
+        >
+          Top Repos ({recentRepos.length})
+        </button>
+        {isGraphQL && (
           <button
-            key={tab}
-            className={"gh-widget__tab" + (activeTab === tab ? " gh-widget__tab--active" : "")}
-            onClick={() => setActiveTab(tab)}
+            className={`gh-widget__tab ${activeTab === "contribs" ? "gh-widget__tab--active" : ""}`}
+            onClick={() => setActiveTab("contribs")}
           >
-            {tab === "overview"  && <LuTrendingUp size={12} />}
-            {tab === "repos"     && <LuCode size={12} />}
-            {tab === "contribs"  && <LuGitCommitHorizontal size={12} />}
-            {tab === "activity"  && <LuCalendar size={12} />}
-            {{overview:"Overview", repos:"Repos", contribs:"Kontribusi", activity:"Activity"}[tab]}
+            Kontribusi Detail
           </button>
-        ))}
+        )}
+        {!isGraphQL && (
+          <button
+            className={`gh-widget__tab ${activeTab === "activity" ? "gh-widget__tab--active" : ""}`}
+            onClick={() => setActiveTab("activity")}
+          >
+            Activity
+          </button>
+        )}
       </div>
 
-      {/* ── Body ── */}
+      {/* ─── Tab Content ─── */}
       <div className="gh-widget__body">
 
         {/* OVERVIEW */}
         {activeTab === "overview" && (
           <div className="gh-widget__overview">
+            {/* Top Languages */}
             <p className="gh-widget__section-label">Top Languages</p>
             <div className="gh-lang-bar">
               {topLanguages.map(({ lang, pct }) => (
@@ -480,11 +492,11 @@ export default function GitHubStatsWidget() {
             <div className="gh-widget__contrib-wrap">
               <div className="gh-widget__contrib-header">
                 <p className="gh-widget__section-label" style={{margin:0}}>
-                  Contribution Graph {isGraphQL && <span className="gh-year-label">(2026 · termasuk private)</span>}
+                  {contribs?.total ? `${contribs.total} contributions in the last year` : "Contribution Graph"}
                 </p>
                 {isGraphQL && hasPrivate && (
                   <span className="gh-private-note">
-                    <LuLock size={10}/> Kontribusi private: <strong>{contribs?.private}</strong>
+                    <LuLock size={10}/> Private incl: <strong>{contribs?.private}</strong>
                   </span>
                 )}
               </div>
@@ -494,7 +506,7 @@ export default function GitHubStatsWidget() {
               ) : (
                 <div className="gh-widget__contrib-img-wrap">
                   <img
-                    src={`https://ghchart.rshah.org/3b82f6/${GITHUB_USERNAME}`}
+                    src={`https://ghchart.rshah.org/39d353/${GITHUB_USERNAME}`}
                     alt="GitHub Contribution Chart"
                     className="gh-widget__contrib-img"
                     loading="lazy"
@@ -579,7 +591,7 @@ export default function GitHubStatsWidget() {
                 <span className="gh-streak-lbl">Current Streak (hari)</span>
               </div>
               <div className="gh-streak-item">
-                <span className="gh-streak-val">🏆 {longestStreak}</span>
+                <span className="gh-streak-val">⚡ {longestStreak}</span>
                 <span className="gh-streak-lbl">Longest Streak (hari)</span>
               </div>
             </div>
@@ -605,15 +617,15 @@ export default function GitHubStatsWidget() {
         )}
       </div>
 
-      {/* ── Footer ── */}
+      {/* ─── Footer ─── */}
       <div className="gh-widget__footer">
         <span className="gh-widget__footer-text">
           <LuGithub size={12} />
-          {isGraphQL ? "GraphQL API · Private incl. · " : "REST API · "}
+          {isGraphQL ? "GraphQL API • Private incl. • " : "REST API • "}
           Cached 10min
         </span>
         <a href={user.profileUrl} target="_blank" rel="noopener noreferrer" className="gh-widget__view-profile">
-          View Profile →
+          View Profile ↗
         </a>
       </div>
     </div>
