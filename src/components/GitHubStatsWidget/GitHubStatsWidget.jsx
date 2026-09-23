@@ -2,12 +2,12 @@
 import {
   LuGithub, LuGitCommitHorizontal, LuStar, LuGitFork,
   LuCode, LuUsers, LuExternalLink, LuRefreshCw,
-  LuGitPullRequest, LuCircleDot, LuShield, LuLock, LuFlame, LuZap
+  LuGitPullRequest, LuCircleDot, LuShield, LuLock, LuZap
 } from "react-icons/lu";
 import "./GitHubStatsWidget.css";
 
 const GITHUB_USERNAME = "LeebSite";
-const CACHE_KEY        = "gh_stats_cache_v5";
+const CACHE_KEY        = "gh_stats_cache_v6";
 const CACHE_TTL        = 10 * 60 * 1000; // 10 menit
 
 // Warna bahasa pemrograman
@@ -226,25 +226,23 @@ async function fetchGitHubStats() {
   return data;
 }
 
-// ─── Heatmap Cell (GitHub Classic Green Dark Mode) ───
-function HeatCell({ count, date, maxCount }) {
+// ─── Level Calculation (GitHub Standard 0 to 4) ───
+function getContribLevel(count, maxCount) {
+  if (count === 0) return 0;
   const intensity = maxCount > 0 ? count / maxCount : 0;
-  
-  const getColor = () => {
-    if (count === 0) return "#161b22";
-    if (intensity <= 0.25 || count <= 2) return "#0e4429";
-    if (intensity <= 0.50 || count <= 5) return "#006d32";
-    if (intensity <= 0.75 || count <= 9) return "#26a641";
-    return "#39d353";
-  };
+  if (intensity <= 0.25 || count <= 2) return 1;
+  if (intensity <= 0.50 || count <= 5) return 2;
+  if (intensity <= 0.75 || count <= 9) return 3;
+  return 4;
+}
+
+// ─── Heatmap Cell (Adapts to Light / Dark Mode via CSS variables) ───
+function HeatCell({ count, date, maxCount }) {
+  const level = getContribLevel(count, maxCount);
 
   return (
     <div
-      className="gh-heat-cell"
-      style={{
-        background: getColor(),
-        outline: count === 0 ? "1px solid rgba(255, 255, 255, 0.04)" : "none",
-      }}
+      className={`gh-heat-cell gh-heat-cell--l${level}`}
       title={`${count} contribution${count === 1 ? '' : 's'} on ${date}`}
     />
   );
@@ -294,14 +292,10 @@ function ContribHeatmap({ weeks }) {
       </div>
       <div className="gh-heatmap__legend">
         <span className="gh-heatmap__legend-label">Less</span>
-        {["#161b22", "#0e4429", "#006d32", "#26a641", "#39d353"].map((col, idx) => (
+        {[0, 1, 2, 3, 4].map(level => (
           <div
-            key={idx}
-            className="gh-heat-cell gh-heat-cell--legend"
-            style={{
-              background: col,
-              outline: idx === 0 ? "1px solid rgba(255, 255, 255, 0.05)" : "none"
-            }}
+            key={level}
+            className={`gh-heat-cell gh-heat-cell--legend gh-heat-cell--l${level}`}
           />
         ))}
         <span className="gh-heatmap__legend-label">More</span>
@@ -506,7 +500,7 @@ export default function GitHubStatsWidget() {
               ) : (
                 <div className="gh-widget__contrib-img-wrap">
                   <img
-                    src={`https://ghchart.rshah.org/39d353/${GITHUB_USERNAME}`}
+                    src={`https://ghchart.rshah.org/216e39/${GITHUB_USERNAME}`}
                     alt="GitHub Contribution Chart"
                     className="gh-widget__contrib-img"
                     loading="lazy"

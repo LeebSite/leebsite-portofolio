@@ -1,4 +1,26 @@
 ﻿/* ─── GitHubStatsWidget CSS ─── */
+:root {
+  --gh-heat-bg: #f8fafc;
+  --gh-heat-border: #e2e8f0;
+  --gh-heat-l0: #ebedf0;
+  --gh-heat-l0-border: rgba(27, 31, 35, 0.06);
+  --gh-heat-l1: #9be9a8;
+  --gh-heat-l2: #40c463;
+  --gh-heat-l3: #30a14e;
+  --gh-heat-l4: #216e39;
+}
+
+.dark {
+  --gh-heat-bg: rgba(0, 0, 0, 0.25);
+  --gh-heat-border: var(--border-color);
+  --gh-heat-l0: #161b22;
+  --gh-heat-l0-border: rgba(255, 255, 255, 0.05);
+  --gh-heat-l1: #0e4429;
+  --gh-heat-l2: #006d32;
+  --gh-heat-l3: #26a641;
+  --gh-heat-l4: #39d353;
+}
+
 .gh-widget {
   background: var(--bg-card);
   border: 1px solid var(--border-color);
@@ -315,8 +337,8 @@
 .gh-heatmap {
   overflow-x: auto;
   padding: 14px 14px 10px;
-  background: rgba(0, 0, 0, 0.22);
-  border: 1px solid var(--border-color);
+  background: var(--gh-heat-bg);
+  border: 1px solid var(--gh-heat-border);
   border-radius: 10px;
 }
 
@@ -330,7 +352,7 @@
 
 .gh-heatmap__month {
   font-size: 10px;
-  color: var(--text-tertiary);
+  color: var(--text-secondary);
   white-space: nowrap;
 }
 
@@ -348,7 +370,7 @@
 
 .gh-heatmap__day-lbl {
   font-size: 9px;
-  color: var(--text-tertiary);
+  color: var(--text-secondary);
   width: 22px;
   text-align: right;
   line-height: 12px;
@@ -377,8 +399,18 @@
 .gh-heat-cell:hover {
   transform: scale(1.35);
   z-index: 5;
-  filter: brightness(1.2);
+  filter: brightness(1.15);
 }
+
+.gh-heat-cell--l0 {
+  background: var(--gh-heat-l0);
+  outline: 1px solid var(--gh-heat-l0-border);
+}
+.gh-heat-cell--l1 { background: var(--gh-heat-l1); }
+.gh-heat-cell--l2 { background: var(--gh-heat-l2); }
+.gh-heat-cell--l3 { background: var(--gh-heat-l3); }
+.gh-heat-cell--l4 { background: var(--gh-heat-l4); }
+
 .gh-heat-cell--legend {
   width: 11px;
   height: 11px;
@@ -398,7 +430,7 @@
 }
 .gh-heatmap__legend-label {
   font-size: 10px;
-  color: var(--text-tertiary);
+  color: var(--text-secondary);
 }
 
 /* ─── Repo Cards ─── */
