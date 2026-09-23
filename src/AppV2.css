@@ -119,3 +119,103 @@ body {
 }
 
 
+
+
+/* ============================================================
+   SECTION LOADER SKELETON (Suspense Fallback)
+   ============================================================ */
+
+.section-loader-fallback {
+  padding: 36px 40px 48px;
+  background: var(--bg-card);
+  min-height: 480px;
+  animation: loaderFadeIn 0.2s ease;
+}
+
+@keyframes loaderFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.section-loader-card {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.section-loader-header {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.skeleton-line {
+  height: 14px;
+  border-radius: 6px;
+  background: linear-gradient(
+    90deg,
+    var(--bg-hover) 25%,
+    var(--border-color) 50%,
+    var(--bg-hover) 75%
+  );
+  background-size: 200% 100%;
+  animation: skeletonShimmer 1.5s infinite linear;
+}
+
+.skeleton-title {
+  width: 35%;
+  height: 24px;
+  border-radius: 8px;
+}
+
+.skeleton-subtitle {
+  width: 55%;
+  height: 14px;
+}
+
+.skeleton-divider {
+  height: 1px;
+  background: var(--border-color);
+  margin: 4px 0;
+}
+
+.section-loader-body {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.skeleton-p1 { width: 100%; }
+.skeleton-p2 { width: 92%; }
+.skeleton-p3 { width: 78%; }
+
+.section-loader-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-top: 12px;
+}
+
+.skeleton-box {
+  height: 160px;
+  border-radius: 12px;
+  background: linear-gradient(
+    90deg,
+    var(--bg-hover) 25%,
+    var(--border-color) 50%,
+    var(--bg-hover) 75%
+  );
+  background-size: 200% 100%;
+  animation: skeletonShimmer 1.5s infinite linear;
+}
+
+@keyframes skeletonShimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+@media (max-width: 600px) {
+  .section-loader-fallback { padding: 24px 16px; }
+  .section-loader-grid { grid-template-columns: 1fr; }
+}
+
