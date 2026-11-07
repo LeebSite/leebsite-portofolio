@@ -1,4 +1,4 @@
-﻿:root {
+:root {
   --bg-page: #ffffff;
   --bg-card: #ffffff;
   --bg-hover: #f9fafb;
@@ -103,6 +103,16 @@ body {
     gap: 0;
   }
   .app-v2__sections > *:not(.app-v2__section-gap) {
+    padding: 24px 20px 40px !important;
+    border-radius: 0;
+    box-shadow: none;
+  }
+  .app-v2__sections > section {
+    padding: 0 !important;
+    border-radius: 0;
+    box-shadow: none;
+  }
+  .app-v2__sections > section > *:not(.app-v2__section-gap) {
     padding: 24px 20px 40px !important;
     border-radius: 0;
     box-shadow: none;
