@@ -208,4 +208,8 @@
   .mobile-header {
     display: flex;
   }
+  .mobile-drawer__nav-item {
+    cursor: pointer;
+    user-select: none;
+  }
 }
