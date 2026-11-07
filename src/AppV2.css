@@ -111,11 +111,22 @@ body {
     padding: 0 !important;
     border-radius: 0;
     box-shadow: none;
+    scroll-margin-top: 80px;
   }
   .app-v2__sections > section > *:not(.app-v2__section-gap) {
     padding: 24px 20px 40px !important;
     border-radius: 0;
     box-shadow: none;
+    scroll-margin-top: 80px;
+  }
+  #home,
+  #about,
+  #experience,
+  #projects,
+  #journey,
+  #achievements,
+  #contact {
+    scroll-margin-top: 80px;
   }
 }
 
