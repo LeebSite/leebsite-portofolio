@@ -1,5 +1,5 @@
-import React, { useState, useEffect, lazy, Suspense } from "react";
-import { Routes, Route, useLocation, useNavigate } from "react-router-dom";
+import React, { useState, useEffect, useRef, lazy, Suspense } from "react";
+import { Routes, Route, useLocation, useNavigate, useMatch } from "react-router-dom";
 import Sidebar from "./components/Sidebar/Sidebar";
 import MobileHeader from "./components/MobileHeader/MobileHeader";
 import "./AppV2.css";
@@ -55,12 +55,78 @@ const SECTIONS = [
 function App() {
   const location = useLocation();
   const navigate = useNavigate();
+  const projectDetailMatch = useMatch("/projects/:id");
+  const isProjectDetail = Boolean(projectDetailMatch);
 
-  // Scroll to top on route change
+  // Mobile detection matching AppV2.css breakpoint (900px)
+  const [isMobile, setIsMobile] = useState(() => {
+    if (typeof window !== "undefined") {
+      return window.matchMedia("(max-width: 900px)").matches;
+    }
+    return false;
+  });
+
   useEffect(() => {
+    const mql = window.matchMedia("(max-width: 900px)");
+    const onChange = (e) => setIsMobile(e.matches);
+
+    if (mql.addEventListener) {
+      mql.addEventListener("change", onChange);
+      return () => mql.removeEventListener("change", onChange);
+    } else {
+      mql.addListener(onChange);
+      return () => mql.removeListener(onChange);
+    }
+  }, []);
+
+  // Scroll to top on route change (Desktop only)
+  useEffect(() => {
+    if (isMobile) return;
     const mainEl = document.querySelector(".app-v2__main");
     if (mainEl) mainEl.scrollTo(0, 0);
-  }, [location.pathname]);
+  }, [location.pathname, isMobile]);
+
+  // Deep link on mobile: scroll to matching section on direct URL load or when returning from detail
+  const initialDeepLinkHandled = useRef(false);
+  const wasInDetailRef = useRef(false);
+
+  useEffect(() => {
+    if (!isMobile) return;
+
+    if (isProjectDetail) {
+      wasInDetailRef.current = true;
+      return;
+    }
+
+    const returningFromDetail = wasInDetailRef.current;
+    wasInDetailRef.current = false;
+
+    if (!initialDeepLinkHandled.current || returningFromDetail) {
+      initialDeepLinkHandled.current = true;
+      const path = location.pathname;
+      if (path === "/" || path === "") {
+        window.scrollTo(0, 0);
+        return;
+      }
+
+      const matched = SECTIONS.find((s) => s.path === path);
+      if (!matched || matched.id === "home") return;
+
+      let attempts = 0;
+      const interval = setInterval(() => {
+        attempts++;
+        const el = document.getElementById(matched.id);
+        if (el) {
+          el.scrollIntoView({ behavior: "smooth" });
+          clearInterval(interval);
+        } else if (attempts >= 20) {
+          clearInterval(interval);
+        }
+      }, 50);
+
+      return () => clearInterval(interval);
+    }
+  }, [isMobile, isProjectDetail]);
 
   return (
     <CvModalProvider>
@@ -79,18 +145,64 @@ function App() {
 
             {/* Section Route Content with Suspense Code-Splitting */}
             <div className="app-v2__sections">
-              <Suspense fallback={<SectionLoader />}>
-                <Routes>
-                  <Route path="/" element={<HomeSection />} />
-                  <Route path="/about" element={<AboutSection />} />
-                  <Route path="/experience" element={<ExperienceSection />} />
-                  <Route path="/projects" element={<ProjectsSection />} />
-                  <Route path="/projects/:id" element={<ProjectDetailPage />} />
-                  <Route path="/journey" element={<JourneySection />} />
-                  <Route path="/achievements" element={<AchievementsSection />} />
-                  <Route path="/contact" element={<ContactSection />} />
-                </Routes>
-              </Suspense>
+              {isMobile && isProjectDetail ? (
+                <Suspense fallback={<SectionLoader />}>
+                  <Routes>
+                    <Route path="/projects/:id" element={<ProjectDetailPage />} />
+                  </Routes>
+                </Suspense>
+              ) : isMobile ? (
+                <>
+                  <section id="home">
+                    <Suspense fallback={<SectionLoader />}>
+                      <HomeSection />
+                    </Suspense>
+                  </section>
+                  <section id="about">
+                    <Suspense fallback={<SectionLoader />}>
+                      <AboutSection />
+                    </Suspense>
+                  </section>
+                  <section id="experience">
+                    <Suspense fallback={<SectionLoader />}>
+                      <ExperienceSection />
+                    </Suspense>
+                  </section>
+                  <section id="projects">
+                    <Suspense fallback={<SectionLoader />}>
+                      <ProjectsSection />
+                    </Suspense>
+                  </section>
+                  <section id="journey">
+                    <Suspense fallback={<SectionLoader />}>
+                      <JourneySection />
+                    </Suspense>
+                  </section>
+                  <section id="achievements">
+                    <Suspense fallback={<SectionLoader />}>
+                      <AchievementsSection />
+                    </Suspense>
+                  </section>
+                  <section id="contact">
+                    <Suspense fallback={<SectionLoader />}>
+                      <ContactSection />
+                    </Suspense>
+                  </section>
+                </>
+              ) : (
+                <Suspense fallback={<SectionLoader />}>
+                  <Routes>
+                    <Route path="/" element={<HomeSection />} />
+                    <Route path="/about" element={<AboutSection />} />
+                    <Route path="/experience" element={<ExperienceSection />} />
+                    <Route path="/projects" element={<ProjectsSection />} />
+                    <Route path="/projects/:id" element={<ProjectDetailPage />} />
+                    <Route path="/journey" element={<JourneySection />} />
+                    <Route path="/achievements" element={<AchievementsSection />} />
+                    <Route path="/contact" element={<ContactSection />} />
+                  </Routes>
+                </Suspense>
+              )}
             </div>
 
             {/* Footer */}

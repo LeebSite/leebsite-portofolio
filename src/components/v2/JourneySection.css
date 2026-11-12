@@ -232,3 +232,102 @@
   }
   .journey-card { gap: 12px; }
 }
+
+
+/* Desktop: accordion list hidden */
+.journey-accordion-list {
+  display: none;
+}
+
+@media (max-width: 900px) {
+  .journey-section {
+    padding: 20px 16px 24px !important;
+  }
+  .journey-section__title {
+    font-size: 20px;
+    margin-bottom: 4px;
+  }
+  .journey-section__divider {
+    margin: 14px 0;
+  }
+  .journey-filter {
+    gap: 6px;
+    margin-bottom: 14px;
+    overflow-x: auto;
+    padding-bottom: 4px;
+    scrollbar-width: none;
+  }
+  .journey-filter::-webkit-scrollbar {
+    display: none;
+  }
+  .journey-filter__btn {
+    padding: 6px 10px;
+    font-size: 11.5px;
+    flex-shrink: 0;
+  }
+  .journey-accordion-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .journey-accordion-card {
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 10px 12px;
+    background: var(--bg-hover);
+  }
+  .journey-accordion-header {
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .journey-accordion-header__meta {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .journey-accordion-date {
+    font-size: 11px;
+    color: var(--text-tertiary);
+  }
+  .journey-accordion-header__row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+  }
+  .journey-accordion-title {
+    font-size: 13.5px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 0;
+    line-height: 1.35;
+  }
+  .journey-accordion-chevron {
+    color: var(--text-tertiary);
+    transition: transform 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .journey-accordion-chevron.open {
+    transform: rotate(180deg);
+    color: var(--accent-blue);
+  }
+  .journey-accordion-body {
+    margin-top: 8px;
+    padding-top: 8px;
+    border-top: 1px solid var(--border-color);
+  }
+  .journey-accordion-body .journey-card__desc {
+    font-size: 12px;
+    line-height: 1.5;
+  }
+  .journey-accordion-body .journey-card__img-wrapper {
+    width: 100%;
+    height: 140px;
+    border-radius: 8px;
+  }
+}

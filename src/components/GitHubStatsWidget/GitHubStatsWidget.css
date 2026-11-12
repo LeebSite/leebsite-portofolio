@@ -152,12 +152,23 @@
 @media (max-width: 680px) {
   .gh-metrics-grid {
     grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+    margin-bottom: 16px;
   }
-}
-
-@media (max-width: 440px) {
-  .gh-metrics-grid {
-    grid-template-columns: 1fr;
+  .gh-metric-box {
+    padding: 10px 8px;
+    gap: 4px;
+    border-radius: 10px;
+  }
+  .gh-metric-box__label {
+    font-size: 11.5px;
+  }
+  .gh-metric-box__val {
+    font-size: 18px;
+    letter-spacing: -0.3px;
+  }
+  .gh-metric-box__unit {
+    font-size: 11px;
   }
 }
 

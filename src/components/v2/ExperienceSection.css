@@ -219,3 +219,103 @@
   position: relative;
   z-index: 2;
 }
+
+@media (max-width: 900px) {
+  .experience-section {
+    padding: 20px 16px 24px !important;
+  }
+  .experience-section__title {
+    font-size: 20px;
+    margin-bottom: 4px;
+  }
+  .experience-section__divider {
+    margin: 14px 0;
+  }
+  .exp-block__title {
+    font-size: 15px;
+    margin-bottom: 2px;
+  }
+  .exp-block__subtitle {
+    font-size: 12px;
+    margin-bottom: 12px;
+  }
+  .exp-list {
+    gap: 8px;
+  }
+  .exp-card--mobile-accordion {
+    padding: 10px 12px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 12px;
+  }
+  .exp-accordion-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    width: 100%;
+  }
+  .exp-accordion-header__titles {
+    flex: 1;
+    min-width: 0;
+  }
+  .exp-accordion-header .exp-card__role {
+    font-size: 13.5px;
+    font-weight: 700;
+    margin-bottom: 2px;
+  }
+  .exp-accordion-header .exp-card__company {
+    font-size: 12px;
+    color: var(--text-secondary);
+    margin-bottom: 2px;
+  }
+  .exp-accordion-header .exp-card__period {
+    font-size: 11px;
+    color: var(--text-tertiary);
+  }
+  .exp-accordion-chevron {
+    color: var(--text-tertiary);
+    transition: transform 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .exp-accordion-chevron.open {
+    transform: rotate(180deg);
+    color: var(--accent-blue);
+  }
+  .exp-accordion-body {
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid var(--border-color);
+  }
+  .exp-accordion-body .exp-card__meta {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-bottom: 10px;
+  }
+  .exp-accordion-body .exp-card__location {
+    font-size: 11.5px;
+    color: var(--text-secondary);
+  }
+  .exp-card__badges {
+    display: flex;
+    gap: 6px;
+  }
+  .exp-accordion-body .exp-card__desc {
+    padding-left: 18px;
+    font-size: 12px;
+    line-height: 1.5;
+    margin-bottom: 10px;
+  }
+  .exp-accordion-body .exp-card__skills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+  }
+  .exp-accordion-body .exp-skill-tag {
+    font-size: 10.5px;
+    padding: 2px 7px;
+  }
+}

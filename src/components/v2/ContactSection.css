@@ -754,13 +754,110 @@
   cursor: not-allowed;
 }
 
-@media (max-width: 800px) {
+@media (max-width: 900px) {
   .contact-section {
-    padding: 24px 16px 40px;
+    padding: 20px 16px 24px !important;
   }
-
+  .contact-section__title {
+    font-size: 20px;
+    margin-bottom: 4px;
+  }
+  .contact-section__subtitle {
+    font-size: 13px;
+    margin-bottom: 8px;
+  }
+  .contact-section__divider {
+    margin-bottom: 16px;
+  }
   .contact-layout {
     grid-template-columns: 1fr;
-    gap: 24px;
+    gap: 16px;
+  }
+  .contact-info {
+    gap: 8px;
+  }
+  .contact-info__item {
+    padding: 10px 12px;
+    border-radius: 10px;
+    gap: 10px;
+  }
+  .contact-info__icon {
+    width: 32px;
+    height: 32px;
+    min-width: 32px;
+    font-size: 15px;
+  }
+  .contact-info__label {
+    font-size: 11px;
+    margin-bottom: 2px;
+  }
+  .contact-info__value {
+    font-size: 12.5px;
+  }
+  .contact-relocation-badge {
+    font-size: 10px;
+    padding: 2px 7px;
+  }
+  .contact-copy-btn {
+    padding: 2px 7px;
+    font-size: 10.5px;
+  }
+  .contact-form-wrapper {
+    padding: 16px;
+    border-radius: 12px;
+  }
+  .contact-form-title {
+    font-size: 15px;
+    margin-bottom: 4px;
+  }
+  .contact-form-desc {
+    font-size: 12px;
+    margin-bottom: 12px;
+  }
+  .contact-form__group {
+    margin-bottom: 10px;
+  }
+  .contact-form__label {
+    font-size: 11.5px;
+    margin-bottom: 4px;
+  }
+  .contact-subject-chips {
+    gap: 5px;
+  }
+  .contact-subject-chip {
+    padding: 4px 9px;
+    font-size: 11px;
+  }
+  .contact-form__input,
+  .contact-form__textarea {
+    padding: 8px 12px;
+    font-size: 12.5px;
+  }
+  .contact-form__textarea {
+    min-height: 80px;
+    height: 80px;
+  }
+  .contact-form__btn {
+    padding: 9px 16px;
+    font-size: 13px;
+    margin-top: 4px;
+  }
+  .contact-chat-wrapper {
+    margin-top: 16px;
+    padding: 14px;
+    border-radius: 12px;
+  }
+  .contact-chat-header {
+    margin-bottom: 8px;
+  }
+  .contact-chat-title {
+    font-size: 15px;
+  }
+  .contact-chat-desc {
+    font-size: 11.5px;
+  }
+  .chat-room__messages {
+    max-height: 200px;
+    padding: 10px;
   }
 }

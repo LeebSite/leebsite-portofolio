@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import "./ProjectsSection.css";
 import { listProyek } from "../../data";
@@ -151,9 +151,77 @@ function ProjectCard({ proyek, descLen }) {
   );
 }
 
+function MobileProjectCard({ proyek }) {
+  const navigate = useNavigate();
+  const { isEn, projectTranslations } = useLanguage();
+
+  const tr = isEn && projectTranslations[proyek.id]?.en;
+  const fullDesc = tr?.fullDescription || proyek.fullDescription;
+  const subtitle = tr?.subtitle || proyek.subtitle;
+  const desc = subtitle || (fullDesc ? fullDesc.substring(0, 80) : "");
+
+  return (
+    <div
+      className="project-compact-card"
+      onClick={() => navigate(`/projects/${proyek.id}`)}
+      role="button"
+      tabIndex={0}
+    >
+      <div className="project-compact-card__thumb-wrapper">
+        <img
+          src={proyek.image}
+          alt={proyek.title}
+          className="project-compact-card__thumb"
+          onError={(e) => {
+            if (!e.target.dataset.fallbackTried) {
+              e.target.dataset.fallbackTried = 'true';
+              e.target.src = '/assets/proyek/projek' + (((proyek.id - 1) % 6) + 1) + '.png';
+            } else {
+              e.target.style.display = 'none';
+            }
+          }}
+        />
+      </div>
+      <div className="project-compact-card__info">
+        <h3 className="project-compact-card__title">{proyek.title}</h3>
+        <p className="project-compact-card__desc">{desc}</p>
+        <div className="project-compact-card__tech">
+          {proyek.tech && proyek.tech.slice(0, 3).map((t, idx) => (
+            <span
+              key={idx}
+              className="project-compact-card__tech-pill"
+              style={{ "--dot-color": TECH_COLORS[t] || "#9ca3af" }}
+            >
+              <span className="tech-dot" />{t}
+            </span>
+          ))}
+          {proyek.tech && proyek.tech.length > 3 && (
+            <span className="project-compact-card__tech-more">+{proyek.tech.length - 3}</span>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function ProjectsSection() {
   const [activeFilter, setActiveFilter] = useState("All");
-  const { t } = useLanguage();
+  const [showAllMobile, setShowAllMobile] = useState(false);
+  const { t, isEn } = useLanguage();
+
+  const [isMobile, setIsMobile] = useState(() => {
+    if (typeof window !== "undefined") {
+      return window.matchMedia("(max-width: 900px)").matches;
+    }
+    return false;
+  });
+
+  useEffect(() => {
+    const mql = window.matchMedia("(max-width: 900px)");
+    const onChange = (e) => setIsMobile(e.matches);
+    mql.addEventListener("change", onChange);
+    return () => mql.removeEventListener("change", onChange);
+  }, []);
 
   const filteredProjects = listProyek.filter((p) =>
     activeFilter === "All" || (p.categories && p.categories.includes(activeFilter))
@@ -162,6 +230,8 @@ export default function ProjectsSection() {
   // Split into two columns (Pinterest style)
   const leftCol = filteredProjects.filter((_, i) => i % 2 === 0);
   const rightCol = filteredProjects.filter((_, i) => i % 2 === 1);
+
+  const mobileProjects = showAllMobile ? filteredProjects : filteredProjects.slice(0, 3);
 
   const counts = {};
   filterCategories.forEach(cat => {
@@ -195,27 +265,65 @@ export default function ProjectsSection() {
         })}
       </div>
 
-      {/* Pinterest 2-column layout */}
-      <div className="projects-pinterest">
-        <div className="projects-col">
-          {leftCol.map((proyek, i) => (
-            <ProjectCard
-              key={proyek.id}
-              proyek={proyek}
-              descLen={DESC_LENGTHS[(i * 2) % DESC_LENGTHS.length]}
-            />
+      {/* Mobile compact list vs Desktop Pinterest layout */}
+      {isMobile ? (
+        <div className="projects-compact-list">
+          {mobileProjects.map((proyek) => (
+            <MobileProjectCard key={proyek.id} proyek={proyek} />
           ))}
+          {filteredProjects.length > 3 && (
+            <button
+              type="button"
+              className="projects__show-more-btn"
+              onClick={() => setShowAllMobile(!showAllMobile)}
+            >
+              <span>
+                {showAllMobile
+                  ? (isEn ? "Show fewer projects" : "Tampilkan lebih sedikit")
+                  : (isEn ? `Show more projects (${filteredProjects.length - 3} more)` : `Lihat lebih banyak proyek (${filteredProjects.length - 3} lainnya)`)}
+              </span>
+              <svg
+                style={{
+                  transform: showAllMobile ? "rotate(180deg)" : "rotate(0deg)",
+                  transition: "transform 0.2s ease"
+                }}
+                stroke="currentColor"
+                fill="none"
+                strokeWidth="2"
+                viewBox="0 0 24 24"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                height="15"
+                width="15"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </button>
+          )}
         </div>
-        <div className="projects-col">
-          {rightCol.map((proyek, i) => (
-            <ProjectCard
-              key={proyek.id}
-              proyek={proyek}
-              descLen={DESC_LENGTHS[(i * 2 + 1) % DESC_LENGTHS.length]}
-            />
-          ))}
+      ) : (
+        <div className="projects-pinterest">
+          <div className="projects-col">
+            {leftCol.map((proyek, i) => (
+              <ProjectCard
+                key={proyek.id}
+                proyek={proyek}
+                descLen={DESC_LENGTHS[(i * 2) % DESC_LENGTHS.length]}
+              />
+            ))}
+          </div>
+          <div className="projects-col">
+            {rightCol.map((proyek, i) => (
+              <ProjectCard
+                key={proyek.id}
+                proyek={proyek}
+                descLen={DESC_LENGTHS[(i * 2 + 1) % DESC_LENGTHS.length]}
+              />
+            ))}
+          </div>
         </div>
-      </div>
+      )}
     </section>
   );
 }

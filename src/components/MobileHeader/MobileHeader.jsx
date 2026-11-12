@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { NavLink, useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { FiHome, FiUser, FiBriefcase, FiLayers, FiCompass, FiAward, FiMail, FiMenu, FiX } from "react-icons/fi";
 import { HiCheckBadge } from "react-icons/hi2";
 import "./MobileHeader.css";
@@ -13,6 +13,7 @@ export default function MobileHeader() {
   const { openPalette } = useCommandPalette();
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
   const [darkMode, setDarkMode] = useState(false);
   const { language, setLanguage, t } = useLanguage();
 
@@ -25,6 +26,66 @@ export default function MobileHeader() {
     { id: "achievements", path: "/achievements", label: t("nav.achievements"), icon: <FiAward /> },
     { id: "contact", path: "/contact", label: t("nav.contact"), icon: <FiMail /> },
   ];
+
+  const getInitialSection = () => {
+    if (location.pathname.startsWith("/projects/") && location.pathname !== "/projects") {
+      return "projects";
+    }
+    const found = navItems.find((item) => item.path === location.pathname);
+    return found ? found.id : "home";
+  };
+
+  const [activeSection, setActiveSection] = useState(getInitialSection);
+
+  // ScrollSpy with IntersectionObserver for continuous mobile scroll
+  useEffect(() => {
+    const isDetailPage = location.pathname.startsWith("/projects/") && location.pathname !== "/projects";
+    if (isDetailPage) {
+      setActiveSection("projects");
+      return;
+    }
+
+    const sectionIds = ["home", "about", "experience", "projects", "journey", "achievements", "contact"];
+    let observer = null;
+
+    const initObserver = () => {
+      const elements = sectionIds
+        .map((id) => document.getElementById(id))
+        .filter(Boolean);
+
+      if (elements.length === 0) return false;
+
+      observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              setActiveSection(entry.target.id);
+            }
+          });
+        },
+        {
+          root: null,
+          rootMargin: "-80px 0px -60% 0px",
+          threshold: 0,
+        }
+      );
+
+      elements.forEach((el) => observer.observe(el));
+      return true;
+    };
+
+    if (!initObserver()) {
+      const timer = setTimeout(initObserver, 150);
+      return () => {
+        clearTimeout(timer);
+        if (observer) observer.disconnect();
+      };
+    }
+
+    return () => {
+      if (observer) observer.disconnect();
+    };
+  }, [location.pathname]);
 
   useEffect(() => {
     setDarkMode(document.body.classList.contains("dark"));
@@ -54,6 +115,24 @@ export default function MobileHeader() {
     }
     return () => { document.body.style.overflow = ""; };
   }, [isOpen]);
+
+  const handleNavClick = (e, item) => {
+    e.preventDefault();
+    setIsOpen(false);
+
+    const isDetailPage = location.pathname.startsWith("/projects/") && location.pathname !== "/projects";
+    if (isDetailPage) {
+      navigate(item.path);
+      return;
+    }
+
+    const el = document.getElementById(item.id);
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth" });
+    }
+    setActiveSection(item.id);
+    navigate(item.path, { replace: true });
+  };
 
   return (
     <>
@@ -115,17 +194,18 @@ export default function MobileHeader() {
 
         <nav className="mobile-drawer__nav">
           {navItems.map((item) => (
-            <NavLink
+            <a
               key={item.id}
-              to={item.path}
-              className={({ isActive }) => `mobile-drawer__nav-item ${isActive || (item.id === "projects" && location.pathname.startsWith("/projects")) ? "active" : ""}`}
+              href={item.path}
+              onClick={(e) => handleNavClick(e, item)}
+              className={`mobile-drawer__nav-item ${activeSection === item.id ? "active" : ""}`}
             >
               <span className="mobile-drawer__nav-icon">{item.icon}</span>
               <span className="mobile-drawer__nav-label">{item.label}</span>
               <span className="mobile-drawer__nav-arrow">
                 <svg stroke="currentColor" fill="none" strokeWidth="2" viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
               </span>
-            </NavLink>
+            </a>
           ))}
         </nav>
       </div>
