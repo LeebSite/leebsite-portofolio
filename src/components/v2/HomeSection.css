@@ -225,4 +225,46 @@
   .home-section__read-more-arrow.up {
     transform: rotate(180deg);
   }
+  .skills__badges {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 7px;
+  }
+  .skill-badge {
+    padding: 6px 6px;
+    font-size: 11px;
+    gap: 4px;
+    border-radius: 6px;
+    justify-content: center;
+  }
+  .skill-badge__icon {
+    width: 14px;
+    height: 14px;
+  }
+  .skill-badge__name {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 11px;
+  }
+  .skills__expand-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    width: 100%;
+    margin-top: 12px;
+    padding: 8px 14px;
+    border-radius: 8px;
+    background: var(--bg-hover);
+    border: 1px solid var(--border-color);
+    color: var(--accent-blue);
+    font-size: 12.5px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  .skills__expand-btn:active {
+    background: var(--bg-active);
+  }
 }
