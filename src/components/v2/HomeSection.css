@@ -172,3 +172,57 @@
   object-fit: contain;
   flex-shrink: 0;
 }
+
+
+/* Desktop: read more hidden, bio extra always visible */
+.home-section__read-more-btn {
+  display: none;
+}
+.home-section__bio-extra {
+  display: block;
+}
+
+@media (max-width: 900px) {
+  .home-section {
+    padding: 20px 16px 24px;
+  }
+  .home-section__title {
+    font-size: 20px;
+    margin-bottom: 6px;
+  }
+  .home-section__header {
+    margin-bottom: 12px;
+  }
+  .home-section__divider {
+    margin: 14px 0;
+  }
+  .home-section__bio {
+    font-size: 13.5px;
+    line-height: 1.6;
+  }
+  .home-section__bio-extra {
+    display: none;
+  }
+  .home-section__bio-extra.expanded {
+    display: block;
+  }
+  .home-section__read-more-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 10px;
+    background: transparent;
+    border: none;
+    color: var(--accent-blue);
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    padding: 4px 0;
+  }
+  .home-section__read-more-arrow {
+    transition: transform 0.2s ease;
+  }
+  .home-section__read-more-arrow.up {
+    transform: rotate(180deg);
+  }
+}

@@ -50,7 +50,8 @@ const TABS = ["All", "Main", "Frontend", "Backend", "Data", "Database", "Tools"]
 
 export default function HomeSection() {
   const [activeTab, setActiveTab] = useState("All");
-  const { t } = useLanguage();
+  const [bioExpanded, setBioExpanded] = useState(false);
+  const { t, isEn } = useLanguage();
 
   const filteredSkills = ALL_SKILLS.filter(skill => 
     activeTab === "All" || skill.cats.includes(activeTab)
@@ -74,7 +75,17 @@ export default function HomeSection() {
 
       <div className="home-section__bio">
         <p dangerouslySetInnerHTML={{ __html: t("home.bio1Html") }} />
-        <p className="mt-4" dangerouslySetInnerHTML={{ __html: t("home.bio2Html") }} />
+        <div className={`home-section__bio-extra ${bioExpanded ? "expanded" : ""}`}>
+          <p className="mt-4" dangerouslySetInnerHTML={{ __html: t("home.bio2Html") }} />
+        </div>
+        <button
+          type="button"
+          className="home-section__read-more-btn"
+          onClick={() => setBioExpanded(!bioExpanded)}
+        >
+          <span>{bioExpanded ? (isEn ? "Show less" : "Tampilkan lebih sedikit") : (isEn ? "Read more" : "Baca selengkapnya")}</span>
+          <svg className={`home-section__read-more-arrow ${bioExpanded ? "up" : ""}`} stroke="currentColor" fill="none" strokeWidth="2" viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round" height="14" width="14" xmlns="http://www.w3.org/2000/svg"><polyline points="6 9 12 15 18 9"></polyline></svg>
+        </button>
       </div>
 
       <div className="home-section__divider" />
