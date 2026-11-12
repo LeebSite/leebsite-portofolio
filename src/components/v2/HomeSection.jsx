@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./HomeSection.css";
 import { useLanguage } from "../../context/LanguageContext";
 
@@ -51,11 +51,30 @@ const TABS = ["All", "Main", "Frontend", "Backend", "Data", "Database", "Tools"]
 export default function HomeSection() {
   const [activeTab, setActiveTab] = useState("All");
   const [bioExpanded, setBioExpanded] = useState(false);
+  const [skillsExpanded, setSkillsExpanded] = useState(false);
   const { t, isEn } = useLanguage();
+
+  const [isMobile, setIsMobile] = useState(() => {
+    if (typeof window !== "undefined") {
+      return window.matchMedia("(max-width: 900px)").matches;
+    }
+    return false;
+  });
+
+  useEffect(() => {
+    const mql = window.matchMedia("(max-width: 900px)");
+    const onChange = (e) => setIsMobile(e.matches);
+    mql.addEventListener("change", onChange);
+    return () => mql.removeEventListener("change", onChange);
+  }, []);
 
   const filteredSkills = ALL_SKILLS.filter(skill => 
     activeTab === "All" || skill.cats.includes(activeTab)
   );
+
+  const displayedSkills = isMobile && !skillsExpanded
+    ? ALL_SKILLS.filter(s => s.cats.includes("Main")).slice(0, 12)
+    : filteredSkills;
 
   return (
     <section id="home" className="home-section">
@@ -98,25 +117,27 @@ export default function HomeSection() {
         <p className="home-section__section-subtitle">{t("home.skillsSubtitle")}</p>
 
         {/* Filter Tabs */}
-        <div className="skills__filter-tabs">
-          {TABS.map((tab) => {
-            const count = tab === "All" ? ALL_SKILLS.length : ALL_SKILLS.filter(s => s.cats.includes(tab)).length;
-            const tabLabel = t(`home.tabs.${tab}`) || tab;
-            return (
-              <button 
-                key={tab} 
-                className={`skills__tab ${activeTab === tab ? "active" : ""}`}
-                onClick={() => setActiveTab(tab)}
-              >
-                {tabLabel} <span className="skills__tab-count">{count}</span>
-              </button>
-            );
-          })}
-        </div>
+        {(!isMobile || skillsExpanded) && (
+          <div className="skills__filter-tabs">
+            {TABS.map((tab) => {
+              const count = tab === "All" ? ALL_SKILLS.length : ALL_SKILLS.filter(s => s.cats.includes(tab)).length;
+              const tabLabel = t(`home.tabs.${tab}`) || tab;
+              return (
+                <button 
+                  key={tab} 
+                  className={`skills__tab ${activeTab === tab ? "active" : ""}`}
+                  onClick={() => setActiveTab(tab)}
+                >
+                  {tabLabel} <span className="skills__tab-count">{count}</span>
+                </button>
+              );
+            })}
+          </div>
+        )}
 
         {/* Skill Badges */}
         <div className="skills__badges">
-          {filteredSkills.map((skill, i) => (
+          {displayedSkills.map((skill, i) => (
             <div 
               key={i} 
               className="skill-badge"
@@ -132,6 +153,38 @@ export default function HomeSection() {
             </div>
           ))}
         </div>
+
+        {/* Mobile Expand / Collapse Button */}
+        {isMobile && (
+          <button
+            type="button"
+            className="skills__expand-btn"
+            onClick={() => setSkillsExpanded(!skillsExpanded)}
+          >
+            <span>
+              {skillsExpanded
+                ? (isEn ? "Show fewer skills" : "Tampilkan lebih sedikit")
+                : (isEn ? `Show all ${ALL_SKILLS.length} skills` : `Lihat semua ${ALL_SKILLS.length} skill`)}
+            </span>
+            <svg
+              style={{
+                transform: skillsExpanded ? "rotate(180deg)" : "rotate(0deg)",
+                transition: "transform 0.2s ease"
+              }}
+              stroke="currentColor"
+              fill="none"
+              strokeWidth="2"
+              viewBox="0 0 24 24"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              height="15"
+              width="15"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </button>
+        )}
       </div>
     </section>
   );
