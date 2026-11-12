@@ -94,9 +94,13 @@ body {
 @media (max-width: 900px) {
   .app-v2 {
     padding: 0;
+    padding-top: 79px;
     flex-direction: column;
     gap: 0;
     background: var(--bg-card);
+  }
+  .app-v2__main {
+    overflow-y: visible;
   }
   .app-v2__sections {
     padding: 0;
