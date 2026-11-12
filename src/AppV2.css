@@ -1,4 +1,4 @@
-﻿:root {
+:root {
   --bg-page: #ffffff;
   --bg-card: #ffffff;
   --bg-hover: #f9fafb;
@@ -94,18 +94,43 @@ body {
 @media (max-width: 900px) {
   .app-v2 {
     padding: 0;
+    padding-top: 79px;
     flex-direction: column;
     gap: 0;
     background: var(--bg-card);
+  }
+  .app-v2__main {
+    overflow-y: visible;
   }
   .app-v2__sections {
     padding: 0;
     gap: 0;
   }
   .app-v2__sections > *:not(.app-v2__section-gap) {
-    padding: 24px 20px 40px !important;
+    padding: 20px 16px 24px !important;
     border-radius: 0;
     box-shadow: none;
+  }
+  .app-v2__sections > section {
+    padding: 0 !important;
+    border-radius: 0;
+    box-shadow: none;
+    scroll-margin-top: 80px;
+  }
+  .app-v2__sections > section > *:not(.app-v2__section-gap) {
+    padding: 20px 16px 24px !important;
+    border-radius: 0;
+    box-shadow: none;
+    scroll-margin-top: 80px;
+  }
+  #home,
+  #about,
+  #experience,
+  #projects,
+  #journey,
+  #achievements,
+  #contact {
+    scroll-margin-top: 80px;
   }
 }
 

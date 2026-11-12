@@ -1,10 +1,12 @@
-﻿import { LuGraduationCap, LuWrench, LuCode, LuDatabase, LuPalette, LuUsers } from "react-icons/lu";
+﻿import { useState } from "react";
+import { LuGraduationCap, LuWrench, LuCode, LuDatabase, LuPalette, LuUsers } from "react-icons/lu";
 import "./AboutSection.css";
 import { useLanguage } from "../../context/LanguageContext";
 import GitHubStatsWidget from "../GitHubStatsWidget/GitHubStatsWidget";
 
 export default function AboutSection() {
   const { t, isEn } = useLanguage();
+  const [bioExpanded, setBioExpanded] = useState(false);
   const handleMouseMove = (e) => {
     const rect = e.currentTarget.getBoundingClientRect();
     const x = e.clientX - rect.left;
@@ -25,12 +27,22 @@ export default function AboutSection() {
         <p>
           {t("about.bio1")}
         </p>
-        <p className="mt-4">
-          {t("about.bio2")}
-        </p>
-        <p className="mt-4">
-          {t("about.bio3")}
-        </p>
+        <div className={`about-section__bio-extra ${bioExpanded ? "expanded" : ""}`}>
+          <p className="mt-4">
+            {t("about.bio2")}
+          </p>
+          <p className="mt-4">
+            {t("about.bio3")}
+          </p>
+        </div>
+        <button
+          type="button"
+          className="about-section__read-more-btn"
+          onClick={() => setBioExpanded(!bioExpanded)}
+        >
+          <span>{bioExpanded ? (isEn ? "Show less" : "Tampilkan lebih sedikit") : (isEn ? "Read more" : "Baca selengkapnya")}</span>
+          <svg className={`about-section__read-more-arrow ${bioExpanded ? "up" : ""}`} stroke="currentColor" fill="none" strokeWidth="2" viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round" height="14" width="14" xmlns="http://www.w3.org/2000/svg"><polyline points="6 9 12 15 18 9"></polyline></svg>
+        </button>
         <div className="about-section__competencies" style={{ marginTop: '32px' }}>
           <h3 className="about-section__sub-title" style={{ marginBottom: '16px' }}>
             <LuWrench className="about-section__icon-inline" /> {t("about.compTitle")}
