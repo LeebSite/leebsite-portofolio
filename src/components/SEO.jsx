@@ -35,6 +35,7 @@ const SEO = ({
         "url": url,
         "image": image,
         "email": "mhd.ghalibpradipa@gmail.com",
+        "telephone": "+62 823-8541-3700",
         "alumniOf": {
             "@type": "CollegeOrUniversity",
             "name": "UIN Sultan Syarif Kasim Riau",
