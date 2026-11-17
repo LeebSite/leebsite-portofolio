@@ -19,6 +19,7 @@ import {
   FiExternalLink, 
   FiCornerDownLeft, 
   FiCheck,
+  FiPhone,
   FiX
 } from "react-icons/fi";
 import { listProyek } from "../../data";
@@ -164,6 +165,18 @@ export default function CommandPalette() {
         }
       },
       {
+        id: "act-github",
+        type: "action",
+        category: isEn ? "Socials" : "Media Sosial",
+        title: "GitHub Profile",
+        subtitle: "github.com/LeebSite",
+        icon: <FiExternalLink className="item-icon" />,
+        action: () => {
+          window.open("https://github.com/LeebSite", "_blank", "noopener,noreferrer");
+          closePalette();
+        }
+      },
+      {
         id: "act-linkedin",
         type: "action",
         category: isEn ? "Socials" : "Media Sosial",
@@ -172,6 +185,18 @@ export default function CommandPalette() {
         icon: <FiExternalLink className="item-icon" />,
         action: () => {
           window.open("https://www.linkedin.com/in/ghalibpradipaa", "_blank", "noopener,noreferrer");
+          closePalette();
+        }
+      },
+      {
+        id: "act-whatsapp",
+        type: "action",
+        category: isEn ? "Socials" : "Media Sosial",
+        title: isEn ? "WhatsApp / Phone" : "WhatsApp / Telepon",
+        subtitle: "+62 823-8541-3700",
+        icon: <FiPhone className="item-icon" />,
+        action: () => {
+          window.open("https://wa.me/6282385413700", "_blank", "noopener,noreferrer");
           closePalette();
         }
       },
