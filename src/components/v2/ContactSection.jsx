@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import "./ContactSection.css";
 import {
   LuMail,
+  LuPhone,
   LuMapPin,
   LuLinkedin,
   LuGithub,
@@ -341,6 +342,16 @@ export default function ContactSection() {
                   <span>{copiedEmail ? (isEn ? "Copied!" : "Tersalin!") : (isEn ? "Copy" : "Salin")}</span>
                 </button>
               </div>
+            </div>
+          </div>
+
+          <div className="contact-info__item">
+            <span className="contact-info__icon"><LuPhone /></span>
+            <div>
+              <p className="contact-info__label">{isEn ? "WhatsApp / Phone" : "WhatsApp / Telepon"}</p>
+              <a href="https://wa.me/6282385413700" target="_blank" rel="noopener noreferrer" className="contact-info__value">
+                +62 823-8541-3700
+              </a>
             </div>
           </div>
 
