@@ -3,47 +3,40 @@ import "./HomeSection.css";
 import { useLanguage } from "../../context/LanguageContext";
 
 const ALL_SKILLS = [
+  // Languages & Frameworks
   { name: "C#", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/csharp/csharp-original.svg", color: "#239120", cats: ["Backend", "Main"] },
   { name: "ASP.NET Core", icon: "https://cdn.simpleicons.org/dotnet/512BD4", color: "#512BD4", cats: ["Backend", "Main"] },
-  { name: ".NET", icon: "https://cdn.simpleicons.org/dotnet/512BD4", color: "#512BD4", cats: ["Backend", "Main"] },
   { name: "PHP", icon: "https://cdn.simpleicons.org/php/777BB4", color: "#777BB4", cats: ["Backend", "Main"] },
   { name: "Laravel", icon: "https://cdn.simpleicons.org/laravel/FF2D20", color: "#FF2D20", cats: ["Backend", "Main"] },
-  { name: "CodeIgniter", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/codeigniter/codeigniter-plain.svg", color: "#EE4323", cats: ["Backend", "Main"] },
-  { name: "Node.js", icon: "https://cdn.simpleicons.org/nodedotjs/339933", color: "#339933", cats: ["Backend"] },
-  
-  { name: "TypeScript", icon: "https://cdn.simpleicons.org/typescript/3178C6", color: "#3178C6", cats: ["Frontend", "Main"] },
+  { name: "JavaScript", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg", color: "#F7DF1E", cats: ["Frontend", "Main"] },
   { name: "React", icon: "https://cdn.simpleicons.org/react/61DAFB", color: "#61DAFB", cats: ["Frontend", "Main"] },
   { name: "Next.js", icon: "https://cdn.simpleicons.org/nextdotjs/000000", color: "#000000", cats: ["Frontend", "Backend", "Main"] },
-  { name: "Vite", icon: "https://cdn.simpleicons.org/vite/646CFF", color: "#646CFF", cats: ["Frontend", "Main"] },
-  { name: "TailwindCSS", icon: "https://cdn.simpleicons.org/tailwindcss/06B6D4", color: "#06B6D4", cats: ["Frontend", "Main"] },
-  { name: "Shadcn UI", icon: "https://cdn.simpleicons.org/shadcnui/000000", color: "#000000", cats: ["Frontend", "Main"] },
-  { name: "Bootstrap", icon: "https://cdn.simpleicons.org/bootstrap/7952B3", color: "#7952B3", cats: ["Frontend"] },
-  { name: "Framer Motion", icon: "https://cdn.simpleicons.org/framer/0055FF", color: "#0055FF", cats: ["Frontend"] },
-  
-  { name: "Python", icon: "https://cdn.simpleicons.org/python/3776AB", color: "#3776AB", cats: ["Data", "Backend", "Main"] },
-  { name: "Power BI", icon: "/assets/powerbi.svg", color: "#F2C811", cats: ["Data", "Main"] },
-  { name: "Excel", icon: "/assets/excel.svg", color: "#217346", cats: ["Data", "Main"] },
-  { name: "Google Colab", icon: "https://cdn.simpleicons.org/googlecolab/F9AB00", color: "#F9AB00", cats: ["Data", "Main"] },
-  { name: "TensorFlow", icon: "https://cdn.simpleicons.org/tensorflow/FF6F00", color: "#FF6F00", cats: ["Data"] },
-  { name: "Tableau", icon: "/assets/tableau.svg", color: "#E97627", cats: ["Data"] },
-  
-  { name: "SQL Server", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/microsoftsqlserver/microsoftsqlserver-plain.svg", color: "#CC292B", cats: ["Database", "Main"] },
+  { name: "Python", icon: "https://cdn.simpleicons.org/python/3776AB", color: "#3776AB", cats: ["Backend", "Data", "Main"] },
+  { name: "FastAPI", icon: "https://cdn.simpleicons.org/fastapi/009688", color: "#009688", cats: ["Backend", "Main"] },
+
+  // Data
+  { name: "SQL", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/azuresqldatabase/azuresqldatabase-original.svg", color: "#CC292B", cats: ["Database", "Data", "Main"] },
   { name: "MySQL", icon: "https://cdn.simpleicons.org/mysql/4479A1", color: "#4479A1", cats: ["Database", "Main"] },
   { name: "PostgreSQL", icon: "https://cdn.simpleicons.org/postgresql/4169E1", color: "#4169E1", cats: ["Database", "Main"] },
-  { name: "Oracle Database", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/oracle/oracle-original.svg", color: "#F80000", cats: ["Database"] },
-  { name: "Firebase", icon: "https://cdn.simpleicons.org/firebase/FFCA28", color: "#FFCA28", cats: ["Database", "Tools"] },
-  { name: "Supabase", icon: "https://cdn.simpleicons.org/supabase/3ECF8E", color: "#3ECF8E", cats: ["Database", "Tools"] },
-  
-  { name: "Git/GitHub", icon: "https://cdn.simpleicons.org/github/181717", color: "#181717", cats: ["Tools", "Main"] },
-  { name: "Google Cloud", icon: "https://cdn.simpleicons.org/googlecloud/4285F4", color: "#4285F4", cats: ["Tools", "Main"] },
-  { name: "Midtrans", icon: "/assets/midtrans.svg", color: "#000000", cats: ["Tools", "Main"] },
-  { name: "Vercel", icon: "https://cdn.simpleicons.org/vercel/000000", color: "#000000", cats: ["Tools"] },
-  { name: "Docker", icon: "https://cdn.simpleicons.org/docker/2496ED", color: "#2496ED", cats: ["Tools"] },
-  { name: "Laragon", icon: "/assets/laragon.svg", color: "#008DD1", cats: ["Tools"] },
-  { name: "Antigravity", icon: "/assets/antigravity.svg", color: "#3b82f6", cats: ["Tools"] },
-  { name: "npm", icon: "https://cdn.simpleicons.org/npm/CB3837", color: "#CB3837", cats: ["Tools"] },
+  { name: "Power BI", icon: "/assets/powerbi.svg", color: "#F2C811", cats: ["Data", "Main"] },
+  { name: "Looker Studio", icon: "https://cdn.simpleicons.org/looker/4285F4", color: "#4285F4", cats: ["Data", "Tools"] },
+  { name: "Microsoft Excel (Advanced)", icon: "/assets/excel.svg", color: "#217346", cats: ["Data", "Main"] },
+  { name: "Pandas", icon: "https://cdn.simpleicons.org/pandas/150458", color: "#150458", cats: ["Data", "Backend"] },
+
+  // Tools & Platforms
+  { name: "Git", icon: "https://cdn.simpleicons.org/git/F05032", color: "#F05032", cats: ["Tools", "Main"] },
+  { name: "GitHub", icon: "https://cdn.simpleicons.org/github/181717", color: "#181717", cats: ["Tools", "Main"] },
+  { name: "Docker", icon: "https://cdn.simpleicons.org/docker/2496ED", color: "#2496ED", cats: ["Tools", "Main"] },
+  { name: "Docker Compose", icon: "https://cdn.simpleicons.org/docker/2496ED", color: "#2496ED", cats: ["Tools"] },
+  { name: "Postman", icon: "https://cdn.simpleicons.org/postman/FF6C37", color: "#FF6C37", cats: ["Tools"] },
   { name: "Figma", icon: "https://cdn.simpleicons.org/figma/F24E1E", color: "#F24E1E", cats: ["Tools"] },
-  { name: "Canva", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/canva/canva-original.svg", color: "#00C4CC", cats: ["Tools"] }
+  { name: "VS Code", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vscode/vscode-original.svg", color: "#007ACC", cats: ["Tools", "Main"] },
+  { name: "Vite", icon: "https://cdn.simpleicons.org/vite/646CFF", color: "#646CFF", cats: ["Frontend", "Tools"] },
+  { name: "Tailwind CSS", icon: "https://cdn.simpleicons.org/tailwindcss/06B6D4", color: "#06B6D4", cats: ["Frontend", "Main"] },
+  { name: "HTML", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg", color: "#E34F26", cats: ["Frontend"] },
+  { name: "CSS", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original.svg", color: "#1572B6", cats: ["Frontend"] },
+  { name: "Bootstrap", icon: "https://cdn.simpleicons.org/bootstrap/7952B3", color: "#7952B3", cats: ["Frontend"] },
+  { name: "REST APIs", icon: "https://cdn.simpleicons.org/fastapi/009688", color: "#009688", cats: ["Backend", "Tools"] }
 ];
 
 const TABS = ["All", "Main", "Frontend", "Backend", "Data", "Database", "Tools"];

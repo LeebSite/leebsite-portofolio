@@ -6,200 +6,244 @@ const Image = {
 
 export default Image;
 
-const Tools1 = "/assets/tools/vscode.png";
-const Tools2 = "/assets/tools/reactjs.png";
-const Tools3 = "/assets/tools/nextjs.png";
-const Tools4 = "/assets/tools/tailwind.png";
-const Tools5 = "/assets/tools/bootstrap.png";
-const Tools6 = "https://www.jetbrains.com/guide/assets/fastapi-6837327b.svg";
-const Tools7 = "/assets/tools/nodejs.png";
-const Tools8 = "/assets/tools/github.png";
-const Tools9 = "https://upload.wikimedia.org/wikipedia/commons/2/29/Postgresql_elephant.svg";
-const Tools10 = "/assets/tools/canva.png";
-const Tools11 = "/assets/tools/figma.png";
-const Tools12 = "/assets/tools/kotlin.png";
-const Tools13 = "/assets/tools/firebase.png";
-const Tools14 = "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Laravel.svg/250px-Laravel.svg.png";
-const Tools15 = "https://www.svgrepo.com/show/354202/postman-icon.svg";
-const Tools16 = "/assets/tools/ts.png";
-const Tools17 = "/assets/tools/php.png";
-const Tools18 = "/assets/tools/vite.png";
-const Tools19 = "/assets/tools/mysql.png";
-const Tools20 = "https://s3-ap-southeast-1.amazonaws.com/homepage-media/wp-content/uploads/2020/03/04092434/NET_Core_Logo.png";
-const Tools21 = "https://cloudeereviews.com/images/docker-logo.png";
-const Tools22 = "/assets/tools/js.png";
-const Tools23 = "/assets/tools/html.png";
-const Tools24 = "/assets/tools/css.png";
-
+const ToolsVSCode = "/assets/tools/vscode.png";
+const ToolsReact = "/assets/tools/reactjs.png";
+const ToolsNext = "/assets/tools/nextjs.png";
+const ToolsTailwind = "/assets/tools/tailwind.png";
+const ToolsBootstrap = "/assets/tools/bootstrap.png";
+const ToolsFastAPI = "https://www.jetbrains.com/guide/assets/fastapi-6837327b.svg";
+const ToolsGitHub = "/assets/tools/github.png";
+const ToolsPostgreSQL = "https://upload.wikimedia.org/wikipedia/commons/2/29/Postgresql_elephant.svg";
+const ToolsFigma = "/assets/tools/figma.png";
+const ToolsLaravel = "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Laravel.svg/250px-Laravel.svg.png";
+const ToolsPostman = "https://www.svgrepo.com/show/354202/postman-icon.svg";
+const ToolsPHP = "/assets/tools/php.png";
+const ToolsVite = "/assets/tools/vite.png";
+const ToolsMySQL = "/assets/tools/mysql.png";
+const ToolsDotNet = "https://s3-ap-southeast-1.amazonaws.com/homepage-media/wp-content/uploads/2020/03/04092434/NET_Core_Logo.png";
+const ToolsDocker = "https://cloudeereviews.com/images/docker-logo.png";
+const ToolsJS = "/assets/tools/js.png";
+const ToolsHTML = "/assets/tools/html.png";
+const ToolsCSS = "/assets/tools/css.png";
+const ToolsCSharp = "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/csharp/csharp-original.svg";
+const ToolsPython = "https://cdn.simpleicons.org/python/3776AB";
+const ToolsSQL = "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/azuresqldatabase/azuresqldatabase-original.svg";
+const ToolsPowerBI = "/assets/powerbi.svg";
+const ToolsLooker = "https://cdn.simpleicons.org/looker/4285F4";
+const ToolsExcel = "/assets/excel.svg";
+const ToolsPandas = "https://cdn.simpleicons.org/pandas/150458";
+const ToolsGit = "https://cdn.simpleicons.org/git/F05032";
+const ToolsDockerCompose = "https://cdn.simpleicons.org/docker/2496ED";
+const ToolsRestApi = "https://cdn.simpleicons.org/fastapi/009688";
 
 export const listTools = [
+  // Languages & Frameworks
   {
     id: 1,
-    gambar: Tools1,
-    nama: "Visual Studio Code",
-    ket: "Code Editor",
+    gambar: ToolsCSharp,
+    nama: "C#",
+    ket: "Language",
     dad: "100",
   },
   {
     id: 2,
-    gambar: Tools2,
-    nama: "React JS",
+    gambar: ToolsDotNet,
+    nama: "ASP.NET Core",
     ket: "Framework",
     dad: "200",
   },
   {
     id: 3,
-    gambar: Tools3,
-    nama: "Next JS",
-    ket: "Framework",
+    gambar: ToolsPHP,
+    nama: "PHP",
+    ket: "Language",
     dad: "300",
   },
   {
     id: 4,
-    gambar: Tools4,
-    nama: "Tailwind CSS",
+    gambar: ToolsLaravel,
+    nama: "Laravel",
     ket: "Framework",
     dad: "400",
   },
   {
     id: 5,
-    gambar: Tools5,
-    nama: "Bootstrap",
-    ket: "Framework",
+    gambar: ToolsJS,
+    nama: "JavaScript",
+    ket: "Language",
     dad: "500",
   },
   {
     id: 6,
-    gambar: Tools6,
-    nama: "FastAPI",
+    gambar: ToolsReact,
+    nama: "React",
     ket: "Framework",
     dad: "600",
   },
   {
     id: 7,
-    gambar: Tools7,
-    nama: "Node JS",
-    ket: "Javascript Runtime",
+    gambar: ToolsNext,
+    nama: "Next.js",
+    ket: "Framework",
     dad: "700",
   },
   {
     id: 8,
-    gambar: Tools8,
-    nama: "Github",
-    ket: "Repository",
+    gambar: ToolsPython,
+    nama: "Python",
+    ket: "Language",
     dad: "800",
   },
   {
     id: 9,
-    gambar: Tools9,
-    nama: "PostgreSQL",
-    ket: "Database",
+    gambar: ToolsFastAPI,
+    nama: "FastAPI",
+    ket: "Framework",
     dad: "900",
   },
+
+  // Data
   {
     id: 10,
-    gambar: Tools10,
-    nama: "Canva",
-    ket: "Design App",
+    gambar: ToolsSQL,
+    nama: "SQL",
+    ket: "Database",
     dad: "1000",
   },
   {
     id: 11,
-    gambar: Tools11,
-    nama: "Figma",
-    ket: "Design App",
+    gambar: ToolsMySQL,
+    nama: "MySQL",
+    ket: "Database",
     dad: "1100",
   },
   {
     id: 12,
-    gambar: Tools12,
-    nama: "Kotlin",
-    ket: "Language",
+    gambar: ToolsPostgreSQL,
+    nama: "PostgreSQL",
+    ket: "Database",
     dad: "1200",
   },
   {
     id: 13,
-    gambar: Tools13,
-    nama: "Firebase",
-    ket: "Framework",
+    gambar: ToolsPowerBI,
+    nama: "Power BI",
+    ket: "Data Visualization",
     dad: "1300",
   },
   {
     id: 14,
-    gambar: Tools14,
-    nama: "Laravel",
-    ket: "Framework",
+    gambar: ToolsLooker,
+    nama: "Looker Studio",
+    ket: "Data Visualization",
     dad: "1400",
   },
   {
     id: 15,
-    gambar: Tools15,
-    nama: "Postman",
-    ket: "API Testing",
+    gambar: ToolsExcel,
+    nama: "Microsoft Excel (Advanced)",
+    ket: "Spreadsheet",
     dad: "1500",
   },
   {
     id: 16,
-    gambar: Tools16,
-    nama: "TypeScript",
-    ket: "Language",
+    gambar: ToolsPandas,
+    nama: "Pandas",
+    ket: "Data Analysis",
     dad: "1600",
   },
+
+  // Tools & Platforms
   {
     id: 17,
-    gambar: Tools17,
-    nama: "PHP",
-    ket: "Language",
+    gambar: ToolsGit,
+    nama: "Git",
+    ket: "Version Control",
     dad: "1700",
   },
   {
     id: 18,
-    gambar: Tools18,
-    nama: "Vite",
-    ket: "Framework",
+    gambar: ToolsGitHub,
+    nama: "GitHub",
+    ket: "Repository",
     dad: "1800",
   },
   {
     id: 19,
-    gambar: Tools19,
-    nama: "MySql",
-    ket: "Database",
+    gambar: ToolsDocker,
+    nama: "Docker",
+    ket: "Containerization",
     dad: "1900",
   },
   {
     id: 20,
-    gambar: Tools20,
-    nama: ".NET",
-    ket: "Framework",
+    gambar: ToolsDockerCompose,
+    nama: "Docker Compose",
+    ket: "Container Orchestration",
     dad: "2000",
   },
   {
     id: 21,
-    gambar: Tools21,
-    nama: "Docker",
-    ket: "Containerization",
+    gambar: ToolsPostman,
+    nama: "Postman",
+    ket: "API Testing",
     dad: "2100",
   },
   {
     id: 22,
-    gambar: Tools22,
-    nama: "JavaScript",
-    ket: "Language",
+    gambar: ToolsFigma,
+    nama: "Figma",
+    ket: "Design App",
     dad: "2200",
   },
   {
     id: 23,
-    gambar: Tools23,
-    nama: "HTML",
-    ket: "Language",
+    gambar: ToolsVSCode,
+    nama: "VS Code",
+    ket: "Code Editor",
     dad: "2300",
   },
   {
     id: 24,
-    gambar: Tools24,
+    gambar: ToolsVite,
+    nama: "Vite",
+    ket: "Build Tool",
+    dad: "2400",
+  },
+  {
+    id: 25,
+    gambar: ToolsTailwind,
+    nama: "Tailwind CSS",
+    ket: "CSS Framework",
+    dad: "2500",
+  },
+  {
+    id: 26,
+    gambar: ToolsHTML,
+    nama: "HTML",
+    ket: "Markup Language",
+    dad: "2600",
+  },
+  {
+    id: 27,
+    gambar: ToolsCSS,
     nama: "CSS",
-    ket: "Language",
-    dad: "2400" ,
+    ket: "Styling",
+    dad: "2700",
+  },
+  {
+    id: 28,
+    gambar: ToolsBootstrap,
+    nama: "Bootstrap",
+    ket: "CSS Framework",
+    dad: "2800",
+  },
+  {
+    id: 29,
+    gambar: ToolsRestApi,
+    nama: "REST APIs",
+    ket: "API Architecture",
+    dad: "2900",
   },
 ];
 
@@ -308,7 +352,7 @@ export const listProyek = [
     title: "Waddle App",
     subtitle: "Aplikasi Produktivitas & Manajemen Kesehatan Mental",
     categories: ["UI/UX Design", "Mobile"],
-    tech: ["Canva", "Figma"],
+    tech: ["Figma"],
     featured: true,
     borderColor: "#22d3ee",
     fullDescription: "Sebuah aplikasi yang dirancang untuk mengedukasi dan produktivitas berbasis mobile yang dirancang untuk membantu pelajar dan mahasiswa dalam mengelola waktu belajar secara efektif sekaligus menjaga kesehatan mental dan fisik selama proses belajar. Sebagai solusi permasalahan meningkatnya stres akademik, kelelahan mental (burnout), serta rendahnya kesadaran akan pentingnya keseimbangan antara belajar dan istirahat.",

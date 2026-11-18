@@ -20,7 +20,7 @@ const Card = ({ project, index, progress, range, targetScale }) => {
         const techMap = {
             'SIMIT': ['C#', 'ASP.NET', 'MySQL', 'Swagger'],
             'Model Klasifikasi': ['Python', 'OpenCV', 'Machine Learning'],
-            'Waddle': ['Java Android', 'Firebase', 'Figma'],
+            'Waddle': ['Java Android', 'Figma'],
             'AfterSunset': ['Laravel', 'PHP', 'PostgreSQL'],
             'Website Portofolio Masjid': ['HTML', 'Bootstrap', 'JavaScript'],
             'Website Personal': ['React', 'Vite', 'Next.js'],
