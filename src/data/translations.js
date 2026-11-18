@@ -630,5 +630,23 @@ export const projectTranslations = {
       subtitle: "Riau Palm Oil Fresh Fruit Bunches (TBS) Price Dashboard",
       fullDescription: "A Power BI analytics dashboard tracking Fresh Fruit Bunches (TBS) price fluctuations in Riau Province. Analyzes 2,704 data rows across 89 weekly cycles from Jan 2025 to Nov 2026, comparing Plasma and Independent (Swadaya) smallholder pricing tiers by palm plant age. Data sourced from official publications by Riau Provincial Plantation Agency (Disbun)."
     }
+  },
+  13: {
+    en: {
+      subtitle: ".NET 10 Asset & Inventory Management Application",
+      fullDescription: "A web-based asset and inventory management application built with .NET 10 and Clean Architecture, utilizing SQL Server via Docker across 8 relational tables. Features JWT authentication with BCrypt password hashing, role-based access control (Admin/Staff/User), automated asset code formatting (INV-XXX-0001), photo uploads, Excel report export, soft delete mechanisms, and 24 passing automated tests."
+    }
+  },
+  14: {
+    en: {
+      subtitle: "AI Services Studio for Educators and Sellers",
+      fullDescription: "Landing page for LeebLabs Studio, an AI services studio at leeblabs.ai.id. Currently focusing on Guru AI for educators, with Seller AI for Shopee/TikTok Shop merchants coming soon. Designed with a clean, eye-friendly minimalist interface tailored for Gen Z and millennial audiences."
+    }
+  },
+  15: {
+    en: {
+      subtitle: "PRIME PARK Pekanbaru 4-Star Hotel Landing Page",
+      fullDescription: "Landing page for PRIME PARK Hotel & Convention Pekanbaru, a 4-star hotel in downtown Pekanbaru. Features an interactive booking widget (check-in, check-out, guest count), room catalog, 1 grand ballroom, 6 meeting rooms, and amenities including an outdoor swimming pool, spa, and pool bar. This is an independent showcase project, not the hotel's official website."
+    }
   }
 };
