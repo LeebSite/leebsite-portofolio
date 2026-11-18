@@ -123,7 +123,7 @@ function ProjectCard({ proyek, descLen }) {
       <div className="project-card__body">
         <div className="project-card__categories">
           {proyek.categories && proyek.categories.map((cat, idx) => (
-            <span key={idx} className="project-card__cat-pill">{cat}</span>
+            <span key={idx} className="project-card__cat-pill">{t(`projects.tabs.${cat}`) || cat}</span>
           ))}
         </div>
 
