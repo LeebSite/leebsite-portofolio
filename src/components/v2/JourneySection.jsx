@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { LuCalendar, LuMapPin, LuLayoutGrid } from "react-icons/lu";
+import { Reveal } from "../motion/Reveal";
 import "./JourneySection.css";
 import { useLanguage } from "../../context/LanguageContext";
 
@@ -46,12 +47,14 @@ export default function JourneySection() {
 
   return (
     <section id="journey" className="journey-section">
-      <div className="journey-section__header">
-        <h1 className="journey-section__title">{t("journey.title")}</h1>
-        <p className="journey-section__subtitle">
-          {t("journey.subtitle")}
-        </p>
-      </div>
+      <Reveal>
+        <div className="journey-section__header">
+          <h1 className="journey-section__title">{t("journey.title")}</h1>
+          <p className="journey-section__subtitle">
+            {t("journey.subtitle")}
+          </p>
+        </div>
+      </Reveal>
 
       <div className="journey-section__divider" />
 
