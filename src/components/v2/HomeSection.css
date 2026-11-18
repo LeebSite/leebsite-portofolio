@@ -1,4 +1,4 @@
-﻿/* ============================================================
+/* ============================================================
    HOME SECTION + SKILLS SECTION â€” v2
    ============================================================ */
 
@@ -225,27 +225,47 @@
   .home-section__read-more-arrow.up {
     transform: rotate(180deg);
   }
+  .skills__filter-tabs {
+    flex-wrap: nowrap;
+    gap: 6px;
+    margin-bottom: 14px;
+    overflow-x: auto;
+    padding-bottom: 4px;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+  .skills__filter-tabs::-webkit-scrollbar {
+    display: none;
+  }
+  .skills__tab {
+    padding: 6px 12px;
+    font-size: 11.5px;
+    flex-shrink: 0;
+  }
   .skills__badges {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 7px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
   }
   .skill-badge {
-    padding: 6px 6px;
-    font-size: 11px;
-    gap: 4px;
-    border-radius: 6px;
-    justify-content: center;
+    padding: 7px 10px;
+    font-size: 12px;
+    gap: 6px;
+    border-radius: 7px;
+    justify-content: flex-start;
   }
   .skill-badge__icon {
-    width: 14px;
-    height: 14px;
+    width: 15px;
+    height: 15px;
   }
   .skill-badge__name {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-    font-size: 11px;
+    font-size: 11.5px;
+  }
+  .skill-badge--wide {
+    grid-column: 1 / -1;
   }
   .skills__expand-btn {
     display: flex;

@@ -133,7 +133,7 @@ export default function HomeSection() {
           {displayedSkills.map((skill, i) => (
             <div 
               key={i} 
-              className="skill-badge"
+              className={`skill-badge ${skill.name.length > 18 ? "skill-badge--wide" : ""}`}
               style={{ "--badge-color": skill.color }}
             >
               <img
