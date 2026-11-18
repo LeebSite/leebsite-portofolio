@@ -1,4 +1,5 @@
 import { useRef, useState, useEffect } from "react";
+import { motion } from "framer-motion";
 import ProfileCard from "./components/ProfileCard/ProfileCard";
 import ShinyText from "./components/ShinyText/ShinyText";
 import BlurText from "./components/BlurText/BlurText";
@@ -82,22 +83,48 @@ function App() {
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         <div id="home" className="hero grid md:grid-cols-2 items-center pt-24 xl:gap-0 gap-6 grid-cols-1">
-          <div className="animate__animated animate__fadeInUp">
-            <div className="flex items-center gap-3 mb-6 bg bg-zinc-800 w-fit p-4 rounded-2xl">
+          <div>
+            <motion.div
+              className="flex items-center gap-3 mb-6 bg bg-zinc-800 w-fit p-4 rounded-2xl"
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+            >
               <img src="./assets/ghalib.png" alt="Ghalib Icon" width="40" height="40" className="w-10 rounded-md" />
               <q>If I want, I will. #PRINSIP</q>
-            </div>
+            </motion.div>
             <h1 className="text-5xl font-bold mb-6 min-h-[1.2em]">
-              <ShinyText text="Hai, Saya Muhammad Ghalib Pradipa" disabled={false} speed={3} className='custom-class' />
+              {["Hai,", "Saya", "Muhammad Ghalib Pradipa"].map((word, idx) => (
+                <motion.span
+                  key={idx}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: idx * 0.08, ease: [0.22, 1, 0.36, 1] }}
+                  style={{ display: "inline-block", marginRight: "0.28em" }}
+                >
+                  <ShinyText text={word} disabled={false} speed={3} className='custom-class' />
+                </motion.span>
+              ))}
             </h1>
-            <BlurText
-              text="Saya adalah mahasiswa Teknik Informatika tingkat akhir dengan minat yang kuat dalam pengembangan web, sistem backend, analisis data, dan aplikasi berbasis AI. Saya senang membangun produk digital yang modern, scalable, dan berdampak dengan menggabungkan kode yang clean, arsitektur solid, dan pengalaman pengguna yang thoughtful."
-              delay={150}
-              animateBy="words"
-              direction="top"
-              className=" mb-6"
-            />
-            <div className="flex items-center sm:gap-4 gap-2">
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.16, ease: [0.22, 1, 0.36, 1] }}
+            >
+              <BlurText
+                text="Saya adalah mahasiswa Teknik Informatika tingkat akhir dengan minat yang kuat dalam pengembangan web, sistem backend, analisis data, dan aplikasi berbasis AI. Saya senang membangun produk digital yang modern, scalable, dan berdampak dengan menggabungkan kode yang clean, arsitektur solid, dan pengalaman pengguna yang thoughtful."
+                delay={150}
+                animateBy="words"
+                direction="top"
+                className=" mb-6"
+              />
+            </motion.div>
+            <motion.div
+              className="flex items-center sm:gap-4 gap-2"
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.25, ease: [0.22, 1, 0.36, 1] }}
+            >
               <a
                 href="./assets/CV.pdf"
                 download="CV Muhammad Ghalib Pradipa.pdf"
@@ -109,7 +136,7 @@ function App() {
               <a href="#project" className="font-semibold bg-[#1a1a1a] p-4 px-6 rounded-full border border-gray-700 hover:bg-[#222] transition-colors">
                 <ShinyText text="Jelajahi Proyek Saya" disabled={false} speed={3} className="custom-class" />
               </a>
-            </div>
+            </motion.div>
 
           </div>
           <div className="w-full flex justify-center md:justify-end animate__animated animate__fadeInUp">
