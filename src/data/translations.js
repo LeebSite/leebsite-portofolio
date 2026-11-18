@@ -347,10 +347,9 @@ export const experienceData = {
       description: [
         "Otomatisasi Pipeline Data: Merancang alur kerja data dari ujung ke ujung menggunakan skrip Python untuk pengumpulan, pembersihan, dan transformasi data.",
         "Pengembangan Platform Digital: Mengembangkan \"SEMBARI\", sebuah platform literasi digital unggulan yang menampung 60 e-book interaktif dan mencapai lebih dari 1.442 pembaca aktif.",
-        "Full-Stack Web Development: Merancang dan meluncurkan portal web institusi resmi menggunakan Laravel untuk memusatkan layanan publik.",
-        "Dukungan Teknis IT: Memberikan dukungan teknis langsung untuk operasional IT harian termasuk masalah jaringan server dan infrastruktur LAN."
+        "Full-Stack Web Development: Merancang dan meluncurkan portal web institusi resmi menggunakan Laravel untuk memusatkan layanan publik."
       ],
-      skills: ["Laravel", "Python", "Web Development", "IT Support", "Data Pipeline"],
+      skills: ["Laravel", "Python", "Web Development", "Data Pipeline"],
       logoColor: "#214285"
     },
     {
@@ -404,10 +403,9 @@ export const experienceData = {
       description: [
         "Data Pipeline Automation: Engineered an end-to-end data workflow leveraging Python scripts for automated data extraction, cleaning, and transformation.",
         "Digital Platform Development: Built \"SEMBARI\", a flagship digital literacy platform hosting 60 interactive e-books that engaged 1,442+ active readers.",
-        "Full-Stack Web Development: Developed and launched the official institution web portal using Laravel to centralize public services.",
-        "Technical IT Support: Provided hands-on technical support for daily IT operations, including LAN infrastructure and server network maintenance."
+        "Full-Stack Web Development: Developed and launched the official institution web portal using Laravel to centralize public services."
       ],
-      skills: ["Laravel", "Python", "Web Development", "IT Support", "Data Pipeline"],
+      skills: ["Laravel", "Python", "Web Development", "Data Pipeline"],
       logoColor: "#214285"
     },
     {
