@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
-import { Reveal } from "../motion/Reveal";
+import { motion, AnimatePresence } from "framer-motion";
+import { Reveal, EASE, fadeUp, staggerParent } from "../motion/Reveal";
 import "./ProjectsSection.css";
 import { listProyek } from "../../data";
 import { LuLayoutGrid, LuGlobe, LuSmartphone, LuPenTool, LuLink } from "react-icons/lu";
@@ -26,7 +27,7 @@ function useTilt() {
     const glareX = (x + 0.5) * 100;  // 0% – 100%
     const glareY = (y + 0.5) * 100;
 
-    card.style.transform = `perspective(800px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.03,1.03,1.03)`;
+    card.style.transform = `perspective(800px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-6px) scale3d(1.03,1.03,1.03)`;
     card.style.setProperty("--glare-x", glareX + "%");
     card.style.setProperty("--glare-y", glareY + "%");
     card.style.setProperty("--glare-opacity", "0.18");
@@ -35,7 +36,7 @@ function useTilt() {
   const handleMouseLeave = () => {
     const card = ref.current;
     if (!card) return;
-    card.style.transform = "perspective(800px) rotateX(0deg) rotateY(0deg) scale3d(1,1,1)";
+    card.style.transform = "";
     card.style.setProperty("--glare-opacity", "0");
   };
 
@@ -72,6 +73,47 @@ function ProjectCard({ proyek, descLen }) {
   const { ref, handleMouseMove, handleMouseLeave } = useTilt();
   const { isEn, projectTranslations, t } = useLanguage();
 
+  const [isDesktopFine, setIsDesktopFine] = useState(() => {
+    if (typeof window !== "undefined") {
+      return window.matchMedia("(pointer: fine)").matches && window.innerWidth > 900;
+    }
+    return false;
+  });
+
+  useEffect(() => {
+    const mql = window.matchMedia("(pointer: fine)");
+    const check = () => {
+      setIsDesktopFine(mql.matches && window.innerWidth > 900);
+    };
+    window.addEventListener("resize", check);
+    if (mql.addEventListener) mql.addEventListener("change", check);
+    return () => {
+      window.removeEventListener("resize", check);
+      if (mql.removeEventListener) mql.removeEventListener("change", check);
+    };
+  }, []);
+
+  const [spotlight, setSpotlight] = useState({ x: 0, y: 0, opacity: 0 });
+
+  const handleCardMouseMove = (e) => {
+    handleMouseMove(e);
+    if (isDesktopFine) {
+      const rect = e.currentTarget.getBoundingClientRect();
+      setSpotlight({
+        x: e.clientX - rect.left,
+        y: e.clientY - rect.top,
+        opacity: 1,
+      });
+    }
+  };
+
+  const handleCardMouseLeave = () => {
+    handleMouseLeave();
+    if (isDesktopFine) {
+      setSpotlight((prev) => ({ ...prev, opacity: 0 }));
+    }
+  };
+
   const tr = isEn && projectTranslations[proyek.id]?.en;
   const fullDesc = tr?.fullDescription || proyek.fullDescription;
   const subtitle = tr?.subtitle || proyek.subtitle;
@@ -81,14 +123,33 @@ function ProjectCard({ proyek, descLen }) {
     : subtitle;
 
   return (
-    <div
+    <motion.div
       className="project-card"
       ref={ref}
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
+      variants={fadeUp}
+      whileHover={{ y: -6 }}
+      whileTap={{ scale: 0.98 }}
+      onMouseMove={handleCardMouseMove}
+      onMouseLeave={handleCardMouseLeave}
     >
       {/* Glare layer */}
       <div className="project-card__glare" />
+
+      {/* Mouse spotlight (desktop only) */}
+      {isDesktopFine && (
+        <motion.div
+          className="project-card__spotlight"
+          animate={{ opacity: spotlight.opacity }}
+          transition={{ duration: 0.2 }}
+          style={{
+            position: "absolute",
+            inset: 0,
+            pointerEvents: "none",
+            zIndex: 1,
+            background: `radial-gradient(240px at ${spotlight.x}px ${spotlight.y}px, rgba(245,158,11,0.12), transparent 70%)`,
+          }}
+        />
+      )}
 
       <div className="project-card__img-wrapper">
         {proyek.featured && (
@@ -101,13 +162,13 @@ function ProjectCard({ proyek, descLen }) {
           alt={proyek.title}
           className="project-card__img"
           onError={(e) => {
-          if (!e.target.dataset.fallbackTried) {
-            e.target.dataset.fallbackTried = 'true';
-            e.target.src = '/assets/proyek/projek' + (((proyek.id - 1) % 6) + 1) + '.png';
-          } else {
-            e.target.style.display = 'none';
-          }
-        }}
+            if (!e.target.dataset.fallbackTried) {
+              e.target.dataset.fallbackTried = 'true';
+              e.target.src = '/assets/proyek/projek' + (((proyek.id - 1) % 6) + 1) + '.png';
+            } else {
+              e.target.style.display = 'none';
+            }
+          }}
         />
         {/* Overlay on hover */}
         <div className="project-card__img-overlay" onClick={(e) => { e.stopPropagation(); navigate(`/projects/${proyek.id}`); }}>
@@ -129,11 +190,11 @@ function ProjectCard({ proyek, descLen }) {
         </div>
 
         <h3 
-    className="project-card__title project-card__title--clickable" 
-    onClick={() => navigate(`/projects/${proyek.id}`)}
-  >
-    {proyek.title}
-  </h3>
+          className="project-card__title project-card__title--clickable" 
+          onClick={() => navigate(`/projects/${proyek.id}`)}
+        >
+          {proyek.title}
+        </h3>
         <p className="project-card__desc">{desc}</p>
 
         <div className="project-card__tech">
@@ -148,7 +209,7 @@ function ProjectCard({ proyek, descLen }) {
           ))}
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }
 
@@ -162,8 +223,9 @@ function MobileProjectCard({ proyek }) {
   const desc = subtitle || (fullDesc ? fullDesc.substring(0, 80) : "");
 
   return (
-    <div
+    <motion.div
       className="project-compact-card"
+      variants={fadeUp}
       onClick={() => navigate(`/projects/${proyek.id}`)}
       role="button"
       tabIndex={0}
@@ -201,7 +263,7 @@ function MobileProjectCard({ proyek }) {
           )}
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }
 
@@ -231,8 +293,6 @@ export default function ProjectsSection() {
   // Split into two columns (Pinterest style)
   const leftCol = filteredProjects.filter((_, i) => i % 2 === 0);
   const rightCol = filteredProjects.filter((_, i) => i % 2 === 1);
-
-  const mobileProjects = showAllMobile ? filteredProjects : filteredProjects.slice(0, 3);
 
   const counts = {};
   filterCategories.forEach(cat => {
@@ -270,10 +330,38 @@ export default function ProjectsSection() {
 
       {/* Mobile compact list vs Desktop Pinterest layout */}
       {isMobile ? (
-        <div className="projects-compact-list">
-          {mobileProjects.map((proyek) => (
+        <motion.div
+          key={activeFilter}
+          className="projects-compact-list"
+          variants={staggerParent}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.1 }}
+        >
+          {filteredProjects.slice(0, 3).map((proyek) => (
             <MobileProjectCard key={proyek.id} proyek={proyek} />
           ))}
+
+          {filteredProjects.length > 3 && (
+            <AnimatePresence>
+              {showAllMobile && (
+                <motion.div
+                  initial={{ height: 0, opacity: 0 }}
+                  animate={{ height: "auto", opacity: 1 }}
+                  exit={{ height: 0, opacity: 0 }}
+                  transition={{ duration: 0.4, ease: EASE }}
+                  style={{ overflow: "hidden" }}
+                >
+                  <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
+                    {filteredProjects.slice(3).map((proyek) => (
+                      <MobileProjectCard key={proyek.id} proyek={proyek} />
+                    ))}
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          )}
+
           {filteredProjects.length > 3 && (
             <button
               type="button"
@@ -304,10 +392,16 @@ export default function ProjectsSection() {
               </svg>
             </button>
           )}
-        </div>
+        </motion.div>
       ) : (
-        <div className="projects-pinterest">
-          <div className="projects-col">
+        <div className="projects-pinterest" key={activeFilter}>
+          <motion.div
+            className="projects-col"
+            variants={staggerParent}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
+          >
             {leftCol.map((proyek, i) => (
               <ProjectCard
                 key={proyek.id}
@@ -315,8 +409,14 @@ export default function ProjectsSection() {
                 descLen={DESC_LENGTHS[(i * 2) % DESC_LENGTHS.length]}
               />
             ))}
-          </div>
-          <div className="projects-col">
+          </motion.div>
+          <motion.div
+            className="projects-col"
+            variants={staggerParent}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
+          >
             {rightCol.map((proyek, i) => (
               <ProjectCard
                 key={proyek.id}
@@ -324,7 +424,7 @@ export default function ProjectsSection() {
                 descLen={DESC_LENGTHS[(i * 2 + 1) % DESC_LENGTHS.length]}
               />
             ))}
-          </div>
+          </motion.div>
         </div>
       )}
     </section>
