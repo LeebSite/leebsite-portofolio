@@ -1,6 +1,7 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
+import { motion, AnimatePresence, useScroll, useSpring, useReducedMotion } from "framer-motion";
 import { LuCalendar, LuMapPin, LuLayoutGrid } from "react-icons/lu";
-import { Reveal } from "../motion/Reveal";
+import { Reveal, EASE, fadeUp, staggerParent } from "../motion/Reveal";
 import "./JourneySection.css";
 import { useLanguage } from "../../context/LanguageContext";
 
@@ -17,6 +18,14 @@ export default function JourneySection() {
   const [active, setActive] = useState("All");
   const [mobileExpanded, setMobileExpanded] = useState({ 0: true });
   const { t, journeyList } = useLanguage();
+  const feedRef = useRef(null);
+  const reduce = useReducedMotion();
+
+  const { scrollYProgress } = useScroll({
+    target: feedRef,
+    offset: ["start 0.8", "end 0.5"],
+  });
+  const scaleY = useSpring(scrollYProgress, { stiffness: 120, damping: 30 });
 
   const [isMobile, setIsMobile] = useState(() => {
     if (typeof window !== "undefined") {
@@ -75,13 +84,20 @@ export default function JourneySection() {
 
       {/* Mobile accordion vs Desktop timeline feed */}
       {isMobile ? (
-        <div className="journey-accordion-list">
+        <motion.div
+          key={active}
+          className="journey-accordion-list"
+          variants={staggerParent}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.1 }}
+        >
           {filtered.map((item, idx) => {
             const catStyle = CAT_COLORS[item.cat] || { bg: "#f3f4f6", text: "#374151" };
             const isAccordionOpen = mobileExpanded[idx] ?? false;
 
             return (
-              <div key={item.id} className="journey-accordion-card">
+              <motion.div key={item.id} variants={fadeUp} className="journey-accordion-card">
                 <div
                   className="journey-accordion-header"
                   onClick={() => toggleMobileAccordion(idx)}
@@ -108,92 +124,118 @@ export default function JourneySection() {
                   </div>
                 </div>
 
-                {isAccordionOpen && (
-                  <div className="journey-accordion-body">
-                    <div className="journey-card__meta" style={{ marginBottom: "8px" }}>
-                      <span className="journey-card__meta-item">
-                        <LuMapPin size={12} />
-                        {item.location}
-                      </span>
+                <AnimatePresence>
+                  {isAccordionOpen && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.4, ease: EASE }}
+                      style={{ overflow: "hidden" }}
+                    >
+                      <div className="journey-accordion-body">
+                        <div className="journey-card__meta" style={{ marginBottom: "8px" }}>
+                          <span className="journey-card__meta-item">
+                            <LuMapPin size={12} />
+                            {item.location}
+                          </span>
+                        </div>
+                        <p className="journey-card__desc">{item.desc}</p>
+                        {item.image && (
+                          <div className="journey-card__img-wrapper" style={{ marginTop: "10px" }}>
+                            <img
+                              src={item.image}
+                              alt={item.title}
+                              className="journey-card__img"
+                              onError={(e) => { e.target.parentElement.style.display = "none"; }}
+                            />
+                          </div>
+                        )}
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </motion.div>
+            );
+          })}
+        </motion.div>
+      ) : (
+        <div className="journey-feed" ref={feedRef}>
+          <motion.div
+            className="journey-feed__progress-line"
+            style={{
+              scaleY: reduce ? 1 : scaleY,
+              transformOrigin: "top",
+            }}
+          />
+          <motion.div
+            key={active}
+            variants={staggerParent}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.1 }}
+            style={{ display: "flex", flexDirection: "column", gap: 0, width: "100%" }}
+          >
+            {filtered.map((item, i) => {
+              const catStyle = CAT_COLORS[item.cat] || { bg: "#f3f4f6", text: "#374151" };
+              return (
+                <motion.div key={item.id} variants={fadeUp} className="journey-card">
+                  {/* Timeline dot */}
+                  <div className="journey-card__dot-col">
+                    <div
+                      className="journey-card__dot"
+                      style={{ background: item.color, boxShadow: `0 0 0 5px ${item.color}20` }}
+                    />
+                    {i < filtered.length - 1 && (
+                      <div className="journey-card__connector" style={{ background: `linear-gradient(to bottom, ${item.color}40, transparent)` }} />
+                    )}
+                  </div>
+
+                  {/* Card Body */}
+                  <div className="journey-card__body">
+                    {/* Left: Text Content */}
+                    <div className="journey-card__content">
+                      <div className="journey-card__header">
+                        <span
+                          className="journey-card__cat"
+                          style={{ background: catStyle.bg, color: catStyle.text }}
+                        >
+                          {t(`journey.categories.${item.cat}`) || item.cat}
+                        </span>
+                        <div className="journey-card__meta">
+                          <span className="journey-card__meta-item">
+                            <LuCalendar size={12} />
+                            {item.date}
+                          </span>
+                          <span className="journey-card__meta-sep">•</span>
+                          <span className="journey-card__meta-item">
+                            <LuMapPin size={12} />
+                            {item.location}
+                          </span>
+                        </div>
+                      </div>
+
+                      <h3 className="journey-card__title">{item.title}</h3>
+                      <p className="journey-card__desc">{item.desc}</p>
                     </div>
-                    <p className="journey-card__desc">{item.desc}</p>
+
+                    {/* Right: Image */}
                     {item.image && (
-                      <div className="journey-card__img-wrapper" style={{ marginTop: "10px" }}>
+                      <div className="journey-card__img-wrapper">
                         <img
                           src={item.image}
                           alt={item.title}
                           className="journey-card__img"
                           onError={(e) => { e.target.parentElement.style.display = "none"; }}
                         />
+                        <div className="journey-card__img-overlay" />
                       </div>
                     )}
                   </div>
-                )}
-              </div>
-            );
-          })}
-        </div>
-      ) : (
-        <div className="journey-feed">
-          {filtered.map((item, i) => {
-            const catStyle = CAT_COLORS[item.cat] || { bg: "#f3f4f6", text: "#374151" };
-            return (
-              <div key={item.id} className="journey-card">
-                {/* Timeline dot */}
-                <div className="journey-card__dot-col">
-                  <div
-                    className="journey-card__dot"
-                    style={{ background: item.color, boxShadow: `0 0 0 5px ${item.color}20` }}
-                  />
-                  {i < filtered.length - 1 && (
-                    <div className="journey-card__connector" style={{ background: `linear-gradient(to bottom, ${item.color}40, transparent)` }} />
-                  )}
-                </div>
-
-                {/* Card Body */}
-                <div className="journey-card__body">
-                  {/* Left: Text Content */}
-                  <div className="journey-card__content">
-                    <div className="journey-card__header">
-                      <span
-                        className="journey-card__cat"
-                        style={{ background: catStyle.bg, color: catStyle.text }}
-                      >
-                        {t(`journey.categories.${item.cat}`) || item.cat}
-                      </span>
-                      <div className="journey-card__meta">
-                        <span className="journey-card__meta-item">
-                          <LuCalendar size={12} />
-                          {item.date}
-                        </span>
-                        <span className="journey-card__meta-sep">•</span>
-                        <span className="journey-card__meta-item">
-                          <LuMapPin size={12} />
-                          {item.location}
-                        </span>
-                      </div>
-                    </div>
-
-                    <h3 className="journey-card__title">{item.title}</h3>
-                    <p className="journey-card__desc">{item.desc}</p>
-                  </div>
-
-                  {/* Right: Image */}
-                  {item.image && (
-                    <div className="journey-card__img-wrapper">
-                      <img
-                        src={item.image}
-                        alt={item.title}
-                        className="journey-card__img"
-                        onError={(e) => { e.target.parentElement.style.display = "none"; }}
-                      />
-                      <div className="journey-card__img-overlay" />
-                    </div>
-                  )}
-                </div>
-              </div>
-            );
-          })}
+                </motion.div>
+              );
+            })}
+          </motion.div>
         </div>
       )}
     </section>
