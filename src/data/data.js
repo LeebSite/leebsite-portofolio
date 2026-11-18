@@ -1,4 +1,4 @@
-﻿const HeroImage = "/assets/hero-img.webp";
+const HeroImage = "/assets/hero-img.webp";
 
 const Image = {
   HeroImage,
@@ -266,13 +266,13 @@ export const listProyek = [
     title: "Scapegis - AI-Powered WebGIS Platform",
     subtitle: "Sistem Informasi Geografis Tata Ruang Kota Pekanbaru",
     categories: ["Website", "Associated"],
-    tech: ["WebGIS", "RESTful API", "NLP", "AI", "Fullstack Web"],
+    tech: ["Next.js", "FastAPI", "PostGIS", "Gemini"],
     featured: true,
     borderColor: "#6366f1",
     fullDescription: "Platform Sistem Informasi Geografis berbasis web (WebGIS) berskala penuh untuk optimalisasi visualisasi dan manajemen data keruangan. Mengintegrasikan basis data spasial kompleks dengan arsitektur full-stack dan RESTful API. Fitur terobosan mencakup implementasi AI-assisted GIS Chat Agent menggunakan pemrosesan bahasa alami (NLP) yang memungkinkan eksekusi kueri dan analisis geospasial secara otomatis hanya melalui perintah teks.",
     image: "/assets/projects/scapegis.png",
     url: "#",
-    github: "#",
+    github: "https://github.com/LeebSite/ScapeGIS",
     link: "#"
   },
   {
@@ -355,6 +355,34 @@ export const listProyek = [
     borderColor: "#6b7280",
     fullDescription: "Pengembangan antarmuka website profil (Company Profile) untuk Masjid Raudhatul Jannah Kota Pekanbaru. Dibangun menggunakan fundamental HTML5 dan styling CSS Bootstrap guna menyajikan informasi seputar sejarah institusi, galeri, jadwal kegiatan, dan informasi donasi masjid dalam sebuah antarmuka web yang bersih dan responsif.",
     image: "/assets/projects/raudhatuljannah.png",
+    url: "#",
+    github: "#",
+    link: "#"
+  },
+  {
+    id: 11,
+    title: "Harga Riau - Commodity Price Dashboard",
+    subtitle: "Dashboard Harga Komoditas Pangan Pokok Riau",
+    categories: ["Associated"],
+    tech: ["Power BI", "DAX", "Excel"],
+    featured: false,
+    borderColor: "#F2C811",
+    fullDescription: "Dashboard Power BI interaktif yang memvisualisasikan data harga komoditas pangan pokok di Riau. Memproses 19.975 observasi terstruktur dari 5 komoditas pangan pokok di 3 kota selama periode Jan 2021–Apr 2026. Data bersumber dari PIHPS Bank Indonesia yang dikumpulkan selama magang di Bank Indonesia Perwakilan Riau.",
+    image: "/assets/projects/pertaminaruii.png",
+    url: "#",
+    github: "#",
+    link: "#"
+  },
+  {
+    id: 12,
+    title: "Harga TBS Sawit Riau - Power BI Dashboard",
+    subtitle: "Dashboard Harga Tandan Buah Segar Kelapa Sawit",
+    categories: ["Associated"],
+    tech: ["Power BI", "DAX", "Excel"],
+    featured: false,
+    borderColor: "#217346",
+    fullDescription: "Dashboard Power BI yang menganalisis tren harga Tandan Buah Segar (TBS) kelapa sawit di Riau. Memproses 2.704 baris data dari 89 periode mingguan selama Jan 2025–Nov 2026, mencakup harga Plasma dan Swadaya berdasarkan umur tanaman. Data bersumber dari publikasi resmi Dinas Perkebunan (Disbun) Provinsi Riau.",
+    image: "/assets/projects/pertaminaruii.png",
     url: "#",
     github: "#",
     link: "#"
@@ -463,4 +491,3 @@ export const listCertifications = [
     delay: "1000"
   }
 ];
-

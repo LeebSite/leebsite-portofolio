@@ -618,5 +618,17 @@ export const projectTranslations = {
       subtitle: "Official Institutional Profile Portal for Raudhatul Jannah Mosque",
       fullDescription: "Frontend institutional website developed for Raudhatul Jannah Mosque in Pekanbaru. Engineered with semantic HTML5 and Bootstrap CSS to present mosque history, activity schedules, photo galleries, and transparent donation reporting with a clean, fully responsive user experience."
     }
+  },
+  11: {
+    en: {
+      subtitle: "Riau Staple Food Commodity Price Analytics Dashboard",
+      fullDescription: "An interactive Power BI dashboard visualizing historical commodity price trends across Riau Province. Processes 19,975 structured observations covering 5 primary staple food commodities across 3 major cities from Jan 2021 to Apr 2026. Data sourced from Bank Indonesia's PIHPS gathered during internship at Bank Indonesia Riau Provincial Representative Office."
+    }
+  },
+  12: {
+    en: {
+      subtitle: "Riau Palm Oil Fresh Fruit Bunches (TBS) Price Dashboard",
+      fullDescription: "A Power BI analytics dashboard tracking Fresh Fruit Bunches (TBS) price fluctuations in Riau Province. Analyzes 2,704 data rows across 89 weekly cycles from Jan 2025 to Nov 2026, comparing Plasma and Independent (Swadaya) smallholder pricing tiers by palm plant age. Data sourced from official publications by Riau Provincial Plantation Agency (Disbun)."
+    }
   }
 };
