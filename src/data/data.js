@@ -392,102 +392,133 @@ export const listProyek = [
 export const listCertifications = [
   {
     id: 1,
-    title: "Google Cloud Certified - Associate Cloud Engineer",
-    issuer: "Google Cloud",
-    logo: "https://upload.wikimedia.org/wikipedia/commons/5/51/Google_Cloud_logo.svg",
-    date: "Issued December 2025",
-    skills: ["Cloud Computing", "Infrastructure", "GCP"],
-    credentialLink: "#",
-    delay: "100"
-  },
-  {
-    id: 2,
     title: "Kilang Pertamina RU II Certified - Software Engineer Intern",
     issuer: "PT. Kilang Pertamina RU II",
     logo: "https://kehatipertaminaru2spk.com/static/media/logo_pertamina.4e59198e.png",
     date: "Issued March 2025",
     skills: ["C#", "ASP.NET", "SQL Server", "Clean Architecture", "Entity Framework"],
     credentialLink: "https://drive.google.com/file/d/1UVK0G1ABxsif5_ATGYqaeIaaWKGBkD9x/view?usp=sharing",
-    delay: "200"
+    delay: "100"
   },
   {
-    id: 3,
+    id: 2,
     title: "Responsive Web Design Certification",
     issuer: "freeCodeCamp",
     logo: "https://upload.wikimedia.org/wikipedia/commons/f/fa/FreeCodeCamp_logo.svg",
     date: "Issued September 2025",
     skills: ["React", "JavaScript", "Responsive Web"],
     credentialLink: "https://www.freecodecamp.org/certification/leebsite/responsive-web-design",
-    delay: "300"
+    delay: "200"
   },
   {
-    id: 4,
+    id: 3,
     title: "Cloud Practitioner Essentials (AWS Cloud)",
     issuer: "Dicoding X AWS Certification",
     logo: "https://dicoding-web-img.sgp1.cdn.digitaloceanspaces.com/original/commons/new-ui-logo.png",
     date: "Issued February 2025",
-    skills: ["AWS Cloud", "Cloud Computing", "Infrastructure", "GCP"],
+    skills: ["AWS Cloud", "Cloud Computing", "Infrastructure"],
     credentialLink: "https://www.dicoding.com/certificates/4EXGV3MG1XRL",
-    delay: "400"
+    delay: "300"
   },
   {
-    id: 5,
+    id: 4,
     title: "Dicoding Certified - Belajar Dasar Manajemen Proyek",
     issuer: "Dicoding Indonesia",
     logo: "https://dicoding-web-img.sgp1.cdn.digitaloceanspaces.com/original/commons/new-ui-logo.png",
     date: "Issued September 2024",
     skills: ["Project Planning", "Agile", "Scrum", "Project Management"],
     credentialLink: "#",
-    delay: "500"
+    delay: "400"
   },
   {
-    id: 6,
+    id: 5,
     title: "HackerRank Certified - Frontend Developer (React)",
     issuer: "HackerRank",
     logo: "https://upload.wikimedia.org/wikipedia/commons/4/40/HackerRank_Icon-1000px.png",
     date: "Issued December 2024",
     skills: ["React", "Hooks", "Redux"],
     credentialLink: "https://www.hackerrank.com/certificates/iframe/39f796ba7aaa",
-    delay: "600"
+    delay: "500"
   },
   {
-    id: 7,
+    id: 6,
     title: "Dicoding Certified - Belajar Dasar AI",
     issuer: "Dicoding Indonesia",
     logo: "https://dicoding-web-img.sgp1.cdn.digitaloceanspaces.com/original/commons/new-ui-logo.png",
     date: "Issued November 2024",
     skills: ["Artificial Intelligence", "Machine Learning", "Deep Learning", "Python"],
     credentialLink: "https://www.dicoding.com/certificates/NVP74EREOPR0",
+    delay: "600"
+  },
+  {
+    id: 7,
+    title: "Oracle Certified Professional - Database Programming with PL/SQL",
+    issuer: "Oracle",
+    logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/Oracle_logo.svg/1280px-Oracle_logo.svg.png",
+    date: "Issued June 2024",
+    skills: ["PL/SQL", "Oracle Database", "SQL Developer"],
+    credentialLink: "https://www.linkedin.com/in/ghalibpradipaa/details/certifications/",
     delay: "700"
   },
   {
     id: 8,
-    title: "Oracle Certified Professional - Database Programming with PL/SQL",
-    issuer: "Oracle",
-    logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/Oracle_logo.svg/1280px-Oracle_logo.svg.png",
-    date: "Issued May 2025",
-    skills: ["PL/SQL", "Oracle Database","SQL Developer"],
-    credentialLink: "https://www.linkedin.com/in/ghalibpradipaa/details/certifications/",
+    title: "SQL (Basic) Certificate",
+    issuer: "HackerRank",
+    logo: "https://upload.wikimedia.org/wikipedia/commons/4/40/HackerRank_Icon-1000px.png",
+    date: "Issued December 2024",
+    skills: ["SQL", "Database", "Query"],
+    credentialLink: "#",
     delay: "800"
   },
   {
     id: 9,
-    title: "TensorFlow Developer Certificate",
-    issuer: "TensorFlow",
-    logo: "https://upload.wikimedia.org/wikipedia/commons/2/2d/Tensorflow_logo.svg",
-    date: "Issued Apr 2025",
-    skills: ["Machine Learning", "Deep Learning", "Python"],
+    title: "SQL (Intermediate) Certificate",
+    issuer: "HackerRank",
+    logo: "https://upload.wikimedia.org/wikipedia/commons/4/40/HackerRank_Icon-1000px.png",
+    date: "Issued December 2024",
+    skills: ["SQL", "Advanced Queries", "Database"],
     credentialLink: "#",
     delay: "900"
   },
   {
     id: 10,
-    title: "Digital Skill Fair 12.0 - UI/UX Designer Certificate",
-    issuer: "Dibimbing.id",
-    logo: "https://media.licdn.com/dms/image/v2/C560BAQEs1djkew463Q/company-logo_200_200/company-logo_200_200/0/1630638017935/dibimbing_id_logo?e=2147483647&v=beta&t=NvRdTFnZCTfb7XPi0H4yApp8Oa5yNIkrri5Cs7rXiQo",
-    date: "Issued Mar 2025",
-    skills: ["UI/UX", "Design", "Figma"],
-    credentialLink: "https://drive.google.com/file/d/1W0Q8c9qIFxoGcvecQnmwpAm6HW93pDKv/view?usp=sharing",
+    title: "SQL (Advanced) Certificate",
+    issuer: "HackerRank",
+    logo: "https://upload.wikimedia.org/wikipedia/commons/4/40/HackerRank_Icon-1000px.png",
+    date: "Issued December 2024",
+    skills: ["SQL", "Complex Queries", "Database"],
+    credentialLink: "#",
     delay: "1000"
+  },
+  {
+    id: 11,
+    title: "Oracle Database Foundations Certified Junior Associate",
+    issuer: "Oracle",
+    logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/Oracle_logo.svg/1280px-Oracle_logo.svg.png",
+    date: "Issued December 2023",
+    skills: ["Oracle Database", "SQL", "Database Fundamentals"],
+    credentialLink: "#",
+    delay: "1100"
+  },
+  {
+    id: 12,
+    title: "Machine Learning Essentials for Business and Technical Decision Makers",
+    issuer: "Amazon Web Services (AWS)",
+    logo: "https://upload.wikimedia.org/wikipedia/commons/9/93/Amazon_Web_Services_Logo.svg",
+    date: "Issued August 2026",
+    skills: ["Machine Learning", "AWS", "AI for Business"],
+    credentialLink: "#",
+    delay: "1200"
+  },
+  {
+    id: 13,
+    title: "Data Analysis with Python",
+    issuer: "Cognitive Class / IBM",
+    logo: "https://upload.wikimedia.org/wikipedia/commons/5/51/IBM_logo.svg",
+    date: "Issued November 2026",
+    skills: ["Python", "Data Analysis", "Pandas", "NumPy"],
+    credentialLink: "https://courses.cognitiveclass.ai/certificates/514f1960e1d646f1a3e97f441aaf65db",
+    delay: "1300"
   }
 ];
+
