@@ -4,6 +4,7 @@ import { FiFolder, FiBriefcase, FiAward, FiDatabase, FiArrowRight } from "react-
 import { motion, AnimatePresence } from "framer-motion";
 import { listProyek } from "../../data";
 import { Reveal, EASE, fadeUp, staggerParent } from "../motion/Reveal";
+import { CountUp } from "../motion/CountUp";
 import "./HomeSection.css";
 import { useLanguage } from "../../context/LanguageContext";
 
@@ -139,28 +140,36 @@ export default function HomeSection() {
           <div className="home-stat-card">
             <div className="home-stat-card__icon"><FiFolder size={18} /></div>
             <div className="home-stat-card__content">
-              <span className="home-stat-card__value">15</span>
+              <span className="home-stat-card__value">
+                <CountUp to={15} />
+              </span>
               <span className="home-stat-card__label">{t("home.stats.projects") || "Proyek"}</span>
             </div>
           </div>
           <div className="home-stat-card">
             <div className="home-stat-card__icon"><FiBriefcase size={18} /></div>
             <div className="home-stat-card__content">
-              <span className="home-stat-card__value">3</span>
+              <span className="home-stat-card__value">
+                <CountUp to={3} />
+              </span>
               <span className="home-stat-card__label">{t("home.stats.internships") || "Magang Industri"}</span>
             </div>
           </div>
           <div className="home-stat-card">
             <div className="home-stat-card__icon"><FiAward size={18} /></div>
             <div className="home-stat-card__content">
-              <span className="home-stat-card__value">13</span>
+              <span className="home-stat-card__value">
+                <CountUp to={13} />
+              </span>
               <span className="home-stat-card__label">{t("home.stats.certifications") || "Sertifikasi"}</span>
             </div>
           </div>
           <div className="home-stat-card">
             <div className="home-stat-card__icon"><FiDatabase size={18} /></div>
             <div className="home-stat-card__content">
-              <span className="home-stat-card__value">{isEn ? "20,000+" : "20.000+"}</span>
+              <span className="home-stat-card__value">
+                <CountUp to={20000} suffix="+" separator={isEn ? "," : "."} />
+              </span>
               <span className="home-stat-card__label">{t("home.stats.dataRows") || "Baris Data Diolah"}</span>
             </div>
           </div>
