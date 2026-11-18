@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { NavLink, useLocation } from "react-router-dom";
+import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import { FiHome, FiUser, FiBriefcase, FiLayers, FiCompass, FiAward, FiMail } from "react-icons/fi";
 import { HiCheckBadge } from "react-icons/hi2";
 import "./Sidebar.css";
@@ -33,10 +34,51 @@ export default function Sidebar() {
     { id: "contact", path: "/contact", label: t("nav.contact"), icon: <FiMail /> },
   ];
 
+  const [isDesktopFine, setIsDesktopFine] = useState(() => {
+    if (typeof window !== "undefined") {
+      return window.matchMedia("(pointer: fine)").matches && window.innerWidth > 900;
+    }
+    return false;
+  });
+
+  useEffect(() => {
+    const mql = window.matchMedia("(pointer: fine)");
+    const check = () => {
+      setIsDesktopFine(mql.matches && window.innerWidth > 900);
+    };
+    window.addEventListener("resize", check);
+    if (mql.addEventListener) {
+      mql.addEventListener("change", check);
+    }
+    return () => {
+      window.removeEventListener("resize", check);
+      if (mql.removeEventListener) {
+        mql.removeEventListener("change", check);
+      }
+    };
+  }, []);
+
+  const mx = useMotionValue(0.5);
+  const my = useMotionValue(0.5);
+  const rotateX = useSpring(useTransform(my, [0, 1], [6, -6]), { stiffness: 150, damping: 20 });
+  const rotateY = useSpring(useTransform(mx, [0, 1], [-6, 6]), { stiffness: 150, damping: 20 });
+
   return (
     <aside className="sidebar">
       {/* Profile Card */}
-      <div className="sidebar__profile">
+      <motion.div
+        className="sidebar__profile"
+        onMouseMove={isDesktopFine ? (e) => {
+          const r = e.currentTarget.getBoundingClientRect();
+          mx.set((e.clientX - r.left) / r.width);
+          my.set((e.clientY - r.top) / r.height);
+        } : undefined}
+        onMouseLeave={isDesktopFine ? () => {
+          mx.set(0.5);
+          my.set(0.5);
+        } : undefined}
+        style={isDesktopFine ? { rotateX, rotateY, transformPerspective: 800 } : undefined}
+      >
         <div className="sidebar__avatar-wrapper">
           <img
             src="/assets/ghalibpradipa.png"
@@ -105,7 +147,7 @@ export default function Sidebar() {
             <kbd className="sidebar__search-kbd">Ctrl K</kbd>
           </button>
         </div>
-      </div>
+      </motion.div>
 
       {/* Divider */}
       <div className="sidebar__divider" />

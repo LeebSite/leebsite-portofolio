@@ -1,4 +1,5 @@
-import React, { useEffect, useRef, useCallback, useMemo } from "react";
+import React, { useEffect, useRef, useCallback, useMemo, useState } from "react";
+import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import "./ProfileCard.css";
 
 const DEFAULT_BEHIND_GRADIENT =
@@ -55,6 +56,35 @@ const ProfileCardComponent = ({
 }) => {
   const wrapRef = useRef(null);
   const cardRef = useRef(null);
+
+  const [isDesktopFine, setIsDesktopFine] = useState(() => {
+    if (typeof window !== "undefined") {
+      return window.matchMedia("(pointer: fine)").matches && window.innerWidth > 900;
+    }
+    return false;
+  });
+
+  useEffect(() => {
+    const mql = window.matchMedia("(pointer: fine)");
+    const check = () => {
+      setIsDesktopFine(mql.matches && window.innerWidth > 900);
+    };
+    window.addEventListener("resize", check);
+    if (mql.addEventListener) {
+      mql.addEventListener("change", check);
+    }
+    return () => {
+      window.removeEventListener("resize", check);
+      if (mql.removeEventListener) {
+        mql.removeEventListener("change", check);
+      }
+    };
+  }, []);
+
+  const mx = useMotionValue(0.5);
+  const my = useMotionValue(0.5);
+  const rotateX = useSpring(useTransform(my, [0, 1], [6, -6]), { stiffness: 150, damping: 20 });
+  const rotateY = useSpring(useTransform(mx, [0, 1], [-6, 6]), { stiffness: 150, damping: 20 });
 
   const animationHandlers = useMemo(() => {
     if (!enableTilt) return null;
@@ -285,10 +315,22 @@ const ProfileCardComponent = ({
   }, [onContactClick]);
 
   return (
-    <div
+    <motion.div
       ref={wrapRef}
       className={`pc-card-wrapper ${className}`.trim()}
-      style={cardStyle}
+      onMouseMove={isDesktopFine ? (e) => {
+        const r = e.currentTarget.getBoundingClientRect();
+        mx.set((e.clientX - r.left) / r.width);
+        my.set((e.clientY - r.top) / r.height);
+      } : undefined}
+      onMouseLeave={isDesktopFine ? () => {
+        mx.set(0.5);
+        my.set(0.5);
+      } : undefined}
+      style={{
+        ...cardStyle,
+        ...(isDesktopFine ? { rotateX, rotateY, transformPerspective: 800 } : {})
+      }}
     >
       <section ref={cardRef} className="pc-card">
         <div className="pc-inside">
