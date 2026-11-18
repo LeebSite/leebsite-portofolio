@@ -10,7 +10,7 @@ export const translations = {
       achievements: "Pencapaian",
       contact: "Kontak",
       downloadCv: "Unduh CV",
-      roleTitle: "Software Engineer Enthusiast",
+      roleTitle: "Software Engineer",
       navigation: "Navigasi",
       verified: "Terverifikasi"
     },
@@ -20,6 +20,15 @@ export const translations = {
       onsite: "Onsite",
       bio1Html: "Seorang <strong>Fresh Graduate Teknik Informatika</strong> yang berfokus sebagai <strong>Full-Stack Software dan Data Engineer</strong> dengan rekam jejak yang kuat dalam membangun aplikasi web skala enterprise dan mengoptimalkan alur kerja data skala besar. Fondasi teknis saya dibangun melalui pengalaman industri langsung di berbagai instansi nasional tingkat atas, termasuk <strong>PT Kilang Pertamina Internasional</strong>, <strong>Bank Indonesia</strong>, dan <strong>Kemendikdasmen</strong>.",
       bio2Html: "Nilai tambah yang membedakan saya adalah kombinasi antara eksekusi teknis dan kepemimpinan strategis. Saya memahami bahwa menulis kode yang bersih (<span class=\"home-section__highlight\">clean code</span>) sama pentingnya dengan komunikasi yang efektif dan pemahaman terhadap tujuan bisnis.",
+      stats: {
+        projects: "Proyek",
+        internships: "Magang Industri",
+        certifications: "Sertifikasi",
+        dataRows: "Baris Data Diolah"
+      },
+      featuredTitle: "Proyek Unggulan",
+      featuredSubtitle: "Tiga proyek representatif dengan arsitektur modern dan dampak nyata.",
+      viewAllProjects: "Lihat Semua Proyek",
       skillsTitle: "</> Keahlian",
       skillsSubtitle: "Keahlian profesional saya.",
       tabs: {
@@ -170,7 +179,7 @@ export const translations = {
       achievements: "Achievements",
       contact: "Contact",
       downloadCv: "Download CV",
-      roleTitle: "Software Engineer Enthusiast",
+      roleTitle: "Software Engineer",
       navigation: "Navigation",
       verified: "Verified"
     },
@@ -180,6 +189,15 @@ export const translations = {
       onsite: "Onsite",
       bio1Html: "An <strong>Informatics Engineering Fresh Graduate</strong> focused as a <strong>Full-Stack Software and Data Engineer</strong> with a proven track record of building enterprise-scale web applications and optimizing large-scale data workflows. My technical foundation is built on direct industry experience in top-tier national institutions, including <strong>PT Kilang Pertamina Internasional</strong>, <strong>Bank Indonesia</strong>, and the <strong>Ministry of Primary and Secondary Education</strong>.",
       bio2Html: "The added value that sets me apart is the balance between technical execution and strategic leadership. I understand that writing clean code (<span class=\"home-section__highlight\">clean code</span>) is just as vital as effective communication and alignment with business goals.",
+      stats: {
+        projects: "Projects",
+        internships: "Industry Internships",
+        certifications: "Certifications",
+        dataRows: "Data Rows Processed"
+      },
+      featuredTitle: "Featured Projects",
+      featuredSubtitle: "Three representative projects with modern architecture and real impact.",
+      viewAllProjects: "View All Projects",
       skillsTitle: "</> Skills",
       skillsSubtitle: "My professional skill set.",
       tabs: {
