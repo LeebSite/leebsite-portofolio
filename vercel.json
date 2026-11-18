@@ -1,8 +1,15 @@
 {
-    "rewrites": [
+    "redirects": [
         {
             "source": "/(.*)",
-            "destination": "/index.html"
+            "has": [
+                {
+                    "type": "host",
+                    "value": "ghalibpradipaa.vercel.app"
+                }
+            ],
+            "destination": "https://www.leebsite.my.id/$1",
+            "permanent": true
         }
     ]
 }
