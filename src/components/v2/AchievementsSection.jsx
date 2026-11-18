@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Reveal } from "../motion/Reveal";
 import "./AchievementsSection.css";
 import { listCertifications } from "../../data";
 import { useLanguage } from "../../context/LanguageContext";
@@ -27,10 +28,12 @@ export default function AchievementsSection() {
 
   return (
     <section id="achievements" className="achievements-section">
-      <div className="achievements-section__header">
-        <h1 className="achievements-section__title">{t("achievements.title")}</h1>
-        <p className="achievements-section__subtitle">{t("achievements.subtitle")}</p>
-      </div>
+      <Reveal>
+        <div className="achievements-section__header">
+          <h1 className="achievements-section__title">{t("achievements.title")}</h1>
+          <p className="achievements-section__subtitle">{t("achievements.subtitle")}</p>
+        </div>
+      </Reveal>
 
       <div className="achievements-section__divider" />
 

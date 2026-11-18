@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { LuBriefcase } from "react-icons/lu";
+import { Reveal } from "../motion/Reveal";
 import "./ExperienceSection.css";
 import { useLanguage } from "../../context/LanguageContext";
 
@@ -40,10 +41,12 @@ export default function ExperienceSection() {
 
   return (
     <section id="experience" className="experience-section">
-      <div className="experience-section__header">
-        <h1 className="experience-section__title">{t("experience.title")}</h1>
-        <p className="experience-section__subtitle">{t("experience.subtitle")}</p>
-      </div>
+      <Reveal>
+        <div className="experience-section__header">
+          <h1 className="experience-section__title">{t("experience.title")}</h1>
+          <p className="experience-section__subtitle">{t("experience.subtitle")}</p>
+        </div>
+      </Reveal>
 
       <div className="experience-section__divider" />
 

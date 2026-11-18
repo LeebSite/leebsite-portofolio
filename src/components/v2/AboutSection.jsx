@@ -1,5 +1,6 @@
-﻿import { useState } from "react";
+import { useState } from "react";
 import { LuGraduationCap, LuWrench, LuCode, LuDatabase, LuPalette, LuUsers } from "react-icons/lu";
+import { Reveal } from "../motion/Reveal";
 import "./AboutSection.css";
 import { useLanguage } from "../../context/LanguageContext";
 import GitHubStatsWidget from "../GitHubStatsWidget/GitHubStatsWidget";
@@ -16,10 +17,12 @@ export default function AboutSection() {
   };
   return (
     <section id="about" className="about-section">
-      <div className="about-section__header">
-        <h1 className="about-section__title">{t("about.title")}</h1>
-        <p className="about-section__subtitle">{t("about.subtitle")}</p>
-      </div>
+      <Reveal>
+        <div className="about-section__header">
+          <h1 className="about-section__title">{t("about.title")}</h1>
+          <p className="about-section__subtitle">{t("about.subtitle")}</p>
+        </div>
+      </Reveal>
 
       <div className="about-section__divider" />
 

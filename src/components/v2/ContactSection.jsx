@@ -33,6 +33,7 @@ import {
 } from "firebase/firestore";
 import { useLanguage } from "../../context/LanguageContext";
 import { useCvModal } from "../../context/CvModalContext";
+import { Reveal } from "../motion/Reveal";
 
 const OWNER_EMAIL = "mhd.ghalibpradipa@gmail.com";
 
@@ -310,14 +311,16 @@ export default function ContactSection() {
 
   return (
     <section id="contact" className="contact-section">
-      <div className="contact-section__header">
-        <h1 className="contact-section__title">{t("contact.title") || "Kontak"}</h1>
-        <p className="contact-section__subtitle">
-          {isEn
-            ? "Let's connect for job opportunities, freelance projects, or technical collaboration."
-            : "Mari terhubung untuk peluang kerja, proyek freelance, atau diskusi teknis."}
-        </p>
-      </div>
+      <Reveal>
+        <div className="contact-section__header">
+          <h1 className="contact-section__title">{t("contact.title") || "Kontak"}</h1>
+          <p className="contact-section__subtitle">
+            {isEn
+              ? "Let's connect for job opportunities, freelance projects, or technical collaboration."
+              : "Mari terhubung untuk peluang kerja, proyek freelance, atau diskusi teknis."}
+          </p>
+        </div>
+      </Reveal>
 
       <div className="contact-section__divider" />
 
