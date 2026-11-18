@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { FiFolder, FiBriefcase, FiAward, FiDatabase, FiArrowRight } from "react-icons/fi";
 import { listProyek } from "../../data";
+import { Reveal } from "../motion/Reveal";
 import "./HomeSection.css";
 import { useLanguage } from "../../context/LanguageContext";
 
@@ -78,17 +79,19 @@ export default function HomeSection() {
 
   return (
     <section id="home" className="home-section">
-      <div className="home-section__header">
-        <h1 className="home-section__title">{t("home.greeting")}</h1>
-        <div className="home-section__meta">
-          <span className="home-section__meta-item">
-            <span className="home-section__meta-dot" />
-            {t("home.domicile")}
-          </span>
-          <span className="home-section__meta-divider"> </span>
-          <span className="home-section__meta-item">{t("home.onsite")}</span>
+      <Reveal>
+        <div className="home-section__header">
+          <h1 className="home-section__title">{t("home.greeting")}</h1>
+          <div className="home-section__meta">
+            <span className="home-section__meta-item">
+              <span className="home-section__meta-dot" />
+              {t("home.domicile")}
+            </span>
+            <span className="home-section__meta-divider"> </span>
+            <span className="home-section__meta-item">{t("home.onsite")}</span>
+          </div>
         </div>
-      </div>
+      </Reveal>
 
       <div className="home-section__divider" />
 

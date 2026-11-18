@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
+import { Reveal } from "../motion/Reveal";
 import "./ProjectsSection.css";
 import { listProyek } from "../../data";
 import { LuLayoutGrid, LuGlobe, LuSmartphone, LuPenTool, LuLink } from "react-icons/lu";
@@ -242,10 +243,12 @@ export default function ProjectsSection() {
 
   return (
     <section id="projects" className="projects-section">
-      <div className="projects-section__header">
-        <h1 className="projects-section__title">{t("projects.title")}</h1>
-        <p className="projects-section__subtitle">{t("projects.subtitle")}</p>
-      </div>
+      <Reveal>
+        <div className="projects-section__header">
+          <h1 className="projects-section__title">{t("projects.title")}</h1>
+          <p className="projects-section__subtitle">{t("projects.subtitle")}</p>
+        </div>
+      </Reveal>
 
       {/* Filter Tabs */}
       <div className="projects-filter">
