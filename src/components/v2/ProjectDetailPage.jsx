@@ -222,7 +222,7 @@ export default function ProjectDetailPage() {
           <div className="project-detail__categories">
             {project.categories && project.categories.map((cat, idx) => (
               <span key={idx} className="project-detail__cat-tag">
-                <FiFolder size={11} /> {cat}
+                <FiFolder size={11} /> {t(`projects.tabs.${cat}`) || cat}
               </span>
             ))}
           </div>
@@ -334,7 +334,7 @@ export default function ProjectDetailPage() {
             <div className="project-detail__info-list">
               <div className="project-detail__info-row">
                 <span className="info-label">{t("projectDetail.category") || "Kategori"}</span>
-                <span className="info-value">{project.categories ? project.categories.join(", ") : "Web Application"}</span>
+                <span className="info-value">{project.categories ? project.categories.map(cat => t(`projects.tabs.${cat}`) || cat).join(", ") : "Web Application"}</span>
               </div>
               <div className="project-detail__info-row">
                 <span className="info-label">Tech Stack Utama</span>
