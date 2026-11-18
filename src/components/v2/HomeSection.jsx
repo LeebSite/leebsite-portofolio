@@ -1,4 +1,7 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { FiFolder, FiBriefcase, FiAward, FiDatabase, FiArrowRight } from "react-icons/fi";
+import { listProyek } from "../../data";
 import "./HomeSection.css";
 import { useLanguage } from "../../context/LanguageContext";
 
@@ -42,10 +45,14 @@ const ALL_SKILLS = [
 const TABS = ["All", "Main", "Frontend", "Backend", "Data", "Database", "Tools"];
 
 export default function HomeSection() {
+  const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState("All");
   const [bioExpanded, setBioExpanded] = useState(false);
   const [skillsExpanded, setSkillsExpanded] = useState(false);
-  const { t, isEn } = useLanguage();
+  const { t, isEn, projectTranslations } = useLanguage();
+
+  const FEATURED_PROJECT_IDS = [5, 4, 13];
+  const featuredProjects = FEATURED_PROJECT_IDS.map(id => listProyek.find(p => p.id === id)).filter(Boolean);
 
   const [isMobile, setIsMobile] = useState(() => {
     if (typeof window !== "undefined") {
@@ -98,6 +105,40 @@ export default function HomeSection() {
           <span>{bioExpanded ? (isEn ? "Show less" : "Tampilkan lebih sedikit") : (isEn ? "Read more" : "Baca selengkapnya")}</span>
           <svg className={`home-section__read-more-arrow ${bioExpanded ? "up" : ""}`} stroke="currentColor" fill="none" strokeWidth="2" viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round" height="14" width="14" xmlns="http://www.w3.org/2000/svg"><polyline points="6 9 12 15 18 9"></polyline></svg>
         </button>
+      </div>
+
+      <div className="home-section__divider" />
+
+      {/* Stats Proof Row */}
+      <div className="home-section__stats">
+        <div className="home-stat-card">
+          <div className="home-stat-card__icon"><FiFolder size={18} /></div>
+          <div className="home-stat-card__content">
+            <span className="home-stat-card__value">15</span>
+            <span className="home-stat-card__label">{t("home.stats.projects") || "Proyek"}</span>
+          </div>
+        </div>
+        <div className="home-stat-card">
+          <div className="home-stat-card__icon"><FiBriefcase size={18} /></div>
+          <div className="home-stat-card__content">
+            <span className="home-stat-card__value">3</span>
+            <span className="home-stat-card__label">{t("home.stats.internships") || "Magang Industri"}</span>
+          </div>
+        </div>
+        <div className="home-stat-card">
+          <div className="home-stat-card__icon"><FiAward size={18} /></div>
+          <div className="home-stat-card__content">
+            <span className="home-stat-card__value">13</span>
+            <span className="home-stat-card__label">{t("home.stats.certifications") || "Sertifikasi"}</span>
+          </div>
+        </div>
+        <div className="home-stat-card">
+          <div className="home-stat-card__icon"><FiDatabase size={18} /></div>
+          <div className="home-stat-card__content">
+            <span className="home-stat-card__value">{isEn ? "20,000+" : "20.000+"}</span>
+            <span className="home-stat-card__label">{t("home.stats.dataRows") || "Baris Data Diolah"}</span>
+          </div>
+        </div>
       </div>
 
       <div className="home-section__divider" />
@@ -178,6 +219,78 @@ export default function HomeSection() {
             </svg>
           </button>
         )}
+      </div>
+
+      <div className="home-section__divider" />
+
+      {/* Featured Projects Block */}
+      <div className="home-section__featured-block">
+        <div className="home-section__section-header-row">
+          <div>
+            <h2 className="home-section__section-title">
+              {t("home.featuredTitle") || "Proyek Unggulan"}
+            </h2>
+            <p className="home-section__section-subtitle">
+              {t("home.featuredSubtitle") || "Tiga proyek representatif dengan arsitektur modern dan dampak nyata."}
+            </p>
+          </div>
+          <button
+            type="button"
+            className="home-section__view-all-link"
+            onClick={() => {
+              if (isMobile) {
+                const el = document.getElementById("projects");
+                if (el) {
+                  el.scrollIntoView({ behavior: "smooth" });
+                  return;
+                }
+              }
+              navigate("/projects");
+            }}
+          >
+            <span>{t("home.viewAllProjects") || "Lihat Semua Proyek"}</span>
+            <FiArrowRight size={14} />
+          </button>
+        </div>
+
+        <div className="home-featured__grid">
+          {featuredProjects.map((p) => {
+            const tr = isEn && projectTranslations[p.id]?.en;
+            const subtitle = tr?.subtitle || p.subtitle;
+            return (
+              <div
+                key={p.id}
+                className="home-featured-card"
+                onClick={() => navigate(`/projects/${p.id}`)}
+                role="button"
+                tabIndex={0}
+              >
+                <div className="home-featured-card__thumb-wrap">
+                  <img
+                    src={p.image}
+                    alt={p.title}
+                    className="home-featured-card__thumb"
+                    onError={(e) => {
+                      e.target.style.display = 'none';
+                    }}
+                  />
+                  <span className="home-featured-card__badge">
+                    {t(`projects.tabs.${p.categories?.[0]}`) || p.categories?.[0] || "Website"}
+                  </span>
+                </div>
+                <div className="home-featured-card__body">
+                  <h3 className="home-featured-card__title">{p.title}</h3>
+                  <p className="home-featured-card__desc">{subtitle}</p>
+                  <div className="home-featured-card__tech">
+                    {p.tech && p.tech.slice(0, 3).map((tName, idx) => (
+                      <span key={idx} className="home-featured-card__tech-tag">{tName}</span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
       </div>
     </section>
   );
