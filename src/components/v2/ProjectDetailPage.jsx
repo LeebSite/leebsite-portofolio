@@ -69,10 +69,10 @@ export default function ProjectDetailPage() {
   // Dynamic Document Title
   useEffect(() => {
     if (project) {
-      document.title = `${project.title} - Muhammad Ghalib Pradipa`;
+      document.title = `Muhammad Ghalib Pradipa | Software Engineer Portfolio - ${project.title}`;
     }
     return () => {
-      document.title = "Muhammad Ghalib Pradipa - Portfolio";
+      document.title = "Muhammad Ghalib Pradipa | Software Engineer Portfolio";
     };
   }, [project]);
 
