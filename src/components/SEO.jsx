@@ -5,8 +5,8 @@ const SEO = ({
     description = "Muhammad Ghalib Pradipa adalah Software Engineer dan Web Developer dari Indonesia. Mahasiswa Teknik Informatika UIN Sultan Syarif Kasim Riau dengan fokus pada Web Development, Backend Systems, REST APIs, Machine Learning, dan GIS Applications.",
     keywords = "Muhammad Ghalib Pradipa, Ghalib Pradipa, Ghalib, Pradipa, Software Engineer, Web Developer, Teknik Informatika, UIN Suska Riau, Backend Developer, REST API, Machine Learning, GIS, Pekanbaru, Indonesia",
     author = "Muhammad Ghalib Pradipa",
-    url = "https://www.leebsite.my.id",
-    image = "https://www.leebsite.my.id/assets/preview.jpg",
+    url = "https://www.leebsite.my.id/",
+    image = "https://www.leebsite.my.id/assets/hero-img.webp",
     type = "website"
 }) => {
     // Structured Data - Person Schema
