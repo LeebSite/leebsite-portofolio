@@ -159,8 +159,8 @@ function App() {
   // Scroll to top on route change (Desktop only)
   useEffect(() => {
     if (isMobile) return;
-    const mainEl = document.querySelector(".app-v2__main");
-    if (mainEl) mainEl.scrollTo(0, 0);
+    const mainEl = document.querySelector('.app-v2__main');
+    if (mainEl) mainEl.scrollTo({ top: 0, behavior: 'instant' });
   }, [location.pathname, isMobile]);
 
   // Deep link on mobile: scroll to matching section on direct URL load or when returning from detail
