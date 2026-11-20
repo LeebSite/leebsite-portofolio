@@ -23,7 +23,7 @@ export default function JourneySection() {
 
   const { scrollYProgress } = useScroll({
     target: feedRef,
-    offset: ["start 0.8", "end 0.5"],
+    offset: ["start 0.75", "end 0.95"],
   });
   const scaleY = useSpring(scrollYProgress, { stiffness: 120, damping: 30 });
 

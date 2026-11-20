@@ -4,7 +4,8 @@
 
 .journey-section {
   padding: 36px 40px 40px;
-  background: var(--bg-card);
+  padding-bottom: 120px;
+
 }
 
 .journey-section__header { margin-bottom: 4px; }
@@ -42,7 +43,8 @@
   padding: 6px 14px;
   border-radius: 20px;
   border: 1px solid var(--border-color);
-  background: var(--bg-card);
+  padding-bottom: 120px;
+
   color: var(--text-secondary);
   font-size: 13px;
   font-weight: 600;
@@ -133,7 +135,8 @@
   border-radius: 14px;
   overflow: hidden;
   margin-bottom: 20px;
-  background: var(--bg-card);
+  padding-bottom: 120px;
+
   transition: box-shadow 0.25s ease, transform 0.25s ease, border-color 0.25s ease;
   display: flex;           /* horizontal on desktop */
   flex-direction: row;

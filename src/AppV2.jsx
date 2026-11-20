@@ -171,40 +171,34 @@ function App() {
     if (!isMobile) return;
 
     if (isProjectDetail) {
+      // entering a project detail page; remember to avoid scrolling when coming back
       wasInDetailRef.current = true;
       return;
     }
 
+    // If we came from a project detail, clear the flag
     const returningFromDetail = wasInDetailRef.current;
     wasInDetailRef.current = false;
 
-    if (!initialDeepLinkHandled.current || returningFromDetail) {
-      initialDeepLinkHandled.current = true;
-      const path = location.pathname;
-      if (path === "/" || path === "") {
-        window.scrollTo(0, 0);
-        return;
-      }
-
-      const matched = SECTIONS.find((s) => s.path === path);
-      if (!matched || matched.id === "home") return;
-
-      let attempts = 0;
-      const interval = setInterval(() => {
-        attempts++;
-        const el = document.getElementById(matched.id);
-        if (el) {
-          el.scrollIntoView({ behavior: "smooth" });
-          clearInterval(interval);
-        } else if (attempts >= 20) {
-          clearInterval(interval);
-        }
-      }, 50);
-
-      return () => clearInterval(interval);
+    // Always scroll on mobile route change
+    const path = location.pathname;
+    // Scroll to top for root or unknown paths
+    if (path === "/" || path === "") {
+      window.scrollTo({ top: 0, behavior: "instant" });
+      return;
     }
-  }, [isMobile, isProjectDetail]);
-
+    const matched = SECTIONS.find((s) => s.path === path);
+    if (!matched || matched.id === "home") {
+      window.scrollTo({ top: 0, behavior: "instant" });
+      return;
+    }
+    const el = document.getElementById(matched.id);
+    if (el) {
+      el.scrollIntoView({ behavior: "instant" });
+    } else {
+      window.scrollTo({ top: 0, behavior: "instant" });
+    }
+  }, [location.pathname, isMobile, isProjectDetail]);
   return (
     <HelmetProvider>
       <RouteSEO />
