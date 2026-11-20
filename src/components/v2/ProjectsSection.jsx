@@ -399,7 +399,7 @@ export default function ProjectsSection() {
             className="projects-col"
             variants={staggerParent}
             initial="hidden"
-            whileInView="visible"
+            animate="visible"
             viewport={{ once: true, amount: 0.2 }}
           >
             {leftCol.map((proyek, i) => (
@@ -414,7 +414,7 @@ export default function ProjectsSection() {
             className="projects-col"
             variants={staggerParent}
             initial="hidden"
-            whileInView="visible"
+            animate="visible"
             viewport={{ once: true, amount: 0.2 }}
           >
             {rightCol.map((proyek, i) => (
