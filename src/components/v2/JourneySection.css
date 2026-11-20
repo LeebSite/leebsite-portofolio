@@ -71,9 +71,22 @@
 
 /* ---- Feed / Timeline ---- */
 .journey-feed {
+  position: relative;
   display: flex;
   flex-direction: column;
   gap: 0;
+}
+
+.journey-feed__progress-line {
+  position: absolute;
+  top: 14px;
+  bottom: 24px;
+  left: 6px;
+  width: 2px;
+  background: var(--accent-yellow, #f59e0b);
+  z-index: 1;
+  pointer-events: none;
+  border-radius: 2px;
 }
 
 /* Each row: dot col + card */
@@ -85,6 +98,8 @@
 
 /* Left: dot + connector */
 .journey-card__dot-col {
+  position: relative;
+  z-index: 2;
   display: flex;
   flex-direction: column;
   align-items: center;

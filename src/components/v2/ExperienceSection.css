@@ -165,12 +165,6 @@
 /* Detail */
 .exp-card__detail {
   margin-top: 12px;
-  animation: fadeInDown 0.25s ease;
-}
-
-@keyframes fadeInDown {
-  from { opacity: 0; transform: translateY(-8px); }
-  to { opacity: 1; transform: translateY(0); }
 }
 
 .exp-card__desc {

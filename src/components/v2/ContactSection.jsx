@@ -33,10 +33,12 @@ import {
 } from "firebase/firestore";
 import { useLanguage } from "../../context/LanguageContext";
 import { useCvModal } from "../../context/CvModalContext";
+import { Reveal, EASE } from "../motion/Reveal";
+import { motion, AnimatePresence, useInView, useReducedMotion } from "framer-motion";
 
 const OWNER_EMAIL = "mhd.ghalibpradipa@gmail.com";
 
-function PublicChatRoom() {
+function PublicChatRoom({ isDesktopFine, reduce }) {
   const [user, setUser] = useState(null);
   const [messages, setMessages] = useState([]);
   const [message, setMessage] = useState("");
@@ -121,10 +123,15 @@ function PublicChatRoom() {
         <LuMessageSquare className="chat-login__icon" size={32} />
         <p className="chat-login__title">Ruang Chat Publik</p>
         <p className="chat-login__desc">Login dengan Google untuk bergabung dan menyapa saya secara langsung!</p>
-        <button onClick={handleLogin} className="chat-login__btn">
+        <motion.button
+          onClick={handleLogin}
+          className="chat-login__btn"
+          whileHover={isDesktopFine && !reduce ? { scale: 1.04 } : undefined}
+          whileTap={isDesktopFine && !reduce ? { scale: 0.96 } : undefined}
+        >
           <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="Google" width="18" height="18" />
           Login dengan Google
-        </button>
+        </motion.button>
       </div>
     );
   }
@@ -191,6 +198,29 @@ const SUBJECT_OPTIONS = [
 export default function ContactSection() {
   const { openCvModal } = useCvModal();
   const { isEn, t } = useLanguage();
+  const cvBtnRef = useRef(null);
+  const isCvInView = useInView(cvBtnRef, { once: true, amount: 0.5 });
+  const reduce = useReducedMotion();
+
+  const [isDesktopFine, setIsDesktopFine] = useState(() => {
+    if (typeof window !== "undefined") {
+      return window.matchMedia("(pointer: fine)").matches && window.innerWidth > 900;
+    }
+    return false;
+  });
+
+  useEffect(() => {
+    const mql = window.matchMedia("(pointer: fine)");
+    const check = () => {
+      setIsDesktopFine(mql.matches && window.innerWidth > 900);
+    };
+    window.addEventListener("resize", check);
+    if (mql.addEventListener) mql.addEventListener("change", check);
+    return () => {
+      window.removeEventListener("resize", check);
+      if (mql.removeEventListener) mql.removeEventListener("change", check);
+    };
+  }, []);
 
   // Direct Email Form State
   const [formData, setFormData] = useState({
@@ -310,276 +340,310 @@ export default function ContactSection() {
 
   return (
     <section id="contact" className="contact-section">
-      <div className="contact-section__header">
-        <h1 className="contact-section__title">{t("contact.title") || "Kontak"}</h1>
-        <p className="contact-section__subtitle">
-          {isEn
-            ? "Let's connect for job opportunities, freelance projects, or technical collaboration."
-            : "Mari terhubung untuk peluang kerja, proyek freelance, atau diskusi teknis."}
-        </p>
-      </div>
+      <Reveal>
+        <div className="contact-section__header">
+          <h1 className="contact-section__title">{t("contact.title") || "Kontak"}</h1>
+          <p className="contact-section__subtitle">
+            {isEn
+              ? "Let's connect for job opportunities, freelance projects, or technical collaboration."
+              : "Mari terhubung untuk peluang kerja, proyek freelance, atau diskusi teknis."}
+          </p>
+        </div>
+      </Reveal>
 
       <div className="contact-section__divider" />
 
       <div className="contact-layout">
         {/* Left Side: Contact Information & Socials */}
         <div className="contact-info">
-          <div className="contact-info__item">
-            <span className="contact-info__icon"><LuMail /></span>
-            <div className="contact-info__details">
-              <p className="contact-info__label">Email Langsung</p>
-              <div className="contact-email-row">
-                <a href="mailto:mhd.ghalibpradipa@gmail.com" className="contact-info__value">
-                  mhd.ghalibpradipa@gmail.com
-                </a>
-                <button
-                  type="button"
-                  onClick={handleCopyEmail}
-                  className="contact-copy-btn"
-                  title="Salin alamat email"
-                >
-                  {copiedEmail ? <LuCheck size={13} className="text-emerald-500" /> : <LuCopy size={13} />}
-                  <span>{copiedEmail ? (isEn ? "Copied!" : "Tersalin!") : (isEn ? "Copy" : "Salin")}</span>
-                </button>
+          <Reveal delay={0}>
+            <div className="contact-info__item">
+              <span className="contact-info__icon"><LuMail /></span>
+              <div className="contact-info__details">
+                <p className="contact-info__label">Email Langsung</p>
+                <div className="contact-email-row">
+                  <a href="mailto:mhd.ghalibpradipa@gmail.com" className="contact-info__value">
+                    mhd.ghalibpradipa@gmail.com
+                  </a>
+                  <button
+                    type="button"
+                    onClick={handleCopyEmail}
+                    className="contact-copy-btn"
+                    title="Salin alamat email"
+                  >
+                    {copiedEmail ? <LuCheck size={13} className="text-emerald-500" /> : <LuCopy size={13} />}
+                    <span>{copiedEmail ? (isEn ? "Copied!" : "Tersalin!") : (isEn ? "Copy" : "Salin")}</span>
+                  </button>
+                </div>
               </div>
             </div>
-          </div>
+          </Reveal>
 
-          <div className="contact-info__item">
-            <span className="contact-info__icon"><LuPhone /></span>
-            <div>
-              <p className="contact-info__label">{isEn ? "WhatsApp / Phone" : "WhatsApp / Telepon"}</p>
-              <a href="https://wa.me/6282385413700" target="_blank" rel="noopener noreferrer" className="contact-info__value">
-                +62 823-8541-3700
-              </a>
+          <Reveal delay={0.08}>
+            <div className="contact-info__item">
+              <span className="contact-info__icon"><LuPhone /></span>
+              <div>
+                <p className="contact-info__label">{isEn ? "WhatsApp / Phone" : "WhatsApp / Telepon"}</p>
+                <a href="https://wa.me/6282385413700" target="_blank" rel="noopener noreferrer" className="contact-info__value">
+                  +62 823-8541-3700
+                </a>
+              </div>
             </div>
-          </div>
+          </Reveal>
 
-          <div className="contact-info__item">
-            <span className="contact-info__icon"><LuMapPin /></span>
-            <div>
-              <p className="contact-info__label">Lokasi</p>
-              <p className="contact-info__value">Pekanbaru, Riau, Indonesia</p>
-              <span className="contact-relocation-badge">Open to Relocation & Remote</span>
+          <Reveal delay={0.16}>
+            <div className="contact-info__item">
+              <span className="contact-info__icon"><LuMapPin /></span>
+              <div>
+                <p className="contact-info__label">Lokasi</p>
+                <p className="contact-info__value">Pekanbaru, Riau, Indonesia</p>
+                <span className="contact-relocation-badge">Open to Relocation & Remote</span>
+              </div>
             </div>
-          </div>
+          </Reveal>
 
-          <div className="contact-info__item">
-            <span className="contact-info__icon"><LuLinkedin /></span>
-            <div>
-              <p className="contact-info__label">LinkedIn</p>
-              <a href="https://www.linkedin.com/in/ghalibpradipaa" target="_blank" rel="noopener noreferrer" className="contact-info__value">
-                Muhammad Ghalib Pradipa
-              </a>
+          <Reveal delay={0.24}>
+            <div className="contact-info__item">
+              <span className="contact-info__icon"><LuLinkedin /></span>
+              <div>
+                <p className="contact-info__label">LinkedIn</p>
+                <a href="https://www.linkedin.com/in/ghalibpradipaa" target="_blank" rel="noopener noreferrer" className="contact-info__value">
+                  Muhammad Ghalib Pradipa
+                </a>
+              </div>
             </div>
-          </div>
+          </Reveal>
 
-          <div className="contact-info__item">
-            <span className="contact-info__icon"><LuGithub /></span>
-            <div>
-              <p className="contact-info__label">GitHub</p>
-              <a href="https://github.com/LeebSite" target="_blank" rel="noopener noreferrer" className="contact-info__value">
-                LeebSite
-              </a>
+          <Reveal delay={0.32}>
+            <div className="contact-info__item">
+              <span className="contact-info__icon"><LuGithub /></span>
+              <div>
+                <p className="contact-info__label">GitHub</p>
+                <a href="https://github.com/LeebSite" target="_blank" rel="noopener noreferrer" className="contact-info__value">
+                  LeebSite
+                </a>
+              </div>
             </div>
-          </div>
+          </Reveal>
 
-          <div className="contact-info__item">
-            <span className="contact-info__icon"><LuInstagram /></span>
-            <div>
-              <p className="contact-info__label">Instagram</p>
-              <a href="https://instagram.com/gpradiipaa" target="_blank" rel="noopener noreferrer" className="contact-info__value">
-                @gpradiipaa
-              </a>
+          <Reveal delay={0.40}>
+            <div className="contact-info__item">
+              <span className="contact-info__icon"><LuInstagram /></span>
+              <div>
+                <p className="contact-info__label">Instagram</p>
+                <a href="https://instagram.com/gpradiipaa" target="_blank" rel="noopener noreferrer" className="contact-info__value">
+                  @gpradiipaa
+                </a>
+              </div>
             </div>
-          </div>
+          </Reveal>
 
           {/* CV Action Buttons */}
-          <div className="contact-cv-actions">
-            <button
-              type="button"
-              onClick={openCvModal}
-              className="contact-preview-btn"
-            >
-              <LuEye size={18} /> {t("cvModal.previewCv") || "Lihat Sekilas CV"}
-            </button>
-            <a
-              href="/assets/CV.pdf"
-              download="CV Muhammad Ghalib Pradipa.pdf"
-              className="contact-download-btn"
-            >
-              <LuFileText size={18} /> {t("nav.downloadCv") || "Unduh CV"}
-            </a>
-          </div>
+          <Reveal delay={0.48}>
+            <div className="contact-cv-actions">
+              <button
+                type="button"
+                onClick={openCvModal}
+                className="contact-preview-btn"
+              >
+                <LuEye size={18} /> {t("cvModal.previewCv") || "Lihat Sekilas CV"}
+              </button>
+              <motion.a
+                ref={cvBtnRef}
+                href="/assets/CV.pdf"
+                download="CV Muhammad Ghalib Pradipa.pdf"
+                className="contact-download-btn"
+                animate={isDesktopFine && !reduce && isCvInView ? { scale: [1, 1.04, 1] } : { scale: 1 }}
+                transition={{ duration: 0.6, ease: EASE }}
+                whileHover={isDesktopFine && !reduce ? { scale: 1.04 } : undefined}
+                whileTap={isDesktopFine && !reduce ? { scale: 0.96 } : undefined}
+              >
+                <LuFileText size={18} /> {t("nav.downloadCv") || "Unduh CV"}
+              </motion.a>
+            </div>
+          </Reveal>
         </div>
 
         {/* Right Side: Direct Email Form with Instant Validation */}
-        <div className="contact-form-wrapper">
-          <div className="contact-form-header">
-            <h3 className="contact-form-title">
-              <LuSend className="contact-form-title-icon" />
-              {isEn ? "Direct to Inbox Message" : "Kirim Pesan Langsung ke Inbox"}
-            </h3>
-            <p className="contact-form-desc">
-              {isEn
-                ? "Send a private inquiry directly to my email with instant validation."
-                : "Kirim pesan privat langsung ke email saya tanpa perantara."}
-            </p>
-          </div>
-
-          {formStatus === "success" ? (
-            <div className="contact-success-card">
-              <div className="contact-success-icon-box">
-                <FiCheckCircle size={38} />
-              </div>
-              <h4 className="contact-success-title">
-                {isEn ? "Message Sent Successfully!" : "Pesan Berhasil Terkirim!"}
-              </h4>
-              <p className="contact-success-desc">
+        <Reveal delay={0.1}>
+          <div className="contact-form-wrapper">
+            <div className="contact-form-header">
+              <h3 className="contact-form-title">
+                <LuSend className="contact-form-title-icon" />
+                {isEn ? "Direct to Inbox Message" : "Kirim Pesan Langsung ke Inbox"}
+              </h3>
+              <p className="contact-form-desc">
                 {isEn
-                  ? "Thank you for reaching out. Your message has been delivered directly to my email. I will get back to you shortly!"
-                  : "Terima kasih telah menghubungi. Pesan Anda telah terkirim langsung ke email saya. Saya akan segera membalasnya!"}
+                  ? "Send a private inquiry directly to my email with instant validation."
+                  : "Kirim pesan privat langsung ke email saya tanpa perantara."}
               </p>
-              <button
-                type="button"
-                onClick={() => setFormStatus("idle")}
-                className="contact-reset-btn"
-              >
-                <LuSparkles size={16} />
-                {isEn ? "Send Another Message" : "Kirim Pesan Lain"}
-              </button>
             </div>
-          ) : (
-            <form onSubmit={handleSubmit} className="contact-form" noValidate>
-              {/* Quick Subject Chips */}
-              <div className="contact-form__group">
-                <label className="contact-form__label">
-                  {isEn ? "Purpose / Topic" : "Keperluan / Topik Pesan"}
-                </label>
-                <div className="contact-subject-chips">
-                  {SUBJECT_OPTIONS.map((opt) => {
-                    const label = isEn ? opt.labelEn : opt.labelId;
-                    const isSelected = formData.subject === label;
-                    return (
-                      <button
-                        key={opt.id}
-                        type="button"
-                        className={`contact-subject-chip ${isSelected ? "active" : ""}`}
-                        onClick={() => handleSelectSubject(label)}
-                      >
-                        {label}
-                      </button>
-                    );
-                  })}
-                </div>
-              </div>
 
-              {/* Name Input */}
-              <div className="contact-form__group">
-                <label htmlFor="cf-name" className="contact-form__label">
-                  {isEn ? "Your Full Name" : "Nama Lengkap"} <span style={{ color: "#ef4444" }}>*</span>
-                </label>
-                <input
-                  id="cf-name"
-                  type="text"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  placeholder={isEn ? "e.g. John Doe" : "Masukkan nama lengkap Anda..."}
-                  className={`contact-form__input ${touched.name && errors.name ? "is-error" : ""}`}
-                  disabled={formStatus === "submitting"}
-                  required
-                />
-                {touched.name && errors.name && (
-                  <span className="contact-form__error">
-                    <FiAlertCircle size={13} /> {errors.name}
-                  </span>
-                )}
-              </div>
+            <AnimatePresence mode="wait">
+              {formStatus === "success" ? (
+                <motion.div
+                  key="success"
+                  className="contact-success-card"
+                  initial={{ opacity: 0, y: 16, scale: 0.98 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  exit={{ opacity: 0, y: -16, scale: 0.98 }}
+                  transition={{ duration: 0.4, ease: EASE }}
+                >
+                  <div className="contact-success-icon-box">
+                    <FiCheckCircle size={38} />
+                  </div>
+                  <h4 className="contact-success-title">
+                    {isEn ? "Message Sent Successfully!" : "Pesan Berhasil Terkirim!"}
+                  </h4>
+                  <p className="contact-success-desc">
+                    {isEn
+                      ? "Thank you for reaching out. Your message has been delivered directly to my email. I will get back to you shortly!"
+                      : "Terima kasih telah menghubungi. Pesan Anda telah terkirim langsung ke email saya. Saya akan segera membalasnya!"}
+                  </p>
+                  <button
+                    type="button"
+                    onClick={() => setFormStatus("idle")}
+                    className="contact-reset-btn"
+                  >
+                    <LuSparkles size={16} />
+                    {isEn ? "Send Another Message" : "Kirim Pesan Lain"}
+                  </button>
+                </motion.div>
+              ) : (
+                <form onSubmit={handleSubmit} className="contact-form" noValidate>
+                  {/* Quick Subject Chips */}
+                  <div className="contact-form__group">
+                    <label className="contact-form__label">
+                      {isEn ? "Purpose / Topic" : "Keperluan / Topik Pesan"}
+                    </label>
+                    <div className="contact-subject-chips">
+                      {SUBJECT_OPTIONS.map((opt) => {
+                        const label = isEn ? opt.labelEn : opt.labelId;
+                        const isSelected = formData.subject === label;
+                        return (
+                          <button
+                            key={opt.id}
+                            type="button"
+                            className={`contact-subject-chip ${isSelected ? "active" : ""}`}
+                            onClick={() => handleSelectSubject(label)}
+                          >
+                            {label}
+                          </button>
+                        );
+                      })}
+                    </div>
+                  </div>
 
-              {/* Email Input */}
-              <div className="contact-form__group">
-                <label htmlFor="cf-email" className="contact-form__label">
-                  {isEn ? "Your Email Address" : "Alamat Email Anda"} <span style={{ color: "#ef4444" }}>*</span>
-                </label>
-                <input
-                  id="cf-email"
-                  type="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  placeholder={isEn ? "e.g. name@company.com" : "contoh: nama@perusahaan.com"}
-                  className={`contact-form__input ${touched.email && errors.email ? "is-error" : ""}`}
-                  disabled={formStatus === "submitting"}
-                  required
-                />
-                {touched.email && errors.email && (
-                  <span className="contact-form__error">
-                    <FiAlertCircle size={13} /> {errors.email}
-                  </span>
-                )}
-              </div>
+                  {/* Name Input */}
+                  <div className="contact-form__group">
+                    <label htmlFor="cf-name" className="contact-form__label">
+                      {isEn ? "Your Full Name" : "Nama Lengkap"} <span style={{ color: "#ef4444" }}>*</span>
+                    </label>
+                    <input
+                      id="cf-name"
+                      type="text"
+                      name="name"
+                      value={formData.name}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      placeholder={isEn ? "e.g. John Doe" : "Masukkan nama lengkap Anda..."}
+                      className={`contact-form__input ${touched.name && errors.name ? "is-error" : ""}`}
+                      disabled={formStatus === "submitting"}
+                      required
+                    />
+                    {touched.name && errors.name && (
+                      <span className="contact-form__error">
+                        <FiAlertCircle size={13} /> {errors.name}
+                      </span>
+                    )}
+                  </div>
 
-              {/* Message Textarea */}
-              <div className="contact-form__group">
-                <div className="contact-form__label-row">
-                  <label htmlFor="cf-message" className="contact-form__label">
-                    {isEn ? "Message" : "Pesan"} <span style={{ color: "#ef4444" }}>*</span>
-                  </label>
-                  <span className="contact-char-count">
-                    {formData.message.length} / 10 min
-                  </span>
-                </div>
-                <textarea
-                  id="cf-message"
-                  name="message"
-                  rows={4}
-                  value={formData.message}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  placeholder={isEn ? "Tell me about your project, opportunity, or inquiry..." : "Tuliskan detail tawaran kerja, proyek, atau pesan Anda..."}
-                  className={`contact-form__textarea ${touched.message && errors.message ? "is-error" : ""}`}
-                  disabled={formStatus === "submitting"}
-                  required
-                />
-                {touched.message && errors.message && (
-                  <span className="contact-form__error">
-                    <FiAlertCircle size={13} /> {errors.message}
-                  </span>
-                )}
-              </div>
+                  {/* Email Input */}
+                  <div className="contact-form__group">
+                    <label htmlFor="cf-email" className="contact-form__label">
+                      {isEn ? "Your Email Address" : "Alamat Email Anda"} <span style={{ color: "#ef4444" }}>*</span>
+                    </label>
+                    <input
+                      id="cf-email"
+                      type="email"
+                      name="email"
+                      value={formData.email}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      placeholder={isEn ? "e.g. name@company.com" : "contoh: nama@perusahaan.com"}
+                      className={`contact-form__input ${touched.email && errors.email ? "is-error" : ""}`}
+                      disabled={formStatus === "submitting"}
+                      required
+                    />
+                    {touched.email && errors.email && (
+                      <span className="contact-form__error">
+                        <FiAlertCircle size={13} /> {errors.email}
+                      </span>
+                    )}
+                  </div>
 
-              {/* Error Message Banner if submission failed */}
-              {formStatus === "error" && (
-                <div className="contact-error-banner">
-                  <FiAlertCircle size={16} />
-                  <span>{errorMessage}</span>
-                </div>
+                  {/* Message Textarea */}
+                  <div className="contact-form__group">
+                    <div className="contact-form__label-row">
+                      <label htmlFor="cf-message" className="contact-form__label">
+                        {isEn ? "Message" : "Pesan"} <span style={{ color: "#ef4444" }}>*</span>
+                      </label>
+                      <span className="contact-char-count">
+                        {formData.message.length} / 10 min
+                      </span>
+                    </div>
+                    <textarea
+                      id="cf-message"
+                      name="message"
+                      rows={4}
+                      value={formData.message}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      placeholder={isEn ? "Tell me about your project, opportunity, or inquiry..." : "Tuliskan detail tawaran kerja, proyek, atau pesan Anda..."}
+                      className={`contact-form__textarea ${touched.message && errors.message ? "is-error" : ""}`}
+                      disabled={formStatus === "submitting"}
+                      required
+                    />
+                    {touched.message && errors.message && (
+                      <span className="contact-form__error">
+                        <FiAlertCircle size={13} /> {errors.message}
+                      </span>
+                    )}
+                  </div>
+
+                  {/* Error Message Banner if submission failed */}
+                  {formStatus === "error" && (
+                    <div className="contact-error-banner">
+                      <FiAlertCircle size={16} />
+                      <span>{errorMessage}</span>
+                    </div>
+                  )}
+
+                  {/* Submit Button */}
+                  <motion.button
+                    type="submit"
+                    disabled={formStatus === "submitting"}
+                    className="contact-form__btn"
+                    whileHover={isDesktopFine && !reduce && formStatus !== "submitting" ? { scale: 1.04 } : undefined}
+                    whileTap={isDesktopFine && !reduce && formStatus !== "submitting" ? { scale: 0.96 } : undefined}
+                  >
+                    {formStatus === "submitting" ? (
+                      <>
+                        <span className="contact-spinner" />
+                        <span>{isEn ? "Delivering Message..." : "Mengirim Pesan..."}</span>
+                      </>
+                    ) : (
+                      <>
+                        <span>{isEn ? "Send Direct Message" : "Kirim Pesan Langsung"}</span>
+                        <LuSend size={15} />
+                      </>
+                    )}
+                  </motion.button>
+                </form>
               )}
-
-              {/* Submit Button */}
-              <button
-                type="submit"
-                disabled={formStatus === "submitting"}
-                className="contact-form__btn"
-              >
-                {formStatus === "submitting" ? (
-                  <>
-                    <span className="contact-spinner" />
-                    <span>{isEn ? "Delivering Message..." : "Mengirim Pesan..."}</span>
-                  </>
-                ) : (
-                  <>
-                    <span>{isEn ? "Send Direct Message" : "Kirim Pesan Langsung"}</span>
-                    <LuSend size={15} />
-                  </>
-                )}
-              </button>
-            </form>
-          )}
-        </div>
+            </AnimatePresence>
+          </div>
+        </Reveal>
       </div>
 
       <div className="contact-section__divider" style={{ marginTop: "36px" }} />
@@ -593,7 +657,7 @@ export default function ContactSection() {
           </h2>
           <p className="contact-chat-desc">Sapa saya atau tinggalkan jejak bersama pengunjung lain secara publik.</p>
         </div>
-        <PublicChatRoom />
+        <PublicChatRoom isDesktopFine={isDesktopFine} reduce={reduce} />
       </div>
     </section>
   );

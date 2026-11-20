@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef, lazy, Suspense } from "react";
 import { Routes, Route, useLocation, useNavigate, useMatch } from "react-router-dom";
+import { motion, useScroll, useSpring } from "framer-motion";
 import Sidebar from "./components/Sidebar/Sidebar";
 import MobileHeader from "./components/MobileHeader/MobileHeader";
 import "./AppV2.css";
@@ -126,6 +127,9 @@ function RouteSEO() {
 }
 
 function App() {
+  const { scrollYProgress } = useScroll();
+  const scaleX = useSpring(scrollYProgress, { stiffness: 120, damping: 30 });
+
   const location = useLocation();
   const navigate = useNavigate();
   const projectDetailMatch = useMatch("/projects/:id");
@@ -206,6 +210,7 @@ function App() {
       <RouteSEO />
       <CvModalProvider>
         <CommandPaletteProvider>
+          <motion.div style={{ scaleX }} className="scroll-progress" />
           <Suspense fallback={null}>
             <CvModal />
             <CommandPalette />
