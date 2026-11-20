@@ -5,6 +5,8 @@ import MobileHeader from "./components/MobileHeader/MobileHeader";
 import "./AppV2.css";
 import { CvModalProvider } from "./context/CvModalContext";
 import { CommandPaletteProvider } from "./context/CommandPaletteContext";
+import SEO, { HelmetProvider } from "./components/SEO";
+import { listProyek } from "./data";
 
 // Lazy-loaded Section Components & Modals for Fast Code-Splitting
 const HomeSection = lazy(() => import("./components/v2/HomeSection"));
@@ -51,6 +53,77 @@ const SECTIONS = [
   { id: "achievements", path: "/achievements" },
   { id: "contact", path: "/contact" }
 ];
+
+const ROUTE_SEO = {
+  "/": {
+    title: "Muhammad Ghalib Pradipa | Software Engineer Portfolio",
+    canonical: "https://www.leebsite.my.id/",
+    description: "Portofolio resmi Muhammad Ghalib Pradipa (Ghalib), Software Engineer & Web Developer. Spesialis React, AI, dan Web Modern."
+  },
+  "/about": {
+    title: "Muhammad Ghalib Pradipa | Tentang",
+    canonical: "https://www.leebsite.my.id/about",
+    description: "Tentang Muhammad Ghalib Pradipa - Software Engineer dan Web Developer dari Indonesia. Latar belakang pendidikan, keahlian teknis, dan filosofi pengembangan."
+  },
+  "/experience": {
+    title: "Muhammad Ghalib Pradipa | Pengalaman",
+    canonical: "https://www.leebsite.my.id/experience",
+    description: "Pengalaman kerja dan rekam jejak profesional Muhammad Ghalib Pradipa sebagai Software Engineer."
+  },
+  "/projects": {
+    title: "Muhammad Ghalib Pradipa | Proyek",
+    canonical: "https://www.leebsite.my.id/projects",
+    description: "Daftar portofolio proyek software engineering, web development, dan machine learning karya Muhammad Ghalib Pradipa."
+  },
+  "/journey": {
+    title: "Muhammad Ghalib Pradipa | Perjalanan",
+    canonical: "https://www.leebsite.my.id/journey",
+    description: "Perjalanan organisasi, komunitas, kepanitiaan, dan karier teknologi Muhammad Ghalib Pradipa."
+  },
+  "/achievements": {
+    title: "Muhammad Ghalib Pradipa | Pencapaian",
+    canonical: "https://www.leebsite.my.id/achievements",
+    description: "Sertifikasi, penghargaan, dan pencapaian profesional Muhammad Ghalib Pradipa."
+  },
+  "/contact": {
+    title: "Muhammad Ghalib Pradipa | Kontak",
+    canonical: "https://www.leebsite.my.id/contact",
+    description: "Hubungi Muhammad Ghalib Pradipa untuk peluang kerja, proyek freelance, atau diskusi teknis."
+  }
+};
+
+function RouteSEO() {
+  const location = useLocation();
+  const rawPath = location.pathname;
+  const pathname = rawPath.length > 1 && rawPath.endsWith("/") ? rawPath.slice(0, -1) : rawPath;
+
+  let seoData = ROUTE_SEO[pathname];
+
+  if (!seoData) {
+    const match = pathname.match(/^\/projects\/([^/]+)/);
+    if (match) {
+      const projId = match[1];
+      const project = listProyek.find((p) => String(p.id) === String(projId));
+      const projectTitle = project ? project.title : "Proyek";
+      seoData = {
+        title: `${projectTitle} | Muhammad Ghalib Pradipa`,
+        canonical: `https://www.leebsite.my.id/projects/${projId}`,
+        description: project?.subtitle || project?.fullDescription || undefined
+      };
+    } else {
+      seoData = ROUTE_SEO["/"];
+    }
+  }
+
+  return (
+    <SEO
+      title={seoData.title}
+      url={seoData.canonical}
+      description={seoData.description}
+      image="https://www.leebsite.my.id/assets/hero-img.webp"
+    />
+  );
+}
 
 function App() {
   const location = useLocation();
@@ -129,88 +202,91 @@ function App() {
   }, [isMobile, isProjectDetail]);
 
   return (
-    <CvModalProvider>
-      <CommandPaletteProvider>
-        <Suspense fallback={null}>
-          <CvModal />
-          <CommandPalette />
-        </Suspense>
-        <div className="app-v2">
-          {/* Left Sidebar */}
-          <Sidebar />
+    <HelmetProvider>
+      <RouteSEO />
+      <CvModalProvider>
+        <CommandPaletteProvider>
+          <Suspense fallback={null}>
+            <CvModal />
+            <CommandPalette />
+          </Suspense>
+          <div className="app-v2">
+            {/* Left Sidebar */}
+            <Sidebar />
 
-          {/* Main Content */}
-          <main className="app-v2__main">
-            <MobileHeader />
+            {/* Main Content */}
+            <main className="app-v2__main">
+              <MobileHeader />
 
-            {/* Section Route Content with Suspense Code-Splitting */}
-            <div className="app-v2__sections">
-              {isMobile && isProjectDetail ? (
-                <Suspense fallback={<SectionLoader />}>
-                  <Routes>
-                    <Route path="/projects/:id" element={<ProjectDetailPage />} />
-                  </Routes>
-                </Suspense>
-              ) : isMobile ? (
-                <>
-                  <section id="home">
-                    <Suspense fallback={<SectionLoader />}>
-                      <HomeSection />
-                    </Suspense>
-                  </section>
-                  <section id="about">
-                    <Suspense fallback={<SectionLoader />}>
-                      <AboutSection />
-                    </Suspense>
-                  </section>
-                  <section id="experience">
-                    <Suspense fallback={<SectionLoader />}>
-                      <ExperienceSection />
-                    </Suspense>
-                  </section>
-                  <section id="projects">
-                    <Suspense fallback={<SectionLoader />}>
-                      <ProjectsSection />
-                    </Suspense>
-                  </section>
-                  <section id="journey">
-                    <Suspense fallback={<SectionLoader />}>
-                      <JourneySection />
-                    </Suspense>
-                  </section>
-                  <section id="achievements">
-                    <Suspense fallback={<SectionLoader />}>
-                      <AchievementsSection />
-                    </Suspense>
-                  </section>
-                  <section id="contact">
-                    <Suspense fallback={<SectionLoader />}>
-                      <ContactSection />
-                    </Suspense>
-                  </section>
-                </>
-              ) : (
-                <Suspense fallback={<SectionLoader />}>
-                  <Routes>
-                    <Route path="/" element={<HomeSection />} />
-                    <Route path="/about" element={<AboutSection />} />
-                    <Route path="/experience" element={<ExperienceSection />} />
-                    <Route path="/projects" element={<ProjectsSection />} />
-                    <Route path="/projects/:id" element={<ProjectDetailPage />} />
-                    <Route path="/journey" element={<JourneySection />} />
-                    <Route path="/achievements" element={<AchievementsSection />} />
-                    <Route path="/contact" element={<ContactSection />} />
-                  </Routes>
-                </Suspense>
-              )}
-            </div>
+              {/* Section Route Content with Suspense Code-Splitting */}
+              <div className="app-v2__sections">
+                {isMobile && isProjectDetail ? (
+                  <Suspense fallback={<SectionLoader />}>
+                    <Routes>
+                      <Route path="/projects/:id" element={<ProjectDetailPage />} />
+                    </Routes>
+                  </Suspense>
+                ) : isMobile ? (
+                  <>
+                    <section id="home">
+                      <Suspense fallback={<SectionLoader />}>
+                        <HomeSection />
+                      </Suspense>
+                    </section>
+                    <section id="about">
+                      <Suspense fallback={<SectionLoader />}>
+                        <AboutSection />
+                      </Suspense>
+                    </section>
+                    <section id="experience">
+                      <Suspense fallback={<SectionLoader />}>
+                        <ExperienceSection />
+                      </Suspense>
+                    </section>
+                    <section id="projects">
+                      <Suspense fallback={<SectionLoader />}>
+                        <ProjectsSection />
+                      </Suspense>
+                    </section>
+                    <section id="journey">
+                      <Suspense fallback={<SectionLoader />}>
+                        <JourneySection />
+                      </Suspense>
+                    </section>
+                    <section id="achievements">
+                      <Suspense fallback={<SectionLoader />}>
+                        <AchievementsSection />
+                      </Suspense>
+                    </section>
+                    <section id="contact">
+                      <Suspense fallback={<SectionLoader />}>
+                        <ContactSection />
+                      </Suspense>
+                    </section>
+                  </>
+                ) : (
+                  <Suspense fallback={<SectionLoader />}>
+                    <Routes>
+                      <Route path="/" element={<HomeSection />} />
+                      <Route path="/about" element={<AboutSection />} />
+                      <Route path="/experience" element={<ExperienceSection />} />
+                      <Route path="/projects" element={<ProjectsSection />} />
+                      <Route path="/projects/:id" element={<ProjectDetailPage />} />
+                      <Route path="/journey" element={<JourneySection />} />
+                      <Route path="/achievements" element={<AchievementsSection />} />
+                      <Route path="/contact" element={<ContactSection />} />
+                    </Routes>
+                  </Suspense>
+                )}
+              </div>
 
-            {/* Footer */}
-            <footer className="app-v2__footer" style={{ display: "none" }} />
-          </main>
-        </div>
-      </CommandPaletteProvider>
-    </CvModalProvider>
+              {/* Footer */}
+              <footer className="app-v2__footer" style={{ display: "none" }} />
+            </main>
+          </div>
+        </CommandPaletteProvider>
+      </CvModalProvider>
+    </HelmetProvider>
   );
 }
 
