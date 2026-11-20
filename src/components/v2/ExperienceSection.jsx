@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
+import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { LuBriefcase } from "react-icons/lu";
+import { Reveal, EASE, staggerParent } from "../motion/Reveal";
 import "./ExperienceSection.css";
 import { useLanguage } from "../../context/LanguageContext";
 
@@ -7,6 +9,7 @@ export default function ExperienceSection() {
   const { t, experienceList } = useLanguage();
   const [expanded, setExpanded] = useState({});
   const [mobileExpanded, setMobileExpanded] = useState({ 0: true });
+  const reduce = useReducedMotion();
 
   const [isMobile, setIsMobile] = useState(() => {
     if (typeof window !== "undefined") {
@@ -38,12 +41,37 @@ export default function ExperienceSection() {
     setMobileExpanded((prev) => ({ ...prev, [index]: !prev[index] }));
   };
 
+  const cardVariants = {
+    hidden: (custom) => {
+      if (custom.reduce) return { opacity: 1, x: 0, y: 0 };
+      if (custom.isMobile) {
+        return { opacity: 0, y: 16, x: 0 };
+      }
+      return {
+        opacity: 0,
+        x: custom.idx % 2 === 0 ? -24 : 24,
+        y: 0,
+      };
+    },
+    visible: (custom) => ({
+      opacity: 1,
+      x: 0,
+      y: 0,
+      transition: {
+        duration: custom.isMobile ? 0.5 : 0.6,
+        ease: EASE,
+      },
+    }),
+  };
+
   return (
     <section id="experience" className="experience-section">
-      <div className="experience-section__header">
-        <h1 className="experience-section__title">{t("experience.title")}</h1>
-        <p className="experience-section__subtitle">{t("experience.subtitle")}</p>
-      </div>
+      <Reveal>
+        <div className="experience-section__header">
+          <h1 className="experience-section__title">{t("experience.title")}</h1>
+          <p className="experience-section__subtitle">{t("experience.subtitle")}</p>
+        </div>
+      </Reveal>
 
       <div className="experience-section__divider" />
 
@@ -54,13 +82,22 @@ export default function ExperienceSection() {
         </h2>
         <p className="exp-block__subtitle">{t("experience.workSubtitle")}</p>
 
-        <div className="exp-list">
+        <motion.div
+          className="exp-list"
+          variants={staggerParent}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
+        >
           {experienceList.map((exp, idx) => {
             const isAccordionOpen = mobileExpanded[idx] ?? false;
 
             return (
-              <div
+              <motion.div
                 key={exp.id}
+                custom={{ idx, isMobile, reduce }}
+                variants={cardVariants}
+                whileHover={!isMobile ? { y: -4 } : undefined}
                 className={`exp-card ${isMobile ? "exp-card--mobile-accordion" : ""}`}
                 onMouseMove={!isMobile ? handleMouseMove : undefined}
               >
@@ -99,27 +136,37 @@ export default function ExperienceSection() {
                       </div>
                     </div>
 
-                    {isAccordionOpen && (
-                      <div className="exp-accordion-body">
-                        <div className="exp-card__meta">
-                          <p className="exp-card__location">{exp.location} &nbsp;•&nbsp; {exp.duration}</p>
-                          <div className="exp-card__badges">
-                            <span className="exp-card__badge exp-card__badge--type">{exp.type}</span>
-                            <span className="exp-card__badge exp-card__badge--mode">{exp.mode}</span>
+                    <AnimatePresence>
+                      {isAccordionOpen && (
+                        <motion.div
+                          initial={{ height: 0, opacity: 0 }}
+                          animate={{ height: "auto", opacity: 1 }}
+                          exit={{ height: 0, opacity: 0 }}
+                          transition={{ duration: 0.4, ease: EASE }}
+                          style={{ overflow: "hidden" }}
+                        >
+                          <div className="exp-accordion-body">
+                            <div className="exp-card__meta">
+                              <p className="exp-card__location">{exp.location} &nbsp;•&nbsp; {exp.duration}</p>
+                              <div className="exp-card__badges">
+                                <span className="exp-card__badge exp-card__badge--type">{exp.type}</span>
+                                <span className="exp-card__badge exp-card__badge--mode">{exp.mode}</span>
+                              </div>
+                            </div>
+                            <ul className="exp-card__desc">
+                              {exp.description.map((item, i) => (
+                                <li key={i}>{item}</li>
+                              ))}
+                            </ul>
+                            <div className="exp-card__skills">
+                              {exp.skills.map((s, i) => (
+                                <span key={i} className="exp-skill-tag">{s}</span>
+                              ))}
+                            </div>
                           </div>
-                        </div>
-                        <ul className="exp-card__desc">
-                          {exp.description.map((item, i) => (
-                            <li key={i}>{item}</li>
-                          ))}
-                        </ul>
-                        <div className="exp-card__skills">
-                          {exp.skills.map((s, i) => (
-                            <span key={i} className="exp-skill-tag">{s}</span>
-                          ))}
-                        </div>
-                      </div>
-                    )}
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
                   </>
                 ) : (
                   <>
@@ -164,27 +211,37 @@ export default function ExperienceSection() {
                         {expanded[exp.id] ? t("experience.hideDetail") : t("experience.showDetail")}
                       </button>
 
-                      {expanded[exp.id] && (
-                        <div className="exp-card__detail">
-                          <ul className="exp-card__desc">
-                            {exp.description.map((item, i) => (
-                              <li key={i}>{item}</li>
-                            ))}
-                          </ul>
-                          <div className="exp-card__skills">
-                            {exp.skills.map((s, i) => (
-                              <span key={i} className="exp-skill-tag">{s}</span>
-                            ))}
-                          </div>
-                        </div>
-                      )}
+                      <AnimatePresence>
+                        {expanded[exp.id] && (
+                          <motion.div
+                            initial={{ height: 0, opacity: 0 }}
+                            animate={{ height: "auto", opacity: 1 }}
+                            exit={{ height: 0, opacity: 0 }}
+                            transition={{ duration: 0.4, ease: EASE }}
+                            style={{ overflow: "hidden" }}
+                          >
+                            <div className="exp-card__detail">
+                              <ul className="exp-card__desc">
+                                {exp.description.map((item, i) => (
+                                  <li key={i}>{item}</li>
+                                ))}
+                              </ul>
+                              <div className="exp-card__skills">
+                                {exp.skills.map((s, i) => (
+                                  <span key={i} className="exp-skill-tag">{s}</span>
+                                ))}
+                              </div>
+                            </div>
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
                     </div>
                   </>
                 )}
-              </div>
+              </motion.div>
             );
           })}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

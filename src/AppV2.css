@@ -50,6 +50,19 @@ body {
 ::-webkit-scrollbar-thumb { background: var(--border-color); border-radius: 99px; }
 ::-webkit-scrollbar-thumb:hover { background: var(--accent-yellow); }
 
+/* ---- Scroll Progress Bar ---- */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  transform-origin: 0;
+  background: var(--accent-yellow);
+  z-index: 120;
+  pointer-events: none;
+}
+
 /* ---- Root Layout ---- */
 .app-v2 {
   display: flex;
@@ -92,6 +105,9 @@ body {
 }
 
 @media (max-width: 900px) {
+  .scroll-progress {
+    top: 79px;
+  }
   .app-v2 {
     padding: 0;
     padding-top: 79px;

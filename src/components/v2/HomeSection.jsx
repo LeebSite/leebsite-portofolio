@@ -1,7 +1,10 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { FiFolder, FiBriefcase, FiAward, FiDatabase, FiArrowRight } from "react-icons/fi";
+import { motion, AnimatePresence } from "framer-motion";
 import { listProyek } from "../../data";
+import { Reveal, EASE, fadeUp, staggerParent } from "../motion/Reveal";
+import { CountUp } from "../motion/CountUp";
 import "./HomeSection.css";
 import { useLanguage } from "../../context/LanguageContext";
 
@@ -54,6 +57,10 @@ export default function HomeSection() {
   const FEATURED_PROJECT_IDS = [5, 4, 13];
   const featuredProjects = FEATURED_PROJECT_IDS.map(id => listProyek.find(p => p.id === id)).filter(Boolean);
 
+  const greetingWords = isEn
+    ? ["Hello,", "I'm", "Muhammad Ghalib Pradipa"]
+    : ["Halo,", "saya", "Muhammad Ghalib Pradipa"];
+
   const [isMobile, setIsMobile] = useState(() => {
     if (typeof window !== "undefined") {
       return window.matchMedia("(max-width: 900px)").matches;
@@ -72,27 +79,45 @@ export default function HomeSection() {
     activeTab === "All" || skill.cats.includes(activeTab)
   );
 
-  const displayedSkills = isMobile && !skillsExpanded
-    ? ALL_SKILLS.filter(s => s.cats.includes("Main")).slice(0, 12)
-    : filteredSkills;
-
   return (
     <section id="home" className="home-section">
       <div className="home-section__header">
-        <h1 className="home-section__title">{t("home.greeting")}</h1>
-        <div className="home-section__meta">
+        <h1 className="home-section__title">
+          {greetingWords.map((word, idx) => (
+            <motion.span
+              key={idx}
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: idx * 0.08, ease: EASE }}
+              style={{ display: "inline-block", marginRight: "0.28em" }}
+            >
+              {word}
+            </motion.span>
+          ))}
+        </h1>
+        <motion.div
+          className="home-section__meta"
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.16, ease: EASE }}
+        >
           <span className="home-section__meta-item">
             <span className="home-section__meta-dot" />
             {t("home.domicile")}
           </span>
           <span className="home-section__meta-divider"> </span>
           <span className="home-section__meta-item">{t("home.onsite")}</span>
-        </div>
+        </motion.div>
       </div>
 
       <div className="home-section__divider" />
 
-      <div className="home-section__bio">
+      <motion.div
+        className="home-section__bio"
+        initial={{ opacity: 0, y: 16 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 0.25, ease: EASE }}
+      >
         <p dangerouslySetInnerHTML={{ __html: t("home.bio1Html") }} />
         <div className={`home-section__bio-extra ${bioExpanded ? "expanded" : ""}`}>
           <p className="mt-4" dangerouslySetInnerHTML={{ __html: t("home.bio2Html") }} />
@@ -105,50 +130,62 @@ export default function HomeSection() {
           <span>{bioExpanded ? (isEn ? "Show less" : "Tampilkan lebih sedikit") : (isEn ? "Read more" : "Baca selengkapnya")}</span>
           <svg className={`home-section__read-more-arrow ${bioExpanded ? "up" : ""}`} stroke="currentColor" fill="none" strokeWidth="2" viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round" height="14" width="14" xmlns="http://www.w3.org/2000/svg"><polyline points="6 9 12 15 18 9"></polyline></svg>
         </button>
-      </div>
+      </motion.div>
 
       <div className="home-section__divider" />
 
       {/* Stats Proof Row */}
-      <div className="home-section__stats">
-        <div className="home-stat-card">
-          <div className="home-stat-card__icon"><FiFolder size={18} /></div>
-          <div className="home-stat-card__content">
-            <span className="home-stat-card__value">15</span>
-            <span className="home-stat-card__label">{t("home.stats.projects") || "Proyek"}</span>
+      <Reveal delay={0.1}>
+        <div className="home-section__stats">
+          <div className="home-stat-card">
+            <div className="home-stat-card__icon"><FiFolder size={18} /></div>
+            <div className="home-stat-card__content">
+              <span className="home-stat-card__value">
+                <CountUp to={15} />
+              </span>
+              <span className="home-stat-card__label">{t("home.stats.projects") || "Proyek"}</span>
+            </div>
+          </div>
+          <div className="home-stat-card">
+            <div className="home-stat-card__icon"><FiBriefcase size={18} /></div>
+            <div className="home-stat-card__content">
+              <span className="home-stat-card__value">
+                <CountUp to={3} />
+              </span>
+              <span className="home-stat-card__label">{t("home.stats.internships") || "Magang Industri"}</span>
+            </div>
+          </div>
+          <div className="home-stat-card">
+            <div className="home-stat-card__icon"><FiAward size={18} /></div>
+            <div className="home-stat-card__content">
+              <span className="home-stat-card__value">
+                <CountUp to={13} />
+              </span>
+              <span className="home-stat-card__label">{t("home.stats.certifications") || "Sertifikasi"}</span>
+            </div>
+          </div>
+          <div className="home-stat-card">
+            <div className="home-stat-card__icon"><FiDatabase size={18} /></div>
+            <div className="home-stat-card__content">
+              <span className="home-stat-card__value">
+                <CountUp to={20000} suffix="+" separator={isEn ? "," : "."} />
+              </span>
+              <span className="home-stat-card__label">{t("home.stats.dataRows") || "Baris Data Diolah"}</span>
+            </div>
           </div>
         </div>
-        <div className="home-stat-card">
-          <div className="home-stat-card__icon"><FiBriefcase size={18} /></div>
-          <div className="home-stat-card__content">
-            <span className="home-stat-card__value">3</span>
-            <span className="home-stat-card__label">{t("home.stats.internships") || "Magang Industri"}</span>
-          </div>
-        </div>
-        <div className="home-stat-card">
-          <div className="home-stat-card__icon"><FiAward size={18} /></div>
-          <div className="home-stat-card__content">
-            <span className="home-stat-card__value">13</span>
-            <span className="home-stat-card__label">{t("home.stats.certifications") || "Sertifikasi"}</span>
-          </div>
-        </div>
-        <div className="home-stat-card">
-          <div className="home-stat-card__icon"><FiDatabase size={18} /></div>
-          <div className="home-stat-card__content">
-            <span className="home-stat-card__value">{isEn ? "20,000+" : "20.000+"}</span>
-            <span className="home-stat-card__label">{t("home.stats.dataRows") || "Baris Data Diolah"}</span>
-          </div>
-        </div>
-      </div>
+      </Reveal>
 
       <div className="home-section__divider" />
 
       {/* Skills */}
       <div className="home-section__skills-block">
-        <h2 className="home-section__section-title">
-          {t("home.skillsTitle")}
-        </h2>
-        <p className="home-section__section-subtitle">{t("home.skillsSubtitle")}</p>
+        <Reveal>
+          <h2 className="home-section__section-title">
+            {t("home.skillsTitle")}
+          </h2>
+          <p className="home-section__section-subtitle">{t("home.skillsSubtitle")}</p>
+        </Reveal>
 
         {/* Filter Tabs */}
         {(!isMobile || skillsExpanded) && (
@@ -170,54 +207,121 @@ export default function HomeSection() {
         )}
 
         {/* Skill Badges */}
-        <div className="skills__badges">
-          {displayedSkills.map((skill, i) => (
-            <div 
-              key={i} 
-              className={`skill-badge ${skill.name.length > 18 ? "skill-badge--wide" : ""}`}
-              style={{ "--badge-color": skill.color }}
-            >
-              <img
-                src={skill.icon}
-                alt={skill.name}
-                className="skill-badge__icon"
-                onError={(e) => { e.target.style.display = "none"; }}
-              />
-              <span className="skill-badge__name">{skill.name}</span>
-            </div>
-          ))}
-        </div>
-
-        {/* Mobile Expand / Collapse Button */}
-        {isMobile && (
-          <button
-            type="button"
-            className="skills__expand-btn"
-            onClick={() => setSkillsExpanded(!skillsExpanded)}
+        {!isMobile ? (
+          <motion.div
+            className="skills__badges"
+            variants={staggerParent}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
           >
-            <span>
-              {skillsExpanded
-                ? (isEn ? "Show fewer skills" : "Tampilkan lebih sedikit")
-                : (isEn ? `Show all ${ALL_SKILLS.length} skills` : `Lihat semua ${ALL_SKILLS.length} skill`)}
-            </span>
-            <svg
-              style={{
-                transform: skillsExpanded ? "rotate(180deg)" : "rotate(0deg)",
-                transition: "transform 0.2s ease"
-              }}
-              stroke="currentColor"
-              fill="none"
-              strokeWidth="2"
-              viewBox="0 0 24 24"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              height="15"
-              width="15"
-              xmlns="http://www.w3.org/2000/svg"
+            {filteredSkills.map((skill) => (
+              <motion.div 
+                key={skill.name} 
+                variants={fadeUp}
+                whileHover={{ y: -3, scale: 1.03 }}
+                className={`skill-badge ${skill.name.length > 18 ? "skill-badge--wide" : ""}`}
+                style={{ "--badge-color": skill.color }}
+              >
+                <img
+                  src={skill.icon}
+                  alt={skill.name}
+                  className="skill-badge__icon"
+                  onError={(e) => { e.target.style.display = "none"; }}
+                />
+                <span className="skill-badge__name">{skill.name}</span>
+              </motion.div>
+            ))}
+          </motion.div>
+        ) : (
+          <>
+            <motion.div
+              className="skills__badges"
+              variants={staggerParent}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.2 }}
             >
-              <polyline points="6 9 12 15 18 9"></polyline>
-            </svg>
-          </button>
+              {ALL_SKILLS.slice(0, 12).map((skill) => (
+                <motion.div 
+                  key={skill.name} 
+                  variants={fadeUp}
+                  whileHover={{ y: -3, scale: 1.03 }}
+                  className={`skill-badge ${skill.name.length > 18 ? "skill-badge--wide" : ""}`}
+                  style={{ "--badge-color": skill.color }}
+                >
+                  <img
+                    src={skill.icon}
+                    alt={skill.name}
+                    className="skill-badge__icon"
+                    onError={(e) => { e.target.style.display = "none"; }}
+                  />
+                  <span className="skill-badge__name">{skill.name}</span>
+                </motion.div>
+              ))}
+            </motion.div>
+
+            <AnimatePresence>
+              {skillsExpanded && (
+                <motion.div
+                  initial={{ height: 0, opacity: 0 }}
+                  animate={{ height: "auto", opacity: 1 }}
+                  exit={{ height: 0, opacity: 0 }}
+                  transition={{ duration: 0.35, ease: EASE }}
+                  style={{ overflow: "hidden" }}
+                >
+                  <div className="skills__badges" style={{ marginTop: "8px" }}>
+                    {ALL_SKILLS.slice(12).map((skill) => (
+                      <motion.div 
+                        key={skill.name} 
+                        variants={fadeUp}
+                        whileHover={{ y: -3, scale: 1.03 }}
+                        className={`skill-badge ${skill.name.length > 18 ? "skill-badge--wide" : ""}`}
+                        style={{ "--badge-color": skill.color }}
+                      >
+                        <img
+                          src={skill.icon}
+                          alt={skill.name}
+                          className="skill-badge__icon"
+                          onError={(e) => { e.target.style.display = "none"; }}
+                        />
+                        <span className="skill-badge__name">{skill.name}</span>
+                      </motion.div>
+                    ))}
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
+
+            <button
+              type="button"
+              className="skills__expand-btn"
+              onClick={() => setSkillsExpanded(!skillsExpanded)}
+            >
+              <span>
+                {skillsExpanded
+                  ? (isEn ? "Show fewer skills" : "Tampilkan lebih sedikit")
+                  : (isEn ? `Show all ${ALL_SKILLS.length} skills` : `Lihat semua ${ALL_SKILLS.length} skill`)}
+              </span>
+              <svg
+                style={{
+                  transform: skillsExpanded ? "rotate(180deg)" : "rotate(0deg)",
+                  transition: "transform 0.2s ease"
+                }}
+                stroke="currentColor"
+                fill="none"
+                strokeWidth="2"
+                viewBox="0 0 24 24"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                height="15"
+                width="15"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </button>
+          </>
         )}
       </div>
 
@@ -225,41 +329,51 @@ export default function HomeSection() {
 
       {/* Featured Projects Block */}
       <div className="home-section__featured-block">
-        <div className="home-section__section-header-row">
-          <div>
-            <h2 className="home-section__section-title">
-              {t("home.featuredTitle") || "Proyek Unggulan"}
-            </h2>
-            <p className="home-section__section-subtitle">
-              {t("home.featuredSubtitle") || "Tiga proyek representatif dengan arsitektur modern dan dampak nyata."}
-            </p>
-          </div>
-          <button
-            type="button"
-            className="home-section__view-all-link"
-            onClick={() => {
-              if (isMobile) {
-                const el = document.getElementById("projects");
-                if (el) {
-                  el.scrollIntoView({ behavior: "smooth" });
-                  return;
+        <Reveal>
+          <div className="home-section__section-header-row">
+            <div>
+              <h2 className="home-section__section-title">
+                {t("home.featuredTitle") || "Proyek Unggulan"}
+              </h2>
+              <p className="home-section__section-subtitle">
+                {t("home.featuredSubtitle") || "Tiga proyek representatif dengan arsitektur modern dan dampak nyata."}
+              </p>
+            </div>
+            <button
+              type="button"
+              className="home-section__view-all-link"
+              onClick={() => {
+                if (isMobile) {
+                  const el = document.getElementById("projects");
+                  if (el) {
+                    el.scrollIntoView({ behavior: "smooth" });
+                    return;
+                  }
                 }
-              }
-              navigate("/projects");
-            }}
-          >
-            <span>{t("home.viewAllProjects") || "Lihat Semua Proyek"}</span>
-            <FiArrowRight size={14} />
-          </button>
-        </div>
+                navigate("/projects");
+              }}
+            >
+              <span>{t("home.viewAllProjects") || "Lihat Semua Proyek"}</span>
+              <FiArrowRight size={14} />
+            </button>
+          </div>
+        </Reveal>
 
-        <div className="home-featured__grid">
+        <motion.div
+          className="home-featured__grid"
+          variants={staggerParent}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
+        >
           {featuredProjects.map((p) => {
             const tr = isEn && projectTranslations[p.id]?.en;
             const subtitle = tr?.subtitle || p.subtitle;
             return (
-              <div
+              <motion.div
                 key={p.id}
+                variants={fadeUp}
+                whileHover={{ y: -4 }}
                 className="home-featured-card"
                 onClick={() => navigate(`/projects/${p.id}`)}
                 role="button"
@@ -287,10 +401,10 @@ export default function HomeSection() {
                     ))}
                   </div>
                 </div>
-              </div>
+              </motion.div>
             );
           })}
-        </div>
+        </motion.div>
       </div>
     </section>
   );
