@@ -66,16 +66,6 @@ export default function ProjectDetailPage() {
   const subtitle = tr?.subtitle || project?.subtitle || "";
   const fullDescription = tr?.fullDescription || project?.fullDescription || "";
 
-  // Dynamic Document Title
-  useEffect(() => {
-    if (project) {
-      document.title = `Muhammad Ghalib Pradipa | Software Engineer Portfolio - ${project.title}`;
-    }
-    return () => {
-      document.title = "Muhammad Ghalib Pradipa | Software Engineer Portfolio";
-    };
-  }, [project]);
-
   // Lock body scroll when lightbox is open
   useEffect(() => {
     if (isLightboxOpen) {
