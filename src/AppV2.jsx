@@ -206,11 +206,11 @@ function App() {
   }, [isMobile, isProjectDetail]);
 
   return (
-<<<<<<< HEAD
     <HelmetProvider>
       <RouteSEO />
       <CvModalProvider>
         <CommandPaletteProvider>
+          <motion.div style={{ scaleX }} className="scroll-progress" />
           <Suspense fallback={null}>
             <CvModal />
             <CommandPalette />
@@ -218,18 +218,6 @@ function App() {
           <div className="app-v2">
             {/* Left Sidebar */}
             <Sidebar />
-=======
-    <CvModalProvider>
-      <CommandPaletteProvider>
-        <motion.div style={{ scaleX }} className="scroll-progress" />
-        <Suspense fallback={null}>
-          <CvModal />
-          <CommandPalette />
-        </Suspense>
-        <div className="app-v2">
-          {/* Left Sidebar */}
-          <Sidebar />
->>>>>>> 7583fe4 (feat(motion): add top scroll progress bar using useScroll and useSpring)
 
             {/* Main Content */}
             <main className="app-v2__main">
