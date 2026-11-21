@@ -159,6 +159,8 @@ function App() {
   // Scroll to top on route change (Desktop only)
   useEffect(() => {
     if (isMobile) return;
+    // Reset window scroll first
+    window.scrollTo({ top: 0, behavior: 'instant' });
     const mainEl = document.querySelector('.app-v2__main');
     if (mainEl) mainEl.scrollTo({ top: 0, behavior: 'instant' });
   }, [location.pathname, isMobile]);
