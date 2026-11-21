@@ -49,8 +49,8 @@ export default function ExperienceSection() {
       }
       return {
         opacity: 0,
-        x: custom.idx % 2 === 0 ? -24 : 24,
-        y: 0,
+        y: 24,
+        x: 0,
       };
     },
     visible: (custom) => ({
