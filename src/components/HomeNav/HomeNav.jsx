@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import { NavLink, useLocation } from "react-router-dom";
+import { motion } from "framer-motion";
+import { HiCheckBadge } from "react-icons/hi2";
 import {
   FiHome,
   FiUser,
@@ -18,7 +20,7 @@ import { useCvModal } from "../../context/CvModalContext";
 import { useCommandPalette } from "../../context/CommandPaletteContext";
 import "./HomeNav.css";
 
-export default function HomeNav() {
+export default function HomeNav({ isScrolled }) {
   const { openCvModal } = useCvModal();
   const { openPalette } = useCommandPalette();
   const { language, setLanguage, t } = useLanguage();
@@ -41,6 +43,34 @@ export default function HomeNav() {
 
   return (
     <aside className="sidebar home-nav">
+      {/* Scrolled avatar: the hero photo's morph target. Absolute so it fills
+          the empty top space WITHOUT pushing the toggle/menus down (no
+          layout shift when it appears). Reuses the Sidebar profile classes,
+          so it looks exactly like the avatar on About. */}
+      {isScrolled && (
+        <motion.div
+          className="home-nav__profile"
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.35, ease: "easeOut" }}
+        >
+          <div className="sidebar__avatar-wrapper">
+            <motion.img
+              src="/assets/ghalibpradipa.png"
+              alt="Muhammad Ghalib Pradipa"
+              className="sidebar__avatar"
+              layoutId="profile-photo"
+              transition={{ type: "spring", stiffness: 120, damping: 30 }}
+            />
+          </div>
+          <h2 className="sidebar__name">
+            Muhammad Ghalib Pradipa
+            <HiCheckBadge className="sidebar__verified-icon" title={t("nav.verified")} />
+          </h2>
+          <p className="sidebar__title">{t("nav.roleTitle")}</p>
+        </motion.div>
+      )}
+
       <div className="home-nav__controls">
         <div className="sidebar__actions-wrapper">
           <div className="sidebar__lang-toggle">

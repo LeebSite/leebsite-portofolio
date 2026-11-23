@@ -47,7 +47,7 @@ const ALL_SKILLS = [
 
 const TABS = ["All", "Main", "Frontend", "Backend", "Data", "Database", "Tools"];
 
-export default function HomeSection() {
+export default function HomeSection({ isScrolled }) {
   const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState("All");
   const [skillsExpanded, setSkillsExpanded] = useState(false);
@@ -85,29 +85,31 @@ export default function HomeSection() {
         {/* Top Hero Area */}
         <div className="home-hero">
           {/* Blue Waist Glow */}
-          <div className="home-hero__waist-glow" />
+          {!isScrolled && <div className="home-hero__waist-glow" />}
 
           {/* Hero Photo */}
-          <motion.div
-            className="home-hero__photo-wrapper"
-            style={{ zIndex: !isMobile && isPhotoHovered ? 20 : 1 }}
-            onMouseEnter={() => !isMobile && setIsPhotoHovered(true)}
-            onMouseLeave={() => !isMobile && setIsPhotoHovered(false)}
-          >
+          {!isScrolled && (
             <motion.div
-              className="home-hero__photo-inner"
-              whileHover={!isMobile && !reduce ? { scale: 1.03 } : undefined}
-              transition={{ duration: 0.4, ease: EASE }}
+              className="home-hero__photo-wrapper"
+              style={{ zIndex: !isMobile && isPhotoHovered ? 20 : 1 }}
+              onMouseEnter={() => !isMobile && setIsPhotoHovered(true)}
+              onMouseLeave={() => !isMobile && setIsPhotoHovered(false)}
             >
-              <motion.img
-                src="/assets/foto-formal.png"
-                alt="Muhammad Ghalib Pradipa"
-                className="home-hero__photo"
-                layoutId={!isMobile && !reduce ? "profile-photo" : undefined}
-                transition={{ type: "spring", stiffness: 120, damping: 30 }}
-              />
+              <motion.div
+                className="home-hero__photo-inner"
+                whileHover={!isMobile && !reduce ? { scale: 1.03 } : undefined}
+                transition={{ duration: 0.4, ease: EASE }}
+              >
+                <motion.img
+                  src="/assets/foto-formal.png"
+                  alt="Muhammad Ghalib Pradipa"
+                  className="home-hero__photo"
+                  layoutId={!isMobile && !reduce ? "profile-photo" : undefined}
+                  transition={{ type: "spring", stiffness: 120, damping: 30 }}
+                />
+              </motion.div>
             </motion.div>
-          </motion.div>
+          )}
 
             {/* Content Layer (Header & Short Bio) */}
         <motion.div

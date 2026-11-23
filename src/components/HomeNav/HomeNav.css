@@ -2,6 +2,25 @@
   flex-shrink: 0;
 }
 
+/* Avatar that appears when scrolled (the hero photo's morph target).
+   Absolute: it fills the empty top space above the toggle WITHOUT pushing
+   the toggle/menus down, so the nav never jumps when it appears. The
+   sidebar is position: sticky, so it anchors to it. Height ~150px
+   (avatar 92 + name + role) fits the 208px empty space (28 padding +
+   180 controls margin-top). */
+.home-nav__profile {
+  position: absolute;
+  top: 28px;
+  left: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 20px;
+  text-align: center;
+  pointer-events: auto;
+}
+
 .home-nav__controls {
   display: flex;
   flex-direction: column;

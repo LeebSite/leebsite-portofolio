@@ -158,6 +158,24 @@ function App() {
     }
   }, []);
 
+  // Scroll morph (Home only, desktop + no reduced motion): past 350px the
+  // hero photo flies into the circular avatar in the HomeNav (same
+  // layoutId as the route morph). One shared state so HomeNav and
+  // HomeSection swap in the SAME render — framer-motion needs that to
+  // link the two layoutId elements into one fly animation.
+  const enableMorph = !isMobile && !reduce;
+  const [homeScrolled, setHomeScrolled] = useState(false);
+  useEffect(() => {
+    if (!enableMorph || location.pathname !== "/") {
+      setHomeScrolled(false);
+      return;
+    }
+    const onScroll = () => setHomeScrolled(window.scrollY > 350);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, [enableMorph, location.pathname]);
+
   // Scroll to top on route change (Desktop only)
   useEffect(() => {
     if (isMobile) return;
@@ -215,10 +233,10 @@ function App() {
           </Suspense>
           <div className="app-v2">
             <LayoutGroup id="profile-photo-transition">
-              {location.pathname === "/" ? <HomeNav /> : <Sidebar enablePhotoMorph={!isMobile && !reduce} />}
+              {location.pathname === "/" ? <HomeNav isScrolled={homeScrolled} /> : <Sidebar enablePhotoMorph={!isMobile && !reduce} />}
 
             {/* Main Content */}
-            <main className="app-v2__main">
+            <main className={location.pathname === "/" ? "app-v2__main app-v2__main--home" : "app-v2__main"}>
               <MobileHeader />
 
               {/* Section Route Content with Suspense Code-Splitting */}
@@ -233,7 +251,7 @@ function App() {
                   <>
                     <section id="home">
                       <Suspense fallback={<SectionLoader />}>
-                        <HomeSection />
+                        <HomeSection isScrolled={homeScrolled} />
                       </Suspense>
                     </section>
                     <section id="about">
@@ -270,7 +288,7 @@ function App() {
                 ) : (
                   <Suspense fallback={<SectionLoader />}>
                     <Routes>
-                      <Route path="/" element={<HomeSection />} />
+                      <Route path="/" element={<HomeSection isScrolled={homeScrolled} />} />
                       <Route path="/about" element={<AboutSection />} />
                       <Route path="/experience" element={<ExperienceSection />} />
                       <Route path="/projects" element={<ProjectsSection />} />

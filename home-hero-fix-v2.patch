@@ -1,0 +1,222 @@
+diff --git a/src/AppV2.css b/src/AppV2.css
+index bf5da1b..d027863 100644
+--- a/src/AppV2.css
++++ b/src/AppV2.css
+@@ -99,6 +99,15 @@ body {
+   flex-direction: column;
+ }
+ 
++/* Home only: the hero heading extends left past the main column (over the
++   nav area). overflow-y: auto above computes overflow-x to auto too, and
++   that clips anything outside the main box. overflow: visible on both axes
++   removes the clip. Nothing relies on main being a scroll container — the
++   scroll-to-top effect uses window.scrollTo. */
++.app-v2__main--home {
++  overflow: visible;
++}
++
+ /* Sections Container */
+ .app-v2__sections {
+   display: flex;
+@@ -119,6 +128,13 @@ body {
+   overflow: hidden;
+ }
+ 
++/* Home only: the section rule above sets overflow: hidden, which would also
++   clip the heading at the section's left edge. The heading is the only child
++   that extends outside, so lifting the clip for #home is safe. */
++.app-v2__sections > #home {
++  overflow: visible;
++}
++
+ @media (max-width: 900px) {
+   .scroll-progress {
+     top: 79px;
+diff --git a/src/AppV2.jsx b/src/AppV2.jsx
+index 1f1b285..f438a06 100644
+--- a/src/AppV2.jsx
++++ b/src/AppV2.jsx
+@@ -158,6 +158,24 @@ function App() {
+     }
+   }, []);
+ 
++  // Scroll morph (Home only, desktop + no reduced motion): past 350px the
++  // hero photo flies into the circular avatar in the HomeNav (same
++  // layoutId as the route morph). One shared state so HomeNav and
++  // HomeSection swap in the SAME render — framer-motion needs that to
++  // link the two layoutId elements into one fly animation.
++  const enableMorph = !isMobile && !reduce;
++  const [homeScrolled, setHomeScrolled] = useState(false);
++  useEffect(() => {
++    if (!enableMorph || location.pathname !== "/") {
++      setHomeScrolled(false);
++      return;
++    }
++    const onScroll = () => setHomeScrolled(window.scrollY > 350);
++    onScroll();
++    window.addEventListener("scroll", onScroll, { passive: true });
++    return () => window.removeEventListener("scroll", onScroll);
++  }, [enableMorph, location.pathname]);
++
+   // Scroll to top on route change (Desktop only)
+   useEffect(() => {
+     if (isMobile) return;
+@@ -215,10 +233,10 @@ function App() {
+           </Suspense>
+           <div className="app-v2">
+             <LayoutGroup id="profile-photo-transition">
+-              {location.pathname === "/" ? <HomeNav /> : <Sidebar enablePhotoMorph={!isMobile && !reduce} />}
++              {location.pathname === "/" ? <HomeNav isScrolled={homeScrolled} /> : <Sidebar enablePhotoMorph={!isMobile && !reduce} />}
+ 
+             {/* Main Content */}
+-            <main className="app-v2__main">
++            <main className={location.pathname === "/" ? "app-v2__main app-v2__main--home" : "app-v2__main"}>
+               <MobileHeader />
+ 
+               {/* Section Route Content with Suspense Code-Splitting */}
+@@ -233,7 +251,7 @@ function App() {
+                   <>
+                     <section id="home">
+                       <Suspense fallback={<SectionLoader />}>
+-                        <HomeSection />
++                        <HomeSection isScrolled={homeScrolled} />
+                       </Suspense>
+                     </section>
+                     <section id="about">
+@@ -270,7 +288,7 @@ function App() {
+                 ) : (
+                   <Suspense fallback={<SectionLoader />}>
+                     <Routes>
+-                      <Route path="/" element={<HomeSection />} />
++                      <Route path="/" element={<HomeSection isScrolled={homeScrolled} />} />
+                       <Route path="/about" element={<AboutSection />} />
+                       <Route path="/experience" element={<ExperienceSection />} />
+                       <Route path="/projects" element={<ProjectsSection />} />
+diff --git a/src/components/HomeNav/HomeNav.css b/src/components/HomeNav/HomeNav.css
+index 4d3b93a..1316fb9 100644
+--- a/src/components/HomeNav/HomeNav.css
++++ b/src/components/HomeNav/HomeNav.css
+@@ -2,6 +2,25 @@
+   flex-shrink: 0;
+ }
+ 
++/* Avatar that appears when scrolled (the hero photo's morph target).
++   Absolute: it fills the empty top space above the toggle WITHOUT pushing
++   the toggle/menus down, so the nav never jumps when it appears. The
++   sidebar is position: sticky, so it anchors to it. Height ~150px
++   (avatar 92 + name + role) fits the 208px empty space (28 padding +
++   180 controls margin-top). */
++.home-nav__profile {
++  position: absolute;
++  top: 28px;
++  left: 0;
++  right: 0;
++  display: flex;
++  flex-direction: column;
++  align-items: center;
++  padding: 0 20px;
++  text-align: center;
++  pointer-events: auto;
++}
++
+ .home-nav__controls {
+   display: flex;
+   flex-direction: column;
+diff --git a/src/components/HomeNav/HomeNav.jsx b/src/components/HomeNav/HomeNav.jsx
+index 868b4ae..944c13e 100644
+--- a/src/components/HomeNav/HomeNav.jsx
++++ b/src/components/HomeNav/HomeNav.jsx
+@@ -1,5 +1,7 @@
+ import { useState, useEffect } from "react";
+ import { NavLink, useLocation } from "react-router-dom";
++import { motion } from "framer-motion";
++import { HiCheckBadge } from "react-icons/hi2";
+ import {
+   FiHome,
+   FiUser,
+@@ -18,7 +20,7 @@ import { useCvModal } from "../../context/CvModalContext";
+ import { useCommandPalette } from "../../context/CommandPaletteContext";
+ import "./HomeNav.css";
+ 
+-export default function HomeNav() {
++export default function HomeNav({ isScrolled }) {
+   const { openCvModal } = useCvModal();
+   const { openPalette } = useCommandPalette();
+   const { language, setLanguage, t } = useLanguage();
+@@ -41,6 +43,34 @@ export default function HomeNav() {
+ 
+   return (
+     <aside className="sidebar home-nav">
++      {/* Scrolled avatar: the hero photo's morph target. Absolute so it fills
++          the empty top space WITHOUT pushing the toggle/menus down (no
++          layout shift when it appears). Reuses the Sidebar profile classes,
++          so it looks exactly like the avatar on About. */}
++      {isScrolled && (
++        <motion.div
++          className="home-nav__profile"
++          initial={{ opacity: 0, scale: 0.8 }}
++          animate={{ opacity: 1, scale: 1 }}
++          transition={{ duration: 0.35, ease: "easeOut" }}
++        >
++          <div className="sidebar__avatar-wrapper">
++            <motion.img
++              src="/assets/ghalibpradipa.png"
++              alt="Muhammad Ghalib Pradipa"
++              className="sidebar__avatar"
++              layoutId="profile-photo"
++              transition={{ type: "spring", stiffness: 120, damping: 30 }}
++            />
++          </div>
++          <h2 className="sidebar__name">
++            Muhammad Ghalib Pradipa
++            <HiCheckBadge className="sidebar__verified-icon" title={t("nav.verified")} />
++          </h2>
++          <p className="sidebar__title">{t("nav.roleTitle")}</p>
++        </motion.div>
++      )}
++
+       <div className="home-nav__controls">
+         <div className="sidebar__actions-wrapper">
+           <div className="sidebar__lang-toggle">
+diff --git a/src/components/v2/HomeSection.jsx b/src/components/v2/HomeSection.jsx
+index c7d34ff..ac5f111 100644
+--- a/src/components/v2/HomeSection.jsx
++++ b/src/components/v2/HomeSection.jsx
+@@ -47,7 +47,7 @@ const ALL_SKILLS = [
+ 
+ const TABS = ["All", "Main", "Frontend", "Backend", "Data", "Database", "Tools"];
+ 
+-export default function HomeSection() {
++export default function HomeSection({ isScrolled }) {
+   const navigate = useNavigate();
+   const [activeTab, setActiveTab] = useState("All");
+   const [skillsExpanded, setSkillsExpanded] = useState(false);
+@@ -84,12 +84,17 @@ export default function HomeSection() {
+     <section id="home" className="home-section">
+         {/* Top Hero Area */}
+         <div className="home-hero">
+-          {/* Blue Waist Glow */}
+-          <div className="home-hero__waist-glow" />
++          {/* Blue Waist Glow — hidden when scrolled: the photo it belongs
++              to has flown into the nav avatar, so the glow must go too. */}
++          {!isScrolled && <div className="home-hero__waist-glow" />}
+ 
+           {/* Hero Photo — plain div (NOT motion.div): framer-motion drops
+               the CSS translateX(-50%) centering on motion components, which
+-              pushed the photo right. Sizing is deterministic (see CSS). */}
++              pushed the photo right. Sizing is deterministic (see CSS).
++              Hidden when scrolled: the img unmounts in the SAME render that
++              the HomeNav avatar mounts, so layoutId "profile-photo" flies
++              from here into the nav circle. */}
++          {!isScrolled && (
+           <div
+             className="home-hero__photo-wrapper"
+             style={{ zIndex: !isMobile && isPhotoHovered ? 20 : 1 }}
+@@ -110,6 +115,7 @@ export default function HomeSection() {
+               />
+             </motion.div>
+           </div>
++          )}
+ 
+         {/* Heading — absolute, starts at the nav's left edge (see CSS).
+             It is OUTSIDE .home-hero__content on purpose: the content has
