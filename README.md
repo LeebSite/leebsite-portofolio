@@ -1,54 +1,98 @@
-# Portofolio Web — [Muhammad Ghalib Pradipa / LeebSite]
+# Portofolio Web — Muhammad Ghalib Pradipa
 
-Selamat datang di portofolio web pribadi saya! 🌐  
-Dibuat dengan React + Vite, ini adalah showcase dari project, skill, dan karya yang ingin saya bagikan.
+Portofolio pribadi Muhammad Ghalib Pradipa — Fresh Graduate S1 Teknik Informatika (UIN Sultan Syarif Kasim Riau). Single-page application yang dibangun dengan React + Vite.
 
-##  Struktur Project
+🌐 **Live:** [www.leebsite.my.id](https://www.leebsite.my.id/)
 
-- `public/` — file statis (favicon, assets, dsb.)  
-- `src/` — code utama React (komponen, utilitas, dsb.)  
-- `index.html` — entry point halaman web  
-- `package.json` & `package-lock.json` — manajemen dependencies dan script  
-- `vite.config.js` — konfigurasi build dan dev server Vite  
-- `eslint.config.js` — aturan linting agar kodenya tetap bersih dan konsisten  
+## Halaman
 
-##  Fitur Utama
+| Route | Halaman |
+| --- | --- |
+| `/` | Home |
+| `/about` | Tentang Saya |
+| `/experience` | Pengalaman |
+| `/projects` | Proyek |
+| `/projects/:id` | Detail Proyek |
+| `/journey` | Perjalanan |
+| `/achievements` | Pencapaian |
+| `/contact` | Kontak |
 
-- Dibangun dengan **React + Vite** — ringan, cepat reload, dan performa build optimal  
-- **ESLint** telah terkonfigurasi agar coding style tetap rapi  
-- Struktur modular dan siap dikembangkan—bisa ditambahkan halaman “About”, “Projects”, dsb.
+## Fitur
 
-##  Cara Jalankan
+- **Bilingual (ID/EN)** — seluruh konten tersedia dalam Bahasa Indonesia dan Inggris.
+- **Dark mode** — tema gelap near-black, bisa di-toggle dari drawer mobile dan command palette.
+- **Animasi Framer Motion** — reveal saat scroll, scroll progress bar, dan transisi antar halaman.
+- **SEO per-route** — title, canonical, Open Graph, dan JSON-LD berbeda tiap halaman (react-helmet-async), dilengkapi `sitemap.xml` dan `robots.txt`.
+- **Mobile single-scroll** — di layar kecil semua section tampil dalam satu scroll berkelanjutan; layout desktop tidak berubah.
+- **Widget statistik GitHub** di halaman About.
 
-1. Clone repository ini:
+## Tech Stack
+
+- **React 19** + **Vite 7**
+- **React Router v7**
+- **Tailwind CSS v4**
+- **Framer Motion** + **Motion**
+- **react-helmet-async** (SEO)
+- **Firebase** (Auth/Firestore via browser SDK)
+- **ESLint 9**
+
+## Struktur Project
+
+```
+public/                  # file statis: favicon, assets, sitemap.xml, robots.txt, CV.pdf
+src/
+  main.jsx               # entry point
+  AppV2.jsx              # app shell + routing (layout v2)
+  AppV2.css
+  components/
+    v2/                  # halaman: Home, About, Experience, Projects, Journey, Achievements, Contact
+    Sidebar/             # sidebar desktop
+    MobileHeader/        # header + drawer mobile
+    SEO.jsx              # SEO per-route (Helmet)
+    motion/              # Reveal, CountUp
+    GitHubStatsWidget/   # statistik GitHub di About
+  context/               # LanguageContext, CommandPaletteContext, CvModalContext
+  data/
+    data.js              # data proyek, pengalaman, dsb.
+    translations.js      # kamus ID/EN
+    firebase.js          # konfigurasi Firebase
+  index.css
+vercel.json              # redirect 301 ke leebsite.my.id + SPA fallback
+vite.config.js
+eslint.config.js
+```
+
+## Cara Menjalankan
+
 ```bash
+# Clone repository
 git clone https://github.com/LeebSite/leebsite-portofolio.git
 cd leebsite-portofolio
-````
 
-2. Install dependencies:
-```bash
+# Install dependencies
 npm install
-````
 
-3. Jalankan server lokal dengan hot reload:
-```bash
+# Jalankan dev server (hot reload)
 npm run dev
-````
 
-4. Buat versi production:
-```bash
+# Build production
 npm run build
-````
 
-## &#x20;Quick Preview
+# Preview hasil build
+npm run preview
 
-Jika sudah di-deploy (contoh: Vercel, GitHub Pages, Netlify), nah kamu bisa tambahkan link deploy di sini, misalnya:
-[🔗 Lihat versi live](https://leebsite.vercel.app/)
+# Lint
+npm run lint
+```
 
+## Deployment
 
-* **Email:** [email\_mhd.ghalibpradipa@gmail.com](mailto:email_mhd.ghalibpradipa@gmail.com)
-* **LinkedIn:** [linkedin.com/in/ghalibpradipaa](https://www.linkedin.com/in/ghalibpradipaa/)
-* **Instagram:** [@gpradiipaa](https://www.instagram.com/gpradiipaa)
+Deploy otomatis via **Vercel** dari branch `main`. Domain utama `www.leebsite.my.id`; `leebsite.vercel.app` di-redirect permanen (301) ke domain utama.
 
----
+## Kontak
+
+- **Website:** [www.leebsite.my.id](https://www.leebsite.my.id/)
+- **Email:** [mhd.ghalibpradipa@gmail.com](mailto:mhd.ghalibpradipa@gmail.com)
+- **LinkedIn:** [linkedin.com/in/ghalibpradipaa](https://www.linkedin.com/in/ghalibpradipaa)
+- **GitHub:** [github.com/LeebSite](https://github.com/LeebSite)
+- **Instagram:** [@gpradiipaa](https://www.instagram.com/gpradiipaa)
