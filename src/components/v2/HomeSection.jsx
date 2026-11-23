@@ -90,154 +90,154 @@ export default function HomeSection() {
     return () => mql.removeEventListener("change", onChange);
   }, []);
 
-  const filteredSkills = ALL_SKILLS.filter(skill => 
+  const filteredSkills = ALL_SKILLS.filter(skill =>
     activeTab === "All" || skill.cats.includes(activeTab)
   );
 
   return (
     <section id="home" className="home-section">
-      {/* Top Hero Area */}
-      <div className="home-hero">
-        {/* Blue Waist Glow */}
-        <div className="home-hero__waist-glow" />
+        {/* Top Hero Area */}
+        <div className="home-hero">
+          {/* Blue Waist Glow */}
+          <div className="home-hero__waist-glow" />
 
-        {/* Hero Photo with Hover and Scroll Morph */}
-        <motion.div
-          className="home-hero__photo-wrapper"
-          style={
-            !isMobile && !reduce
-              ? {
+          {/* Hero Photo with Hover and Scroll Morph */}
+          <motion.div
+            className="home-hero__photo-wrapper"
+            style={
+              !isMobile && !reduce
+                ? {
                   scale: photoScale,
                   x: photoX,
                   y: photoY,
                   opacity: photoOpacity,
                   zIndex: isPhotoHovered ? 20 : 1,
                 }
-              : {}
-          }
-          onMouseEnter={() => !isMobile && setIsPhotoHovered(true)}
-          onMouseLeave={() => !isMobile && setIsPhotoHovered(false)}
-        >
-          <motion.div
-            className="home-hero__photo-inner"
-            whileHover={!isMobile ? { scale: 1.03 } : undefined}
-            transition={{ duration: 0.4, ease: EASE }}
+                : {}
+            }
+            onMouseEnter={() => !isMobile && setIsPhotoHovered(true)}
+            onMouseLeave={() => !isMobile && setIsPhotoHovered(false)}
           >
-            <img
-              src="/assets/foto-formal.png"
-              alt="Muhammad Ghalib Pradipa"
-              className="home-hero__photo"
-            />
+            <motion.div
+              className="home-hero__photo-inner"
+              whileHover={!isMobile ? { scale: 1.03 } : undefined}
+              transition={{ duration: 0.4, ease: EASE }}
+            >
+              <img
+                src="/assets/foto-formal.png"
+                alt="Muhammad Ghalib Pradipa"
+                className="home-hero__photo"
+              />
+            </motion.div>
           </motion.div>
-        </motion.div>
 
-        {/* Content Layer (Header & Short Bio) */}
+            {/* Content Layer (Header & Short Bio) */}
         <motion.div
-          className="home-hero__content"
-          style={!isMobile && !reduce ? { opacity: textOpacity } : {}}
-        >
-          {/* Top-Left: Greeting, Meta & Role */}
-          <div className="home-hero__left">
-            <h1 className="home-hero__title">
-              {greetingWords.map((word, idx) => (
-                <motion.span
-                  key={idx}
-                  initial={{ opacity: 0, y: 16 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: idx * 0.08, ease: EASE }}
-                  style={{ display: "inline-block", marginRight: "0.28em" }}
-                >
-                  {word}
-                </motion.span>
-              ))}
-            </h1>
-            <motion.div
-              className="home-hero__meta"
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.16, ease: EASE }}
-            >
-              <span className="home-hero__meta-item">
-                <span className="home-hero__meta-dot" />
-                {t("home.domicile")}
-              </span>
-              <span className="home-hero__meta-divider">·</span>
-              <span className="home-hero__meta-item">{t("home.onsite")}</span>
-            </motion.div>
-            <motion.p
-              className="home-hero__role"
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.22, ease: EASE }}
-            >
-              Software Engineer, Fullstack Developer and Data Engineer
-            </motion.p>
-          </div>
+            className="home-hero__content"
+            style={!isMobile && !reduce ? { opacity: textOpacity } : {}}
+          >
+        {/* Top-Left: Greeting, Meta & Role */}
+        <div className="home-hero__left">
+          <h1 className="home-hero__title">
+            {greetingWords.map((word, idx) => (
+              <motion.span
+                key={idx}
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: idx * 0.08, ease: EASE }}
+                style={{ display: "inline-block", marginRight: "0.28em" }}
+              >
+                {word}
+              </motion.span>
+            ))}
+          </h1>
+          <motion.div
+            className="home-hero__meta"
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.16, ease: EASE }}
+          >
+            <span className="home-hero__meta-item">
+              <span className="home-hero__meta-dot" />
+              {t("home.domicile")}
+            </span>
+            <span className="home-hero__meta-divider">·</span>
+            <span className="home-hero__meta-item">{t("home.onsite")}</span>
+          </motion.div>
+          <motion.p
+            className="home-hero__role"
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.22, ease: EASE }}
+          >
+            Software Engineer, Fullstack Developer and Data Engineer
+          </motion.p>
+        </div>
 
-          {/* Right Column: Shortened Bio */}
-          <div className="home-hero__right">
-            <motion.div
-              className="home-hero__bio"
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.25, ease: EASE }}
-            >
-              <p>{t("home.shortBio1")}</p>
-              <p className="mt-3">{t("home.shortBio2")}</p>
-            </motion.div>
-          </div>
-        </motion.div>
+        {/* Right Column: Shortened Bio */}
+        <div className="home-hero__right">
+          <motion.div
+            className="home-hero__bio"
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.25, ease: EASE }}
+          >
+            <p>{t("home.shortBio1")}</p>
+            <p className="mt-3">{t("home.shortBio2")}</p>
+          </motion.div>
+        </div>
+      </motion.div>
 
-        {/* Stat Cards Overlapping Bottom of Photo */}
-        <motion.div
-          className="home-hero__stats"
-          style={!isMobile && !reduce ? { opacity: textOpacity } : {}}
-        >
-          <div className="home-stat-card">
-            <div className="home-stat-card__icon"><FiFolder size={18} /></div>
-            <div className="home-stat-card__content">
-              <span className="home-stat-card__value">
-                <CountUp to={15} />
-              </span>
-              <span className="home-stat-card__label">{t("home.stats.projects") || "Proyek"}</span>
+          {/* Stat Cards Overlapping Bottom of Photo */}
+          <motion.div
+            className="home-hero__stats"
+            style={!isMobile && !reduce ? { opacity: textOpacity } : {}}
+          >
+            <div className="home-stat-card">
+              <div className="home-stat-card__icon"><FiFolder size={18} /></div>
+              <div className="home-stat-card__content">
+                <span className="home-stat-card__value">
+                  <CountUp to={15} />
+                </span>
+                <span className="home-stat-card__label">{t("home.stats.projects") || "Proyek"}</span>
+              </div>
             </div>
-          </div>
-          <div className="home-stat-card">
-            <div className="home-stat-card__icon"><FiBriefcase size={18} /></div>
-            <div className="home-stat-card__content">
-              <span className="home-stat-card__value">
-                <CountUp to={3} />
-              </span>
-              <span className="home-stat-card__label">{t("home.stats.internships") || "Magang Industri"}</span>
+            <div className="home-stat-card">
+              <div className="home-stat-card__icon"><FiBriefcase size={18} /></div>
+              <div className="home-stat-card__content">
+                <span className="home-stat-card__value">
+                  <CountUp to={3} />
+                </span>
+                <span className="home-stat-card__label">{t("home.stats.internships") || "Magang Industri"}</span>
+              </div>
             </div>
-          </div>
-          <div className="home-stat-card">
-            <div className="home-stat-card__icon"><FiAward size={18} /></div>
-            <div className="home-stat-card__content">
-              <span className="home-stat-card__value">
-                <CountUp to={13} />
-              </span>
-              <span className="home-stat-card__label">{t("home.stats.certifications") || "Sertifikasi"}</span>
+            <div className="home-stat-card">
+              <div className="home-stat-card__icon"><FiAward size={18} /></div>
+              <div className="home-stat-card__content">
+                <span className="home-stat-card__value">
+                  <CountUp to={13} />
+                </span>
+                <span className="home-stat-card__label">{t("home.stats.certifications") || "Sertifikasi"}</span>
+              </div>
             </div>
-          </div>
-          <div className="home-stat-card">
-            <div className="home-stat-card__icon"><FiDatabase size={18} /></div>
-            <div className="home-stat-card__content">
-              <span className="home-stat-card__value">
-                <CountUp to={20000} suffix="+" separator={isEn ? "," : "."} />
-              </span>
-              <span className="home-stat-card__label">{t("home.stats.dataRows") || "Baris Data Diolah"}</span>
+            <div className="home-stat-card">
+              <div className="home-stat-card__icon"><FiDatabase size={18} /></div>
+              <div className="home-stat-card__content">
+                <span className="home-stat-card__value">
+                  <CountUp to={20000} suffix="+" separator={isEn ? "," : "."} />
+                </span>
+                <span className="home-stat-card__label">{t("home.stats.dataRows") || "Baris Data Diolah"}</span>
+              </div>
             </div>
-          </div>
-        </motion.div>
-      </div>
+    </motion.div>
+      </div >
 
-      {/* Spacer for bottom half of overlapping stat cards */}
-      <div className="home-hero-spacer" />
+    {/* Spacer for bottom half of overlapping stat cards */ }
+    < div className = "home-hero-spacer" />
 
       <div className="home-section__divider" />
 
-      {/* Skills */}
+  {/* Skills */ }
       <div className="home-section__skills-block">
         <Reveal>
           <h2 className="home-section__section-title">
@@ -386,85 +386,85 @@ export default function HomeSection() {
 
       <div className="home-section__divider" />
 
-      {/* Featured Projects Block */}
-      <div className="home-section__featured-block">
-        <Reveal>
-          <div className="home-section__section-header-row">
-            <div>
-              <h2 className="home-section__section-title">
-                {t("home.featuredTitle") || "Proyek Unggulan"}
-              </h2>
-              <p className="home-section__section-subtitle">
-                {t("home.featuredSubtitle") || "Tiga proyek representatif dengan arsitektur modern dan dampak nyata."}
-              </p>
-            </div>
-            <button
-              type="button"
-              className="home-section__view-all-link"
-              onClick={() => {
-                if (isMobile) {
-                  const el = document.getElementById("projects");
-                  if (el) {
-                    el.scrollIntoView({ behavior: "smooth" });
-                    return;
-                  }
-                }
-                navigate("/projects");
-              }}
-            >
-              <span>{t("home.viewAllProjects") || "Lihat Semua Proyek"}</span>
-              <FiArrowRight size={14} />
-            </button>
-          </div>
-        </Reveal>
-
-        <motion.div
-          className="home-featured__grid"
-          variants={staggerParent}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
+  {/* Featured Projects Block */ }
+  <div className="home-section__featured-block">
+    <Reveal>
+      <div className="home-section__section-header-row">
+        <div>
+          <h2 className="home-section__section-title">
+            {t("home.featuredTitle") || "Proyek Unggulan"}
+          </h2>
+          <p className="home-section__section-subtitle">
+            {t("home.featuredSubtitle") || "Tiga proyek representatif dengan arsitektur modern dan dampak nyata."}
+          </p>
+        </div>
+        <button
+          type="button"
+          className="home-section__view-all-link"
+          onClick={() => {
+            if (isMobile) {
+              const el = document.getElementById("projects");
+              if (el) {
+                el.scrollIntoView({ behavior: "smooth" });
+                return;
+              }
+            }
+            navigate("/projects");
+          }}
         >
-          {featuredProjects.map((p) => {
-            const tr = isEn && projectTranslations[p.id]?.en;
-            const subtitle = tr?.subtitle || p.subtitle;
-            return (
-              <motion.div
-                key={p.id}
-                variants={fadeUp}
-                whileHover={{ y: -4 }}
-                className="home-featured-card"
-                onClick={() => navigate(`/projects/${p.id}`)}
-                role="button"
-                tabIndex={0}
-              >
-                <div className="home-featured-card__thumb-wrap">
-                  <img
-                    src={p.image}
-                    alt={p.title}
-                    className="home-featured-card__thumb"
-                    onError={(e) => {
-                      e.target.style.display = 'none';
-                    }}
-                  />
-                  <span className="home-featured-card__badge">
-                    {t(`projects.tabs.${p.categories?.[0]}`) || p.categories?.[0] || "Website"}
-                  </span>
-                </div>
-                <div className="home-featured-card__body">
-                  <h3 className="home-featured-card__title">{p.title}</h3>
-                  <p className="home-featured-card__desc">{subtitle}</p>
-                  <div className="home-featured-card__tech">
-                    {p.tech && p.tech.slice(0, 3).map((tName, idx) => (
-                      <span key={idx} className="home-featured-card__tech-tag">{tName}</span>
-                    ))}
-                  </div>
-                </div>
-              </motion.div>
-            );
-          })}
-        </motion.div>
+          <span>{t("home.viewAllProjects") || "Lihat Semua Proyek"}</span>
+          <FiArrowRight size={14} />
+        </button>
       </div>
-    </section>
+    </Reveal>
+
+    <motion.div
+      className="home-featured__grid"
+      variants={staggerParent}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.2 }}
+    >
+      {featuredProjects.map((p) => {
+        const tr = isEn && projectTranslations[p.id]?.en;
+        const subtitle = tr?.subtitle || p.subtitle;
+        return (
+          <motion.div
+            key={p.id}
+            variants={fadeUp}
+            whileHover={{ y: -4 }}
+            className="home-featured-card"
+            onClick={() => navigate(`/projects/${p.id}`)}
+            role="button"
+            tabIndex={0}
+          >
+            <div className="home-featured-card__thumb-wrap">
+              <img
+                src={p.image}
+                alt={p.title}
+                className="home-featured-card__thumb"
+                onError={(e) => {
+                  e.target.style.display = 'none';
+                }}
+              />
+              <span className="home-featured-card__badge">
+                {t(`projects.tabs.${p.categories?.[0]}`) || p.categories?.[0] || "Website"}
+              </span>
+            </div>
+            <div className="home-featured-card__body">
+              <h3 className="home-featured-card__title">{p.title}</h3>
+              <p className="home-featured-card__desc">{subtitle}</p>
+              <div className="home-featured-card__tech">
+                {p.tech && p.tech.slice(0, 3).map((tName, idx) => (
+                  <span key={idx} className="home-featured-card__tech-tag">{tName}</span>
+                ))}
+              </div>
+            </div>
+          </motion.div>
+        );
+      })}
+    </motion.div>
+  </div>
+    </section >
   );
 }

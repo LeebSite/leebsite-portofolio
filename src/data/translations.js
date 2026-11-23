@@ -162,15 +162,15 @@ export const translations = {
       emptyChat: "Belum ada pesan. Jadilah yang pertama meninggalkan pesan!"
     }
   },
-    cvModal: {
-      previewCv: "Preview CV",
-      downloadCv: "Unduh CV",
-      openInNewTab: "Buka di Tab Baru",
-      close: "Tutup",
-      fileInfo: "Curriculum Vitae • Software & Data Engineer",
-      previewHeading: "Pratinjau Dokumen PDF",
-      fallbackDesc: "Jika pratinjau tidak termuat di browser Anda, gunakan tombol di bawah:"
-    },
+  cvModal: {
+    previewCv: "Preview CV",
+    downloadCv: "Unduh CV",
+    openInNewTab: "Buka di Tab Baru",
+    close: "Tutup",
+    fileInfo: "Curriculum Vitae • Software & Data Engineer",
+    previewHeading: "Pratinjau Dokumen PDF",
+    fallbackDesc: "Jika pratinjau tidak termuat di browser Anda, gunakan tombol di bawah:"
+  },
   en: {
     nav: {
       home: "Home",
@@ -462,6 +462,7 @@ export const journeyData = {
       title: "Wakil Ketua — HIMATIF UIN Suska Riau",
       desc: "Mengatur pelaksanaan lebih dari 10 program berskala besar, serta memimpin dan mengoordinasikan komite lintas fungsi di 8 divisi internal organisasi mahasiswa.",
       image: "/assets/pengalaman/organisasi1.jpg",
+      color: "#8b5cf6"
       color: "#8b5cf6",
       url: "https://hima.tif.uin-suska.ac.id/"
     },
@@ -525,6 +526,7 @@ export const journeyData = {
       title: "Vice Chairman — HIMATIF UIN Suska Riau",
       desc: "Orchestrated the execution of 10+ large-scale programs, leading and aligning cross-functional committees across 8 internal divisions in the student association.",
       image: "/assets/pengalaman/organisasi1.jpg",
+      color: "#8b5cf6"
       color: "#8b5cf6",
       url: "https://hima.tif.uin-suska.ac.id/"
     },
