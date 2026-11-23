@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useRef, lazy, Suspense } from "react";
 import { Routes, Route, useLocation, useNavigate, useMatch } from "react-router-dom";
-import { motion, useScroll, useSpring } from "framer-motion";
+import { LayoutGroup, motion, useScroll, useSpring, useReducedMotion } from "framer-motion";
 import Sidebar from "./components/Sidebar/Sidebar";
+import HomeNav from "./components/HomeNav/HomeNav";
 import MobileHeader from "./components/MobileHeader/MobileHeader";
 import "./AppV2.css";
 import { CvModalProvider } from "./context/CvModalContext";
@@ -129,6 +130,7 @@ function RouteSEO() {
 function App() {
   const { scrollYProgress } = useScroll();
   const scaleX = useSpring(scrollYProgress, { stiffness: 120, damping: 30 });
+  const reduce = useReducedMotion();
 
   const location = useLocation();
   const navigate = useNavigate();
@@ -212,8 +214,8 @@ function App() {
             <CommandPalette />
           </Suspense>
           <div className="app-v2">
-            {/* Left Sidebar */}
-            <Sidebar />
+            <LayoutGroup id="profile-photo-transition">
+              {location.pathname === "/" ? <HomeNav /> : <Sidebar enablePhotoMorph={!isMobile && !reduce} />}
 
             {/* Main Content */}
             <main className="app-v2__main">
@@ -284,6 +286,7 @@ function App() {
               {/* Footer */}
               <footer className="app-v2__footer" style={{ display: "none" }} />
             </main>
+            </LayoutGroup>
           </div>
         </CommandPaletteProvider>
       </CvModalProvider>

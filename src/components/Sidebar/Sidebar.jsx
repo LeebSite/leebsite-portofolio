@@ -2,32 +2,19 @@ import { useState, useEffect } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 import { FiHome, FiUser, FiBriefcase, FiLayers, FiCompass, FiAward, FiMail } from "react-icons/fi";
 import { HiCheckBadge } from "react-icons/hi2";
-import { motion, useScroll, useTransform, useSpring, useReducedMotion } from "framer-motion";
+import { motion } from "framer-motion";
 import "./Sidebar.css";
 import { useLanguage } from "../../context/LanguageContext";
 import { useCvModal } from "../../context/CvModalContext";
 import { useCommandPalette } from "../../context/CommandPaletteContext";
 import { FiSearch } from "react-icons/fi";
 
-export default function Sidebar() {
+export default function Sidebar({ enablePhotoMorph = true }) {
   const { openCvModal } = useCvModal();
   const { openPalette } = useCommandPalette();
   const location = useLocation();
   const { language, setLanguage, t } = useLanguage();
-  const [darkMode, setDarkMode] = useState(false);
-
-  const isHome = location.pathname === "/";
-  const reduce = useReducedMotion();
-  const { scrollY } = useScroll();
-
-  const rawProfileOpacity = useTransform(scrollY, [220, 480], [0, 1]);
-  const rawProfileScale = useTransform(scrollY, [220, 480], [0.8, 1]);
-  const rawProfileY = useTransform(scrollY, [220, 480], [14, 0]);
-
-  const profileOpacity = useSpring(rawProfileOpacity, { stiffness: 120, damping: 30 });
-  const profileScale = useSpring(rawProfileScale, { stiffness: 120, damping: 30 });
-  const profileY = useSpring(rawProfileY, { stiffness: 120, damping: 30 });
-  const pointerEvents = useTransform(scrollY, (v) => (v > 220 ? "auto" : "none"));
+  const [darkMode, setDarkMode] = useState(() => document.body.classList.contains("dark"));
 
   useEffect(() => {
     if (darkMode) {
@@ -51,24 +38,14 @@ export default function Sidebar() {
     <aside className="sidebar">
       {/* Profile Card */}
       <div className="sidebar__profile">
-        <motion.div
-          className="sidebar__profile-header"
-          style={
-            isHome && !reduce
-              ? {
-                opacity: profileOpacity,
-                scale: profileScale,
-                y: profileY,
-                pointerEvents,
-              }
-              : {}
-          }
-        >
+        <div className="sidebar__profile-header">
           <div className="sidebar__avatar-wrapper">
-            <img
+            <motion.img
               src="/assets/ghalibpradipa.png"
               alt="Muhammad Ghalib Pradipa"
               className="sidebar__avatar"
+              layoutId={enablePhotoMorph ? "profile-photo" : undefined}
+              transition={{ type: "spring", stiffness: 120, damping: 30 }}
             />
           </div>
           <h2 className="sidebar__name">
@@ -76,7 +53,7 @@ export default function Sidebar() {
             <HiCheckBadge className="sidebar__verified-icon" title={t("nav.verified")} />
           </h2>
           <p className="sidebar__title">{t("nav.roleTitle")}</p>
-        </motion.div>
+        </div>
 
         {/* Action Buttons */}
         <div className="sidebar__actions-wrapper">

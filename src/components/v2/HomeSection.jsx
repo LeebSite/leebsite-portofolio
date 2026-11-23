@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { FiFolder, FiBriefcase, FiAward, FiDatabase, FiArrowRight } from "react-icons/fi";
-import { motion, AnimatePresence, useScroll, useTransform, useSpring, useReducedMotion } from "framer-motion";
+import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { listProyek } from "../../data";
 import { Reveal, EASE, fadeUp, staggerParent } from "../motion/Reveal";
 import { CountUp } from "../motion/CountUp";
@@ -54,20 +54,6 @@ export default function HomeSection() {
   const [isPhotoHovered, setIsPhotoHovered] = useState(false);
   const { t, isEn, projectTranslations } = useLanguage();
   const reduce = useReducedMotion();
-  const { scrollY } = useScroll();
-
-  // Scroll morph transforms for desktop (0 -> 450px)
-  const rawPhotoScale = useTransform(scrollY, [0, 450], [1, 0.16]);
-  const rawPhotoX = useTransform(scrollY, [0, 450], [0, -420]);
-  const rawPhotoY = useTransform(scrollY, [0, 450], [0, -180]);
-  const rawPhotoOpacity = useTransform(scrollY, [0, 320, 450], [1, 0.7, 0]);
-  const rawTextOpacity = useTransform(scrollY, [0, 220], [1, 0]);
-
-  const photoScale = useSpring(rawPhotoScale, { stiffness: 120, damping: 30 });
-  const photoX = useSpring(rawPhotoX, { stiffness: 120, damping: 30 });
-  const photoY = useSpring(rawPhotoY, { stiffness: 120, damping: 30 });
-  const photoOpacity = useSpring(rawPhotoOpacity, { stiffness: 120, damping: 30 });
-  const textOpacity = useSpring(rawTextOpacity, { stiffness: 120, damping: 30 });
 
   const FEATURED_PROJECT_IDS = [5, 4, 13];
   const featuredProjects = FEATURED_PROJECT_IDS.map(id => listProyek.find(p => p.id === id)).filter(Boolean);
@@ -101,32 +87,24 @@ export default function HomeSection() {
           {/* Blue Waist Glow */}
           <div className="home-hero__waist-glow" />
 
-          {/* Hero Photo with Hover and Scroll Morph */}
+          {/* Hero Photo */}
           <motion.div
             className="home-hero__photo-wrapper"
-            style={
-              !isMobile && !reduce
-                ? {
-                  scale: photoScale,
-                  x: photoX,
-                  y: photoY,
-                  opacity: photoOpacity,
-                  zIndex: isPhotoHovered ? 20 : 1,
-                }
-                : {}
-            }
+            style={{ zIndex: !isMobile && isPhotoHovered ? 20 : 1 }}
             onMouseEnter={() => !isMobile && setIsPhotoHovered(true)}
             onMouseLeave={() => !isMobile && setIsPhotoHovered(false)}
           >
             <motion.div
               className="home-hero__photo-inner"
-              whileHover={!isMobile ? { scale: 1.03 } : undefined}
+              whileHover={!isMobile && !reduce ? { scale: 1.03 } : undefined}
               transition={{ duration: 0.4, ease: EASE }}
             >
-              <img
+              <motion.img
                 src="/assets/foto-formal.png"
                 alt="Muhammad Ghalib Pradipa"
                 className="home-hero__photo"
+                layoutId={!isMobile && !reduce ? "profile-photo" : undefined}
+                transition={{ type: "spring", stiffness: 120, damping: 30 }}
               />
             </motion.div>
           </motion.div>
@@ -134,7 +112,6 @@ export default function HomeSection() {
             {/* Content Layer (Header & Short Bio) */}
         <motion.div
             className="home-hero__content"
-            style={!isMobile && !reduce ? { opacity: textOpacity } : {}}
           >
         {/* Top-Left: Greeting, Meta & Role */}
         <div className="home-hero__left">
@@ -191,7 +168,6 @@ export default function HomeSection() {
           {/* Stat Cards Overlapping Bottom of Photo */}
           <motion.div
             className="home-hero__stats"
-            style={!isMobile && !reduce ? { opacity: textOpacity } : {}}
           >
             <div className="home-stat-card">
               <div className="home-stat-card__icon"><FiFolder size={18} /></div>
