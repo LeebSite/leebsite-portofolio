@@ -9,5 +9,5 @@
   width: 100%;
   padding: 0 20px 24px;
   text-align: center;
-  margin-top: clamp(160px, 22vh, 180px);
+  margin-top: clamp(230px, 24.5vh, 265px);
 }
