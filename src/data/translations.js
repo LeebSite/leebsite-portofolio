@@ -18,6 +18,8 @@ export const translations = {
       greeting: "Halo, saya Muhammad Ghalib Pradipa",
       domicile: "Berdomisili di Riau, Indonesia",
       onsite: "Onsite",
+      shortBio1: "Lulusan baru Teknik Informatika yang berfokus sebagai Full-Stack Software dan Data Engineer, dengan rekam jejak membangun aplikasi web skala enterprise dan mengoptimalkan alur kerja data skala besar.",
+      shortBio2: "Nilai tambah saya adalah keseimbangan antara eksekusi teknis dan kepemimpinan strategis — clean code sama pentingnya dengan komunikasi yang jelas dan tujuan bisnis.",
       bio1Html: "Seorang <strong>Fresh Graduate Teknik Informatika</strong> yang berfokus sebagai <strong>Full-Stack Software dan Data Engineer</strong> dengan rekam jejak yang kuat dalam membangun aplikasi web skala enterprise dan mengoptimalkan alur kerja data skala besar. Fondasi teknis saya dibangun melalui pengalaman industri langsung di berbagai instansi nasional tingkat atas, termasuk <strong>PT Kilang Pertamina Internasional</strong>, <strong>Bank Indonesia</strong>, dan <strong>Kemendikdasmen</strong>.",
       bio2Html: "Nilai tambah yang membedakan saya adalah kombinasi antara eksekusi teknis dan kepemimpinan strategis. Saya memahami bahwa menulis kode yang bersih (<span class=\"home-section__highlight\">clean code</span>) sama pentingnya dengan komunikasi yang efektif dan pemahaman terhadap tujuan bisnis.",
       stats: {
@@ -187,6 +189,8 @@ export const translations = {
       greeting: "Hello, I'm Muhammad Ghalib Pradipa",
       domicile: "Based in Riau, Indonesia",
       onsite: "Onsite",
+      shortBio1: "An Informatics Engineering fresh graduate focused as a Full-Stack Software and Data Engineer, with a proven track record building enterprise-scale web applications and optimizing large-scale data workflows.",
+      shortBio2: "What sets me apart is the balance between technical execution and strategic leadership — clean code matters as much as clear communication and business goals.",
       bio1Html: "An <strong>Informatics Engineering Fresh Graduate</strong> focused as a <strong>Full-Stack Software and Data Engineer</strong> with a proven track record of building enterprise-scale web applications and optimizing large-scale data workflows. My technical foundation is built on direct industry experience in top-tier national institutions, including <strong>PT Kilang Pertamina Internasional</strong>, <strong>Bank Indonesia</strong>, and the <strong>Ministry of Primary and Secondary Education</strong>.",
       bio2Html: "The added value that sets me apart is the balance between technical execution and strategic leadership. I understand that writing clean code (<span class=\"home-section__highlight\">clean code</span>) is just as vital as effective communication and alignment with business goals.",
       stats: {

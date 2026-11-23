@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { FiFolder, FiBriefcase, FiAward, FiDatabase, FiArrowRight } from "react-icons/fi";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useScroll, useTransform, useSpring, useReducedMotion } from "framer-motion";
 import { listProyek } from "../../data";
 import { Reveal, EASE, fadeUp, staggerParent } from "../motion/Reveal";
 import { CountUp } from "../motion/CountUp";
@@ -50,9 +50,24 @@ const TABS = ["All", "Main", "Frontend", "Backend", "Data", "Database", "Tools"]
 export default function HomeSection() {
   const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState("All");
-  const [bioExpanded, setBioExpanded] = useState(false);
   const [skillsExpanded, setSkillsExpanded] = useState(false);
+  const [isPhotoHovered, setIsPhotoHovered] = useState(false);
   const { t, isEn, projectTranslations } = useLanguage();
+  const reduce = useReducedMotion();
+  const { scrollY } = useScroll();
+
+  // Scroll morph transforms for desktop (0 -> 450px)
+  const rawPhotoScale = useTransform(scrollY, [0, 450], [1, 0.16]);
+  const rawPhotoX = useTransform(scrollY, [0, 450], [0, -420]);
+  const rawPhotoY = useTransform(scrollY, [0, 450], [0, -180]);
+  const rawPhotoOpacity = useTransform(scrollY, [0, 320, 450], [1, 0.7, 0]);
+  const rawTextOpacity = useTransform(scrollY, [0, 220], [1, 0]);
+
+  const photoScale = useSpring(rawPhotoScale, { stiffness: 120, damping: 30 });
+  const photoX = useSpring(rawPhotoX, { stiffness: 120, damping: 30 });
+  const photoY = useSpring(rawPhotoY, { stiffness: 120, damping: 30 });
+  const photoOpacity = useSpring(rawPhotoOpacity, { stiffness: 120, damping: 30 });
+  const textOpacity = useSpring(rawTextOpacity, { stiffness: 120, damping: 30 });
 
   const FEATURED_PROJECT_IDS = [5, 4, 13];
   const featuredProjects = FEATURED_PROJECT_IDS.map(id => listProyek.find(p => p.id === id)).filter(Boolean);
@@ -81,62 +96,103 @@ export default function HomeSection() {
 
   return (
     <section id="home" className="home-section">
-      <div className="home-section__header">
-        <h1 className="home-section__title">
-          {greetingWords.map((word, idx) => (
-            <motion.span
-              key={idx}
+      {/* Top Hero Area */}
+      <div className="home-hero">
+        {/* Blue Waist Glow */}
+        <div className="home-hero__waist-glow" />
+
+        {/* Hero Photo with Hover and Scroll Morph */}
+        <motion.div
+          className="home-hero__photo-wrapper"
+          style={
+            !isMobile && !reduce
+              ? {
+                  scale: photoScale,
+                  x: photoX,
+                  y: photoY,
+                  opacity: photoOpacity,
+                  zIndex: isPhotoHovered ? 20 : 1,
+                }
+              : {}
+          }
+          onMouseEnter={() => !isMobile && setIsPhotoHovered(true)}
+          onMouseLeave={() => !isMobile && setIsPhotoHovered(false)}
+        >
+          <motion.div
+            className="home-hero__photo-inner"
+            whileHover={!isMobile ? { scale: 1.03 } : undefined}
+            transition={{ duration: 0.4, ease: EASE }}
+          >
+            <img
+              src="/assets/foto-formal.png"
+              alt="Muhammad Ghalib Pradipa"
+              className="home-hero__photo"
+            />
+          </motion.div>
+        </motion.div>
+
+        {/* Content Layer (Header & Short Bio) */}
+        <motion.div
+          className="home-hero__content"
+          style={!isMobile && !reduce ? { opacity: textOpacity } : {}}
+        >
+          {/* Top-Left: Greeting, Meta & Role */}
+          <div className="home-hero__left">
+            <h1 className="home-hero__title">
+              {greetingWords.map((word, idx) => (
+                <motion.span
+                  key={idx}
+                  initial={{ opacity: 0, y: 16 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: idx * 0.08, ease: EASE }}
+                  style={{ display: "inline-block", marginRight: "0.28em" }}
+                >
+                  {word}
+                </motion.span>
+              ))}
+            </h1>
+            <motion.div
+              className="home-hero__meta"
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: idx * 0.08, ease: EASE }}
-              style={{ display: "inline-block", marginRight: "0.28em" }}
+              transition={{ duration: 0.5, delay: 0.16, ease: EASE }}
             >
-              {word}
-            </motion.span>
-          ))}
-        </h1>
-        <motion.div
-          className="home-section__meta"
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.16, ease: EASE }}
-        >
-          <span className="home-section__meta-item">
-            <span className="home-section__meta-dot" />
-            {t("home.domicile")}
-          </span>
-          <span className="home-section__meta-divider"> </span>
-          <span className="home-section__meta-item">{t("home.onsite")}</span>
+              <span className="home-hero__meta-item">
+                <span className="home-hero__meta-dot" />
+                {t("home.domicile")}
+              </span>
+              <span className="home-hero__meta-divider">·</span>
+              <span className="home-hero__meta-item">{t("home.onsite")}</span>
+            </motion.div>
+            <motion.p
+              className="home-hero__role"
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.22, ease: EASE }}
+            >
+              Software Engineer, Fullstack Developer and Data Engineer
+            </motion.p>
+          </div>
+
+          {/* Right Column: Shortened Bio */}
+          <div className="home-hero__right">
+            <motion.div
+              className="home-hero__bio"
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.25, ease: EASE }}
+            >
+              <p>{t("home.shortBio1")}</p>
+              <p className="mt-3">{t("home.shortBio2")}</p>
+            </motion.div>
+          </div>
         </motion.div>
-      </div>
 
-      <div className="home-section__divider" />
-
-      <motion.div
-        className="home-section__bio"
-        initial={{ opacity: 0, y: 16 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, delay: 0.25, ease: EASE }}
-      >
-        <p dangerouslySetInnerHTML={{ __html: t("home.bio1Html") }} />
-        <div className={`home-section__bio-extra ${bioExpanded ? "expanded" : ""}`}>
-          <p className="mt-4" dangerouslySetInnerHTML={{ __html: t("home.bio2Html") }} />
-        </div>
-        <button
-          type="button"
-          className="home-section__read-more-btn"
-          onClick={() => setBioExpanded(!bioExpanded)}
+        {/* Stat Cards Overlapping Bottom of Photo */}
+        <motion.div
+          className="home-hero__stats"
+          style={!isMobile && !reduce ? { opacity: textOpacity } : {}}
         >
-          <span>{bioExpanded ? (isEn ? "Show less" : "Tampilkan lebih sedikit") : (isEn ? "Read more" : "Baca selengkapnya")}</span>
-          <svg className={`home-section__read-more-arrow ${bioExpanded ? "up" : ""}`} stroke="currentColor" fill="none" strokeWidth="2" viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round" height="14" width="14" xmlns="http://www.w3.org/2000/svg"><polyline points="6 9 12 15 18 9"></polyline></svg>
-        </button>
-      </motion.div>
-
-      <div className="home-section__divider" />
-
-      {/* Stats Proof Row */}
-      <Reveal delay={0.1}>
-        <div className="home-section__stats">
           <div className="home-stat-card">
             <div className="home-stat-card__icon"><FiFolder size={18} /></div>
             <div className="home-stat-card__content">
@@ -173,8 +229,11 @@ export default function HomeSection() {
               <span className="home-stat-card__label">{t("home.stats.dataRows") || "Baris Data Diolah"}</span>
             </div>
           </div>
-        </div>
-      </Reveal>
+        </motion.div>
+      </div>
+
+      {/* Spacer for bottom half of overlapping stat cards */}
+      <div className="home-hero-spacer" />
 
       <div className="home-section__divider" />
 
