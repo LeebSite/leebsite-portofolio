@@ -2,19 +2,18 @@ import { useState, useEffect } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 import { FiHome, FiUser, FiBriefcase, FiLayers, FiCompass, FiAward, FiMail } from "react-icons/fi";
 import { HiCheckBadge } from "react-icons/hi2";
-import { motion } from "framer-motion";
 import "./Sidebar.css";
 import { useLanguage } from "../../context/LanguageContext";
 import { useCvModal } from "../../context/CvModalContext";
 import { useCommandPalette } from "../../context/CommandPaletteContext";
 import { FiSearch } from "react-icons/fi";
 
-export default function Sidebar({ enablePhotoMorph = true }) {
+export default function Sidebar() {
   const { openCvModal } = useCvModal();
   const { openPalette } = useCommandPalette();
   const location = useLocation();
   const { language, setLanguage, t } = useLanguage();
-  const [darkMode, setDarkMode] = useState(() => document.body.classList.contains("dark"));
+  const [darkMode, setDarkMode] = useState(false);
 
   useEffect(() => {
     if (darkMode) {
@@ -38,22 +37,18 @@ export default function Sidebar({ enablePhotoMorph = true }) {
     <aside className="sidebar">
       {/* Profile Card */}
       <div className="sidebar__profile">
-        <div className="sidebar__profile-header">
-          <div className="sidebar__avatar-wrapper">
-            <motion.img
-              src="/assets/ghalibpradipa.png"
-              alt="Muhammad Ghalib Pradipa"
-              className="sidebar__avatar"
-              layoutId={enablePhotoMorph ? "profile-photo" : undefined}
-              transition={{ type: "spring", stiffness: 120, damping: 30 }}
-            />
-          </div>
-          <h2 className="sidebar__name">
-            Muhammad Ghalib Pradipa
-            <HiCheckBadge className="sidebar__verified-icon" title={t("nav.verified")} />
-          </h2>
-          <p className="sidebar__title">{t("nav.roleTitle")}</p>
+        <div className="sidebar__avatar-wrapper">
+          <img
+            src="/assets/ghalibpradipa.png"
+            alt="Muhammad Ghalib Pradipa"
+            className="sidebar__avatar"
+          />
         </div>
+        <h2 className="sidebar__name">
+          Muhammad Ghalib Pradipa
+          <HiCheckBadge className="sidebar__verified-icon" title={t("nav.verified")} />
+        </h2>
+        <p className="sidebar__title">{t("nav.roleTitle")}</p>
 
         {/* Action Buttons */}
         <div className="sidebar__actions-wrapper">
@@ -73,7 +68,7 @@ export default function Sidebar({ enablePhotoMorph = true }) {
               ID
             </button>
           </div>
-
+          
           <button
             className="sidebar__icon-btn"
             onClick={() => setDarkMode(!darkMode)}
@@ -85,7 +80,7 @@ export default function Sidebar({ enablePhotoMorph = true }) {
               <svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 512 512" height="16px" width="16px" xmlns="http://www.w3.org/2000/svg"><path d="M256 160c-52.9 0-96 43.1-96 96s43.1 96 96 96 96-43.1 96-96-43.1-96-96-96zm246.4 80.5l-94.7-47.3 33.5-100.4c4.5-13.6-8.4-26.5-21.9-21.9l-100.4 33.5-47.4-94.8c-6.4-12.8-24.6-12.8-31 0l-47.3 94.7L92.7 70.8c-13.6-4.5-26.5 8.4-21.9 21.9l33.5 100.4-94.7 47.4c-12.8 6.4-12.8 24.6 0 31l94.7 47.3-33.5 100.5c-4.5 13.6 8.4 26.5 21.9 21.9l100.4-33.5 47.3 94.7c6.4 12.8 24.6 12.8 31 0l47.3-94.7 100.4 33.5c13.6 4.5 26.5-8.4 21.9-21.9l-33.5-100.4 94.7-47.3c13-6.5 13-24.7.2-31.1zm-155.9 106c-49.9 49.9-131.1 49.9-181 0-49.9-49.9-49.9-131.1 0-181 49.9-49.9 131.1-49.9 181 0 49.9 49.9 49.9 131.1 0 181z"></path></svg>
             )}
           </button>
-
+          
           <button
             type="button"
             onClick={openCvModal}

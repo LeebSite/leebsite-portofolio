@@ -33,13 +33,6 @@
   text-align: center;
 }
 
-.sidebar__profile-header {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-}
-
 .sidebar__avatar-wrapper {
   position: relative;
   margin-bottom: 14px;

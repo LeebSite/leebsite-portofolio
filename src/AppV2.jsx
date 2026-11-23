@@ -1,8 +1,7 @@
 import React, { useState, useEffect, useRef, lazy, Suspense } from "react";
 import { Routes, Route, useLocation, useNavigate, useMatch } from "react-router-dom";
-import { LayoutGroup, motion, useScroll, useSpring, useReducedMotion } from "framer-motion";
+import { motion, useScroll, useSpring } from "framer-motion";
 import Sidebar from "./components/Sidebar/Sidebar";
-import HomeNav from "./components/HomeNav/HomeNav";
 import MobileHeader from "./components/MobileHeader/MobileHeader";
 import "./AppV2.css";
 import { CvModalProvider } from "./context/CvModalContext";
@@ -130,7 +129,6 @@ function RouteSEO() {
 function App() {
   const { scrollYProgress } = useScroll();
   const scaleX = useSpring(scrollYProgress, { stiffness: 120, damping: 30 });
-  const reduce = useReducedMotion();
 
   const location = useLocation();
   const navigate = useNavigate();
@@ -157,24 +155,6 @@ function App() {
       return () => mql.removeListener(onChange);
     }
   }, []);
-
-  // Scroll morph (Home only, desktop + no reduced motion): past 350px the
-  // hero photo flies into the circular avatar in the HomeNav (same
-  // layoutId as the route morph). One shared state so HomeNav and
-  // HomeSection swap in the SAME render — framer-motion needs that to
-  // link the two layoutId elements into one fly animation.
-  const enableMorph = !isMobile && !reduce;
-  const [homeScrolled, setHomeScrolled] = useState(false);
-  useEffect(() => {
-    if (!enableMorph || location.pathname !== "/") {
-      setHomeScrolled(false);
-      return;
-    }
-    const onScroll = () => setHomeScrolled(window.scrollY > 350);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, [enableMorph, location.pathname]);
 
   // Scroll to top on route change (Desktop only)
   useEffect(() => {
@@ -232,11 +212,11 @@ function App() {
             <CommandPalette />
           </Suspense>
           <div className="app-v2">
-            <LayoutGroup id="profile-photo-transition">
-              {location.pathname === "/" ? <HomeNav isScrolled={homeScrolled} /> : <Sidebar enablePhotoMorph={!isMobile && !reduce} />}
+            {/* Left Sidebar */}
+            <Sidebar />
 
             {/* Main Content */}
-            <main className={location.pathname === "/" ? "app-v2__main app-v2__main--home" : "app-v2__main"}>
+            <main className="app-v2__main">
               <MobileHeader />
 
               {/* Section Route Content with Suspense Code-Splitting */}
@@ -251,7 +231,7 @@ function App() {
                   <>
                     <section id="home">
                       <Suspense fallback={<SectionLoader />}>
-                        <HomeSection isScrolled={homeScrolled} />
+                        <HomeSection />
                       </Suspense>
                     </section>
                     <section id="about">
@@ -288,7 +268,7 @@ function App() {
                 ) : (
                   <Suspense fallback={<SectionLoader />}>
                     <Routes>
-                      <Route path="/" element={<HomeSection isScrolled={homeScrolled} />} />
+                      <Route path="/" element={<HomeSection />} />
                       <Route path="/about" element={<AboutSection />} />
                       <Route path="/experience" element={<ExperienceSection />} />
                       <Route path="/projects" element={<ProjectsSection />} />
@@ -304,7 +284,6 @@ function App() {
               {/* Footer */}
               <footer className="app-v2__footer" style={{ display: "none" }} />
             </main>
-            </LayoutGroup>
           </div>
         </CommandPaletteProvider>
       </CvModalProvider>
