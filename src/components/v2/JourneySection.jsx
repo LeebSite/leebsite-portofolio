@@ -137,10 +137,45 @@ export default function JourneySection() {
                         <div className="journey-card__meta" style={{ marginBottom: "8px" }}>
                           <span className="journey-card__meta-item">
                             <LuMapPin size={12} />
-                            {item.location}
+                            {item.url && item.url !== "#" ? (
+                              <a
+                                href={item.url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                style={{ color: "inherit", textDecoration: "none" }}
+                                onMouseEnter={(e) => { e.currentTarget.style.color = "var(--accent-blue)"; e.currentTarget.style.textDecoration = "underline"; }}
+                                onMouseLeave={(e) => { e.currentTarget.style.color = "inherit"; e.currentTarget.style.textDecoration = "none"; }}
+                              >
+                                {item.location}
+                              </a>
+                            ) : (
+                              item.location
+                            )}
                           </span>
                         </div>
                         <p className="journey-card__desc">{item.desc}</p>
+                        {item.url && item.url !== "#" && (
+                          <div style={{ marginTop: "6px" }}>
+                            <a
+                              href={item.url}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              style={{
+                                display: "inline-flex",
+                                alignItems: "center",
+                                gap: "4px",
+                                fontSize: "12px",
+                                color: "var(--accent-blue)",
+                                textDecoration: "none",
+                                fontWeight: 500
+                              }}
+                              onMouseEnter={(e) => { e.currentTarget.style.textDecoration = "underline"; }}
+                              onMouseLeave={(e) => { e.currentTarget.style.textDecoration = "none"; }}
+                            >
+                              Situs resmi ↗
+                            </a>
+                          </div>
+                        )}
                         {item.image && (
                           <div className="journey-card__img-wrapper" style={{ marginTop: "10px" }}>
                             <img
@@ -210,13 +245,48 @@ export default function JourneySection() {
                           <span className="journey-card__meta-sep">•</span>
                           <span className="journey-card__meta-item">
                             <LuMapPin size={12} />
-                            {item.location}
+                            {item.url && item.url !== "#" ? (
+                              <a
+                                href={item.url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                style={{ color: "inherit", textDecoration: "none" }}
+                                onMouseEnter={(e) => { e.currentTarget.style.color = "var(--accent-blue)"; e.currentTarget.style.textDecoration = "underline"; }}
+                                onMouseLeave={(e) => { e.currentTarget.style.color = "inherit"; e.currentTarget.style.textDecoration = "none"; }}
+                              >
+                                {item.location}
+                              </a>
+                            ) : (
+                              item.location
+                            )}
                           </span>
                         </div>
                       </div>
 
                       <h3 className="journey-card__title">{item.title}</h3>
                       <p className="journey-card__desc">{item.desc}</p>
+                      {item.url && item.url !== "#" && (
+                        <div style={{ marginTop: "8px" }}>
+                          <a
+                            href={item.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            style={{
+                              display: "inline-flex",
+                              alignItems: "center",
+                              gap: "4px",
+                              fontSize: "12px",
+                              color: "var(--accent-blue)",
+                              textDecoration: "none",
+                              fontWeight: 500
+                            }}
+                            onMouseEnter={(e) => { e.currentTarget.style.textDecoration = "underline"; }}
+                            onMouseLeave={(e) => { e.currentTarget.style.textDecoration = "none"; }}
+                          >
+                            Situs resmi ↗
+                          </a>
+                        </div>
+                      )}
                     </div>
 
                     {/* Right: Image */}

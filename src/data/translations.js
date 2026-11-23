@@ -458,7 +458,8 @@ export const journeyData = {
       title: "Wakil Ketua — HIMATIF UIN Suska Riau",
       desc: "Mengatur pelaksanaan lebih dari 10 program berskala besar, serta memimpin dan mengoordinasikan komite lintas fungsi di 8 divisi internal organisasi mahasiswa.",
       image: "/assets/pengalaman/organisasi1.jpg",
-      color: "#8b5cf6"
+      color: "#8b5cf6",
+      url: "https://hima.tif.uin-suska.ac.id/"
     },
     {
       id: 2,
@@ -520,7 +521,8 @@ export const journeyData = {
       title: "Vice Chairman — HIMATIF UIN Suska Riau",
       desc: "Orchestrated the execution of 10+ large-scale programs, leading and aligning cross-functional committees across 8 internal divisions in the student association.",
       image: "/assets/pengalaman/organisasi1.jpg",
-      color: "#8b5cf6"
+      color: "#8b5cf6",
+      url: "https://hima.tif.uin-suska.ac.id/"
     },
     {
       id: 2,

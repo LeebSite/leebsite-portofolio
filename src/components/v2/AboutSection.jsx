@@ -150,8 +150,59 @@ export default function AboutSection() {
 
       <div className="about-section__divider" />
 
-      {/* Education */}
+      {/* Education & Organization */}
       <div className="about-section__edu-block">
+        <Reveal>
+          <h3 className="about-section__sub-title" style={{ marginBottom: "12px" }}>
+            <LuGraduationCap className="about-section__icon-inline" /> {isEn ? "Education & Organization" : "Pendidikan & Organisasi"}
+          </h3>
+          <div className="edu-card" style={{ display: "flex", flexDirection: "column", gap: "10px", padding: "16px 20px" }}>
+            <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+              <LuGraduationCap style={{ color: "var(--accent-blue)", flexShrink: 0 }} size={18} />
+              <a
+                href="https://tif.uin-suska.ac.id/"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  color: "var(--text-primary)",
+                  textDecoration: "none",
+                  fontSize: "13.5px",
+                  fontWeight: 500,
+                  transition: "color 0.2s ease"
+                }}
+                onMouseEnter={(e) => { e.currentTarget.style.color = "var(--accent-blue)"; }}
+                onMouseLeave={(e) => { e.currentTarget.style.color = "var(--text-primary)"; }}
+              >
+                S1 Teknik Informatika — UIN Sultan Syarif Kasim Riau (IPK 3.66)
+              </a>
+            </div>
+            <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+              <LuUsers style={{ color: "var(--accent-yellow)", flexShrink: 0 }} size={18} />
+              <a
+                href="https://hima.tif.uin-suska.ac.id/"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  color: "var(--text-primary)",
+                  textDecoration: "none",
+                  fontSize: "13.5px",
+                  fontWeight: 500,
+                  transition: "color 0.2s ease"
+                }}
+                onMouseEnter={(e) => { e.currentTarget.style.color = "var(--accent-blue)"; }}
+                onMouseLeave={(e) => { e.currentTarget.style.color = "var(--text-primary)"; }}
+              >
+                Wakil Ketua HIMATIF (Des 2024–Des 2025)
+              </a>
+            </div>
+          </div>
+        </Reveal>
+      </div>
+
+      <div className="about-section__divider" />
+
+      {/* GitHub Live Stats Widget */}
+      <div className="about-section__github">
         <Reveal>
           <GitHubStatsWidget />
         </Reveal>

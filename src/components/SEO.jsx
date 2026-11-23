@@ -39,6 +39,7 @@ const SEO = ({
         "alumniOf": {
             "@type": "CollegeOrUniversity",
             "name": "UIN Sultan Syarif Kasim Riau",
+            "url": "https://tif.uin-suska.ac.id/",
             "address": {
                 "@type": "PostalAddress",
                 "addressLocality": "Pekanbaru",
@@ -59,6 +60,7 @@ const SEO = ({
         "memberOf": {
             "@type": "Organization",
             "name": "HIMATIF UIN Suska Riau",
+            "url": "https://hima.tif.uin-suska.ac.id/",
             "description": "Himpunan Mahasiswa Teknik Informatika",
             "memberOf": "UIN Sultan Syarif Kasim Riau"
         },
